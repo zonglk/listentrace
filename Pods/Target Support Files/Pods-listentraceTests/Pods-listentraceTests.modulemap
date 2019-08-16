@@ -1,0 +1,6 @@
+framework module Pods_listentraceTests {
+  umbrella header "Pods-listentraceTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
