@@ -21,6 +21,7 @@
 #define kNavBarHeight 44.0
 #define kTabBarHeight ([[UIApplication sharedApplication] statusBarFrame].size.height>20?83:49)
 #define kTopHeight (kStatusBarHeight + kNavBarHeight)
+#define kBottomSafeHeight   ((kIS_IPHONE_X)? 34 : 0)
 
 //获取屏幕宽高
 #define KScreenWidth ([[UIScreen mainScreen] bounds].size.width)
@@ -31,6 +32,8 @@
 #define Iphone6ScaleHeight KScreenHeight/667.0
 //根据ip6的屏幕来拉伸
 #define kRealValue(with) ((with)*(KScreenWidth/375.0f))
+
+#define kIS_IPHONE_X ([UIScreen mainScreen].bounds.size.height > 736.0f) ? YES : NO
 
 //强弱引用
 #define kWeakSelf(type)  __weak typeof(type) weak##type = type;

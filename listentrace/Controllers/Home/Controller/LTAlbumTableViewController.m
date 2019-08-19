@@ -9,15 +9,19 @@
 #import "LTAlbumTableViewController.h"
 #import <Photos/Photos.h>
 #import <AVFoundation/AVFoundation.h>
-#import "IQKeyboardManager.h"
+#import "LTAlbumTableViewCell.h"
+#import "LTAlbumStyleView.h"
 
 @interface LTAlbumTableViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *albumTableView;
 @property (weak, nonatomic) IBOutlet UILabel *tipsImageLabel;
 @property (weak, nonatomic) IBOutlet UIButton *albumButton;
-@property (weak, nonatomic) IBOutlet UIButton *loveButton;
+@property (weak, nonatomic) IBOutlet UIButton *loveButton; // 红心
+@property (weak, nonatomic) IBOutlet UIButton *styleButton; // 风格
+@property (nonatomic, weak) LTAlbumStyleView *styleView;
 - (IBAction)albumButtonClick:(id)sender;
 - (IBAction)loveButtonClick:(id)sender;
+- (IBAction)styleButtonClick:(id)sender;
 
 @end
 
@@ -33,23 +37,26 @@
     self.tableView.backgroundColor = CViewBgColor;
     UIButton *rightNavButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     [rightNavButton setTitle:@"保存" forState:UIControlStateNormal];
+    [rightNavButton.titleLabel setFont:[UIFont systemFontOfSize:16]];
     [rightNavButton setTitleColor:RGBHex(0x007AFF) forState:UIControlStateNormal];
     [rightNavButton addTarget:self action:@selector(saveButtonClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightNavButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
     
-    [self ]
+    [self.tableView registerNib:[UINib nibWithNibName:@"LTAlbumTableViewCell" bundle:nil] forCellReuseIdentifier:@"LTAlbumTableViewCell"];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [[IQKeyboardManager sharedManager]setKeyboardDistanceFromTextField:100000];
+#pragma mark 键盘出现
+-(void)keyboardWillShow:(NSNotification *)note {
+    CGRect keyBoardRect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, keyBoardRect.size.height, 0);
 }
--(void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [[IQKeyboardManager sharedManager]setKeyboardDistanceFromTextField:10];
+#pragma mark 键盘消失
+-(void)keyboardWillHide:(NSNotification *)note {
+    self.tableView.contentInset = UIEdgeInsetsZero;
 }
 
 #pragma mark - ================ 保存专辑信息 ================
@@ -58,25 +65,29 @@
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
-//#pragma mark - Table view data source
-//
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return 11;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    return 1;
-//}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
- 
-     Configure the cell...
- 
-    return cell;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 1) {
+        return 1;
+    }
+    return [super tableView:tableView numberOfRowsInSection:section];
 }
-*/
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 1) {
+        LTAlbumTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LTAlbumTableViewCell" forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = CViewBgColor;
+        return cell;
+    }
+    return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 1) {
+        return 260;
+    }
+    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+}
 
 #pragma mark - ================ 添加/修改专辑照片 ================
 
@@ -143,7 +154,25 @@
     
 }
 
+#pragma mark - ================ 红心喜欢按钮 ================
 
 - (IBAction)loveButtonClick:(id)sender {
+    self.loveButton.selected = !self.loveButton.selected;
 }
+
+#pragma mark - ================ 风格编辑 ================
+
+- (IBAction)styleButtonClick:(id)sender {
+   
+}
+
+- (LTAlbumStyleView *)styleView {
+    if (!_styleView) {
+        LTAlbumStyleView *albumView = [LTAlbumStyleView creatStyleView];
+        [self.tableView addSubview:albumView];
+        _styleView = albumView;
+    }
+    return _styleView;
+}
+
 @end

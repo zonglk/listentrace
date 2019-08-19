@@ -100,10 +100,9 @@
 - (void)addNavgationItemWithTitles:(NSArray *)titles isLeft:(BOOL)isLeft target:(id)target action:(SEL)action tags:(NSArray *)tags {
     NSMutableArray *items = [[NSMutableArray alloc] init];
     //调整按钮位置
-    //    UIBarButtonItem* spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    //    //将宽度设为负值
-    //    spaceItem.width= -5;
-    //    [items addObject:spaceItem];
+    UIBarButtonItem* spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spaceItem.width = 15;
+    [items addObject:spaceItem];
     NSInteger i = 0;
     for (NSString *title in titles) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -111,8 +110,10 @@
         [btn setTitle:title forState:UIControlStateNormal];
         [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
         btn.titleLabel.font = SYSTEMFONT(16);
-        [btn setTitleColor:CWhiteColor forState:UIControlStateNormal];
-        btn.tag = [tags[i++] integerValue];
+        [btn setTitleColor:RGBHex(0x007AFF) forState:UIControlStateNormal];
+        if (tags && tags.count > 0) {
+            btn.tag = [tags[i++] integerValue];
+        }
         
         if (isLeft) {
             [btn setContentEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 10)];

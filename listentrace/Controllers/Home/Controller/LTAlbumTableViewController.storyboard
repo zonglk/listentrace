@@ -20,7 +20,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="10000" maxY="0.0"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="GgK-Va-X17">
-                            <rect key="frame" x="0.0" y="867" width="414" height="50"/>
+                            <rect key="frame" x="0.0" y="891" width="414" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YKX-nZ-gdc">
@@ -84,6 +84,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SRg-xX-0Oc">
                                                     <rect key="frame" x="363.33333333333331" y="121.66666666666667" width="38.666666666666686" height="35.333333333333329"/>
                                                     <state key="normal" image="album_grayHeart.png"/>
+                                                    <state key="selected" image="album_redHeart.png"/>
                                                     <connections>
                                                         <action selector="loveButtonClick:" destination="yVZ-Bj-Hec" eventType="touchUpInside" id="73a-1A-DZe"/>
                                                     </connections>
@@ -230,6 +231,9 @@
                                                                 <constraint firstAttribute="width" constant="14" id="Iiu-lO-9ZO"/>
                                                             </constraints>
                                                             <state key="normal" image="album_down_arrow.png"/>
+                                                            <connections>
+                                                                <action selector="styleButtonClick:" destination="yVZ-Bj-Hec" eventType="touchUpInside" id="yHm-hY-9Co"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e7e-Bt-s3W">
                                                             <rect key="frame" x="351" y="66" width="14" height="22"/>
@@ -629,10 +633,36 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.97254901959999995" green="0.97647058819999999" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="12" id="WIX-gA-YMM">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="12" id="KD9-fj-m9o">
                                         <rect key="frame" x="0.0" y="855" width="414" height="12"/>
                                         <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KD9-fj-m9o" id="KBo-XR-AlB">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="11.666666666666666"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.97254901959999995" green="0.97647058819999999" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="4rY-wo-bPf">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="12" id="WIX-gA-YMM">
+                                        <rect key="frame" x="0.0" y="867" width="414" height="12"/>
+                                        <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WIX-gA-YMM" id="e5v-dX-RRH">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="11.666666666666666"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.97254901959999995" green="0.97647058819999999" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="LNg-VX-jr4">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="12" id="a6v-dF-xOf">
+                                        <rect key="frame" x="0.0" y="879" width="414" height="12"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="a6v-dF-xOf" id="iJb-Sh-GwB">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="11.666666666666666"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
@@ -650,6 +680,7 @@
                         <outlet property="albumButton" destination="ZLo-c3-UVi" id="8Ey-hM-fd9"/>
                         <outlet property="albumTableView" destination="mwT-9g-i7I" id="FJX-Mr-Ni1"/>
                         <outlet property="loveButton" destination="SRg-xX-0Oc" id="lAc-SB-KRj"/>
+                        <outlet property="styleButton" destination="Pg9-Ak-FNy" id="FTR-le-OwA"/>
                         <outlet property="tipsImageLabel" destination="rkN-cR-9fu" id="4tg-u8-2Dd"/>
                     </connections>
                 </tableViewController>
@@ -663,5 +694,6 @@
         <image name="album_albumImage.png" width="310" height="310"/>
         <image name="album_down_arrow.png" width="27.333333969116211" height="16"/>
         <image name="album_grayHeart.png" width="38.666667938232422" height="35.333332061767578"/>
+        <image name="album_redHeart.png" width="38.666667938232422" height="35.333332061767578"/>
     </resources>
 </document>
