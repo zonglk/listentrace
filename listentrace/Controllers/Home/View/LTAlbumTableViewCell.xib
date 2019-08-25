@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5SZ-fA-LSs">
-                        <rect key="frame" x="12" y="0.0" width="474" height="259.5"/>
+                        <rect key="frame" x="12" y="0.0" width="474" height="249.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="曲目" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJO-97-FVt">
                                 <rect key="frame" x="52" y="18.5" width="29" height="17"/>
@@ -121,9 +121,12 @@
                                     <constraint firstAttribute="width" constant="20" id="wFz-5y-WRz"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="album_delete.png"/>
+                                <connections>
+                                    <action selector="deleteButtonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="CqV-Gx-Ru4"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v0h-ix-Ekz">
-                                <rect key="frame" x="107" y="210" width="347" height="49.5"/>
+                                <rect key="frame" x="107" y="210" width="347" height="39.5"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -182,7 +185,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="5SZ-fA-LSs" secondAttribute="trailing" constant="12" id="H6x-eq-Ndm"/>
-                    <constraint firstAttribute="bottom" secondItem="5SZ-fA-LSs" secondAttribute="bottom" id="LcT-dV-5v9"/>
+                    <constraint firstAttribute="bottom" secondItem="5SZ-fA-LSs" secondAttribute="bottom" constant="10" id="LcT-dV-5v9"/>
                     <constraint firstItem="5SZ-fA-LSs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="abF-eq-6F3"/>
                     <constraint firstItem="5SZ-fA-LSs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="eYL-TX-qzI"/>
                 </constraints>

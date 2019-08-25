@@ -14,13 +14,14 @@
 #import "JPImageresizerView.h"
 #import "LTAlbumStyleView.h"
 
-@interface LTAlbumTableViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface LTAlbumTableViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, LTAlbumTableViewCellDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *albumTableView;
 @property (weak, nonatomic) IBOutlet UILabel *tipsImageLabel;
 @property (weak, nonatomic) IBOutlet UIButton *albumButton;
 @property (weak, nonatomic) IBOutlet UIButton *loveButton; // 红心
 @property (weak, nonatomic) IBOutlet UIButton *styleButton; // 风格
 @property (weak, nonatomic) IBOutlet UITextField *styleTextField;
+- (IBAction)addDetailButtonClick:(id)sender;
 
 @property (nonatomic, weak) LTAlbumStyleView *styleView;
 @property (nonatomic, strong) UIButton *cancleButton;
@@ -29,6 +30,7 @@
 @property (nonatomic, strong) LTAlbumStyleView *albumStyleView;
 @property (nonatomic, assign) CGPoint styleViewPoint;
 @property (nonatomic, strong) UIView *styleCoverView;
+@property (nonatomic, strong) NSMutableArray *detailDataArray;
 
 - (IBAction)albumButtonClick:(id)sender;
 - (IBAction)loveButtonClick:(id)sender;
@@ -53,7 +55,10 @@
     [rightNavButton addTarget:self action:@selector(saveButtonClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightNavButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
-    [self.tableView registerNib:[UINib nibWithNibName:@"LTAlbumTableViewCell" bundle:nil] forCellReuseIdentifier:@"LTAlbumTableViewCell"];
+    [self.albumTableView registerNib:[UINib nibWithNibName:@"LTAlbumTableViewCell" bundle:nil] forCellReuseIdentifier:@"LTAlbumTableViewCell"];
+    self.albumTableView.estimatedRowHeight = 0;
+    self.albumTableView.estimatedSectionHeaderHeight = 0;
+    self.albumTableView.estimatedSectionFooterHeight = 0;
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -67,12 +72,13 @@
 }
 
 #pragma mark 键盘出现
--(void)keyboardWillShow:(NSNotification *)note {
+- (void)keyboardWillShow:(NSNotification *)note {
     CGRect keyBoardRect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, keyBoardRect.size.height, 0);
 }
+
 #pragma mark 键盘消失
--(void)keyboardWillHide:(NSNotification *)note {
+- (void)keyboardWillHide:(NSNotification *)note {
     self.tableView.contentInset = UIEdgeInsetsZero;
 }
 
@@ -82,9 +88,11 @@
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark - =================== UITableView Delegate\dataSource ===================
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 1) {
-        return 1;
+        return self.detailDataArray.count;
     }
     return [super tableView:tableView numberOfRowsInSection:section];
 }
@@ -94,6 +102,7 @@
         LTAlbumTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LTAlbumTableViewCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = CViewBgColor;
+        cell.delegate = self;
         return cell;
     }
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -101,9 +110,16 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
-        return 260;
+        return 270;
     }
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section == 1) {
+        return [super tableView:tableView indentationLevelForRowAtIndexPath: [NSIndexPath indexPathForRow:0 inSection:indexPath.section]];
+    }
+    return [super tableView:tableView indentationLevelForRowAtIndexPath:indexPath];
 }
 
 #pragma mark - ================ 添加/修改专辑照片 ================
@@ -299,12 +315,34 @@
     }];
 }
 
+#pragma mark - =================== 添加曲目详细信息 ===================
+
+- (IBAction)addDetailButtonClick:(id)sender {
+    [self.detailDataArray addObject:@"1"];
+    [self.albumTableView reloadSection:1 withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+#pragma mark - =================== 删除曲目详细信息 ===================
+
+- (void)deleteButtonClick:(LTAlbumTableViewCell *)cell {
+    NSIndexPath *index = [self.albumTableView indexPathForCell:cell];
+    [self.detailDataArray removeObjectAtIndex:index.row];
+    [self.albumTableView reloadSection:1 withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
 - (LTAlbumStyleView *)styleView {
     if (!_styleView) {
         LTAlbumStyleView *albumView = [[LTAlbumStyleView alloc] initWithFrame:CGRectMake(self.styleViewPoint.x - 145, self.styleViewPoint.y + 5, 170, 250)];
         _styleView = albumView;
     }
     return _styleView;
+}
+
+- (NSMutableArray *)detailDataArray {
+    if (!_detailDataArray) {
+        _detailDataArray = [NSMutableArray array];
+    }
+    return _detailDataArray;
 }
 
 @end

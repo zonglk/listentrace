@@ -21,4 +21,9 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)deleteButtonClick:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(deleteButtonClick:)]) {
+        [self.delegate deleteButtonClick:self];
+    }
+}
 @end
