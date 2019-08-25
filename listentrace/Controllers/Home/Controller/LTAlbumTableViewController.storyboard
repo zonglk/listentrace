@@ -232,7 +232,7 @@
                                                             </constraints>
                                                             <state key="normal" image="album_down_arrow.png"/>
                                                             <connections>
-                                                                <action selector="styleButtonClick:" destination="yVZ-Bj-Hec" eventType="touchUpInside" id="yHm-hY-9Co"/>
+                                                                <action selector="albumStyle:forEvent:" destination="yVZ-Bj-Hec" eventType="touchUpInside" id="ZDV-el-tUQ"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e7e-Bt-s3W">
@@ -681,6 +681,7 @@
                         <outlet property="albumTableView" destination="mwT-9g-i7I" id="FJX-Mr-Ni1"/>
                         <outlet property="loveButton" destination="SRg-xX-0Oc" id="lAc-SB-KRj"/>
                         <outlet property="styleButton" destination="Pg9-Ak-FNy" id="FTR-le-OwA"/>
+                        <outlet property="styleTextField" destination="v39-fd-pOs" id="Fht-5P-PhD"/>
                         <outlet property="tipsImageLabel" destination="rkN-cR-9fu" id="4tg-u8-2Dd"/>
                     </connections>
                 </tableViewController>

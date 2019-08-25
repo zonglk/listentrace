@@ -25,5 +25,6 @@ pod 'YTKNetwork'
 pod 'Masonry'
 pod 'SDWebImage', '~>3.8'
 pod 'IQKeyboardManager'
+pod 'JPImageresizerView'
 
 end

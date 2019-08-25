@@ -8,14 +8,56 @@
 
 #import "LTAlbumStyleView.h"
 
+@interface LTAlbumStyleView ()<UITabBarDelegate, UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *styleTableView;
+@property (nonatomic, strong) NSArray *styleDataArray;
+
+@end
+
 @implementation LTAlbumStyleView
 
-+ (instancetype)creatStyleView {
-    NSString *className = NSStringFromClass([self class]);
-    UINib *nib = [UINib nibWithNibName:className bundle:nil];
-    return [nib instantiateWithOwner:nil options:nil].firstObject;
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        self = [[[NSBundle mainBundle] loadNibNamed:@"LTAlbumStyleView" owner:self options:nil] lastObject];
+        self.layer.cornerRadius = 8;
+        self.clipsToBounds = YES;
+        self.frame = frame;
+        [self cratAllViews];
+    }
+    return self;
 }
 
+- (void)cratAllViews {
+    self.styleTableView.separatorColor = RGBHex(0xE5EAFA);
+    self.styleTableView.layer.cornerRadius = 8;
+    self.styleTableView.clipsToBounds = YES;
+    NSArray *array = [[NSArray alloc] initWithObjects:@"Anime & Game",@"Alternative", @"Blues",@"Cantopop",@"Children’s",@"Classical",@"1",@"2",@"1",@"2",@"1",@"2",nil];
+    self.styleDataArray = array;
+}
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.styleDataArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cellId"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.textLabel.text = self.styleDataArray[indexPath.row];
+    cell.textLabel.font = FONT(@"San Francisco Text", 14);
+    cell.textLabel.textColor = RGBHex(0x545C77);
+
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"AlbumStyleChangeNoti" object:nil userInfo:@{@"style" : self.styleDataArray[indexPath.row]}];
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
