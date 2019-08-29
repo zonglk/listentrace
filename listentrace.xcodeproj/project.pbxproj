@@ -37,6 +37,7 @@
 		002E18B822F723C8004D9F1D /* album_albumImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 002E18B622F723C8004D9F1D /* album_albumImage@2x.png */; };
 		002E18BB22F726C9004D9F1D /* album_grayHeart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 002E18B922F726C9004D9F1D /* album_grayHeart@2x.png */; };
 		002E18BC22F726C9004D9F1D /* album_grayHeart@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 002E18BA22F726C9004D9F1D /* album_grayHeart@3x.png */; };
+		004505AF231809DE004500A9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004505AE231809DE004500A9 /* CloudKit.framework */; };
 		005C3E8422E47E960015CCB9 /* Appdelegate+AppService.m in Sources */ = {isa = PBXBuildFile; fileRef = 005C3E8322E47E960015CCB9 /* Appdelegate+AppService.m */; };
 		005C3E8822E481840015CCB9 /* LTMainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005C3E8722E481840015CCB9 /* LTMainTabBarController.m */; };
 		005C3EA322E489CC0015CCB9 /* LTRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005C3EA222E489CC0015CCB9 /* LTRootViewController.m */; };
@@ -175,6 +176,8 @@
 		002E18B622F723C8004D9F1D /* album_albumImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "album_albumImage@2x.png"; sourceTree = "<group>"; };
 		002E18B922F726C9004D9F1D /* album_grayHeart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "album_grayHeart@2x.png"; sourceTree = "<group>"; };
 		002E18BA22F726C9004D9F1D /* album_grayHeart@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "album_grayHeart@3x.png"; sourceTree = "<group>"; };
+		004505AD231809D6004500A9 /* listentrace.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = listentrace.entitlements; sourceTree = "<group>"; };
+		004505AE231809DE004500A9 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		005C3E7522E455600015CCB9 /* UtilsMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilsMacros.h; sourceTree = "<group>"; };
 		005C3E7822E45D9C0015CCB9 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		005C3E8222E47E960015CCB9 /* Appdelegate+AppService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Appdelegate+AppService.h"; sourceTree = "<group>"; };
@@ -274,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A37E35B0102F698943C83CCC /* Pods_listentrace.framework in Frameworks */,
+				004505AF231809DE004500A9 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -761,6 +765,7 @@
 		00601BCA22E0C907005B33F2 /* listentrace */ = {
 			isa = PBXGroup;
 			children = (
+				004505AD231809D6004500A9 /* listentrace.entitlements */,
 				00DCA8EE22E366D600394CBB /* AppDelegate */,
 				005C3E8922E484F20015CCB9 /* Controllers */,
 				0027480B22E8BF0F00752BD2 /* Mannger */,
@@ -817,6 +822,7 @@
 		9040F74503884C0635B28BAA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				004505AE231809DE004500A9 /* CloudKit.framework */,
 				C8ADF5B89930780ECF0206F7 /* Pods_listentrace.framework */,
 				415EBA2EE0343971EA0D6498 /* Pods_listentraceTests.framework */,
 				38E092DA3CAADCA1BBE21507 /* Pods_listentraceUITests.framework */,
@@ -931,6 +937,14 @@
 				TargetAttributes = {
 					00601BC722E0C907005B33F2 = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					00601BDF22E0C908005B33F2 = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -1325,6 +1339,7 @@
 			baseConfigurationReference = 3BC58BAE5C2197D9EA11D62A /* Pods-listentrace.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = listentrace/listentrace.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QS8N6LMV2J;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1347,6 +1362,7 @@
 			baseConfigurationReference = 3AA233C4F064A214C1A9EBC3 /* Pods-listentrace.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = listentrace/listentrace.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QS8N6LMV2J;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

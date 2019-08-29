@@ -9,6 +9,7 @@
 #import "LTHomeViewController.h"
 #import "LTHomeTableViewCell.h"
 #import "LTAlbumTableViewController.h"
+#import <CloudKit/CloudKit.h>
 
 @interface LTHomeViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -25,6 +26,7 @@
     // Do any additional setup after loading the view.
     self.title = @"听迹";
     [self creatAllViews];
+    [self loginIcloud];
 }
 
 - (void)creatAllViews {
@@ -56,6 +58,53 @@
     [self.addBttton setBackgroundImage:[UIImage imageNamed:@"home_add"] forState:UIControlStateNormal];
     [self.addBttton setBackgroundImage:[UIImage imageNamed:@"home_add"] forState:UIControlStateHighlighted];
     [self.addBttton addTarget:self action:@selector(addAlbum) forControlEvents:UIControlEventTouchUpInside];
+}
+
+#pragma mark - =================== icloud ===================
+
+- (void)loginIcloud {
+    [[CKContainer defaultContainer] accountStatusWithCompletionHandler:^(CKAccountStatus accountStatus, NSError* error) {
+        if (accountStatus == CKAccountStatusNoAccount) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"尚未登录iCloud" message:nil preferredStyle:UIAlertControllerStyleAlert];
+
+            [alert addAction:[UIAlertAction actionWithTitle:@"确定"
+                                                      style:UIAlertActionStyleCancel
+                                                    handler:nil]];
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self presentViewController:alert animated:YES completion:nil];
+            });
+        }
+        else if (accountStatus == CKAccountStatusRestricted) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"请允许听迹登录icloud" message:nil preferredStyle:UIAlertControllerStyleAlert];
+
+            [alert addAction:[UIAlertAction actionWithTitle:@"确定"
+                                                      style:UIAlertActionStyleCancel
+                                                    handler:nil]];
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self presentViewController:alert animated:YES completion:nil];
+            });
+        }
+        else if (accountStatus == CKAccountStatusCouldNotDetermine) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"请允许听迹登录icloud" message:nil preferredStyle:UIAlertControllerStyleAlert];
+            
+            [alert addAction:[UIAlertAction actionWithTitle:@"确定"
+                                                      style:UIAlertActionStyleCancel
+                                                    handler:nil]];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self presentViewController:alert animated:YES completion:nil];
+            });
+        }
+        else {
+            //登录过了
+            [[CKContainer defaultContainer] fetchUserRecordIDWithCompletionHandler:^(CKRecordID * _Nullable recordID, NSError * _Nullable error) {
+                [[NSUserDefaults standardUserDefaults] setObject:recordID.recordName forKey:@"icloudName"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+            }];
+        }
+    }];
 }
 
 #pragma mark - =================== UITableView delegate \ datasources ===================
