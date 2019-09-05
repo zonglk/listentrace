@@ -249,9 +249,17 @@
                                                             <rect key="frame" x="351" y="66" width="14" height="22"/>
                                                             <state key="normal" image="album_down_arrow.png"/>
                                                         </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UuZ-wZ-sNC">
+                                                            <rect key="frame" x="77" y="52" width="313" height="50.666666666666657"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <connections>
+                                                                <action selector="albumTimeButtonClick:" destination="yVZ-Bj-Hec" eventType="touchUpInside" id="n2e-UE-xPv"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
+                                                        <constraint firstItem="UuZ-wZ-sNC" firstAttribute="leading" secondItem="N0x-A2-tDO" secondAttribute="trailing" id="0NV-Xt-al8"/>
                                                         <constraint firstItem="e7e-Bt-s3W" firstAttribute="centerY" secondItem="N0x-A2-tDO" secondAttribute="centerY" id="1S2-Hy-2IN"/>
                                                         <constraint firstItem="KTS-PC-qYe" firstAttribute="leading" secondItem="pSY-vm-hte" secondAttribute="leading" id="8Lg-Hy-kUb"/>
                                                         <constraint firstItem="HkI-75-Sto" firstAttribute="leading" secondItem="pSY-vm-hte" secondAttribute="leading" constant="48" id="9cx-ud-maV"/>
@@ -269,7 +277,10 @@
                                                         <constraint firstItem="Pg9-Ak-FNy" firstAttribute="centerY" secondItem="HkI-75-Sto" secondAttribute="centerY" id="ajq-47-bfe"/>
                                                         <constraint firstItem="ekd-R2-Wwg" firstAttribute="leading" secondItem="v39-fd-pOs" secondAttribute="leading" id="b4E-Bs-6dg"/>
                                                         <constraint firstItem="v39-fd-pOs" firstAttribute="top" secondItem="pSY-vm-hte" secondAttribute="top" id="ceO-Lx-Rdy"/>
+                                                        <constraint firstAttribute="bottom" secondItem="UuZ-wZ-sNC" secondAttribute="bottom" id="dhp-qn-XK3"/>
+                                                        <constraint firstAttribute="trailing" secondItem="UuZ-wZ-sNC" secondAttribute="trailing" id="dy6-Iy-GOM"/>
                                                         <constraint firstItem="HkI-75-Sto" firstAttribute="centerY" secondItem="pSY-vm-hte" secondAttribute="centerY" multiplier="0.5" constant="1" id="jCU-IP-xwS"/>
+                                                        <constraint firstItem="UuZ-wZ-sNC" firstAttribute="top" secondItem="KTS-PC-qYe" secondAttribute="bottom" id="kvA-aZ-EuN"/>
                                                         <constraint firstItem="e7e-Bt-s3W" firstAttribute="trailing" secondItem="Pg9-Ak-FNy" secondAttribute="trailing" id="p8W-TO-Y1T"/>
                                                         <constraint firstAttribute="bottom" secondItem="ekd-R2-Wwg" secondAttribute="bottom" id="rcn-Lb-ISD"/>
                                                         <constraint firstItem="e7e-Bt-s3W" firstAttribute="centerX" secondItem="Pg9-Ak-FNy" secondAttribute="centerX" id="sZR-55-fCN"/>

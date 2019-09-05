@@ -32,7 +32,7 @@
     self.styleTableView.separatorColor = RGBHex(0xE5EAFA);
     self.styleTableView.layer.cornerRadius = 8;
     self.styleTableView.clipsToBounds = YES;
-    NSArray *array = [[NSArray alloc] initWithObjects:@"Anime & Game",@"Alternative", @"Blues",@"Cantopop",@"Children’s",@"Classical",@"1",@"2",@"1",@"2",@"1",@"2",nil];
+    NSArray *array = [[NSArray alloc] initWithObjects:@"Anime & Game",@"Alternative", @"Blues",@"Cantopop",@"Children’s",@"Classical",@"Country",@"Dance",@"Easy Listening",@"Electronic",@"Experimental",@"Folk",@"Hip Hop",@"Indie",@"Jazz",@"J-Pop",@"K-Pop",@"Latin",@"Live",@"Mandopop",@"Metal",@"New Age",@"Pop",@"R&B",@"Reggae",@"Religious",@"Rock",@"Soundtrack",@"Singer/Songwriter",@"World Music",nil];
     self.styleDataArray = array;
 }
 

@@ -97,6 +97,9 @@
 		BDE2421322E554EE002F87E4 /* LTHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDE2421222E554EE002F87E4 /* LTHomeViewController.m */; };
 		BDE2421622E5567E002F87E4 /* LTStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDE2421522E5567E002F87E4 /* LTStyleViewController.m */; };
 		BDE2421D22E55796002F87E4 /* LTRootNavgationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDE2421C22E55796002F87E4 /* LTRootNavgationController.m */; };
+		BDE88E352320AC4A004495A9 /* LTNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = BDE88E342320AC4A004495A9 /* LTNetworking.m */; };
+		BDE88E382320B634004495A9 /* LTAlbumTimePIckerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDE88E372320B634004495A9 /* LTAlbumTimePIckerView.m */; };
+		BDE88E3A2320B63F004495A9 /* LTAlbumTimePIckerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BDE88E392320B63F004495A9 /* LTAlbumTimePIckerView.xib */; };
 		F2483D98DE468696D1A60019 /* Pods_listentraceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 415EBA2EE0343971EA0D6498 /* Pods_listentraceTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -267,6 +270,11 @@
 		BDE2421B22E55796002F87E4 /* LTRootNavgationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTRootNavgationController.h; sourceTree = "<group>"; };
 		BDE2421C22E55796002F87E4 /* LTRootNavgationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTRootNavgationController.m; sourceTree = "<group>"; };
 		BDE2421F22E559D3002F87E4 /* LTFontAndColorMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTFontAndColorMacros.h; sourceTree = "<group>"; };
+		BDE88E332320AC4A004495A9 /* LTNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTNetworking.h; sourceTree = "<group>"; };
+		BDE88E342320AC4A004495A9 /* LTNetworking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTNetworking.m; sourceTree = "<group>"; };
+		BDE88E362320B634004495A9 /* LTAlbumTimePIckerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTAlbumTimePIckerView.h; sourceTree = "<group>"; };
+		BDE88E372320B634004495A9 /* LTAlbumTimePIckerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTAlbumTimePIckerView.m; sourceTree = "<group>"; };
+		BDE88E392320B63F004495A9 /* LTAlbumTimePIckerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LTAlbumTimePIckerView.xib; sourceTree = "<group>"; };
 		C8ADF5B89930780ECF0206F7 /* Pods_listentrace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_listentrace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAC1BDD209668748E6106482 /* Pods-listentraceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-listentraceTests.debug.xcconfig"; path = "Target Support Files/Pods-listentraceTests/Pods-listentraceTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -534,6 +542,9 @@
 				BD4FB43E230AA95700A6F825 /* LTAlbumStyleView.h */,
 				BD4FB43F230AA95700A6F825 /* LTAlbumStyleView.m */,
 				BD4FB441230AA96D00A6F825 /* LTAlbumStyleView.xib */,
+				BDE88E362320B634004495A9 /* LTAlbumTimePIckerView.h */,
+				BDE88E372320B634004495A9 /* LTAlbumTimePIckerView.m */,
+				BDE88E392320B63F004495A9 /* LTAlbumTimePIckerView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -851,6 +862,7 @@
 		BDE2422022E55D7C002F87E4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				BDE88E322320AC1F004495A9 /* Networking */,
 				002747F122E8BE4100752BD2 /* SDCycleScrollView */,
 				002747E822E8BDDE00752BD2 /* TagsView */,
 				002747E422E8BDA700752BD2 /* SandBoxHelper */,
@@ -863,6 +875,15 @@
 				002747B822E8AFB400752BD2 /* AES */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		BDE88E322320AC1F004495A9 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				BDE88E332320AC4A004495A9 /* LTNetworking.h */,
+				BDE88E342320AC4A004495A9 /* LTNetworking.m */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1000,6 +1021,7 @@
 				00A0D21422F8966F0002D234 /* album_add@2x.png in Resources */,
 				002E18B422F722BF004D9F1D /* LTAlbumTableViewController.storyboard in Resources */,
 				00C2B09022ED5AD500CFB3E1 /* LTHomeTableViewCell.xib in Resources */,
+				BDE88E3A2320B63F004495A9 /* LTAlbumTimePIckerView.xib in Resources */,
 				00E83BE522E60B6A00C47AE5 /* style_tabbar_selected@2x.png in Resources */,
 				BD56EB2F2302B7680005271B /* nav_back@3x.png in Resources */,
 				00E83BDE22E60B4E00C47AE5 /* setup_tabbar_normal@2x.png in Resources */,
@@ -1152,6 +1174,7 @@
 				002747E722E8BDCC00752BD2 /* SandBoxHelper.m in Sources */,
 				002747EE22E8BDF700752BD2 /* FFTagsView.m in Sources */,
 				00C2B09C22ED991F00CFB3E1 /* LTStyleTableViewCell.m in Sources */,
+				BDE88E352320AC4A004495A9 /* LTNetworking.m in Sources */,
 				0027480822E8BEB300752BD2 /* TAPageControl.m in Sources */,
 				005C3EA322E489CC0015CCB9 /* LTRootViewController.m in Sources */,
 				BD4FB434230A91BB00A6F825 /* LTAlbumTableViewCell.m in Sources */,
@@ -1164,6 +1187,7 @@
 				00C2B0AB22EDC97100CFB3E1 /* LTSetUpTableViewController.m in Sources */,
 				BDE2421322E554EE002F87E4 /* LTHomeViewController.m in Sources */,
 				00601BDB22E0C908005B33F2 /* main.m in Sources */,
+				BDE88E382320B634004495A9 /* LTAlbumTimePIckerView.m in Sources */,
 				BD4FB440230AA95700A6F825 /* LTAlbumStyleView.m in Sources */,
 				00DCA8ED22E366BF00394CBB /* AppDelegate.m in Sources */,
 				002747B522E8AEFE00752BD2 /* LTWebViewController.m in Sources */,

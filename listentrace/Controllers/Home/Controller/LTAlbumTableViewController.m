@@ -32,9 +32,10 @@
 @property (nonatomic, strong) UIView *styleCoverView;
 @property (nonatomic, strong) NSMutableArray *detailDataArray;
 
-- (IBAction)albumButtonClick:(id)sender;
-- (IBAction)loveButtonClick:(id)sender;
-- (IBAction)albumStyle:(id)sender forEvent:(UIEvent *)event;
+- (IBAction)albumButtonClick:(id)sender; // 专辑封面
+- (IBAction)loveButtonClick:(id)sender; // 喜欢
+- (IBAction)albumStyle:(id)sender forEvent:(UIEvent *)event; // 风格
+- (IBAction)albumTimeButtonClick:(id)sender; // 专辑时长
 
 @end
 
@@ -345,4 +346,6 @@
     return _detailDataArray;
 }
 
+- (IBAction)albumTimeButtonClick:(id)sender {
+}
 @end
