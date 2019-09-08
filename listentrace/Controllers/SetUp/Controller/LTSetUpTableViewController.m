@@ -15,6 +15,9 @@
 @property (weak, nonatomic) IBOutlet UIView *view3;
 @property (weak, nonatomic) IBOutlet UIView *view4;
 
+
+- (IBAction)scoreButtonClick:(id)sender;
+
 @end
 
 @implementation LTSetUpTableViewController
@@ -34,4 +37,9 @@
     
 }
 
+#pragma mark - =================== 评分 ===================
+
+- (IBAction)scoreButtonClick:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://itunes.apple.com/cn/app/id1473462600?action=write-review"]]];
+}
 @end

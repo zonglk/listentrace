@@ -29,4 +29,6 @@
 }
 */
 
+- (IBAction)scoreButtonClick:(id)sender {
+}
 @end
