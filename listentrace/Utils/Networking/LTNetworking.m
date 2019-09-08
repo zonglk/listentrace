@@ -83,19 +83,19 @@
         if (error) {
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
             if (error.code == -1009) {
-                //                [[ResultView sharedInstance] showResult:@"网络已断开" forType:kResultTypeFailed];
+                [MBProgressHUD showErrorMessage:@"网络已断开"];
             }
             else if (error.code == -1005) { // 网络连接已中断
-                
+                [MBProgressHUD showErrorMessage:@"网络连接已中断"];
             }
             else if(error.code == -1001) { // 请求超时
-                
+                [MBProgressHUD showErrorMessage:@"请求超时"];
             }
             else if (error.code == -1003) { // 未能找到使用指定主机名的服务器
-                
+                [MBProgressHUD showErrorMessage:@"未能找到使用指定主机名的服务器"];
             }
             else { // 网络出错了~请稍后重试
-                
+                [MBProgressHUD showErrorMessage:@"网络出错了~请稍后重试"];
             }
             
             if (failure != nil) {
@@ -140,7 +140,7 @@
 }
 
 - (NSString *)getUrl:(NSString *)url {
-    NSString *urlString;
+    NSString *urlString = @"http://101.37.25.106:8080";
 //#ifdef DEBUG
 //    urlString = [NSString stringWithFormat:@"http://tsdev.zlapi.com%@",url];
 //#else
@@ -156,6 +156,7 @@
     else {
         next = @"?";
     }
+    [finalUrl appendFormat:@"%@",url];
     [finalUrl appendString:next];
     return finalUrl;
 }

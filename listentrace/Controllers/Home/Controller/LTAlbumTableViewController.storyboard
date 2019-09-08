@@ -686,10 +686,21 @@
                     </tableView>
                     <connections>
                         <outlet property="albumButton" destination="ZLo-c3-UVi" id="8Ey-hM-fd9"/>
+                        <outlet property="albumNameTextField" destination="MYa-hq-4lz" id="rs2-56-58n"/>
                         <outlet property="albumTableView" destination="mwT-9g-i7I" id="FJX-Mr-Ni1"/>
+                        <outlet property="coverTextField" destination="b0J-I4-wBS" id="oQk-3S-Jzm"/>
+                        <outlet property="listeningTimeTextField" destination="Tyg-Pb-24H" id="RYq-kq-dKc"/>
                         <outlet property="loveButton" destination="SRg-xX-0Oc" id="lAc-SB-KRj"/>
+                        <outlet property="masteringTextField" destination="kvP-cK-qfO" id="UAq-Si-DGU"/>
+                        <outlet property="mixerTextField" destination="nfn-ia-09X" id="Ly7-xu-cR5"/>
+                        <outlet property="mixingTextField" destination="abp-Au-V4I" id="ysc-gy-fmZ"/>
+                        <outlet property="musicianTextField" destination="NOG-8B-NOj" id="uaj-tI-aqb"/>
+                        <outlet property="producerTextField" destination="y9K-o0-SMT" id="jtR-9c-CbX"/>
+                        <outlet property="releasedCountTextField" destination="uUD-bQ-CPx" id="83V-Q0-RYK"/>
+                        <outlet property="releasedTimeTextField" destination="1wM-YU-cOl" id="LVN-SI-P95"/>
                         <outlet property="styleButton" destination="Pg9-Ak-FNy" id="FTR-le-OwA"/>
                         <outlet property="styleTextField" destination="v39-fd-pOs" id="Fht-5P-PhD"/>
+                        <outlet property="timeTextField" destination="ekd-R2-Wwg" id="JkT-XX-Vmf"/>
                         <outlet property="tipsImageLabel" destination="rkN-cR-9fu" id="4tg-u8-2Dd"/>
                     </connections>
                 </tableViewController>

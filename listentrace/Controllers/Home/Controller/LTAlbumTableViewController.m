@@ -13,6 +13,7 @@
 #import "LTAlbumStyleView.h"
 #import "JPImageresizerView.h"
 #import "LTAlbumStyleView.h"
+#import "LTNetworking.h"
 
 @interface LTAlbumTableViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, LTAlbumTableViewCellDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *albumTableView;
@@ -20,7 +21,19 @@
 @property (weak, nonatomic) IBOutlet UIButton *albumButton;
 @property (weak, nonatomic) IBOutlet UIButton *loveButton; // 红心
 @property (weak, nonatomic) IBOutlet UIButton *styleButton; // 风格
-@property (weak, nonatomic) IBOutlet UITextField *styleTextField;
+@property (weak, nonatomic) IBOutlet UITextField *albumNameTextField; // 专辑名
+@property (weak, nonatomic) IBOutlet UITextField *musicianTextField; // 音乐人
+@property (weak, nonatomic) IBOutlet UITextField *styleTextField; // 风格
+@property (weak, nonatomic) IBOutlet UITextField *timeTextField; // 时长
+@property (weak, nonatomic) IBOutlet UITextField *listeningTimeTextField; // 聆听时间
+@property (weak, nonatomic) IBOutlet UITextField *releasedTimeTextField; // 发行时间
+@property (weak, nonatomic) IBOutlet UITextField *releasedCountTextField; // 发行数目
+@property (weak, nonatomic) IBOutlet UITextField *producerTextField; // 制作人
+@property (weak, nonatomic) IBOutlet UITextField *mixerTextField; // 录音师
+@property (weak, nonatomic) IBOutlet UITextField *mixingTextField; // 混音师
+@property (weak, nonatomic) IBOutlet UITextField *masteringTextField; // 母带工程师
+@property (weak, nonatomic) IBOutlet UITextField *coverTextField; // 封面设计师
+
 - (IBAction)addDetailButtonClick:(id)sender;
 
 @property (nonatomic, weak) LTAlbumStyleView *styleView;
@@ -86,7 +99,82 @@
 #pragma mark - ================ 保存专辑信息 ================
 
 - (void)saveButtonClick {
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    if (!self.albumNameTextField.text.length) {
+        [MBProgressHUD showInfoMessage:@"请填写专辑名"];
+        return;
+    }
+    if (!self.musicianTextField.text.length) {
+        [MBProgressHUD showInfoMessage:@"请填写专辑音乐人"];
+        return;
+    }
+    if (!self.styleTextField.text.length) {
+        [MBProgressHUD showInfoMessage:@"请选择专辑风格"];
+        return;
+    }
+    
+    NSMutableDictionary *parameter = [NSMutableDictionary dictionary];
+    NSString  *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"];
+    [parameter setObject:userId forKey:@"user_id"];
+    [parameter setObject:self.albumNameTextField.text forKey:@"album_name"];
+    [parameter setObject:self.musicianTextField.text forKey:@"album_musician"];
+    [parameter setObject:self.styleTextField.text forKey:@"album_style"];
+    
+    if (self.timeTextField.text.length) {
+        [parameter setObject:self.timeTextField.text forKey:@"album_duration"];
+    }
+    if (self.listeningTimeTextField.text.length) {
+        [parameter setObject:self.listeningTimeTextField.text forKey:@"listen_year"];
+    }
+    if (self.releasedTimeTextField.text.length) {
+        [parameter setObject:self.releasedTimeTextField.text forKey:@"album_release_year"];
+    }
+    if (self.releasedCountTextField.text.length) {
+        [parameter setObject:self.releasedCountTextField.text forKey:@"song_quantity"];
+    }
+    if (self.mixerTextField.text.length) {
+        [parameter setObject:self.mixerTextField.text forKey:@"sound_engineer"];
+    }
+    if (self.mixingTextField.text.length) {
+        [parameter setObject:self.mixingTextField.text forKey:@"sound_mixer"];
+    }
+    if (self.masteringTextField.text.length) {
+        [parameter setObject:self.masteringTextField.text forKey:@"mastering_engineer"];
+    }
+    if (self.coverTextField.text.length) {
+        [parameter setObject:self.coverTextField.text forKey:@"cover_designer"];
+    }
+//    if (self.timeTextField.text.length) {
+//        [parameter setObject:self.timeTextField.text forKey:@"album_tracks"];
+//    }
+//    if (self.timeTextField.text.length) {
+//        [parameter setObject:self.timeTextField.text forKey:@"album_lyricist"];
+//    }
+//    if (self.timeTextField.text.length) {
+//        [parameter setObject:self.timeTextField.text forKey:@"album_composer"];
+//    }
+//    if (self.timeTextField.text.length) {
+//        [parameter setObject:self.timeTextField.text forKey:@"album_arranger"];
+//    }
+//    if (self.timeTextField.text.length) {
+//        [parameter setObject:self.timeTextField.text forKey:@"album_player"];
+//    }
+    if (self.loveButton.selected) {
+        [parameter setObject:@(1) forKey:@"favorite"];
+    }
+    else {
+        [parameter setObject:@(1) forKey:@"favorite"];
+    }
+    [LTNetworking requestUrl:@"/album/add" WithParam:parameter withMethod:POST success:^(id  _Nonnull result) {
+        if ([result[@"code"] intValue] == 0) {
+            [MBProgressHUD showInfoMessage:result[@"msg"]];
+            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        }
+        else {
+            [MBProgressHUD showInfoMessage:result[@"msg"]];
+        }
+    } failure:^(NSError * _Nonnull erro) {
+            [MBProgressHUD showInfoMessage:@"网络连接失败，请稍后重试"];
+    } showHUD:self.view];
 }
 
 #pragma mark - =================== UITableView Delegate\dataSource ===================
@@ -331,6 +419,9 @@
     [self.albumTableView reloadSection:1 withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
+- (IBAction)albumTimeButtonClick:(id)sender {
+}
+
 - (LTAlbumStyleView *)styleView {
     if (!_styleView) {
         LTAlbumStyleView *albumView = [[LTAlbumStyleView alloc] initWithFrame:CGRectMake(self.styleViewPoint.x - 145, self.styleViewPoint.y + 5, 170, 250)];
@@ -346,6 +437,5 @@
     return _detailDataArray;
 }
 
-- (IBAction)albumTimeButtonClick:(id)sender {
-}
+
 @end

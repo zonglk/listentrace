@@ -37,6 +37,7 @@
 		002E18B822F723C8004D9F1D /* album_albumImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 002E18B622F723C8004D9F1D /* album_albumImage@2x.png */; };
 		002E18BB22F726C9004D9F1D /* album_grayHeart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 002E18B922F726C9004D9F1D /* album_grayHeart@2x.png */; };
 		002E18BC22F726C9004D9F1D /* album_grayHeart@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 002E18BA22F726C9004D9F1D /* album_grayHeart@3x.png */; };
+		003D869E23251AEF002C0D5E /* LYLUnicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 003D869D23251AEF002C0D5E /* LYLUnicode.m */; };
 		004505AF231809DE004500A9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004505AE231809DE004500A9 /* CloudKit.framework */; };
 		005C3E8422E47E960015CCB9 /* Appdelegate+AppService.m in Sources */ = {isa = PBXBuildFile; fileRef = 005C3E8322E47E960015CCB9 /* Appdelegate+AppService.m */; };
 		005C3E8822E481840015CCB9 /* LTMainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005C3E8722E481840015CCB9 /* LTMainTabBarController.m */; };
@@ -179,6 +180,8 @@
 		002E18B622F723C8004D9F1D /* album_albumImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "album_albumImage@2x.png"; sourceTree = "<group>"; };
 		002E18B922F726C9004D9F1D /* album_grayHeart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "album_grayHeart@2x.png"; sourceTree = "<group>"; };
 		002E18BA22F726C9004D9F1D /* album_grayHeart@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "album_grayHeart@3x.png"; sourceTree = "<group>"; };
+		003D869C23251AEF002C0D5E /* LYLUnicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYLUnicode.h; sourceTree = "<group>"; };
+		003D869D23251AEF002C0D5E /* LYLUnicode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYLUnicode.m; sourceTree = "<group>"; };
 		004505AD231809D6004500A9 /* listentrace.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = listentrace.entitlements; sourceTree = "<group>"; };
 		004505AE231809DE004500A9 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		005C3E7522E455600015CCB9 /* UtilsMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilsMacros.h; sourceTree = "<group>"; };
@@ -453,6 +456,15 @@
 			children = (
 			);
 			path = Mannger;
+			sourceTree = "<group>";
+		};
+		003D869B23251ACF002C0D5E /* LYLUnicode */ = {
+			isa = PBXGroup;
+			children = (
+				003D869C23251AEF002C0D5E /* LYLUnicode.h */,
+				003D869D23251AEF002C0D5E /* LYLUnicode.m */,
+			);
+			path = LYLUnicode;
 			sourceTree = "<group>";
 		};
 		005C3E7422E450FD0015CCB9 /* Define */ = {
@@ -862,6 +874,7 @@
 		BDE2422022E55D7C002F87E4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				003D869B23251ACF002C0D5E /* LYLUnicode */,
 				BDE88E322320AC1F004495A9 /* Networking */,
 				002747F122E8BE4100752BD2 /* SDCycleScrollView */,
 				002747E822E8BDDE00752BD2 /* TagsView */,
@@ -1170,6 +1183,7 @@
 				BDE2421622E5567E002F87E4 /* LTStyleViewController.m in Sources */,
 				002747D122E8B68600752BD2 /* MBProgressHUD+LT.m in Sources */,
 				00C2B08F22ED5AD500CFB3E1 /* LTHomeTableViewCell.m in Sources */,
+				003D869E23251AEF002C0D5E /* LYLUnicode.m in Sources */,
 				00A83AB822EF346000C59ACB /* LTStyleDetailCollectionViewCell.m in Sources */,
 				002747E722E8BDCC00752BD2 /* SandBoxHelper.m in Sources */,
 				002747EE22E8BDF700752BD2 /* FFTagsView.m in Sources */,
