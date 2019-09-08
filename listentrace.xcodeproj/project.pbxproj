@@ -38,6 +38,7 @@
 		002E18BB22F726C9004D9F1D /* album_grayHeart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 002E18B922F726C9004D9F1D /* album_grayHeart@2x.png */; };
 		002E18BC22F726C9004D9F1D /* album_grayHeart@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 002E18BA22F726C9004D9F1D /* album_grayHeart@3x.png */; };
 		003D869E23251AEF002C0D5E /* LYLUnicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 003D869D23251AEF002C0D5E /* LYLUnicode.m */; };
+		003D86A8232553DE002C0D5E /* LTAlbumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 003D86A7232553DE002C0D5E /* LTAlbumModel.m */; };
 		004505AF231809DE004500A9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004505AE231809DE004500A9 /* CloudKit.framework */; };
 		005C3E8422E47E960015CCB9 /* Appdelegate+AppService.m in Sources */ = {isa = PBXBuildFile; fileRef = 005C3E8322E47E960015CCB9 /* Appdelegate+AppService.m */; };
 		005C3E8822E481840015CCB9 /* LTMainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005C3E8722E481840015CCB9 /* LTMainTabBarController.m */; };
@@ -182,6 +183,8 @@
 		002E18BA22F726C9004D9F1D /* album_grayHeart@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "album_grayHeart@3x.png"; sourceTree = "<group>"; };
 		003D869C23251AEF002C0D5E /* LYLUnicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYLUnicode.h; sourceTree = "<group>"; };
 		003D869D23251AEF002C0D5E /* LYLUnicode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYLUnicode.m; sourceTree = "<group>"; };
+		003D86A6232553DE002C0D5E /* LTAlbumModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTAlbumModel.h; sourceTree = "<group>"; };
+		003D86A7232553DE002C0D5E /* LTAlbumModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTAlbumModel.m; sourceTree = "<group>"; };
 		004505AD231809D6004500A9 /* listentrace.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = listentrace.entitlements; sourceTree = "<group>"; };
 		004505AE231809DE004500A9 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		005C3E7522E455600015CCB9 /* UtilsMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilsMacros.h; sourceTree = "<group>"; };
@@ -467,6 +470,15 @@
 			path = LYLUnicode;
 			sourceTree = "<group>";
 		};
+		003D86A5232553CC002C0D5E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				003D86A6232553DE002C0D5E /* LTAlbumModel.h */,
+				003D86A7232553DE002C0D5E /* LTAlbumModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		005C3E7422E450FD0015CCB9 /* Define */ = {
 			isa = PBXGroup;
 			children = (
@@ -513,7 +525,7 @@
 		005C3E8A22E485020015CCB9 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				005C3E8C22E485D10015CCB9 /* Model */,
+				003D86A5232553CC002C0D5E /* Model */,
 				005C3E8D22E485E30015CCB9 /* View */,
 				005C3E8B22E485B50015CCB9 /* Controller */,
 				005C3E9022E4868E0015CCB9 /* Logic */,
@@ -533,13 +545,6 @@
 				002E18B322F722BF004D9F1D /* LTAlbumTableViewController.storyboard */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		005C3E8C22E485D10015CCB9 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		005C3E8D22E485E30015CCB9 /* View */ = {
@@ -1170,6 +1175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				002747ED22E8BDF700752BD2 /* TagsButton.m in Sources */,
+				003D86A8232553DE002C0D5E /* LTAlbumModel.m in Sources */,
 				00C2B0A422EDB60A00CFB3E1 /* LTSetUpViewController.m in Sources */,
 				005C3E8822E481840015CCB9 /* LTMainTabBarController.m in Sources */,
 				005C3E8422E47E960015CCB9 /* Appdelegate+AppService.m in Sources */,

@@ -10,12 +10,14 @@
 #import "LTHomeTableViewCell.h"
 #import "LTAlbumTableViewController.h"
 #import <CloudKit/CloudKit.h>
+#import "LTNetworking.h"
 
 @interface LTHomeViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *homeTableView;
 @property (nonatomic, strong) UILabel *tipsLable; // 底部专辑张数提醒label
 @property (nonatomic, strong) UIButton *addBttton; // 添加专辑按钮
+@property (nonatomic, strong) NSData *dataArray;
 
 @end
 
@@ -103,8 +105,17 @@
                 [[NSUserDefaults standardUserDefaults] setObject:recordID.recordName forKey:@"icloudName"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
             }];
+            [self requestData];
         }
     }];
+}
+
+- (void)requestData {
+    [LTNetworking requestUrl:@"/album/traces" WithParam:@{@"user_id" : [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"]} withMethod:GET success:^(id  _Nonnull result) {
+        
+    } failure:^(NSError * _Nonnull erro) {
+        
+    } showHUD:self.view];
 }
 
 #pragma mark - =================== UITableView delegate \ datasources ===================
