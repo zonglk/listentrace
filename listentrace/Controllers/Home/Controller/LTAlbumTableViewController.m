@@ -14,6 +14,7 @@
 #import "JPImageresizerView.h"
 #import "LTAlbumStyleView.h"
 #import "LTNetworking.h"
+#import "QFTimePickerView.h"
 
 @interface LTAlbumTableViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, LTAlbumTableViewCellDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *albumTableView;
@@ -404,6 +405,16 @@
     }];
 }
 
+#pragma mark - ================ 时长 ================
+
+- (IBAction)albumTimeButtonClick:(id)sender {
+    QFTimePickerView *pickerView = [[QFTimePickerView alloc] initDatePackerWithStartHour:@"0" endHour:@"24" period:1 response:^(NSString *str) {
+        self.timeTextField.text = str;
+    }];
+    [pickerView show];
+}
+
+
 #pragma mark - =================== 添加曲目详细信息 ===================
 
 - (IBAction)addDetailButtonClick:(id)sender {
@@ -417,9 +428,6 @@
     NSIndexPath *index = [self.albumTableView indexPathForCell:cell];
     [self.detailDataArray removeObjectAtIndex:index.row];
     [self.albumTableView reloadSection:1 withRowAnimation:UITableViewRowAnimationAutomatic];
-}
-
-- (IBAction)albumTimeButtonClick:(id)sender {
 }
 
 - (LTAlbumStyleView *)styleView {

@@ -251,7 +251,6 @@
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UuZ-wZ-sNC">
                                                             <rect key="frame" x="77" y="52" width="313" height="50.666666666666657"/>
-                                                            <state key="normal" title="Button"/>
                                                             <connections>
                                                                 <action selector="albumTimeButtonClick:" destination="yVZ-Bj-Hec" eventType="touchUpInside" id="n2e-UE-xPv"/>
                                                             </connections>

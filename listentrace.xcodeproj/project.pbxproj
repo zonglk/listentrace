@@ -102,6 +102,14 @@
 		BDE88E352320AC4A004495A9 /* LTNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = BDE88E342320AC4A004495A9 /* LTNetworking.m */; };
 		BDE88E382320B634004495A9 /* LTAlbumTimePIckerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDE88E372320B634004495A9 /* LTAlbumTimePIckerView.m */; };
 		BDE88E3A2320B63F004495A9 /* LTAlbumTimePIckerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BDE88E392320B63F004495A9 /* LTAlbumTimePIckerView.xib */; };
+		BDF12B3823266D0700F34680 /* QFTimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDF12B2323266D0700F34680 /* QFTimePickerView.m */; };
+		BDF12B3923266D0700F34680 /* QFTimerPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = BDF12B2823266D0700F34680 /* QFTimerPicker.m */; };
+		BDF12B3A23266D0700F34680 /* QFTimerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BDF12B2A23266D0700F34680 /* QFTimerUtil.m */; };
+		BDF12B3B23266D0700F34680 /* QFTimerDataSourceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BDF12B3123266D0700F34680 /* QFTimerDataSourceModel.m */; };
+		BDF12B3C23266D0700F34680 /* QFMinuteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BDF12B3223266D0700F34680 /* QFMinuteModel.m */; };
+		BDF12B3D23266D0700F34680 /* QFHourModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BDF12B3323266D0700F34680 /* QFHourModel.m */; };
+		BDF12B3E23266D0700F34680 /* QFDateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BDF12B3423266D0700F34680 /* QFDateModel.m */; };
+		BDF12B3F23266D0700F34680 /* QFDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDF12B3623266D0700F34680 /* QFDatePickerView.m */; };
 		F2483D98DE468696D1A60019 /* Pods_listentraceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 415EBA2EE0343971EA0D6498 /* Pods_listentraceTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -281,6 +289,22 @@
 		BDE88E362320B634004495A9 /* LTAlbumTimePIckerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTAlbumTimePIckerView.h; sourceTree = "<group>"; };
 		BDE88E372320B634004495A9 /* LTAlbumTimePIckerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTAlbumTimePIckerView.m; sourceTree = "<group>"; };
 		BDE88E392320B63F004495A9 /* LTAlbumTimePIckerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LTAlbumTimePIckerView.xib; sourceTree = "<group>"; };
+		BDF12B2323266D0700F34680 /* QFTimePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFTimePickerView.m; sourceTree = "<group>"; };
+		BDF12B2423266D0700F34680 /* QFTimePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFTimePickerView.h; sourceTree = "<group>"; };
+		BDF12B2723266D0700F34680 /* QFTimerPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFTimerPicker.h; sourceTree = "<group>"; };
+		BDF12B2823266D0700F34680 /* QFTimerPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFTimerPicker.m; sourceTree = "<group>"; };
+		BDF12B2A23266D0700F34680 /* QFTimerUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFTimerUtil.m; sourceTree = "<group>"; };
+		BDF12B2B23266D0700F34680 /* QFTimerUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFTimerUtil.h; sourceTree = "<group>"; };
+		BDF12B2D23266D0700F34680 /* QFTimerDataSourceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFTimerDataSourceModel.h; sourceTree = "<group>"; };
+		BDF12B2E23266D0700F34680 /* QFDateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFDateModel.h; sourceTree = "<group>"; };
+		BDF12B2F23266D0700F34680 /* QFHourModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFHourModel.h; sourceTree = "<group>"; };
+		BDF12B3023266D0700F34680 /* QFMinuteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFMinuteModel.h; sourceTree = "<group>"; };
+		BDF12B3123266D0700F34680 /* QFTimerDataSourceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFTimerDataSourceModel.m; sourceTree = "<group>"; };
+		BDF12B3223266D0700F34680 /* QFMinuteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFMinuteModel.m; sourceTree = "<group>"; };
+		BDF12B3323266D0700F34680 /* QFHourModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFHourModel.m; sourceTree = "<group>"; };
+		BDF12B3423266D0700F34680 /* QFDateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFDateModel.m; sourceTree = "<group>"; };
+		BDF12B3623266D0700F34680 /* QFDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFDatePickerView.m; sourceTree = "<group>"; };
+		BDF12B3723266D0700F34680 /* QFDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFDatePickerView.h; sourceTree = "<group>"; };
 		C8ADF5B89930780ECF0206F7 /* Pods_listentrace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_listentrace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAC1BDD209668748E6106482 /* Pods-listentraceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-listentraceTests.debug.xcconfig"; path = "Target Support Files/Pods-listentraceTests/Pods-listentraceTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -879,6 +903,7 @@
 		BDE2422022E55D7C002F87E4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				BDF12B0323266CC200F34680 /* DataPicker */,
 				003D869B23251ACF002C0D5E /* LYLUnicode */,
 				BDE88E322320AC1F004495A9 /* Networking */,
 				002747F122E8BE4100752BD2 /* SDCycleScrollView */,
@@ -902,6 +927,80 @@
 				BDE88E342320AC4A004495A9 /* LTNetworking.m */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		BDF12B0323266CC200F34680 /* DataPicker */ = {
+			isa = PBXGroup;
+			children = (
+				BDF12B3523266D0700F34680 /* QFDatePickerView */,
+				BDF12B2223266D0700F34680 /* QFTimePickerView */,
+				BDF12B2523266D0700F34680 /* QFTimerPicker */,
+			);
+			path = DataPicker;
+			sourceTree = "<group>";
+		};
+		BDF12B2223266D0700F34680 /* QFTimePickerView */ = {
+			isa = PBXGroup;
+			children = (
+				BDF12B2323266D0700F34680 /* QFTimePickerView.m */,
+				BDF12B2423266D0700F34680 /* QFTimePickerView.h */,
+			);
+			name = QFTimePickerView;
+			path = "../../../../listentrace的副本/listentrace/Utils/DataPicker/QFTimePickerView";
+			sourceTree = "<group>";
+		};
+		BDF12B2523266D0700F34680 /* QFTimerPicker */ = {
+			isa = PBXGroup;
+			children = (
+				BDF12B2623266D0700F34680 /* QFTimerPicker */,
+				BDF12B2923266D0700F34680 /* Uitils */,
+				BDF12B2C23266D0700F34680 /* Model */,
+			);
+			name = QFTimerPicker;
+			path = "../../../../listentrace的副本/listentrace/Utils/DataPicker/QFTimerPicker";
+			sourceTree = "<group>";
+		};
+		BDF12B2623266D0700F34680 /* QFTimerPicker */ = {
+			isa = PBXGroup;
+			children = (
+				BDF12B2723266D0700F34680 /* QFTimerPicker.h */,
+				BDF12B2823266D0700F34680 /* QFTimerPicker.m */,
+			);
+			path = QFTimerPicker;
+			sourceTree = "<group>";
+		};
+		BDF12B2923266D0700F34680 /* Uitils */ = {
+			isa = PBXGroup;
+			children = (
+				BDF12B2A23266D0700F34680 /* QFTimerUtil.m */,
+				BDF12B2B23266D0700F34680 /* QFTimerUtil.h */,
+			);
+			path = Uitils;
+			sourceTree = "<group>";
+		};
+		BDF12B2C23266D0700F34680 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BDF12B2D23266D0700F34680 /* QFTimerDataSourceModel.h */,
+				BDF12B2E23266D0700F34680 /* QFDateModel.h */,
+				BDF12B2F23266D0700F34680 /* QFHourModel.h */,
+				BDF12B3023266D0700F34680 /* QFMinuteModel.h */,
+				BDF12B3123266D0700F34680 /* QFTimerDataSourceModel.m */,
+				BDF12B3223266D0700F34680 /* QFMinuteModel.m */,
+				BDF12B3323266D0700F34680 /* QFHourModel.m */,
+				BDF12B3423266D0700F34680 /* QFDateModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BDF12B3523266D0700F34680 /* QFDatePickerView */ = {
+			isa = PBXGroup;
+			children = (
+				BDF12B3623266D0700F34680 /* QFDatePickerView.m */,
+				BDF12B3723266D0700F34680 /* QFDatePickerView.h */,
+			);
+			name = QFDatePickerView;
+			path = "../../../../listentrace的副本/listentrace/Utils/DataPicker/QFDatePickerView";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1185,11 +1284,15 @@
 				002747CD22E8B5C600752BD2 /* LTBaseCellModel.m in Sources */,
 				00A83ABC22EF3D7100C59ACB /* LTStyleDetailFlowLayout.m in Sources */,
 				0027480722E8BEB300752BD2 /* TAAnimatedDotView.m in Sources */,
+				BDF12B3B23266D0700F34680 /* QFTimerDataSourceModel.m in Sources */,
 				002747DA22E8BB1700752BD2 /* PPNetworkHelper.m in Sources */,
 				BDE2421622E5567E002F87E4 /* LTStyleViewController.m in Sources */,
 				002747D122E8B68600752BD2 /* MBProgressHUD+LT.m in Sources */,
+				BDF12B3F23266D0700F34680 /* QFDatePickerView.m in Sources */,
 				00C2B08F22ED5AD500CFB3E1 /* LTHomeTableViewCell.m in Sources */,
 				003D869E23251AEF002C0D5E /* LYLUnicode.m in Sources */,
+				BDF12B3823266D0700F34680 /* QFTimePickerView.m in Sources */,
+				BDF12B3E23266D0700F34680 /* QFDateModel.m in Sources */,
 				00A83AB822EF346000C59ACB /* LTStyleDetailCollectionViewCell.m in Sources */,
 				002747E722E8BDCC00752BD2 /* SandBoxHelper.m in Sources */,
 				002747EE22E8BDF700752BD2 /* FFTagsView.m in Sources */,
@@ -1198,13 +1301,17 @@
 				0027480822E8BEB300752BD2 /* TAPageControl.m in Sources */,
 				005C3EA322E489CC0015CCB9 /* LTRootViewController.m in Sources */,
 				BD4FB434230A91BB00A6F825 /* LTAlbumTableViewCell.m in Sources */,
+				BDF12B3D23266D0700F34680 /* QFHourModel.m in Sources */,
+				BDF12B3A23266D0700F34680 /* QFTimerUtil.m in Sources */,
 				002747E322E8BD7B00752BD2 /* XZPickView.m in Sources */,
+				BDF12B3C23266D0700F34680 /* QFMinuteModel.m in Sources */,
 				002747BF22E8B06D00752BD2 /* LTHeaderModel.m in Sources */,
 				002747C622E8B2B000752BD2 /* LTRootWebViewController.m in Sources */,
 				0027480A22E8BEB300752BD2 /* TADotView.m in Sources */,
 				00A83AB422EF2FE800C59ACB /* LTStyleDetailViewController.m in Sources */,
 				002747BB22E8AFCA00752BD2 /* AESCipher.m in Sources */,
 				00C2B0AB22EDC97100CFB3E1 /* LTSetUpTableViewController.m in Sources */,
+				BDF12B3923266D0700F34680 /* QFTimerPicker.m in Sources */,
 				BDE2421322E554EE002F87E4 /* LTHomeViewController.m in Sources */,
 				00601BDB22E0C908005B33F2 /* main.m in Sources */,
 				BDE88E382320B634004495A9 /* LTAlbumTimePIckerView.m in Sources */,
