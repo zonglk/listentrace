@@ -15,6 +15,7 @@
 #import "LTAlbumStyleView.h"
 #import "LTNetworking.h"
 #import "QFTimePickerView.h"
+#import "QFDatePickerView.h"
 
 @interface LTAlbumTableViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, LTAlbumTableViewCellDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *albumTableView;
@@ -50,6 +51,9 @@
 - (IBAction)loveButtonClick:(id)sender; // 喜欢
 - (IBAction)albumStyle:(id)sender forEvent:(UIEvent *)event; // 风格
 - (IBAction)albumTimeButtonClick:(id)sender; // 专辑时长
+- (IBAction)listeningTime:(id)sender; // 聆听时间
+- (IBAction)releaseTime:(id)sender; // 发布时间
+- (IBAction)releaseCount:(id)sender; // 发布数量
 
 @end
 
@@ -428,6 +432,25 @@
     [pickerView show];
 }
 
+#pragma mark - ================ 聆听时间 ================
+
+- (IBAction)listeningTime:(id)sender {
+    
+}
+
+#pragma mark - ================ 发布时间 ================
+
+- (IBAction)releaseTime:(id)sender {
+}
+
+#pragma mark - ================ 发布数量 ================
+
+- (IBAction)releaseCount:(id)sender {
+    QFDatePickerView *datePickerView = [[QFDatePickerView alloc]initYearPickerWithView:self.view response:^(NSString *str) {
+        self.listeningTimeTextField.text = str;
+    }];
+    [datePickerView show];
+}
 
 #pragma mark - =================== 添加曲目详细信息 ===================
 
@@ -458,6 +481,5 @@
     }
     return _detailDataArray;
 }
-
 
 @end

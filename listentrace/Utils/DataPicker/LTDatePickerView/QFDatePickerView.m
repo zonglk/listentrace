@@ -171,11 +171,10 @@
 - (void)setYearArray {
     //初始化年数据源数组
     yearArray = [[NSMutableArray alloc]init];
-    for (NSInteger i = 1970; i <= currentYear ; i++) {
-        NSString *yearStr = [NSString stringWithFormat:@"%ld年",(long)i];
+    for (NSInteger i = 1; i <= 100 ; i++) {
+        NSString *yearStr = [NSString stringWithFormat:@"%ld首",(long)i];
         [yearArray addObject:yearStr];
     }
-    [yearArray addObject:@"至今"];
 }
 
 - (void)setMonthArray {
