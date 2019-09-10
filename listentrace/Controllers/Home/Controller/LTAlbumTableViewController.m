@@ -401,7 +401,21 @@
     [self.imageresizerView removeFromSuperview];
     kWeakSelf(self);
     [self.imageresizerView originImageresizerWithComplete:^(UIImage *resizeImage) {
-        [weakself.albumButton setImage:resizeImage forState:UIControlStateNormal];
+        NSData *imageData = UIImageJPEGRepresentation(resizeImage, 0.5f);
+        NSMutableDictionary *Exparams = [[NSMutableDictionary alloc]init];
+        [Exparams addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:imageData,@"imageName", nil]];
+        [LTNetworking uploadImageWithUrl:@"/album/add" WithParam:[NSDictionary dictionary] withExParam:Exparams withMethod:POST success:^(id  _Nonnull result) {
+            if ([result[@"code"] intValue] == 0) {
+                [weakself.albumButton setImage:resizeImage forState:UIControlStateNormal];
+            }
+            else {
+                [MBProgressHUD showErrorMessage:result[@"msg"]];
+            }
+        } uploadFileProgress:^(NSProgress * _Nonnull uploadProgress) {
+            
+        } failure:^(NSError * _Nonnull erro) {
+            [MBProgressHUD showInfoMessage:@"网络连接失败，请稍后重试"];
+        }];
     }];
 }
 

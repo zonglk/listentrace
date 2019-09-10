@@ -38,6 +38,25 @@ NS_ASSUME_NONNULL_BEGIN
            failure:(void(^)(NSError *erro))failure
            showHUD:(UIView *)showView;
 
+/**
+ *  上传文件功能，如图片等
+ *
+ *  @param url                服务器提供的接口
+ *  @param param              传的参数
+ *  @param Exparam            文件流，将要上传的文件转成NSData中，然后一起传给服务器
+ *  @param method             GET,POST,DELETE,PUT方法
+ *  @param success            请求完成
+ *  @param uploadFileProgress 请求图片的进度条，百分比
+ *  @param failure            请求失败
+ */
++ (void)uploadImageWithUrl:(NSString *)url
+        WithParam:(NSDictionary*)param
+        withExParam:(NSDictionary*)Exparam
+        withMethod:(HTTPRequestMethod)method
+        success:(void (^)(id result))success
+        uploadFileProgress:(void(^)(NSProgress *uploadProgress))uploadFileProgress
+        failure:(void (^)(NSError* erro))failure;
+
 @end
 
 NS_ASSUME_NONNULL_END

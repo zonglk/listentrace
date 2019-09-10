@@ -104,6 +104,7 @@
 		BD5B8C1523273F10005D18FF /* QFTimerDataSourceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5B8C1123273F10005D18FF /* QFTimerDataSourceModel.m */; };
 		BD5B8C1923273F38005D18FF /* QFTimerPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5B8C1823273F38005D18FF /* QFTimerPicker.m */; };
 		BD5B8C1D23273F53005D18FF /* QFTimerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5B8C1B23273F53005D18FF /* QFTimerUtil.m */; };
+		BD5B8C1F23274FEB005D18FF /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = BD5B8C1E23274FEA005D18FF /* launch.png */; };
 		BDE2421322E554EE002F87E4 /* LTHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDE2421222E554EE002F87E4 /* LTHomeViewController.m */; };
 		BDE2421622E5567E002F87E4 /* LTStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDE2421522E5567E002F87E4 /* LTStyleViewController.m */; };
 		BDE2421D22E55796002F87E4 /* LTRootNavgationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDE2421C22E55796002F87E4 /* LTRootNavgationController.m */; };
@@ -293,6 +294,7 @@
 		BD5B8C1823273F38005D18FF /* QFTimerPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFTimerPicker.m; sourceTree = "<group>"; };
 		BD5B8C1B23273F53005D18FF /* QFTimerUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFTimerUtil.m; sourceTree = "<group>"; };
 		BD5B8C1C23273F53005D18FF /* QFTimerUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFTimerUtil.h; sourceTree = "<group>"; };
+		BD5B8C1E23274FEA005D18FF /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
 		BDE2421122E554EE002F87E4 /* LTHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTHomeViewController.h; sourceTree = "<group>"; };
 		BDE2421222E554EE002F87E4 /* LTHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTHomeViewController.m; sourceTree = "<group>"; };
 		BDE2421422E5567E002F87E4 /* LTStyleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTStyleViewController.h; sourceTree = "<group>"; };
@@ -522,6 +524,7 @@
 				00601BD422E0C908005B33F2 /* Assets.xcassets */,
 				00601BDA22E0C908005B33F2 /* main.m */,
 				00601BD922E0C908005B33F2 /* Info.plist */,
+				BD5B8C1E23274FEA005D18FF /* launch.png */,
 				00601BD622E0C908005B33F2 /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting Files";
@@ -1137,6 +1140,7 @@
 				00C2B09022ED5AD500CFB3E1 /* LTHomeTableViewCell.xib in Resources */,
 				BDE88E3A2320B63F004495A9 /* LTAlbumTimePIckerView.xib in Resources */,
 				00E83BE522E60B6A00C47AE5 /* style_tabbar_selected@2x.png in Resources */,
+				BD5B8C1F23274FEB005D18FF /* launch.png in Resources */,
 				BD56EB2F2302B7680005271B /* nav_back@3x.png in Resources */,
 				00E83BDE22E60B4E00C47AE5 /* setup_tabbar_normal@2x.png in Resources */,
 				002E18B722F723C8004D9F1D /* album_albumImage@3x.png in Resources */,
