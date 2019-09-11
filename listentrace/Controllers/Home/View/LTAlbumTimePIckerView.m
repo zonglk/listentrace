@@ -18,4 +18,28 @@
 }
 */
 
++ (instancetype)creatXib {
+    return [[[NSBundle mainBundle] loadNibNamed:@"LTAlbumTimePIckerView" owner:nil options:nil] lastObject];
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self creatAllViews];
+}
+
+- (void)creatAllViews {
+    self.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight);
+    self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
+    [self.timePicker setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+}
+
+- (IBAction)cancleButtonClick:(id)sender {
+    [self removeFromSuperview];
+}
+
+- (IBAction)sureButtonClick:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(timePickerSureButtonClick)]) {
+        [self.delegate timePickerSureButtonClick];
+    }
+}
 @end

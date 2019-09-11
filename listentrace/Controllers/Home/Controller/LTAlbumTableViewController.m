@@ -16,8 +16,9 @@
 #import "LTNetworking.h"
 #import "QFTimePickerView.h"
 #import "QFDatePickerView.h"
+#import "LTAlbumTimePIckerView.h"
 
-@interface LTAlbumTableViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, LTAlbumTableViewCellDelegate>
+@interface LTAlbumTableViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, LTAlbumTableViewCellDelegate, UIPickerViewDelegate, LTAlbumTimePickerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *albumTableView;
 @property (weak, nonatomic) IBOutlet UILabel *tipsImageLabel;
 @property (weak, nonatomic) IBOutlet UIButton *albumButton;
@@ -36,8 +37,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *masteringTextField; // 母带工程师
 @property (weak, nonatomic) IBOutlet UITextField *coverTextField; // 封面设计师
 
-- (IBAction)addDetailButtonClick:(id)sender;
-
 @property (nonatomic, weak) LTAlbumStyleView *styleView;
 @property (nonatomic, strong) UIButton *cancleButton;
 @property (nonatomic, strong) UIButton *sureButton;
@@ -46,6 +45,10 @@
 @property (nonatomic, assign) CGPoint styleViewPoint;
 @property (nonatomic, strong) UIView *styleCoverView;
 @property (nonatomic, strong) NSMutableArray *detailDataArray;
+@property (nonatomic, strong) LTAlbumTimePIckerView *timePicker;
+@property (nonatomic, copy) NSString *listeningTimeString;
+@property (nonatomic, copy) NSString *releaseTimeString;
+@property (nonatomic, assign) BOOL isListeningTime;
 
 - (IBAction)albumButtonClick:(id)sender; // 专辑封面
 - (IBAction)loveButtonClick:(id)sender; // 喜欢
@@ -54,6 +57,7 @@
 - (IBAction)listeningTime:(id)sender; // 聆听时间
 - (IBAction)releaseTime:(id)sender; // 发布时间
 - (IBAction)releaseCount:(id)sender; // 发布数量
+- (IBAction)addDetailButtonClick:(id)sender;
 
 @end
 
@@ -435,19 +439,47 @@
 #pragma mark - ================ 聆听时间 ================
 
 - (IBAction)listeningTime:(id)sender {
-    
+    self.isListeningTime = YES;
+    [[UIApplication sharedApplication].delegate.window addSubview:self.timePicker];
 }
 
 #pragma mark - ================ 发布时间 ================
 
 - (IBAction)releaseTime:(id)sender {
+    self.isListeningTime = NO;
+    [[UIApplication sharedApplication].delegate.window addSubview:self.timePicker];
+}
+
+#pragma mark - ================ 聆听、发行时间代理 ================
+
+- (void)timePickerSureButtonClick {
+    if (self.isListeningTime) {
+        self.listeningTimeTextField.text = self.listeningTimeString;
+    }
+    else {
+        self.releasedTimeTextField.text = self.releaseTimeString;
+    }
+    [self.timePicker removeFromSuperview];
+}
+
+#pragma mark - ================ timePicker delegate ================
+
+- (void)dateChanged:(UIDatePicker *)picker{
+    NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy年MM月dd日"];
+    if (self.isListeningTime) {
+        self.listeningTimeString = [formatter stringFromDate:picker.date];
+    }
+    else {
+        self.releaseTimeString = [formatter stringFromDate:picker.date];
+    }
 }
 
 #pragma mark - ================ 发布数量 ================
 
 - (IBAction)releaseCount:(id)sender {
     QFDatePickerView *datePickerView = [[QFDatePickerView alloc]initYearPickerWithView:self.view response:^(NSString *str) {
-        self.listeningTimeTextField.text = str;
+        self.releasedCountTextField.text = str;
     }];
     [datePickerView show];
 }
@@ -480,6 +512,15 @@
         _detailDataArray = [NSMutableArray array];
     }
     return _detailDataArray;
+}
+
+- (LTAlbumTimePIckerView *)timePicker {
+    if (!_timePicker) {
+        _timePicker = [LTAlbumTimePIckerView creatXib];
+        _timePicker.delegate = self;
+        [_timePicker.timePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
+    }
+    return _timePicker;
 }
 
 @end
