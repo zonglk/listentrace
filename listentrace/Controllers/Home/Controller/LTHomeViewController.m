@@ -17,7 +17,8 @@
 @property (nonatomic, strong) UITableView *homeTableView;
 @property (nonatomic, strong) UILabel *tipsLable; // 底部专辑张数提醒label
 @property (nonatomic, strong) UIButton *addBttton; // 添加专辑按钮
-@property (nonatomic, strong) NSData *dataArray;
+@property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, strong) UIView *emptView; // 无数据视图
 
 @end
 
@@ -49,6 +50,7 @@
     }];
     self.tipsLable.textColor = RGBHex(0xB2B2B2);
     self.tipsLable.font = [UIFont systemFontOfSize:17.0];
+    self.tipsLable.hidden = YES;
     self.tipsLable.text = @"X 张专辑";
     
     self.addBttton = [[UIButton alloc] init];
@@ -60,6 +62,9 @@
     [self.addBttton setBackgroundImage:[UIImage imageNamed:@"home_add"] forState:UIControlStateNormal];
     [self.addBttton setBackgroundImage:[UIImage imageNamed:@"home_add"] forState:UIControlStateHighlighted];
     [self.addBttton addTarget:self action:@selector(addAlbum) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.emptView.hidden = NO;
+    [self.view bringSubviewToFront:self.addBttton];
 }
 
 #pragma mark - =================== icloud ===================
@@ -112,9 +117,20 @@
 
 - (void)requestData {
     [LTNetworking requestUrl:@"/album/traces" WithParam:@{@"user_id" : [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"]} withMethod:GET success:^(id  _Nonnull result) {
-        
+        if (!self.dataArray.count) {
+            self.emptView.hidden = NO;
+            self.homeTableView.hidden = YES;
+            self.tipsLable.hidden = YES;
+        }
+        else {
+            self.emptView.hidden = YES;
+            self.homeTableView.hidden = NO;
+            self.tipsLable.hidden = YES;
+        }
     } failure:^(NSError * _Nonnull erro) {
-        
+        self.emptView.hidden = NO;
+        self.homeTableView.hidden = YES;
+        self.tipsLable.hidden = YES;
     } showHUD:self.view];
 }
 
@@ -147,11 +163,11 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return self.dataArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -172,6 +188,33 @@
     LTAlbumTableViewController *albumVC = [story instantiateViewControllerWithIdentifier:@"LTAlbumTableViewController"];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:albumVC];
     [self.navigationController presentViewController:nav animated:YES completion:nil];
+}
+
+- (UIView *)emptView {
+    if (!_emptView) {
+        _emptView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - kBottomSafeHeight - kTabBarHeight)];
+        [self.view addSubview:_emptView];
+        
+        kWeakSelf(self)
+        UIImageView *emptImageView = [[UIImageView alloc] init];
+        [_emptView addSubview:emptImageView];
+        [emptImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(weakself.emptView.mas_centerX);
+            make.centerY.mas_equalTo(weakself.emptView.mas_centerY).offset(-100);
+        }];
+        [emptImageView setImage:[UIImage imageNamed:@"home_empt"]];
+        
+        UILabel *tipLabel = [[UILabel alloc] init];
+        [_emptView addSubview:tipLabel];
+        [tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(emptImageView.mas_centerX);
+            make.top.mas_equalTo(emptImageView.mas_bottom).offset(20);
+        }];
+        tipLabel.text = @"暂时没有专辑";
+        tipLabel.font = [UIFont systemFontOfSize:18];
+        tipLabel.textColor = RGBHex(0xC0C6DA);
+    }
+    return _emptView;
 }
 
 @end

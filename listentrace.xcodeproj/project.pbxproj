@@ -111,6 +111,8 @@
 		BDE88E352320AC4A004495A9 /* LTNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = BDE88E342320AC4A004495A9 /* LTNetworking.m */; };
 		BDE88E382320B634004495A9 /* LTAlbumTimePIckerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDE88E372320B634004495A9 /* LTAlbumTimePIckerView.m */; };
 		BDE88E3A2320B63F004495A9 /* LTAlbumTimePIckerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BDE88E392320B63F004495A9 /* LTAlbumTimePIckerView.xib */; };
+		BDFD6C142328E2E800046FBC /* home_empt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BDFD6C122328E2E700046FBC /* home_empt@2x.png */; };
+		BDFD6C152328E2E800046FBC /* home_empt@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BDFD6C132328E2E700046FBC /* home_empt@3x.png */; };
 		F2483D98DE468696D1A60019 /* Pods_listentraceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 415EBA2EE0343971EA0D6498 /* Pods_listentraceTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -307,6 +309,8 @@
 		BDE88E362320B634004495A9 /* LTAlbumTimePIckerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTAlbumTimePIckerView.h; sourceTree = "<group>"; };
 		BDE88E372320B634004495A9 /* LTAlbumTimePIckerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTAlbumTimePIckerView.m; sourceTree = "<group>"; };
 		BDE88E392320B63F004495A9 /* LTAlbumTimePIckerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LTAlbumTimePIckerView.xib; sourceTree = "<group>"; };
+		BDFD6C122328E2E700046FBC /* home_empt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_empt@2x.png"; sourceTree = "<group>"; };
+		BDFD6C132328E2E700046FBC /* home_empt@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_empt@3x.png"; sourceTree = "<group>"; };
 		C8ADF5B89930780ECF0206F7 /* Pods_listentrace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_listentrace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAC1BDD209668748E6106482 /* Pods-listentraceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-listentraceTests.debug.xcconfig"; path = "Target Support Files/Pods-listentraceTests/Pods-listentraceTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -625,6 +629,8 @@
 				BD4FB437230AA0B100A6F825 /* album_delete@3x.png */,
 				BD4FB443230AAA5D00A6F825 /* album_style@2x.png */,
 				BD4FB444230AAA5D00A6F825 /* album_style@3x.png */,
+				BDFD6C122328E2E700046FBC /* home_empt@2x.png */,
+				BDFD6C132328E2E700046FBC /* home_empt@3x.png */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -1138,6 +1144,7 @@
 				00A0D21422F8966F0002D234 /* album_add@2x.png in Resources */,
 				002E18B422F722BF004D9F1D /* LTAlbumTableViewController.storyboard in Resources */,
 				00C2B09022ED5AD500CFB3E1 /* LTHomeTableViewCell.xib in Resources */,
+				BDFD6C142328E2E800046FBC /* home_empt@2x.png in Resources */,
 				BDE88E3A2320B63F004495A9 /* LTAlbumTimePIckerView.xib in Resources */,
 				00E83BE522E60B6A00C47AE5 /* style_tabbar_selected@2x.png in Resources */,
 				BD5B8C1F23274FEB005D18FF /* launch.png in Resources */,
@@ -1159,6 +1166,7 @@
 				BD4FB43C230AA79400A6F825 /* album_redHeart@3x.png in Resources */,
 				00C2B09722ED8F3F00CFB3E1 /* home_add@3x.png in Resources */,
 				00C2B09322ED838400CFB3E1 /* home_cell_redHeard@3x.png in Resources */,
+				BDFD6C152328E2E800046FBC /* home_empt@3x.png in Resources */,
 				00C2B09D22ED991F00CFB3E1 /* LTStyleTableViewCell.xib in Resources */,
 				BD56EB302302B7680005271B /* nav_back@2x.png in Resources */,
 				00E83BD222E60B2300C47AE5 /* home_tabbar_selected@3x.png in Resources */,

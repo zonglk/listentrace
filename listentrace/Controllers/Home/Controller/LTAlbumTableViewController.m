@@ -108,6 +108,10 @@
 #pragma mark - ================ 保存专辑信息 ================
 
 - (void)saveButtonClick {
+    if (!self.albumButton.imageView.image) {
+        [MBProgressHUD showInfoMessage:@"请上传专辑封面图"];
+        return;
+    }
     if (!self.albumNameTextField.text.length) {
         [MBProgressHUD showInfoMessage:@"请填写专辑名"];
         return;
@@ -403,7 +407,7 @@
     [self.imageresizerView removeFromSuperview];
 }
 
-#pragma mark - =================== 确定选择的图片 ===================
+#pragma mark - =================== 上传选择的图片 ===================
 
 - (void)sureButtonClick {
     [self.imageresizerView removeFromSuperview];
@@ -411,8 +415,8 @@
     [self.imageresizerView originImageresizerWithComplete:^(UIImage *resizeImage) {
         NSData *imageData = UIImageJPEGRepresentation(resizeImage, 0.5f);
         NSMutableDictionary *Exparams = [[NSMutableDictionary alloc]init];
-        [Exparams addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:imageData,@"imageName", nil]];
-        [LTNetworking uploadImageWithUrl:@"/album/add" WithParam:[NSDictionary dictionary] withExParam:Exparams withMethod:POST success:^(id  _Nonnull result) {
+        [Exparams addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:imageData,@"file", nil]];
+        [LTNetworking uploadImageWithUrl:@"/img/upload" WithParam:[NSDictionary dictionary] withExParam:Exparams withMethod:POST success:^(id  _Nonnull result) {
             if ([result[@"code"] intValue] == 0) {
                 [weakself.albumButton setImage:resizeImage forState:UIControlStateNormal];
             }
