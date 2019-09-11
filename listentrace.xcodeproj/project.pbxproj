@@ -747,9 +747,9 @@
 			children = (
 				00C2B0A222EDB60A00CFB3E1 /* LTSetUpViewController.h */,
 				00C2B0A322EDB60A00CFB3E1 /* LTSetUpViewController.m */,
-				00C2B0A722EDB64700CFB3E1 /* LTSetUpViewController.storyboard */,
 				00C2B0A922EDC97100CFB3E1 /* LTSetUpTableViewController.h */,
 				00C2B0AA22EDC97100CFB3E1 /* LTSetUpTableViewController.m */,
+				00C2B0A722EDB64700CFB3E1 /* LTSetUpViewController.storyboard */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
