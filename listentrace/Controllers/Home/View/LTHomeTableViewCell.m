@@ -21,4 +21,8 @@
     // Configure the view for the selected state
 }
 
+- (void)setModel:(LTAlbumModel *)model {
+    _model = model;
+}
+
 @end

@@ -11,6 +11,7 @@
 #import "LTAlbumTableViewController.h"
 #import <CloudKit/CloudKit.h>
 #import "LTNetworking.h"
+#import "LTAlbumModel.h"
 
 @interface LTHomeViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -18,7 +19,9 @@
 @property (nonatomic, strong) UILabel *tipsLable; // 底部专辑张数提醒label
 @property (nonatomic, strong) UIButton *addBttton; // 添加专辑按钮
 @property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, strong) NSArray *allKeysArray;
 @property (nonatomic, strong) UIView *emptView; // 无数据视图
+@property (nonatomic, strong) LTAlbumModel *model;
 
 @end
 
@@ -110,8 +113,8 @@
             [[CKContainer defaultContainer] fetchUserRecordIDWithCompletionHandler:^(CKRecordID * _Nullable recordID, NSError * _Nullable error) {
                 [[NSUserDefaults standardUserDefaults] setObject:recordID.recordName forKey:@"icloudName"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
+                [self requestData];
             }];
-            [self requestData];
         }
     }];
 }
@@ -121,10 +124,25 @@
 }
 
 - (void)requestData {
-    [LTNetworking requestUrl:@"/album/traces" WithParam:@{@"user_id" : [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"]} withMethod:GET success:^(id  _Nonnull result) {
+    [LTNetworking requestUrl:@"/album/trace" WithParam:@{@"user_id" : [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"]} withMethod:GET success:^(id  _Nonnull result) {
         if ([result[@"code"] intValue] == 0) {
-            
-            
+            // 获得所有的key
+            self.allKeysArray = [result[@"data"] allKeys];
+            NSMutableArray *albumArray = [NSMutableArray array];
+            // 循环拿到所有key对应的字典数组
+            for (int i = 0; i < self.allKeysArray.count; i ++) {
+                NSString *key = self.allKeysArray[i];
+                // 每一个key放着字典数组，字典数组可能有多个或者一个
+                NSArray *dicArray = result[@"data"][key];
+                NSMutableArray *modelArray = [NSMutableArray array];
+                // 将字典数组转换成模型数组
+                for (int j = 0; j < dicArray.count; j ++) {
+                    LTAlbumModel *model = [LTAlbumModel mj_objectWithKeyValues:dicArray[j]];
+                    [modelArray addObject:model];
+                }
+                [albumArray addObject:modelArray];
+                self.dataArray = albumArray;
+            }
             
             [self.homeTableView reloadData];
             if (!self.dataArray.count) {
@@ -149,6 +167,7 @@
                 self.homeTableView.hidden = NO;
                 self.tipsLable.hidden = YES;
             }
+            [MBProgressHUD showInfoMessage:result[@"msg"]];
         }
     } failure:^(NSError * _Nonnull erro) {
         self.emptView.hidden = NO;
@@ -173,7 +192,7 @@
     }];
     dateLabel.textColor = RGBHex(0x989DAD);
     dateLabel.font = [UIFont systemFontOfSize:13.0];
-    dateLabel.text = @"27,May";
+    dateLabel.text = self.allKeysArray[section];
     return view;
 }
 
@@ -186,11 +205,12 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.dataArray.count;
+    return self.allKeysArray.count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.dataArray.count;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSArray *array = self.dataArray[section];
+    return array.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

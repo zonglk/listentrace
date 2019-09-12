@@ -127,6 +127,10 @@
         [MBProgressHUD showInfoMessage:@"请选择专辑风格"];
         return;
     }
+    if (!self.listeningTimeTextField.text.length) {
+        [MBProgressHUD showInfoMessage:@"请选择聆听时间"];
+        return;
+    }
     
     NSMutableDictionary *parameter = [NSMutableDictionary dictionary];
     NSString  *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"];
@@ -140,10 +144,19 @@
         [parameter setObject:self.timeTextField.text forKey:@"album_duration"];
     }
     if (self.listeningTimeTextField.text.length) {
-        [parameter setObject:self.listeningTimeTextField.text forKey:@"listen_time"];
+        NSMutableString *string = [NSMutableString stringWithString:self.listeningTimeTextField.text];
+        string = [NSMutableString stringWithString:[string stringByReplacingOccurrencesOfString:@"年" withString:@"-"]];
+        string = [NSMutableString stringWithString:[string stringByReplacingOccurrencesOfString:@"月" withString:@"-"]];
+        string = [NSMutableString stringWithString:[string stringByReplacingOccurrencesOfString:@"日" withString:@""]];
+        [parameter setObject:string forKey:@"listen_time"];
+        
     }
     if (self.releasedTimeTextField.text.length) {
-        [parameter setObject:self.releasedTimeTextField.text forKey:@"album_release_time"];
+        NSMutableString *string = [NSMutableString stringWithString:self.releasedTimeTextField.text];
+        string = [NSMutableString stringWithString:[string stringByReplacingOccurrencesOfString:@"年" withString:@"-"]];
+        string = [NSMutableString stringWithString:[string stringByReplacingOccurrencesOfString:@"月" withString:@"-"]];
+        string = [NSMutableString stringWithString:[string stringByReplacingOccurrencesOfString:@"日" withString:@""]];
+        [parameter setObject:string forKey:@"album_release_time"];
     }
     if (self.releasedCountTextField.text.length) {
         [parameter setObject:self.releasedCountTextField.text forKey:@"song_quantity"];

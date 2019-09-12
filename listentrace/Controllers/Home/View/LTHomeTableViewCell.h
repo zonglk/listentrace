@@ -7,10 +7,16 @@
 //
 
 #import "LTBaseTableViewCell.h"
+#import "LTAlbumModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LTHomeTableViewCell : LTBaseTableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UILabel *producter;
+@property (weak, nonatomic) IBOutlet UIImageView *loveImage;
+@property (nonatomic, strong) LTAlbumModel *model;
 
 @end
 

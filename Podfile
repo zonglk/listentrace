@@ -26,5 +26,6 @@ pod 'Masonry'
 pod 'SDWebImage', '~>3.8'
 pod 'IQKeyboardManager'
 pod 'JPImageresizerView'
+pod 'MJExtension'
 
 end
