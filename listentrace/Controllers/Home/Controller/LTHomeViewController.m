@@ -30,6 +30,7 @@
     self.title = @"听迹";
     [self creatAllViews];
     [self loginIcloud];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addAlbumSucess) name:@"AddAlbumSucess" object:nil];
 }
 
 - (void)creatAllViews {
@@ -115,17 +116,39 @@
     }];
 }
 
+- (void)addAlbumSucess {
+    [self requestData];
+}
+
 - (void)requestData {
     [LTNetworking requestUrl:@"/album/traces" WithParam:@{@"user_id" : [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"]} withMethod:GET success:^(id  _Nonnull result) {
-        if (!self.dataArray.count) {
-            self.emptView.hidden = NO;
-            self.homeTableView.hidden = YES;
-            self.tipsLable.hidden = YES;
+        if ([result[@"code"] intValue] == 0) {
+            
+            
+            
+            [self.homeTableView reloadData];
+            if (!self.dataArray.count) {
+                self.emptView.hidden = NO;
+                self.homeTableView.hidden = YES;
+                self.tipsLable.hidden = YES;
+            }
+            else {
+                self.emptView.hidden = YES;
+                self.homeTableView.hidden = NO;
+                self.tipsLable.hidden = YES;
+            }
         }
         else {
-            self.emptView.hidden = YES;
-            self.homeTableView.hidden = NO;
-            self.tipsLable.hidden = YES;
+            if (!self.dataArray.count) {
+                self.emptView.hidden = NO;
+                self.homeTableView.hidden = YES;
+                self.tipsLable.hidden = YES;
+            }
+            else {
+                self.emptView.hidden = YES;
+                self.homeTableView.hidden = NO;
+                self.tipsLable.hidden = YES;
+            }
         }
     } failure:^(NSError * _Nonnull erro) {
         self.emptView.hidden = NO;

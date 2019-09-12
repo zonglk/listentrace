@@ -111,7 +111,7 @@
 #pragma mark - ================ 保存专辑信息 ================
 
 - (void)saveButtonClick {
-    if (!self.albumButton.imageView.image) {
+    if (!self.imageId.length) {
         [MBProgressHUD showInfoMessage:@"请上传专辑封面图"];
         return;
     }
@@ -134,15 +134,16 @@
     [parameter setObject:self.albumNameTextField.text forKey:@"album_name"];
     [parameter setObject:self.musicianTextField.text forKey:@"album_musician"];
     [parameter setObject:self.styleTextField.text forKey:@"album_style"];
+    [parameter setObject:self.imageId forKey:@"album_img"];
     
     if (self.timeTextField.text.length) {
         [parameter setObject:self.timeTextField.text forKey:@"album_duration"];
     }
     if (self.listeningTimeTextField.text.length) {
-        [parameter setObject:self.listeningTimeTextField.text forKey:@"listen_year"];
+        [parameter setObject:self.listeningTimeTextField.text forKey:@"listen_time"];
     }
     if (self.releasedTimeTextField.text.length) {
-        [parameter setObject:self.releasedTimeTextField.text forKey:@"album_release_year"];
+        [parameter setObject:self.releasedTimeTextField.text forKey:@"album_release_time"];
     }
     if (self.releasedCountTextField.text.length) {
         [parameter setObject:self.releasedCountTextField.text forKey:@"song_quantity"];
@@ -159,30 +160,39 @@
     if (self.coverTextField.text.length) {
         [parameter setObject:self.coverTextField.text forKey:@"cover_designer"];
     }
-//    if (self.timeTextField.text.length) {
-//        [parameter setObject:self.timeTextField.text forKey:@"album_tracks"];
-//    }
-//    if (self.timeTextField.text.length) {
-//        [parameter setObject:self.timeTextField.text forKey:@"album_lyricist"];
-//    }
-//    if (self.timeTextField.text.length) {
-//        [parameter setObject:self.timeTextField.text forKey:@"album_composer"];
-//    }
-//    if (self.timeTextField.text.length) {
-//        [parameter setObject:self.timeTextField.text forKey:@"album_arranger"];
-//    }
-//    if (self.timeTextField.text.length) {
-//        [parameter setObject:self.timeTextField.text forKey:@"album_player"];
-//    }
     if (self.loveButton.selected) {
         [parameter setObject:@(1) forKey:@"favorite"];
     }
     else {
         [parameter setObject:@(1) forKey:@"favorite"];
     }
+    
+    // 详细曲目信息
+    NSMutableArray *detailMulArray = [NSMutableArray array];
+    for (int i = 0; i < self.detailDataArray.count; i++) {
+        self.detailModel = self.detailDataArray[i];
+        self.detailModel.album_tracks = self.detailModel.album_tracks.length ? self.detailModel.album_tracks : @"";
+        self.detailModel.album_lyricist = self.detailModel.album_lyricist.length ? self.detailModel.album_lyricist : @"";
+        self.detailModel.album_composer = self.detailModel.album_composer.length ? self.detailModel.album_composer : @"";
+        self.detailModel.album_arranger = self.detailModel.album_arranger.length ? self.detailModel.album_arranger : @"";
+        self.detailModel.album_player = self.detailModel.album_player.length ? self.detailModel.album_player : @"";
+        
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        [dic setValue:self.detailModel.album_tracks forKey:@"album_tracks"];
+        [dic setValue:self.detailModel.album_lyricist forKey:@"album_lyricist"];
+        [dic setValue:self.detailModel.album_composer forKey:@"album_composer"];
+        [dic setValue:self.detailModel.album_arranger forKey:@"album_arranger"];
+        [dic setValue:self.detailModel.album_player forKey:@"album_player"];
+        [detailMulArray addObject:dic];
+    }
+//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:detailMulArray options:NSJSONWritingPrettyPrinted error:nil];
+//    [parameter setObject:jsonData forKey:@"tracks_info"];
+    [parameter setObject:detailMulArray forKey:@"tracks_info"];
+    
     [LTNetworking requestUrl:@"/album/add" WithParam:parameter withMethod:POST success:^(id  _Nonnull result) {
         if ([result[@"code"] intValue] == 0) {
             [MBProgressHUD showInfoMessage:result[@"msg"]];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"AddAlbumSucess" object:nil];
             [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         }
         else {
@@ -462,6 +472,10 @@
 #pragma mark - =================== 添加曲目详细信息 ===================
 
 - (IBAction)addDetailButtonClick:(id)sender {
+    if (self.detailDataArray.count == 12) {
+        [MBProgressHUD showErrorMessage:@"最多仅支持12个曲信息卡片"];
+        return;
+    }
     LTAddAlbumDetailModel *model = [[LTAddAlbumDetailModel alloc] init];
     [self.detailDataArray addObject:model];
     [self.albumTableView reloadSection:1 withRowAnimation:UITableViewRowAnimationAutomatic];

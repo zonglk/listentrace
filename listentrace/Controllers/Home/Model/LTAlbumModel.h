@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+@class LTAddAlbumDetailModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -104,11 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *sound_mixer;
 @property (nonatomic, copy) NSString *mastering_engineer;
 @property (nonatomic, copy) NSString *cover_designer;
-@property (nonatomic, copy) NSString *album_tracks;
-@property (nonatomic, copy) NSString *album_lyricist;
-@property (nonatomic, copy) NSString *album_composer;
-@property (nonatomic, copy) NSString *album_arranger;
-@property (nonatomic, copy) NSString *album_player;
+@property (nonatomic, strong) NSArray<LTAddAlbumDetailModel *> *tracks_info;
 @property (nonatomic, copy) NSString *album_img;
 @property (nonatomic, copy) NSString *favorite;
 

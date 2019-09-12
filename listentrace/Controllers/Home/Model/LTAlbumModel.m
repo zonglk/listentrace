@@ -10,4 +10,10 @@
 
 @implementation LTAlbumModel
 
++ (NSDictionary *)mj_objectClassInArray {
+    return @{
+             @"tracks_info" : @"LTAddAlbumDetailModel"
+             };
+}
+
 @end
