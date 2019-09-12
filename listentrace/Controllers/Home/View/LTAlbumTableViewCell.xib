@@ -192,6 +192,13 @@
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.97254901959999995" green="0.97647058819999999" blue="0.98039215690000003" alpha="0.25109696061643838" colorSpace="custom" customColorSpace="calibratedRGB"/>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="arrangerTextField" destination="AYI-z7-rvF" id="4HT-Oa-8ET"/>
+                <outlet property="composerTextField" destination="vkr-eV-eQz" id="Cua-wB-ghm"/>
+                <outlet property="lyricistTextField" destination="02g-M9-gTc" id="mwI-wa-yfE"/>
+                <outlet property="songPerformerTextField" destination="v0h-ix-Ekz" id="tZt-3A-4aX"/>
+                <outlet property="songTextField" destination="DEi-Ha-bT9" id="469-hv-4CM"/>
+            </connections>
             <point key="canvasLocation" x="234.78260869565219" y="135.26785714285714"/>
         </tableViewCell>
     </objects>

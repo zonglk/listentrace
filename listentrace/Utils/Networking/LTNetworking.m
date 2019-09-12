@@ -223,7 +223,7 @@
 }
 
 - (NSString *)getUrl:(NSString *)url {
-    NSString *urlString = @"http://101.37.25.106:8080";
+    NSString *urlString = @"http://101.37.25.106:8080/listentrace";
 //#ifdef DEBUG
 //    urlString = [NSString stringWithFormat:@"http://tsdev.zlapi.com%@",url];
 //#else

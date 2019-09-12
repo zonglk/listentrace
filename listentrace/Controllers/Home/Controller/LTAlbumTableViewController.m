@@ -17,6 +17,7 @@
 #import "QFTimePickerView.h"
 #import "QFDatePickerView.h"
 #import "LTAlbumTimePIckerView.h"
+#import "LTAddAlbumDetailModel.h"
 
 @interface LTAlbumTableViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, LTAlbumTableViewCellDelegate, UIPickerViewDelegate, LTAlbumTimePickerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *albumTableView;
@@ -44,11 +45,13 @@
 @property (nonatomic, strong) LTAlbumStyleView *albumStyleView;
 @property (nonatomic, assign) CGPoint styleViewPoint;
 @property (nonatomic, strong) UIView *styleCoverView;
-@property (nonatomic, strong) NSMutableArray *detailDataArray;
+@property (nonatomic, strong) NSMutableArray *detailDataArray; // 曲目详细信息
 @property (nonatomic, strong) LTAlbumTimePIckerView *timePicker;
 @property (nonatomic, copy) NSString *listeningTimeString;
 @property (nonatomic, copy) NSString *releaseTimeString;
 @property (nonatomic, assign) BOOL isListeningTime;
+@property (nonatomic, strong) LTAddAlbumDetailModel *detailModel;
+@property (nonatomic, copy) NSString *imageId; // 上传图片拿到的后台的id
 
 - (IBAction)albumButtonClick:(id)sender; // 专辑封面
 - (IBAction)loveButtonClick:(id)sender; // 喜欢
@@ -201,10 +204,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
+        self.detailModel = self.detailDataArray[indexPath.row];
         LTAlbumTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LTAlbumTableViewCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = CViewBgColor;
         cell.delegate = self;
+        cell.model = self.detailModel;
         return cell;
     }
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -222,6 +227,28 @@
         return [super tableView:tableView indentationLevelForRowAtIndexPath: [NSIndexPath indexPathForRow:0 inSection:indexPath.section]];
     }
     return [super tableView:tableView indentationLevelForRowAtIndexPath:indexPath];
+}
+
+#pragma mark - ================ 详细曲目信息文本编辑 delegate ================
+
+- (void)detailCellTextChange:(LTAlbumTableViewCell *)cell string:(NSString *)string index:(NSInteger)index {NSIndexPath *indexPath = [self.albumTableView indexPathForCell:cell];
+    self.detailModel = self.detailDataArray[indexPath.row];
+    if (index == 0) {
+        self.detailModel.album_tracks = string;
+    }
+    else if (index == 1) {
+        self.detailModel.album_lyricist = string;
+    }
+    else if (index == 2) {
+        self.detailModel.album_composer = string;
+    }
+    else if (index == 3) {
+        self.detailModel.album_arranger = string;
+    }
+    else if (index == 4) {
+        self.detailModel.album_player = string;
+    }
+    [self.detailDataArray replaceObjectAtIndex:indexPath.row withObject:self.detailModel];
 }
 
 #pragma mark - ================ 添加/修改专辑照片 ================
@@ -419,6 +446,7 @@
         [LTNetworking uploadImageWithUrl:@"/img/upload" WithParam:[NSDictionary dictionary] withExParam:Exparams withMethod:POST success:^(id  _Nonnull result) {
             if ([result[@"code"] intValue] == 0) {
                 [weakself.albumButton setImage:resizeImage forState:UIControlStateNormal];
+                self.imageId = result[@"data"];
             }
             else {
                 [MBProgressHUD showErrorMessage:result[@"msg"]];
@@ -429,6 +457,22 @@
             [MBProgressHUD showInfoMessage:@"网络连接失败，请稍后重试"];
         }];
     }];
+}
+
+#pragma mark - =================== 添加曲目详细信息 ===================
+
+- (IBAction)addDetailButtonClick:(id)sender {
+    LTAddAlbumDetailModel *model = [[LTAddAlbumDetailModel alloc] init];
+    [self.detailDataArray addObject:model];
+    [self.albumTableView reloadSection:1 withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+#pragma mark - =================== 删除曲目详细信息 ===================
+
+- (void)deleteButtonClick:(LTAlbumTableViewCell *)cell {
+    NSIndexPath *index = [self.albumTableView indexPathForCell:cell];
+    [self.detailDataArray removeObjectAtIndex:index.row];
+    [self.albumTableView reloadSection:1 withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 #pragma mark - ================ 时长 ================
@@ -486,21 +530,6 @@
         self.releasedCountTextField.text = str;
     }];
     [datePickerView show];
-}
-
-#pragma mark - =================== 添加曲目详细信息 ===================
-
-- (IBAction)addDetailButtonClick:(id)sender {
-    [self.detailDataArray addObject:@"1"];
-    [self.albumTableView reloadSection:1 withRowAnimation:UITableViewRowAnimationAutomatic];
-}
-
-#pragma mark - =================== 删除曲目详细信息 ===================
-
-- (void)deleteButtonClick:(LTAlbumTableViewCell *)cell {
-    NSIndexPath *index = [self.albumTableView indexPathForCell:cell];
-    [self.detailDataArray removeObjectAtIndex:index.row];
-    [self.albumTableView reloadSection:1 withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (LTAlbumStyleView *)styleView {
