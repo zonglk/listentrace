@@ -22,6 +22,7 @@
 @property (nonatomic, strong) NSArray *allKeysArray;
 @property (nonatomic, strong) UIView *emptView; // 无数据视图
 @property (nonatomic, strong) LTAlbumModel *model;
+@property (nonatomic, assign) NSInteger albumCount;
 
 @end
 
@@ -75,7 +76,15 @@
 
 - (void)loginIcloud {
     [[CKContainer defaultContainer] accountStatusWithCompletionHandler:^(CKAccountStatus accountStatus, NSError* error) {
-        if (accountStatus == CKAccountStatusNoAccount) {
+        if (accountStatus == CKAccountStatusAvailable) {
+            //登录过了
+            [[CKContainer defaultContainer] fetchUserRecordIDWithCompletionHandler:^(CKRecordID * _Nullable recordID, NSError * _Nullable error) {
+                [[NSUserDefaults standardUserDefaults] setObject:recordID.recordName forKey:@"icloudName"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                [self requestData];
+            }];
+        }
+        else if (accountStatus == CKAccountStatusNoAccount) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"尚未登录iCloud" message:nil preferredStyle:UIAlertControllerStyleAlert];
 
             [alert addAction:[UIAlertAction actionWithTitle:@"确定"
@@ -108,14 +117,6 @@
                 [self presentViewController:alert animated:YES completion:nil];
             });
         }
-        else {
-            //登录过了
-            [[CKContainer defaultContainer] fetchUserRecordIDWithCompletionHandler:^(CKRecordID * _Nullable recordID, NSError * _Nullable error) {
-                [[NSUserDefaults standardUserDefaults] setObject:recordID.recordName forKey:@"icloudName"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-                [self requestData];
-            }];
-        }
     }];
 }
 
@@ -126,8 +127,13 @@
 - (void)requestData {
     [LTNetworking requestUrl:@"/album/trace" WithParam:@{@"user_id" : [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"]} withMethod:GET success:^(id  _Nonnull result) {
         if ([result[@"code"] intValue] == 0) {
+            self.albumCount = 0;
             // 获得所有的key
             self.allKeysArray = [result[@"data"] allKeys];
+            self.allKeysArray = [self.allKeysArray sortedArrayUsingComparator:^NSComparisonResult(id obj1,id obj2) {
+                NSComparisonResult result = [obj1 compare:obj2];
+                return result == NSOrderedAscending;
+            }];
             NSMutableArray *albumArray = [NSMutableArray array];
             // 循环拿到所有key对应的字典数组
             for (int i = 0; i < self.allKeysArray.count; i ++) {
@@ -139,35 +145,30 @@
                 for (int j = 0; j < dicArray.count; j ++) {
                     LTAlbumModel *model = [LTAlbumModel mj_objectWithKeyValues:dicArray[j]];
                     [modelArray addObject:model];
+                    self.albumCount += 1;
                 }
                 [albumArray addObject:modelArray];
                 self.dataArray = albumArray;
             }
             
+            if (self.albumCount > 0) {
+                self.tipsLable.text = [NSString stringWithFormat:@"%ld 张专辑",self.albumCount];
+            }
             [self.homeTableView reloadData];
-            if (!self.dataArray.count) {
-                self.emptView.hidden = NO;
-                self.homeTableView.hidden = YES;
-                self.tipsLable.hidden = YES;
-            }
-            else {
-                self.emptView.hidden = YES;
-                self.homeTableView.hidden = NO;
-                self.tipsLable.hidden = YES;
-            }
         }
         else {
-            if (!self.dataArray.count) {
-                self.emptView.hidden = NO;
-                self.homeTableView.hidden = YES;
-                self.tipsLable.hidden = YES;
-            }
-            else {
-                self.emptView.hidden = YES;
-                self.homeTableView.hidden = NO;
-                self.tipsLable.hidden = YES;
-            }
             [MBProgressHUD showInfoMessage:result[@"msg"]];
+        }
+        
+        if (!self.dataArray.count) {
+            self.emptView.hidden = NO;
+            self.homeTableView.hidden = YES;
+            self.tipsLable.hidden = YES;
+        }
+        else {
+            self.emptView.hidden = YES;
+            self.homeTableView.hidden = NO;
+            self.tipsLable.hidden = NO;
         }
     } failure:^(NSError * _Nonnull erro) {
         self.emptView.hidden = NO;
@@ -214,9 +215,12 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSArray *array = self.dataArray[indexPath.section];
+    self.model = array[indexPath.row];
     LTHomeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LTHomeTableViewCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = CViewBgColor;
+    cell.model = self.model;
     
     return cell;
 }

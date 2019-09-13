@@ -19,6 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LTStyleTableViewCell : LTBaseTableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *styleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *albumCountLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *leftImageVIew;
+@property (weak, nonatomic) IBOutlet UIImageView *middleImageVIew;
+@property (weak, nonatomic) IBOutlet UIImageView *rightImageView;
 @property (nonatomic, weak) id<styleTableViewCellDelegate>delegate;
 
 @end

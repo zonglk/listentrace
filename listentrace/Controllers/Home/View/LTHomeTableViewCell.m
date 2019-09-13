@@ -23,6 +23,16 @@
 
 - (void)setModel:(LTAlbumModel *)model {
     _model = model;
+    [self.image sd_setImageWithURL:[NSURL URLWithString:model.album_img]];
+    self.name.text = model.album_name;
+    self.producter.text = model.album_musician;
+    
+    if ([model.favorite intValue] == 1) {
+        self.loveImage.hidden = NO;
+    }
+    else {
+        self.loveImage.hidden = YES;
+    }
 }
 
 @end

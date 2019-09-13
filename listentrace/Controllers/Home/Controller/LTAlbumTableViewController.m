@@ -177,7 +177,7 @@
         [parameter setObject:@(1) forKey:@"favorite"];
     }
     else {
-        [parameter setObject:@(1) forKey:@"favorite"];
+        [parameter setObject:@(0) forKey:@"favorite"];
     }
     
     // 详细曲目信息

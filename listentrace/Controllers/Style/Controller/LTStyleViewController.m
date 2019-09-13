@@ -9,14 +9,24 @@
 #import "LTStyleViewController.h"
 #import "LTStyleTableViewCell.h"
 #import "LTStyleDetailViewController.h"
+#import "LTNetworking.h"
+#import "LTStyleModel.h"
 
 @interface LTStyleViewController () <UITableViewDelegate, UITableViewDataSource, styleTableViewCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, strong) NSArray *allKeysArray;
+@property (nonatomic, strong) UIView *emptView; // 无数据视图
+@property (nonatomic, strong) LTStyleModel *model;
 
 @end
 
 @implementation LTStyleViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self requestData];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,6 +43,52 @@
     self.tableView.rowHeight = 150;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
+    
+    self.emptView.hidden = NO;
+}
+
+- (void)requestData {
+    [LTNetworking requestUrl:@"/album/style" WithParam:@{@"user_id" : [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"]} withMethod:GET success:^(id  _Nonnull result) {
+        if ([result[@"code"] intValue] == 0) {
+            // 获得所有的key
+            self.allKeysArray = [result[@"data"] allKeys];
+            self.allKeysArray = [self.allKeysArray sortedArrayUsingComparator:^NSComparisonResult(id obj1,id obj2) {
+                NSComparisonResult result = [obj1 compare:obj2];
+                return result == NSOrderedAscending;
+            }];
+            NSMutableArray *albumArray = [NSMutableArray array];
+            // 循环拿到所有key对应的字典数组
+            for (int i = 0; i < self.allKeysArray.count; i ++) {
+                NSString *key = self.allKeysArray[i];
+                // 每一个key放着字典数组，字典数组可能有多个或者一个
+                NSArray *dicArray = result[@"data"][key];
+                NSMutableArray *modelArray = [NSMutableArray array];
+                // 将字典数组转换成模型数组
+                for (int j = 0; j < dicArray.count; j ++) {
+                    LTStyleModel *model = [LTStyleModel mj_objectWithKeyValues:dicArray[j]];
+                    [modelArray addObject:model];
+                }
+                [albumArray addObject:modelArray];
+                self.dataArray = albumArray;
+            }
+            [self.tableView reloadData];
+        }
+        else {
+            [MBProgressHUD showInfoMessage:result[@"msg"]];
+        }
+        
+        if (!self.dataArray.count) {
+            self.emptView.hidden = NO;
+            self.tableView.hidden = YES;
+        }
+        else {
+            self.emptView.hidden = YES;
+            self.tableView.hidden = NO;
+        }
+    } failure:^(NSError * _Nonnull erro) {
+        self.emptView.hidden = NO;
+        self.tableView.hidden = YES;
+    } showHUD:self.view];
 }
 
 #pragma mark - =================== UITableView delegate \ datasources ===================
@@ -41,14 +97,43 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 15;
+    return self.allKeysArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSArray *array = self.dataArray[indexPath.row];
     LTStyleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LTStyleTableViewCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = CViewBgColor;
     cell.delegate = self;
+    cell.styleLabel.text = self.allKeysArray[indexPath.row];
+    cell.albumCountLabel.text = [NSString stringWithFormat:@"%ld张专辑",array.count];
+    
+    for (int i = 0; i < array.count; i ++) {
+        if (i == 0) {
+            self.model = array[0];
+            [cell.leftImageVIew setImageWithURL:[NSURL URLWithString:self.model.album_img] placeholder:nil];
+            cell.middleImageVIew.hidden = YES;
+            cell.rightImageView.hidden = YES;
+        }
+        else if (i == 1) {
+            self.model = array[1];
+            [cell.middleImageVIew setImageWithURL:[NSURL URLWithString:self.model.album_img] placeholder:nil];
+            cell.middleImageVIew.hidden = NO;
+            cell.rightImageView.hidden = YES;
+        }
+        else if (i == 2) {
+            self.model = array[2];
+            [cell.rightImageView setImageWithURL:[NSURL URLWithString:self.model.album_img] placeholder:nil];
+            cell.middleImageVIew.hidden = NO;
+            cell.rightImageView.hidden = NO;
+        }
+        else {
+            cell.middleImageVIew.hidden = NO;
+            cell.rightImageView.hidden = NO;
+            break;
+        }
+    }
 
     return cell;
 }
@@ -63,6 +148,34 @@
     detail.navTitle = @"style";
     [self.navigationController pushViewController:detail animated:YES];
 }
+
+- (UIView *)emptView {
+    if (!_emptView) {
+        _emptView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - kBottomSafeHeight - kTabBarHeight)];
+        [self.view addSubview:_emptView];
+        
+        kWeakSelf(self)
+        UIImageView *emptImageView = [[UIImageView alloc] init];
+        [_emptView addSubview:emptImageView];
+        [emptImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(weakself.emptView.mas_centerX);
+            make.centerY.mas_equalTo(weakself.emptView.mas_centerY).offset(-100);
+        }];
+        [emptImageView setImage:[UIImage imageNamed:@"home_empt"]];
+        
+        UILabel *tipLabel = [[UILabel alloc] init];
+        [_emptView addSubview:tipLabel];
+        [tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(emptImageView.mas_centerX);
+            make.top.mas_equalTo(emptImageView.mas_bottom).offset(20);
+        }];
+        tipLabel.text = @"暂时没有专辑";
+        tipLabel.font = [UIFont systemFontOfSize:18];
+        tipLabel.textColor = RGBHex(0xC0C6DA);
+    }
+    return _emptView;
+}
+
 
 /*
 #pragma mark - Navigation

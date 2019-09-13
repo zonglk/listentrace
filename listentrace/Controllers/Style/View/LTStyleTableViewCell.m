@@ -9,8 +9,8 @@
 #import "LTStyleTableViewCell.h"
 
 @interface LTStyleTableViewCell ()
-- (IBAction)allStyleButtonClick:(id)sender;
 
+- (IBAction)allStyleButtonClick:(id)sender;
 
 @end
 
@@ -32,4 +32,5 @@
         [self.delegate allStyleButtonClick:self];
     }
 }
+
 @end
