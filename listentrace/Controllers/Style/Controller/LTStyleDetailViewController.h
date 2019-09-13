@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LTStyleDetailViewController : LTRootViewController
 
 @property (nonatomic, strong) NSString *navTitle; // Nav标题
+@property (nonatomic, strong) NSArray *dataArray;
 
 @end
 

@@ -9,6 +9,7 @@
 #import "LTStyleDetailViewController.h"
 #import "LTStyleDetailCollectionViewCell.h"
 #import "LTStyleDetailFlowLayout.h"
+#import "LTStyleModel.h"
 
 @interface LTStyleDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -46,12 +47,15 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 40;
+    return self.dataArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    LTStyleDetailCollectionViewCell *celll = [collectionView dequeueReusableCellWithReuseIdentifier:@"LTStyleDetailCollectionViewCell" forIndexPath:indexPath];
-    return celll;
+    LTStyleModel *model = self.dataArray[indexPath.row];
+    LTStyleDetailCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LTStyleDetailCollectionViewCell" forIndexPath:indexPath];
+    [cell.image sd_setImageWithURL:[NSURL URLWithString:model.album_img] placeholderImage:nil];
+    cell.nameLabel.text = model.album_name;
+    return cell;
 }
 
 @end

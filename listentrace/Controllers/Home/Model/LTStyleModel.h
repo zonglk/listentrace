@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *album_id;
 @property (nonatomic, copy) NSString *album_img;
+@property (nonatomic, copy) NSString *album_name;
 
 @end
 

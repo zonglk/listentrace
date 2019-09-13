@@ -144,8 +144,10 @@
 
 #pragma mark - =================== cellDelegate ===================
 - (void)allStyleButtonClick:(LTBaseTableViewCell *)cell {
+    NSIndexPath *index = [self.tableView indexPathForCell:cell];
     LTStyleDetailViewController *detail = [[LTStyleDetailViewController alloc] init];
-    detail.navTitle = @"style";
+    detail.navTitle = self.allKeysArray[index.row];
+    detail.dataArray = self.dataArray[index.row];
     [self.navigationController pushViewController:detail animated:YES];
 }
 
