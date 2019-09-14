@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *rightImageView;
 @property (nonatomic, weak) id<styleTableViewCellDelegate>delegate;
 
++ (instancetype)creatCell;
+
 @end
 
 NS_ASSUME_NONNULL_END

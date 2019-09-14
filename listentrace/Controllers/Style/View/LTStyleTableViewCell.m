@@ -16,6 +16,10 @@
 
 @implementation LTStyleTableViewCell
 
++ (instancetype)creatCell {
+    return [[[NSBundle mainBundle] loadNibNamed:@"LTStyleTableViewCell" owner:nil options:nil] lastObject];
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
@@ -23,10 +27,10 @@
     [self.leftImageVIew addGestureRecognizer:leftTap];
     
     UITapGestureRecognizer *middleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(middleTap)];
-    [self.leftImageVIew addGestureRecognizer:middleTap];
+    [self.middleImageVIew addGestureRecognizer:middleTap];
     
     UITapGestureRecognizer *rightTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(rightTap)];
-    [self.leftImageVIew addGestureRecognizer:rightTap];
+    [self.rightImageView addGestureRecognizer:rightTap];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

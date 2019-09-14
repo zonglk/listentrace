@@ -10,6 +10,7 @@
 #import "LTStyleDetailCollectionViewCell.h"
 #import "LTStyleDetailFlowLayout.h"
 #import "LTStyleModel.h"
+#import "LTAlbumTableViewController.h"
 
 @interface LTStyleDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -56,6 +57,17 @@
     [cell.image sd_setImageWithURL:[NSURL URLWithString:model.album_img] placeholderImage:nil];
     cell.nameLabel.text = model.album_name;
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    LTStyleModel *model = self.dataArray[indexPath.row];
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTAlbumTableViewController" bundle:[NSBundle mainBundle]];
+    LTAlbumTableViewController *albumVC = [story instantiateViewControllerWithIdentifier:@"LTAlbumTableViewController"];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:albumVC];
+    albumVC.albumId = model.album_id;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.navigationController presentViewController:nav animated:YES completion:nil];
+    });
 }
 
 @end

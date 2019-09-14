@@ -101,12 +101,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSArray *array = self.dataArray[indexPath.row];
     LTStyleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LTStyleTableViewCell" forIndexPath:indexPath];
+    if (!cell) {
+        cell = [LTStyleTableViewCell creatCell];
+    }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = CViewBgColor;
     cell.delegate = self;
     cell.styleLabel.text = self.allKeysArray[indexPath.row];
     cell.albumCountLabel.text = [NSString stringWithFormat:@"%ld张专辑",array.count];
-    
+
     for (int i = 0; i < array.count; i ++) {
         if (i == 0) {
             self.model = array[0];
@@ -132,7 +135,6 @@
             break;
         }
     }
-
     return cell;
 }
 

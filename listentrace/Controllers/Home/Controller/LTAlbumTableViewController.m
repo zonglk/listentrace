@@ -131,11 +131,20 @@
     for (int i = 0; i < array.count; i ++) {
         NSArray *valueArray = [NSMutableArray arrayWithArray:[array[i] componentsSeparatedByString:@","]];
         LTAddAlbumDetailModel *model = [[LTAddAlbumDetailModel alloc] init];
-        model.album_tracks = valueArray[0];
-        model.album_composer = valueArray[1];
-        model.album_lyricist = valueArray[2];
-        model.album_player = valueArray[3];
-        model.album_arranger = valueArray[4];
+        if (valueArray.count == 5) {
+            model.album_tracks = valueArray[0];
+            model.album_composer = valueArray[1];
+            model.album_lyricist = valueArray[2];
+            model.album_player = valueArray[3];
+            model.album_arranger = valueArray[4];
+        }
+        else {
+            model.album_tracks = @"";
+            model.album_composer = @"";
+            model.album_lyricist = @"";
+            model.album_player = @"";
+            model.album_arranger = @"";
+        }
         [self.detailDataArray addObject:model];
     }
     if (self.detailDataArray.count) {
