@@ -11,6 +11,7 @@
 #import "LTStyleDetailViewController.h"
 #import "LTNetworking.h"
 #import "LTStyleModel.h"
+#import "LTAlbumTableViewController.h"
 
 @interface LTStyleViewController () <UITableViewDelegate, UITableViewDataSource, styleTableViewCellDelegate>
 
@@ -24,14 +25,11 @@
 
 @implementation LTStyleViewController
 
-- (void)viewWillAppear:(BOOL)animated {
-    [self requestData];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self creatAllViews];
+    [self requestData];
 }
 
 - (void)creatAllViews {
@@ -138,10 +136,6 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-}
-
 #pragma mark - =================== cellDelegate ===================
 - (void)allStyleButtonClick:(LTBaseTableViewCell *)cell {
     NSIndexPath *index = [self.tableView indexPathForCell:cell];
@@ -149,6 +143,19 @@
     detail.navTitle = self.allKeysArray[index.row];
     detail.dataArray = self.dataArray[index.row];
     [self.navigationController pushViewController:detail animated:YES];
+}
+
+- (void)imageClick:(LTBaseTableViewCell *)cell index:(NSInteger)index {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    NSArray *detailArray = self.dataArray[indexPath.row];
+    self.model = detailArray[index];
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTAlbumTableViewController" bundle:[NSBundle mainBundle]];
+    LTAlbumTableViewController *albumVC = [story instantiateViewControllerWithIdentifier:@"LTAlbumTableViewController"];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:albumVC];
+    albumVC.albumId = self.model.album_id;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.navigationController presentViewController:nav animated:YES completion:nil];
+    });
 }
 
 - (UIView *)emptView {

@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol styleTableViewCellDelegate <NSObject>
 
 - (void)allStyleButtonClick:(LTBaseTableViewCell *)cell;
+- (void)imageClick:(LTBaseTableViewCell *)cell index:(NSInteger)index;
 
 @end
 

@@ -19,6 +19,14 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    UITapGestureRecognizer *leftTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(leftTap)];
+    [self.leftImageVIew addGestureRecognizer:leftTap];
+    
+    UITapGestureRecognizer *middleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(middleTap)];
+    [self.leftImageVIew addGestureRecognizer:middleTap];
+    
+    UITapGestureRecognizer *rightTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(rightTap)];
+    [self.leftImageVIew addGestureRecognizer:rightTap];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -32,5 +40,24 @@
         [self.delegate allStyleButtonClick:self];
     }
 }
+
+- (void)leftTap {
+    if ([self.delegate respondsToSelector:@selector(imageClick:index:)]) {
+        [self.delegate imageClick:self index:0];
+    }
+}
+
+- (void)middleTap {
+    if ([self.delegate respondsToSelector:@selector(imageClick:index:)]) {
+        [self.delegate imageClick:self index:1];
+    }
+}
+
+- (void)rightTap {
+    if ([self.delegate respondsToSelector:@selector(imageClick:index:)]) {
+        [self.delegate imageClick:self index:2];
+    }
+}
+
 
 @end

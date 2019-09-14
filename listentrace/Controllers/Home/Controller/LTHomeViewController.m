@@ -226,15 +226,24 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    NSArray *array = self.dataArray[indexPath.section];
+    self.model = array[indexPath.row];
+    [self addAlbum:self.model.album_id];
 }
 
 #pragma mark - =================== 添加专辑 ===================
 - (void)addAlbum {
+    [self addAlbum:nil];
+}
+
+- (void)addAlbum:(NSString *)albumId {
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTAlbumTableViewController" bundle:[NSBundle mainBundle]];
     LTAlbumTableViewController *albumVC = [story instantiateViewControllerWithIdentifier:@"LTAlbumTableViewController"];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:albumVC];
-    [self.navigationController presentViewController:nav animated:YES completion:nil];
+    albumVC.albumId = albumId;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+         [self.navigationController presentViewController:nav animated:YES completion:nil];
+    });
 }
 
 - (UIView *)emptView {

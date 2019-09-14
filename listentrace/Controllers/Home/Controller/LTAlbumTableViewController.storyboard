@@ -713,6 +713,7 @@
                             <outlet property="delegate" destination="yVZ-Bj-Hec" id="Aw5-t8-Usv"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="7Gx-uc-QgY"/>
                     <connections>
                         <outlet property="albumButton" destination="ZLo-c3-UVi" id="8Ey-hM-fd9"/>
                         <outlet property="albumNameTextField" destination="MYa-hq-4lz" id="rs2-56-58n"/>

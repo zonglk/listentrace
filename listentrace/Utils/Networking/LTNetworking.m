@@ -48,7 +48,7 @@
 }
 
 - (void)createUnloginedRequest:(NSString *)url WithParam:(NSDictionary *)param withMethod:(HTTPRequestMethod)method success:(void(^)(id result))success failure:(void(^)(NSError *erro))failure showHUD:(UIView *)showView {
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+//    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     NSString *URLString = [self getUrl:url];
     /******************************************************************/
     /**
@@ -81,7 +81,7 @@
         
     } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (error) {
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+//            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
             if (error.code == -1009) {
                 [MBProgressHUD showErrorMessage:@"网络已断开"];
             }
@@ -104,7 +104,7 @@
         }
         else {
             if (success != nil) {
-                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+//                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
                 id result = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
                 success(result);
             }
@@ -124,7 +124,7 @@
 }
 
 - (void)createUnloginedRequest:(NSString *)url WithParam:(NSDictionary *)param withExParam:(NSDictionary*)Exparam withMethod:(HTTPRequestMethod)method success:(void(^)(id result))success failure:(void(^)(NSError *erro))failure uploadFileProgress:(void(^)(NSProgress *uploadProgress))uploadFileProgress {
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+//    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     NSString *URLString = [self getUrl:url];
     /**
      *  将cookie通过请求头的形式传到服务器，比较是否和服务器一致
@@ -164,7 +164,7 @@
         
     } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (error) {
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+//            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
             if (error.code == -1009) {
                 [MBProgressHUD showErrorMessage:@"网络已断开"];
             }
@@ -187,7 +187,7 @@
         }
         else {
             if (success != nil) {
-                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+//                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
                 id result = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
                 success(result);
             }
