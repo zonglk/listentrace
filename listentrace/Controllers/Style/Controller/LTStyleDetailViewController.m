@@ -31,6 +31,9 @@
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     double itemWidth = (KScreenWidth - 40)/3;
+    if (kIS_iPhonePlus) {
+        itemWidth = (KScreenWidth - 45)/3;
+    }
     [flowLayout setItemSize:CGSizeMake(itemWidth, itemWidth + 20)];
     [flowLayout setSectionInset:UIEdgeInsetsMake(10, 10, 0, 10)];
     

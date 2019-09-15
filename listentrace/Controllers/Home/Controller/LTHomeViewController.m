@@ -166,9 +166,14 @@
             self.tipsLable.hidden = YES;
         }
         else {
+            if (self.dataArray.count > 7) {
+                self.tipsLable.hidden = NO;
+            }
+            else {
+                self.tipsLable.hidden = YES;
+            }
             self.emptView.hidden = YES;
             self.homeTableView.hidden = NO;
-            self.tipsLable.hidden = NO;
         }
     } failure:^(NSError * _Nonnull erro) {
         self.emptView.hidden = NO;

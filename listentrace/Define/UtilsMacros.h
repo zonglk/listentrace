@@ -35,6 +35,21 @@
 
 #define kIS_IPHONE_X ([UIScreen mainScreen].bounds.size.height > 736.0f) ? YES : NO
 
+#define kDevice_iphone4              ([UIScreen mainScreen].bounds.size.height == 480)
+#define kDevice_iphone5              ([UIScreen mainScreen].bounds.size.height == 568)
+#define kDevice_iphone6              ([UIScreen mainScreen].bounds.size.width == 375)
+#define kDevice_iphone6p             ([UIScreen mainScreen].bounds.size.width == 414)
+#define kDevice_iphoneX             ([UIScreen mainScreen].bounds.size.height == 812)
+#define kDevice_iphoneXR             ([UIScreen mainScreen].bounds.size.height == 896)
+//判断iPhone6p 6sp 7p系列
+#define kIS_iPhonePlus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) && !isPad : NO)
+//判断iPhoneX，Xs（iPhoneX，iPhoneXs）
+//判断是否是ipad
+#define isPad ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+//判断iPhone4系列
+//判断iPhoneXsMax
+#define IS_IPHONE_Xs_Max ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2688), [[UIScreen mainScreen] currentMode].size)&& !isPad : NO)
+
 //强弱引用
 #define kWeakSelf(type)  __weak typeof(type) weak##type = type;
 #define kStrongSelf(type) __strong typeof(type) type = weak##type;

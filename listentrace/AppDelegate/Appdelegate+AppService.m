@@ -8,6 +8,7 @@
 
 #import "Appdelegate+AppService.h"
 #import "IQKeyboardManager.h"
+#import "LTAlbumTableViewController.h"
 
 @implementation AppDelegate (AppService)
 
@@ -79,5 +80,30 @@
     return superVC;
 }
 
+#pragma mark - =================== URL Schemes ===================
+
+-(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    NSString *str = url.absoluteString;
+    //取出根视图控制器
+    UINavigationController *nav =(UINavigationController *) (self.window.rootViewController);
+    
+    //获取主控制器
+    UIViewController * mainvc = nav.childViewControllers[0];
+    
+    //回到主控制器
+//    [nav popToRootViewControllerAnimated:YES];
+    
+    //判断url是否包含session
+    if([str containsString:@"Listentrace://addAlbum"]) {
+        UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTAlbumTableViewController" bundle:[NSBundle mainBundle]];
+        LTAlbumTableViewController *albumVC = [story instantiateViewControllerWithIdentifier:@"LTAlbumTableViewController"];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:albumVC];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [mainvc presentViewController:nav animated:YES completion:nil];
+        });
+    }
+    
+    return YES;
+}
 
 @end

@@ -48,6 +48,10 @@
 		00601BDB22E0C908005B33F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 00601BDA22E0C908005B33F2 /* main.m */; };
 		00601BE522E0C908005B33F2 /* listentraceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00601BE422E0C908005B33F2 /* listentraceTests.m */; };
 		00601BF022E0C908005B33F2 /* listentraceUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00601BEF22E0C908005B33F2 /* listentraceUITests.m */; };
+		0097381C232D309400F2E7F9 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0097381B232D309400F2E7F9 /* Social.framework */; };
+		0097381F232D338A00F2E7F9 /* LTActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 0097381E232D338A00F2E7F9 /* LTActivity.m */; };
+		00973822232D377600F2E7F9 /* appIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00973820232D377500F2E7F9 /* appIcon@2x.png */; };
+		00973823232D377600F2E7F9 /* appIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00973821232D377600F2E7F9 /* appIcon@3x.png */; };
 		00A0D20F22F887630002D234 /* album_down_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A0D20D22F887620002D234 /* album_down_arrow@3x.png */; };
 		00A0D21022F887630002D234 /* album_down_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A0D20E22F887620002D234 /* album_down_arrow@2x.png */; };
 		00A0D21322F8966F0002D234 /* album_add@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A0D21122F8966E0002D234 /* album_add@3x.png */; };
@@ -219,6 +223,11 @@
 		00601BEB22E0C908005B33F2 /* listentraceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = listentraceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00601BEF22E0C908005B33F2 /* listentraceUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = listentraceUITests.m; sourceTree = "<group>"; };
 		00601BF122E0C908005B33F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0097381B232D309400F2E7F9 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		0097381D232D338A00F2E7F9 /* LTActivity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LTActivity.h; path = listentrace/Controllers/Home/Model/LTActivity.h; sourceTree = SOURCE_ROOT; };
+		0097381E232D338A00F2E7F9 /* LTActivity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LTActivity.m; path = listentrace/Controllers/Home/Model/LTActivity.m; sourceTree = SOURCE_ROOT; };
+		00973820232D377500F2E7F9 /* appIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appIcon@2x.png"; sourceTree = "<group>"; };
+		00973821232D377600F2E7F9 /* appIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appIcon@3x.png"; sourceTree = "<group>"; };
 		00A0D20D22F887620002D234 /* album_down_arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "album_down_arrow@3x.png"; sourceTree = "<group>"; };
 		00A0D20E22F887620002D234 /* album_down_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "album_down_arrow@2x.png"; sourceTree = "<group>"; };
 		00A0D21122F8966E0002D234 /* album_add@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "album_add@3x.png"; sourceTree = "<group>"; };
@@ -326,6 +335,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0097381C232D309400F2E7F9 /* Social.framework in Frameworks */,
 				A37E35B0102F698943C83CCC /* Pods_listentrace.framework in Frameworks */,
 				004505AF231809DE004500A9 /* CloudKit.framework in Frameworks */,
 			);
@@ -748,6 +758,8 @@
 		005C3E9A22E487FE0015CCB9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0097381D232D338A00F2E7F9 /* LTActivity.h */,
+				0097381E232D338A00F2E7F9 /* LTActivity.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -785,6 +797,8 @@
 				00E83BD722E60B3F00C47AE5 /* setup_tabbar_selected@3x.png */,
 				00E83BDC22E60B4E00C47AE5 /* setup_tabbar_normal@2x.png */,
 				00E83BDB22E60B4E00C47AE5 /* setup_tabbar_normal@3x.png */,
+				00973820232D377500F2E7F9 /* appIcon@2x.png */,
+				00973821232D377600F2E7F9 /* appIcon@3x.png */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -893,6 +907,7 @@
 		9040F74503884C0635B28BAA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0097381B232D309400F2E7F9 /* Social.framework */,
 				004505AE231809DE004500A9 /* CloudKit.framework */,
 				C8ADF5B89930780ECF0206F7 /* Pods_listentrace.framework */,
 				415EBA2EE0343971EA0D6498 /* Pods_listentraceTests.framework */,
@@ -1156,6 +1171,7 @@
 				00C2B09022ED5AD500CFB3E1 /* LTHomeTableViewCell.xib in Resources */,
 				BDFD6C142328E2E800046FBC /* home_empt@2x.png in Resources */,
 				BDE88E3A2320B63F004495A9 /* LTAlbumTimePIckerView.xib in Resources */,
+				00973822232D377600F2E7F9 /* appIcon@2x.png in Resources */,
 				00E83BE522E60B6A00C47AE5 /* style_tabbar_selected@2x.png in Resources */,
 				BD5B8C1F23274FEB005D18FF /* launch.png in Resources */,
 				BD56EB2F2302B7680005271B /* nav_back@3x.png in Resources */,
@@ -1171,6 +1187,7 @@
 				BD4FB439230AA0B100A6F825 /* album_delete@3x.png in Resources */,
 				00601BD822E0C908005B33F2 /* LaunchScreen.storyboard in Resources */,
 				00E83BE622E60B6A00C47AE5 /* style_tabbar_selected@3x.png in Resources */,
+				00973823232D377600F2E7F9 /* appIcon@3x.png in Resources */,
 				00601BD522E0C908005B33F2 /* Assets.xcassets in Resources */,
 				00E83BE122E60B6200C47AE5 /* home_tabbar_normal@3x.png in Resources */,
 				BD4FB43C230AA79400A6F825 /* album_redHeart@3x.png in Resources */,
@@ -1329,6 +1346,7 @@
 				002747C322E8B0B800752BD2 /* OpenUDID.m in Sources */,
 				BDE2421D22E55796002F87E4 /* LTRootNavgationController.m in Sources */,
 				00F81F4C232B262400CA8858 /* LTStyleModel.m in Sources */,
+				0097381F232D338A00F2E7F9 /* LTActivity.m in Sources */,
 				002747CD22E8B5C600752BD2 /* LTBaseCellModel.m in Sources */,
 				00A83ABC22EF3D7100C59ACB /* LTStyleDetailFlowLayout.m in Sources */,
 				0027480722E8BEB300752BD2 /* TAAnimatedDotView.m in Sources */,

@@ -30,6 +30,7 @@
     // Do any additional setup after loading the view.
     [self creatAllViews];
     [self requestData];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addAlbumSucess) name:@"AddAlbumSucess" object:nil];
 }
 
 - (void)creatAllViews {
@@ -39,14 +40,25 @@
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"LTStyleTableViewCell" bundle:nil] forCellReuseIdentifier:@"LTStyleTableViewCell"];
     self.tableView.rowHeight = 150;
+    if (kDevice_iphone5) {
+        self.tableView.rowHeight = 140;
+    }
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     
     self.emptView.hidden = NO;
 }
 
+- (void)addAlbumSucess {
+    [self requestData];
+}
+
 - (void)requestData {
-    [LTNetworking requestUrl:@"/album/style" WithParam:@{@"user_id" : [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"]} withMethod:GET success:^(id  _Nonnull result) {
+    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"];
+    if (!userId.length) {
+        return;
+    }
+    [LTNetworking requestUrl:@"/album/style" WithParam:@{@"user_id" : userId} withMethod:GET success:^(id  _Nonnull result) {
         if ([result[@"code"] intValue] == 0) {
             // 获得所有的key
             self.allKeysArray = [result[@"data"] allKeys];

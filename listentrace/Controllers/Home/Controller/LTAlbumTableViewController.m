@@ -137,15 +137,10 @@
             model.album_lyricist = valueArray[2];
             model.album_player = valueArray[3];
             model.album_arranger = valueArray[4];
+            if (model.album_tracks.length || model.album_composer.length || model.album_lyricist.length || model.album_player.length || model.album_arranger.length) {
+                [self.detailDataArray addObject:model];
+            }
         }
-        else {
-            model.album_tracks = @"";
-            model.album_composer = @"";
-            model.album_lyricist = @"";
-            model.album_player = @"";
-            model.album_arranger = @"";
-        }
-        [self.detailDataArray addObject:model];
     }
     if (self.detailDataArray.count) {
         [self.albumTableView reloadData];
