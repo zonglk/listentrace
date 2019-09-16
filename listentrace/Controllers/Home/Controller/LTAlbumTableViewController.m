@@ -71,14 +71,14 @@
     [self creatAllViews];
     if (self.albumId.length) {
         [self requestData];
+        self.tipsImageLabel.hidden = YES;
     }
 }
 
 - (void)creatAllViews {
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_back"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+    [backItem setTintColor:RGBHex(0xE6E6E6)];
     self.navigationItem.leftBarButtonItem = backItem;
-    //将返回按钮的文字position设置不在屏幕上显示
-    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(NSIntegerMin, NSIntegerMin) forBarMetrics:UIBarMetricsDefault];
     
     self.title = @"专辑信息";
     self.tableView.backgroundColor = CViewBgColor;
@@ -573,6 +573,7 @@
             if ([result[@"code"] intValue] == 0) {
                 [weakself.albumButton setImage:resizeImage forState:UIControlStateNormal];
                 self.imageId = result[@"data"];
+                self.tipsImageLabel.hidden = YES;
             }
             else {
                 [MBProgressHUD showErrorMessage:result[@"msg"]];
