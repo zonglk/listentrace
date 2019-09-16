@@ -244,11 +244,8 @@
 - (void)addAlbum:(NSString *)albumId {
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTAlbumTableViewController" bundle:[NSBundle mainBundle]];
     LTAlbumTableViewController *albumVC = [story instantiateViewControllerWithIdentifier:@"LTAlbumTableViewController"];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:albumVC];
     albumVC.albumId = albumId;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-         [self.navigationController presentViewController:nav animated:YES completion:nil];
-    });
+    [self.navigationController pushViewController:albumVC animated:YES];
 }
 
 - (UIView *)emptView {
