@@ -84,20 +84,15 @@
 
 -(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
     NSString *str = url.absoluteString;
-    //取出根视图控制器
-    UINavigationController *nav =(UINavigationController *) (self.window.rootViewController);
     
-    //获取主控制器
-    UIViewController * mainvc = nav.childViewControllers[0];
-    
-    //回到主控制器
-//    [nav popToRootViewControllerAnimated:YES];
-    
-    //判断url是否包含session
+    UITabBarController *tbc = (UITabBarController *)self.window.rootViewController;
+    UINavigationController *nav = tbc.viewControllers[tbc.selectedIndex];
+    [nav popToRootViewControllerAnimated:YES];
+    //判断url是否包含addAlbum
     if([str containsString:@"Listentrace://addAlbum"]) {
         UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTAlbumTableViewController" bundle:[NSBundle mainBundle]];
         LTAlbumTableViewController *albumVC = [story instantiateViewControllerWithIdentifier:@"LTAlbumTableViewController"];
-        [mainvc.navigationController pushViewController:albumVC animated:YES];
+        [nav pushViewController:albumVC animated:YES];
     }
     return YES;
 }
