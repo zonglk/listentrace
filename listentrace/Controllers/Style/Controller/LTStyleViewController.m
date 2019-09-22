@@ -62,10 +62,6 @@
         if ([result[@"code"] intValue] == 0) {
             // 获得所有的key
             self.allKeysArray = [result[@"data"] allKeys];
-            self.allKeysArray = [self.allKeysArray sortedArrayUsingComparator:^NSComparisonResult(id obj1,id obj2) {
-                NSComparisonResult result = [obj1 compare:obj2];
-                return result == NSOrderedAscending;
-            }];
             NSMutableArray *albumArray = [NSMutableArray array];
             // 循环拿到所有key对应的字典数组
             for (int i = 0; i < self.allKeysArray.count; i ++) {
