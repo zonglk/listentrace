@@ -633,9 +633,23 @@
 
 - (void)timePickerSureButtonClick {
     if (self.isListeningTime) {
+        if (!self.listeningTimeString) {
+            NSDate *date = [NSDate date];
+            NSDateFormatter *forMatter = [[NSDateFormatter alloc] init];
+            [forMatter setDateFormat:@"yyyy年MM月dd日"];
+            NSString *dateStr = [forMatter stringFromDate:date];
+            self.listeningTimeString = dateStr;
+        }
         self.listeningTimeTextField.text = self.listeningTimeString;
     }
     else {
+        if (!self.releaseTimeString) {
+            NSDate *date = [NSDate date];
+            NSDateFormatter *forMatter = [[NSDateFormatter alloc] init];
+            [forMatter setDateFormat:@"yyyy年MM月dd日"];
+            NSString *dateStr = [forMatter stringFromDate:date];
+            self.releaseTimeString = dateStr;
+        }
         self.releasedTimeTextField.text = self.releaseTimeString;
     }
     [self.timePicker removeFromSuperview];
@@ -682,6 +696,8 @@
     if (!_timePicker) {
         _timePicker = [LTAlbumTimePIckerView creatXib];
         _timePicker.delegate = self;
+        // 设置显示最大时间（此处为当前时间）
+        [_timePicker.timePicker setMaximumDate:[NSDate date]];
         [_timePicker.timePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
     }
     return _timePicker;

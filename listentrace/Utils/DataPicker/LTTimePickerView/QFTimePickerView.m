@@ -42,7 +42,7 @@
  @param block 返回选中的时间
  @return QFTimePickerView实例
  */
-- (instancetype)initDatePackerWithStartHour:(NSString *)startHour endHour:(NSString *)endHour period:(NSInteger)period response:(void (^)(NSString *))block{
+- (instancetype)initDatePackerWithStartHour:(NSString *)startHour endHour:(NSString *)endHour period:(NSInteger)period response:(void (^)(NSString *))block {
     if (self = [super init]) {
         self.frame = [UIScreen mainScreen].bounds;
     }
@@ -189,6 +189,10 @@
         [self dismiss];
     }
     else {
+        if ([selectedMin isEqualToString:@"00"] && [selectedHour isEqualToString:@"00"] && [selectedSec isEqualToString:@"00"]) {
+            [MBProgressHUD showErrorMessage:@"时长不可为零"];
+            return;
+        }
         restr = [NSString stringWithFormat:@"%@:%@:%@",selectedHour,selectedMin,selectedSec];
         backBlock(restr);
         [self dismiss];
