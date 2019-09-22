@@ -52,6 +52,7 @@
 @property (nonatomic, assign) BOOL isListeningTime;
 @property (nonatomic, strong) LTAddAlbumDetailModel *detailModel;
 @property (nonatomic, copy) NSString *imageId; // 上传图片拿到的后台的id
+@property (nonatomic, strong) UIButton *rightNavButton;
 
 - (IBAction)albumButtonClick:(id)sender; // 专辑封面
 - (IBAction)loveButtonClick:(id)sender; // 喜欢
@@ -83,11 +84,18 @@
     self.title = @"专辑信息";
     self.tableView.backgroundColor = CViewBgColor;
     UIButton *rightNavButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-    [rightNavButton setTitle:@"保存" forState:UIControlStateNormal];
+    if (self.albumId.length) {
+        [rightNavButton setTitle:@"编辑" forState:UIControlStateNormal];
+    }
+    else {
+        [rightNavButton setTitle:@"保存" forState:UIControlStateNormal];
+    }
+    [self handleUserEnable];
     [rightNavButton.titleLabel setFont:[UIFont systemFontOfSize:16]];
     [rightNavButton setTitleColor:RGBHex(0x007AFF) forState:UIControlStateNormal];
     [rightNavButton addTarget:self action:@selector(saveButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightNavButton];
+    self.rightNavButton = rightNavButton;
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.rightNavButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
     [self.albumTableView registerNib:[UINib nibWithNibName:@"LTAlbumTableViewCell" bundle:nil] forCellReuseIdentifier:@"LTAlbumTableViewCell"];
     self.albumTableView.estimatedRowHeight = 0;
@@ -200,6 +208,11 @@
 #pragma mark - ================ 保存专辑信息 ================
 
 - (void)saveButtonClick {
+    if ([self.rightNavButton.titleLabel.text isEqualToString:@"编辑"]) {
+        [self.rightNavButton setTitle:@"保存" forState:UIControlStateNormal];
+        [self handleUserEnable];
+        return;
+    }
     if (!self.imageId.length && !self.albumId.length) {
         [MBProgressHUD showInfoMessage:@"请上传专辑封面图"];
         return;
@@ -675,6 +688,14 @@
         self.releasedCountTextField.text = str;
     }];
     [datePickerView show];
+}
+
+- (void)handleUserEnable {
+    if (self) {
+        if ([self.rightNavButton.titleLabel.text isEqualToString:@"编辑"]) {
+            return;
+        }
+    }
 }
 
 - (LTAlbumStyleView *)styleView {
