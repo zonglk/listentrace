@@ -29,6 +29,12 @@
 @property (weak, nonatomic) IBOutlet UITextField *musicianTextField; // 音乐人
 @property (weak, nonatomic) IBOutlet UITextField *styleTextField; // 风格
 @property (weak, nonatomic) IBOutlet UITextField *timeTextField; // 时长
+@property (weak, nonatomic) IBOutlet UIButton *timeButton;
+@property (weak, nonatomic) IBOutlet UIButton *listeningTimeButton;
+@property (weak, nonatomic) IBOutlet UIButton *releaseButton;
+@property (weak, nonatomic) IBOutlet UIButton *releaseCountButton;
+@property (weak, nonatomic) IBOutlet UIButton *addDetailButton;
+
 @property (weak, nonatomic) IBOutlet UITextField *listeningTimeTextField; // 聆听时间
 @property (weak, nonatomic) IBOutlet UITextField *releasedTimeTextField; // 发行时间
 @property (weak, nonatomic) IBOutlet UITextField *releasedCountTextField; // 发行数目
@@ -90,7 +96,6 @@
     else {
         [rightNavButton setTitle:@"保存" forState:UIControlStateNormal];
     }
-    [self handleUserEnable];
     [rightNavButton.titleLabel setFont:[UIFont systemFontOfSize:16]];
     [rightNavButton setTitleColor:RGBHex(0x007AFF) forState:UIControlStateNormal];
     [rightNavButton addTarget:self action:@selector(saveButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -132,6 +137,7 @@
     [LTNetworking requestUrl:@"/album/info" WithParam:@{@"album_id" : self.albumId} withMethod:GET success:^(id  _Nonnull result) {
         if ([result[@"code"] intValue] == 0) {
             [self handleDate:result];
+            [self handleUserEnable];
         }
         else {
             [MBProgressHUD showInfoMessage:result[@"msg"]];
@@ -349,6 +355,20 @@
         cell.backgroundColor = CViewBgColor;
         cell.delegate = self;
         cell.model = self.detailModel;
+        if ([self.rightNavButton.titleLabel.text isEqualToString:@"编辑"]) {
+            cell.songTextField.enabled = NO;
+            cell.lyricistTextField.enabled = NO;
+            cell.composerTextField.enabled = NO;
+            cell.arrangerTextField.enabled = NO;
+            cell.songPerformerTextField.enabled = NO;
+        }
+        else {
+            cell.songTextField.enabled = YES;
+            cell.lyricistTextField.enabled = YES;
+            cell.composerTextField.enabled = YES;
+            cell.arrangerTextField.enabled = YES;
+            cell.songPerformerTextField.enabled = YES;
+        }
         return cell;
     }
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -393,6 +413,9 @@
 #pragma mark - ================ 添加/修改专辑照片 ================
 
 - (IBAction)albumButtonClick:(id)sender {
+    if ([self.rightNavButton.titleLabel.text isEqualToString:@"编辑"]) {
+        return;
+    }
     UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"选择图片" message:nil
                                                             preferredStyle:UIAlertControllerStyleActionSheet];
     NSMutableAttributedString *alertControllerStr = [[NSMutableAttributedString alloc] initWithString:@"选择照片"];
@@ -541,6 +564,9 @@
 #pragma mark - ================ 红心喜欢按钮 ================
 
 - (IBAction)loveButtonClick:(id)sender {
+    if ([self.rightNavButton.titleLabel.text isEqualToString:@"编辑"]) {
+        return;
+    }
     self.loveButton.selected = !self.loveButton.selected;
 }
 
@@ -691,11 +717,49 @@
 }
 
 - (void)handleUserEnable {
-    if (self) {
-        if ([self.rightNavButton.titleLabel.text isEqualToString:@"编辑"]) {
-            return;
-        }
+    if ([self.rightNavButton.titleLabel.text isEqualToString:@"编辑"]) {
+        self.albumNameTextField.enabled = NO;
+        self.musicianTextField.enabled = NO;
+        self.styleButton.enabled = NO;
+        self.styleTextField.enabled = NO;
+        self.timeButton.enabled = NO;
+        self.timeTextField.enabled = NO;
+        self.listeningTimeTextField.enabled = NO;
+        self.releasedTimeTextField.enabled = NO;
+        self.releasedCountTextField.enabled = NO;
+        self.producerTextField.enabled = NO;
+        self.listeningTimeButton.enabled = NO;
+        self.releaseButton.enabled = NO;
+        self.releaseCountButton.enabled = NO;
+        self.mixerTextField.enabled = NO;
+        self.mixingTextField.enabled = NO;
+        self.masteringTextField.enabled = NO;
+        self.coverTextField.enabled = NO;
+        self.addDetailButton.enabled = NO;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"addAlbumEditEnable" object:nil userInfo:@{@"edit":@"0"}];
     }
+    else {
+        self.albumNameTextField.enabled = YES;
+        self.musicianTextField.enabled = YES;
+        self.styleButton.enabled = YES;
+        self.styleTextField.enabled = YES;
+        self.timeButton.enabled = YES;
+        self.timeTextField.enabled = YES;
+        self.listeningTimeTextField.enabled = YES;
+        self.producerTextField.enabled = YES;
+        self.listeningTimeButton.enabled = YES;
+        self.releaseButton.enabled = YES;
+        self.releasedTimeTextField.enabled = YES;
+        self.releasedCountTextField.enabled = YES;
+        self.releaseCountButton.enabled = YES;
+        self.mixerTextField.enabled = YES;
+        self.mixingTextField.enabled = YES;
+        self.masteringTextField.enabled = YES;
+        self.coverTextField.enabled = YES;
+        self.addDetailButton.enabled = YES;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"addAlbumEditEnable" object:nil userInfo:@{@"edit":@"1"}];
+    }
+    [self.albumTableView reloadData];
 }
 
 - (LTAlbumStyleView *)styleView {
