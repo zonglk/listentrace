@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIView *view2;
 @property (weak, nonatomic) IBOutlet UIView *view3;
 @property (weak, nonatomic) IBOutlet UIView *view4;
+@property (weak, nonatomic) IBOutlet UILabel *icloudlabel;
 
 - (IBAction)feedbackButtonClick:(id)sender; // 建议与反馈
 - (IBAction)scoreButtonClick:(id)sender; // 评分
@@ -29,6 +30,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self creatAllViews];
+    NSString *count = [[NSUserDefaults standardUserDefaults] objectForKey:@"albumCount"];
+    if (!count) {
+        count = @"0";
+    }
+    self.icloudlabel.text = [NSString stringWithFormat:@"（云端 %@/%@ 本地)",count,count];
 }
 
 - (void)creatAllViews {

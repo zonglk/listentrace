@@ -152,7 +152,9 @@
             }
             
             if (self.albumCount > 0) {
-                self.tipsLable.text = [NSString stringWithFormat:@"%ld 张专辑",self.albumCount];
+                self.tipsLable.text = [NSString stringWithFormat:@"%ld 张专辑",(long)self.albumCount];
+                [[NSUserDefaults standardUserDefaults] setObject:@(self.albumCount) forKey:@"albumCount"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
             }
             [self.homeTableView reloadData];
         }

@@ -43,7 +43,7 @@
                                                             <color key="textColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（本地0 / 0云端）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BU3-bJ-SBO">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（云端0 / 0本地）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BU3-bJ-SBO">
                                                             <rect key="frame" x="283.33333333333331" y="15.333333333333329" width="99.666666666666686" height="14.333333333333336"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" red="0.31372549019607843" green="0.47450980392156861" blue="0.85098039215686272" alpha="1" colorSpace="calibratedRGB"/>
@@ -456,6 +456,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="icloudlabel" destination="BU3-bJ-SBO" id="7sa-GL-ph0"/>
                         <outlet property="setUpTableView" destination="gzK-iH-0n5" id="iWX-qm-Duk"/>
                         <outlet property="view1" destination="Yw5-lA-zHe" id="98i-xQ-aZv"/>
                         <outlet property="view2" destination="N6r-gS-0wL" id="K33-YC-pe9"/>
