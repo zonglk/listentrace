@@ -23,6 +23,7 @@
 @property (nonatomic, strong) UIView *emptView; // 无数据视图
 @property (nonatomic, strong) LTAlbumModel *model;
 @property (nonatomic, assign) NSInteger albumCount;
+@property (nonatomic, copy) NSString *countTipString;
 
 @end
 
@@ -38,7 +39,7 @@
 }
 
 - (void)creatAllViews {
-    self.homeTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - kTopHeight - kTabBarHeight - 70) style:UITableViewStyleGrouped];
+    self.homeTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - kTopHeight - kTabBarHeight) style:UITableViewStyleGrouped];
     self.homeTableView.backgroundColor = CViewBgColor;
     self.homeTableView.delegate = self;
     self.homeTableView.dataSource = self;
@@ -47,22 +48,11 @@
     self.homeTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.homeTableView];
     
-    self.tipsLable = [[UILabel alloc] init];
-    [self.view addSubview:self.tipsLable];
-    [self.tipsLable mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(self.view.mas_bottom).offset(- kTabBarHeight - 12);
-        make.centerX.mas_equalTo(self.view);
-    }];
-    self.tipsLable.textColor = RGBHex(0xB2B2B2);
-    self.tipsLable.font = [UIFont systemFontOfSize:17.0];
-    self.tipsLable.hidden = YES;
-    self.tipsLable.text = @"X 张专辑";
-    
     self.addBttton = [[UIButton alloc] init];
     [self.view addSubview:self.addBttton];
     [self.addBttton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.view.mas_right).offset(-15);
-        make.bottom.mas_equalTo(self.tipsLable.mas_bottom);
+        make.bottom.mas_equalTo(self.homeTableView.mas_bottom).offset(-20);
     }];
     [self.addBttton setBackgroundImage:[UIImage imageNamed:@"home_add"] forState:UIControlStateNormal];
     [self.addBttton setBackgroundImage:[UIImage imageNamed:@"home_add"] forState:UIControlStateHighlighted];
@@ -152,7 +142,7 @@
             }
             
             if (self.albumCount > 0) {
-                self.tipsLable.text = [NSString stringWithFormat:@"%ld 张专辑",(long)self.albumCount];
+                self.countTipString = [NSString stringWithFormat:@"%ld 张专辑",(long)self.albumCount];
                 [[NSUserDefaults standardUserDefaults] setObject:@(self.albumCount) forKey:@"albumCount"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
             }
@@ -205,11 +195,37 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0.00001;
+    if (self.allKeysArray.count < 8) {
+        return 0.00001;
+    }
+    else if (section == self.allKeysArray.count - 1) {
+        return 60;
+    }
+    else {
+        return 0.00001;
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    return [UIView new];
+    if (self.allKeysArray.count < 8) {
+        return [UIView new];
+    }
+    else if (section == self.allKeysArray.count - 1) {
+        UIView *view = [[UIView alloc] init];
+        self.tipsLable = [[UILabel alloc] init];
+        [view addSubview:self.tipsLable];
+        [self.tipsLable mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(view);
+            make.centerY.mas_equalTo(view);
+        }];
+        self.tipsLable.textColor = RGBHex(0xB2B2B2);
+        self.tipsLable.font = [UIFont systemFontOfSize:17.0];
+        self.tipsLable.text = self.countTipString;
+        return view;
+    }
+    else {
+        return [UIView new];
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
