@@ -579,7 +579,7 @@
     [self.imageresizerView removeFromSuperview];
     kWeakSelf(self);
     [self.imageresizerView originImageresizerWithComplete:^(UIImage *resizeImage) {
-        NSData *imageData = UIImageJPEGRepresentation(resizeImage, 0.5f);
+        NSData *imageData = UIImageJPEGRepresentation(resizeImage, 0.2f);
         NSMutableDictionary *Exparams = [[NSMutableDictionary alloc]init];
         [Exparams addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:imageData,@"file", nil]];
         [LTNetworking uploadImageWithUrl:@"/img/upload" WithParam:[NSDictionary dictionary] withExParam:Exparams withMethod:POST success:^(id  _Nonnull result) {
