@@ -172,7 +172,7 @@
     //初始化年数据源数组
     yearArray = [[NSMutableArray alloc]init];
     for (NSInteger i = 1; i <= 10 ; i++) {
-        NSString *yearStr = [NSString stringWithFormat:@"%ld首",(long)i];
+        NSString *yearStr = [NSString stringWithFormat:@"%ld 首",(long)i];
         [yearArray addObject:yearStr];
     }
 }

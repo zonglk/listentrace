@@ -116,7 +116,7 @@
     cell.backgroundColor = CViewBgColor;
     cell.delegate = self;
     cell.styleLabel.text = self.allKeysArray[indexPath.row];
-    cell.albumCountLabel.text = [NSString stringWithFormat:@"%ld张专辑",array.count];
+    cell.albumCountLabel.text = [NSString stringWithFormat:@"%ld 张专辑",array.count];
 
     for (int i = 0; i < array.count; i ++) {
         if (i == 0) {

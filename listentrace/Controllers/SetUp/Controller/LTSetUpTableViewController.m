@@ -19,7 +19,7 @@
 
 - (IBAction)feedbackButtonClick:(id)sender; // 建议与反馈
 - (IBAction)scoreButtonClick:(id)sender; // 评分
-- (IBAction)shareButtonClick:(id)sender; // 评分
+- (IBAction)shareButtonClick:(id)sender; // 分享
 - (IBAction)UrlSchemesButtonClick:(id)sender; // 打开app
 - (IBAction)handsUrlSchemesClick:(id)sender; // 手动录入
 
@@ -99,7 +99,10 @@
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = @"hippiezhu@gmail.com";
     
-    [MBProgressHUD showTipMessageInView:@"邮箱已复制 hippiezhu@gmail.com 可发送信息至该邮箱"];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"邮箱已复制" message:[NSString stringWithFormat:@"hippiezhu@gmail.com\n可发送信息至该邮箱"] preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:action];
+    [self.navigationController presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - =================== 评分 ===================

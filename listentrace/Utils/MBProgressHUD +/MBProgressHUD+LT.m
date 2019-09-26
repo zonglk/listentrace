@@ -8,7 +8,7 @@
 
 #import "MBProgressHUD+LT.h"
 
-const NSInteger hideTime = 2;
+const NSInteger hideTime = 1;
 
 @implementation MBProgressHUD (LT)
 

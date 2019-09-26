@@ -59,6 +59,7 @@
 @property (nonatomic, strong) LTAddAlbumDetailModel *detailModel;
 @property (nonatomic, copy) NSString *imageId; // 上传图片拿到的后台的id
 @property (nonatomic, strong) UIButton *rightNavButton;
+@property (nonatomic, assign) BOOL isSave; // 专辑已存在时候的保存
 
 - (IBAction)albumButtonClick:(id)sender; // 专辑封面
 - (IBAction)loveButtonClick:(id)sender; // 喜欢
@@ -325,11 +326,30 @@
         url = @"/album/add";
     }
     
+    if (self.isSave) {
+        
+    }
+    else {
+        
+    }
+    
     [LTNetworking requestUrl:url WithParam:parameter withMethod:POST success:^(id  _Nonnull result) {
         if ([result[@"code"] intValue] == 0) {
+            self.isSave = NO;
             [MBProgressHUD showInfoMessage:result[@"msg"]];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"AddAlbumSucess" object:nil];
             [self.navigationController popViewControllerAnimated:YES];
+        }
+        else if ([result[@"code"] intValue] == 1002) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"已添加过该专辑，是否继续保存。"] preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"保存" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                self.isSave = YES;
+                [self saveButtonClick];
+            }];
+            [alert addAction:action];
+            [alert addAction:sureAction];
+            [self.navigationController presentViewController:alert animated:YES completion:nil];
         }
         else {
             [MBProgressHUD showInfoMessage:result[@"msg"]];
@@ -732,6 +752,10 @@
 - (IBAction)releaseCount:(id)sender {
     [self handleKeyBoard];
     QFDatePickerView *datePickerView = [[QFDatePickerView alloc]initYearPickerWithView:self.view response:^(NSString *str) {
+        if ([str intValue] > 10) {
+            str = @"1 首";
+        }
+        
         self.releasedCountTextField.text = str;
     }];
     [datePickerView show];
