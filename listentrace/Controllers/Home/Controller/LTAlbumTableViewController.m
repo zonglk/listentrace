@@ -214,6 +214,7 @@
 #pragma mark - ================ 保存专辑信息 ================
 
 - (void)saveButtonClick {
+    [self handleKeyBoard];
     if ([self.rightNavButton.titleLabel.text isEqualToString:@"编辑"]) {
         [self.rightNavButton setTitle:@"保存" forState:UIControlStateNormal];
         [self handleUserEnable];
@@ -390,7 +391,9 @@
 
 #pragma mark - ================ 详细曲目信息文本编辑 delegate ================
 
-- (void)detailCellTextChange:(LTAlbumTableViewCell *)cell string:(NSString *)string index:(NSInteger)index {NSIndexPath *indexPath = [self.albumTableView indexPathForCell:cell];
+- (void)detailCellTextChange:(LTAlbumTableViewCell *)cell string:(NSString *)string index:(NSInteger)index {
+    [self handleKeyBoard];
+    NSIndexPath *indexPath = [self.albumTableView indexPathForCell:cell];
     self.detailModel = self.detailDataArray[indexPath.row];
     if (index == 0) {
         self.detailModel.album_tracks = string;
@@ -413,6 +416,7 @@
 #pragma mark - ================ 添加/修改专辑照片 ================
 
 - (IBAction)albumButtonClick:(id)sender {
+    [self handleKeyBoard];
     if ([self.rightNavButton.titleLabel.text isEqualToString:@"编辑"]) {
         return;
     }
@@ -573,6 +577,7 @@
 #pragma mark - ================ 风格编辑 ================
 
 - (IBAction)albumStyle:(id)sender forEvent:(UIEvent *)event {
+    [self handleKeyBoard];
     UIView *coverView = [[UIView alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
     [[UIApplication sharedApplication].keyWindow addSubview:coverView];
     coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
@@ -628,6 +633,7 @@
 #pragma mark - =================== 添加曲目详细信息 ===================
 
 - (IBAction)addDetailButtonClick:(id)sender {
+    [self handleKeyBoard];
     if (self.detailDataArray.count == 12) {
         [MBProgressHUD showErrorMessage:@"最多仅支持12个曲信息卡片"];
         return;
@@ -640,6 +646,7 @@
 #pragma mark - =================== 删除曲目详细信息 ===================
 
 - (void)deleteButtonClick:(LTAlbumTableViewCell *)cell {
+    [self handleKeyBoard];
     NSIndexPath *index = [self.albumTableView indexPathForCell:cell];
     [self.detailDataArray removeObjectAtIndex:index.row];
     [self.albumTableView reloadSection:1 withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -648,6 +655,7 @@
 #pragma mark - ================ 时长 ================
 
 - (IBAction)albumTimeButtonClick:(id)sender {
+    [self handleKeyBoard];
     QFTimePickerView *pickerView = [[QFTimePickerView alloc] initDatePackerWithStartHour:@"0" endHour:@"24" period:1 response:^(NSString *str) {
         self.timeTextField.text = str;
     }];
@@ -657,14 +665,26 @@
 #pragma mark - ================ 聆听时间 ================
 
 - (IBAction)listeningTime:(id)sender {
+    [self handleKeyBoard];
     self.isListeningTime = YES;
+    
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    fmt.dateFormat = @"yyyy-MM-dd";
+    NSDate *minDate = [fmt dateFromString:@"1997-1-1"];
+    self.timePicker.timePicker.minimumDate = minDate;
     [[UIApplication sharedApplication].delegate.window addSubview:self.timePicker];
 }
 
 #pragma mark - ================ 发布时间 ================
 
 - (IBAction)releaseTime:(id)sender {
+    [self handleKeyBoard];
     self.isListeningTime = NO;
+    
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    fmt.dateFormat = @"yyyy-MM-dd";
+    NSDate *minDate = [fmt dateFromString:@"1902-1-1"];
+    self.timePicker.timePicker.minimumDate = minDate;
     [[UIApplication sharedApplication].delegate.window addSubview:self.timePicker];
 }
 
@@ -710,6 +730,7 @@
 #pragma mark - ================ 发布数量 ================
 
 - (IBAction)releaseCount:(id)sender {
+    [self handleKeyBoard];
     QFDatePickerView *datePickerView = [[QFDatePickerView alloc]initYearPickerWithView:self.view response:^(NSString *str) {
         self.releasedCountTextField.text = str;
     }];
@@ -763,6 +784,11 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self handleKeyBoard];
+    return YES;
+}
+
+- (void)handleKeyBoard {
     [self.albumNameTextField resignFirstResponder];
     [self.musicianTextField resignFirstResponder];
     [self.styleTextField resignFirstResponder];
@@ -775,9 +801,7 @@
     [self.mixingTextField resignFirstResponder];
     [self.masteringTextField resignFirstResponder];
     [self.coverTextField resignFirstResponder];
-    return YES;
 }
-
 
 - (LTAlbumStyleView *)styleView {
     if (!_styleView) {

@@ -448,8 +448,8 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yJ1-Bj-tyg">
                                                     <rect key="frame" x="12" y="0.0" width="390" height="51.666666666666664"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发行数目" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LhK-eF-r4l">
-                                                            <rect key="frame" x="20.999999999999996" y="18.333333333333332" width="57.666666666666657" height="16.999999999999996"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="曲数目" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LhK-eF-r4l">
+                                                            <rect key="frame" x="37" y="18.333333333333332" width="43" height="16.999999999999996"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -463,13 +463,13 @@
                                                             <state key="normal" image="album_down_arrow.png"/>
                                                         </button>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uUD-bQ-CPx">
-                                                            <rect key="frame" x="104.66666666666667" y="0.0" width="236.33333333333331" height="51.666666666666664"/>
+                                                            <rect key="frame" x="106" y="0.0" width="235" height="51.666666666666664"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Unr-fO-f3X">
-                                                            <rect key="frame" x="78.666666666666657" y="0.0" width="311.33333333333337" height="51.666666666666664"/>
+                                                            <rect key="frame" x="80" y="0.0" width="310" height="51.666666666666664"/>
                                                             <connections>
                                                                 <action selector="releaseCount:" destination="yVZ-Bj-Hec" eventType="touchUpInside" id="7Mj-Q5-Sqw"/>
                                                             </connections>
@@ -477,7 +477,7 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstItem="LhK-eF-r4l" firstAttribute="leading" secondItem="yJ1-Bj-tyg" secondAttribute="leading" constant="21" id="50m-7O-wUa"/>
+                                                        <constraint firstItem="LhK-eF-r4l" firstAttribute="leading" secondItem="yJ1-Bj-tyg" secondAttribute="leading" constant="37" id="50m-7O-wUa"/>
                                                         <constraint firstAttribute="trailing" secondItem="anm-VW-MkY" secondAttribute="trailing" constant="25" id="9qb-GE-mxj"/>
                                                         <constraint firstItem="anm-VW-MkY" firstAttribute="centerY" secondItem="LhK-eF-r4l" secondAttribute="centerY" id="DM8-uM-zgf"/>
                                                         <constraint firstItem="LhK-eF-r4l" firstAttribute="centerY" secondItem="yJ1-Bj-tyg" secondAttribute="centerY" constant="1" id="KdL-GF-dZO"/>
