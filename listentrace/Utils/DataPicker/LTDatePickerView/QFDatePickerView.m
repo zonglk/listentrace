@@ -171,7 +171,7 @@
 - (void)setYearArray {
     //初始化年数据源数组
     yearArray = [[NSMutableArray alloc]init];
-    for (NSInteger i = 1; i <= 100 ; i++) {
+    for (NSInteger i = 1; i <= 10 ; i++) {
         NSString *yearStr = [NSString stringWithFormat:@"%ld首",(long)i];
         [yearArray addObject:yearStr];
     }
@@ -224,14 +224,14 @@
         [[UIApplication sharedApplication].keyWindow addSubview:self];
     }
     [UIView animateWithDuration:0.4 animations:^{
-        contentView.center = CGPointMake(self.frame.size.width/2, contentView.center.y - contentView.frame.size.height);
+        self->contentView.center = CGPointMake(self.frame.size.width/2, contentView.center.y - contentView.frame.size.height);
     }];
 }
 #pragma mark - pickerView消失
 - (void)dismiss{
     
     [UIView animateWithDuration:0.4 animations:^{
-        contentView.center = CGPointMake(self.frame.size.width/2, contentView.center.y + contentView.frame.size.height);
+        self->contentView.center = CGPointMake(self.frame.size.width/2, contentView.center.y + contentView.frame.size.height);
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];

@@ -190,7 +190,7 @@
     }
     else {
         if ([selectedMin isEqualToString:@"00"] && [selectedHour isEqualToString:@"00"] && [selectedSec isEqualToString:@"00"]) {
-            [MBProgressHUD showErrorMessage:@"时长不可为零"];
+            [MBProgressHUD showErrorMessage:@"请选择正确的时间"];
             return;
         }
         restr = [NSString stringWithFormat:@"%@:%@:%@",selectedHour,selectedMin,selectedSec];

@@ -762,6 +762,23 @@
     [self.albumTableView reloadData];
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.albumNameTextField resignFirstResponder];
+    [self.musicianTextField resignFirstResponder];
+    [self.styleTextField resignFirstResponder];
+    [self.timeTextField resignFirstResponder];
+    [self.listeningTimeTextField resignFirstResponder];
+    [self.producerTextField resignFirstResponder];
+    [self.releasedTimeTextField resignFirstResponder];
+    [self.releasedCountTextField resignFirstResponder];
+    [self.mixerTextField resignFirstResponder];
+    [self.mixingTextField resignFirstResponder];
+    [self.masteringTextField resignFirstResponder];
+    [self.coverTextField resignFirstResponder];
+    return YES;
+}
+
+
 - (LTAlbumStyleView *)styleView {
     if (!_styleView) {
         LTAlbumStyleView *albumView = [[LTAlbumStyleView alloc] initWithFrame:CGRectMake(self.styleViewPoint.x - 145, self.styleViewPoint.y + 5, 170, 250)];
