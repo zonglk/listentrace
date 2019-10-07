@@ -43,6 +43,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *mixingTextField; // 混音师
 @property (weak, nonatomic) IBOutlet UITextField *masteringTextField; // 母带工程师
 @property (weak, nonatomic) IBOutlet UITextField *coverTextField; // 封面设计师
+@property (weak, nonatomic) IBOutlet UIView *view1;
+@property (weak, nonatomic) IBOutlet UIView *view2;
+@property (weak, nonatomic) IBOutlet UIView *view3;
+@property (weak, nonatomic) IBOutlet UIView *view4;
+@property (weak, nonatomic) IBOutlet UIView *view5;
 
 @property (nonatomic, weak) LTAlbumStyleView *styleView;
 @property (nonatomic, strong) UIButton *cancleButton;
@@ -108,6 +113,12 @@
     self.albumTableView.estimatedSectionHeaderHeight = 0;
     self.albumTableView.estimatedSectionFooterHeight = 0;
     
+    ViewBorderRadius(self.view1, 5, 1, RGBHex(0xE5EAFA));
+    ViewBorderRadius(self.view2, 5, 1, RGBHex(0xE5EAFA));
+    ViewBorderRadius(self.view3, 5, 1, RGBHex(0xE5EAFA));
+    ViewBorderRadius(self.view4, 5, 1, RGBHex(0xE5EAFA));
+    ViewBorderRadius(self.view5, 5, 1, RGBHex(0xE5EAFA));
+    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(styleChangeNoti:) name:@"AlbumStyleChangeNoti" object:nil];
@@ -169,7 +180,7 @@
     if (self.detailDataArray.count) {
         [self.albumTableView reloadData];
     }
-    [self.albumButton setImageWithURL:result[@"data"][@"album_img"] forState:UIControlStateNormal options:YYWebImageOptionUseNSURLCache];
+    [self.albumButton setImageWithURL:result[@"data"][@"album_img"] forState:UIControlStateNormal placeholder:[UIImage imageNamed:@"album_detail_placeImage"]];
     if ([result[@"data"][@"favorite"] intValue] == 1 ) {
         self.loveButton.selected = YES;
     }

@@ -23,7 +23,7 @@
 
 - (void)setModel:(LTAlbumModel *)model {
     _model = model;
-    [self.image sd_setImageWithURL:[NSURL URLWithString:model.album_img]];
+    [self.image sd_setImageWithURL:[NSURL URLWithString:model.album_img] placeholderImage:[UIImage imageNamed:@"home_placeImage"]];
     self.name.text = model.album_name;
     self.producter.text = model.album_musician;
     

@@ -764,11 +764,16 @@
                         <outlet property="timeButton" destination="UuZ-wZ-sNC" id="ZeP-DR-lCG"/>
                         <outlet property="timeTextField" destination="ekd-R2-Wwg" id="JkT-XX-Vmf"/>
                         <outlet property="tipsImageLabel" destination="rkN-cR-9fu" id="4tg-u8-2Dd"/>
+                        <outlet property="view1" destination="pSY-vm-hte" id="gpU-eb-xt4"/>
+                        <outlet property="view2" destination="i1n-aT-77p" id="QCy-cf-5lc"/>
+                        <outlet property="view3" destination="YEa-m6-hta" id="gH4-KM-oNE"/>
+                        <outlet property="view4" destination="yJ1-Bj-tyg" id="Ymj-82-vTn"/>
+                        <outlet property="view5" destination="xNl-dm-OCe" id="f43-aP-7Xp"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rAV-eh-EqR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="492.75362318840581" y="-342.39130434782612"/>
+            <point key="canvasLocation" x="457" y="-421"/>
         </scene>
     </scenes>
     <resources>

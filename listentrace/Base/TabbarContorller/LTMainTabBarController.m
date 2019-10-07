@@ -33,7 +33,7 @@
 
 - (void)setUpTabbar {
     [self.tabBar setBackgroundColor:CWhiteColor];
-    [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
+//    [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
     [[UITabBar appearance] setBackgroundImage:[[UIImage alloc] init]];
 }
 

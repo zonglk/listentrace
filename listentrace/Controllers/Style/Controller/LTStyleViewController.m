@@ -121,19 +121,19 @@
     for (int i = 0; i < array.count; i ++) {
         if (i == 0) {
             self.model = array[0];
-            [cell.leftImageVIew setImageWithURL:[NSURL URLWithString:self.model.album_img] placeholder:nil];
+            [cell.leftImageVIew setImageWithURL:[NSURL URLWithString:self.model.album_img] placeholder:[UIImage imageNamed:@"style_album_placeImage"]];
             cell.middleImageVIew.hidden = YES;
             cell.rightImageView.hidden = YES;
         }
         else if (i == 1) {
             self.model = array[1];
-            [cell.middleImageVIew setImageWithURL:[NSURL URLWithString:self.model.album_img] placeholder:nil];
+            [cell.middleImageVIew setImageWithURL:[NSURL URLWithString:self.model.album_img] placeholder:[UIImage imageNamed:@"style_album_placeImage"]];
             cell.middleImageVIew.hidden = NO;
             cell.rightImageView.hidden = YES;
         }
         else if (i == 2) {
             self.model = array[2];
-            [cell.rightImageView setImageWithURL:[NSURL URLWithString:self.model.album_img] placeholder:nil];
+            [cell.rightImageView setImageWithURL:[NSURL URLWithString:self.model.album_img] placeholder:[UIImage imageNamed:@"style_album_placeImage"]];
             cell.middleImageVIew.hidden = NO;
             cell.rightImageView.hidden = NO;
         }

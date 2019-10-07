@@ -18,6 +18,7 @@
     [self.composerTextField addTarget:self action:@selector(composerChangedTextField:) forControlEvents:UIControlEventEditingChanged];
     [self.arrangerTextField addTarget:self action:@selector(arrangerChangedTextField:) forControlEvents:UIControlEventEditingChanged];
     [self.songPerformerTextField addTarget:self action:@selector(songPerformerChangedTextField:) forControlEvents:UIControlEventEditingChanged];
+    ViewBorderRadius(self.view1, 5, 1, RGBHex(0xE5EAFA));
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

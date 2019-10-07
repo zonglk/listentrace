@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITextField *composerTextField; // 作曲人
 @property (weak, nonatomic) IBOutlet UITextField *arrangerTextField; // 编曲人
 @property (weak, nonatomic) IBOutlet UITextField *songPerformerTextField; // 乐器演奏者
+@property (weak, nonatomic) IBOutlet UIView *view1;
 @property (nonatomic, strong) LTAddAlbumDetailModel *model;
 @property (nonatomic, weak) id <LTAlbumTableViewCellDelegate>delegate;
 - (IBAction)deleteButtonClick:(id)sender;

@@ -198,6 +198,7 @@
                 <outlet property="lyricistTextField" destination="02g-M9-gTc" id="mwI-wa-yfE"/>
                 <outlet property="songPerformerTextField" destination="v0h-ix-Ekz" id="tZt-3A-4aX"/>
                 <outlet property="songTextField" destination="DEi-Ha-bT9" id="469-hv-4CM"/>
+                <outlet property="view1" destination="5SZ-fA-LSs" id="fBr-FX-SGI"/>
             </connections>
             <point key="canvasLocation" x="234.78260869565219" y="135.26785714285714"/>
         </tableViewCell>

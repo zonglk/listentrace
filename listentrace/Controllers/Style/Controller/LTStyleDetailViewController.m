@@ -57,7 +57,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     LTStyleModel *model = self.dataArray[indexPath.row];
     LTStyleDetailCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LTStyleDetailCollectionViewCell" forIndexPath:indexPath];
-    [cell.image sd_setImageWithURL:[NSURL URLWithString:model.album_img] placeholderImage:nil];
+    [cell.image sd_setImageWithURL:[NSURL URLWithString:model.album_img] placeholderImage:[UIImage imageNamed:@"style_detail_placeImage"]];
     cell.nameLabel.text = model.album_name;
     return cell;
 }
