@@ -71,41 +71,44 @@
             [[CKContainer defaultContainer] fetchUserRecordIDWithCompletionHandler:^(CKRecordID * _Nullable recordID, NSError * _Nullable error) {
                 [[NSUserDefaults standardUserDefaults] setObject:recordID.recordName forKey:@"icloudName"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
-                [self requestData];
             }];
         }
-        else if (accountStatus == CKAccountStatusNoAccount) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"尚未登录iCloud" message:nil preferredStyle:UIAlertControllerStyleAlert];
-
-            [alert addAction:[UIAlertAction actionWithTitle:@"确定"
-                                                      style:UIAlertActionStyleCancel
-                                                    handler:nil]];
-
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self presentViewController:alert animated:YES completion:nil];
-            });
-        }
-        else if (accountStatus == CKAccountStatusRestricted) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"请允许听迹登录icloud" message:nil preferredStyle:UIAlertControllerStyleAlert];
-
-            [alert addAction:[UIAlertAction actionWithTitle:@"确定"
-                                                      style:UIAlertActionStyleCancel
-                                                    handler:nil]];
-
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self presentViewController:alert animated:YES completion:nil];
-            });
-        }
-        else if (accountStatus == CKAccountStatusCouldNotDetermine) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"请允许听迹登录icloud" message:nil preferredStyle:UIAlertControllerStyleAlert];
-            
-            [alert addAction:[UIAlertAction actionWithTitle:@"确定"
-                                                      style:UIAlertActionStyleCancel
-                                                    handler:nil]];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self presentViewController:alert animated:YES completion:nil];
-            });
+//        else if (accountStatus == CKAccountStatusNoAccount) {
+//            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"尚未登录iCloud" message:nil preferredStyle:UIAlertControllerStyleAlert];
+//
+//            [alert addAction:[UIAlertAction actionWithTitle:@"确定"
+//                                                      style:UIAlertActionStyleCancel
+//                                                    handler:nil]];
+//
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [self presentViewController:alert animated:YES completion:nil];
+//            });
+//        }
+//        else if (accountStatus == CKAccountStatusRestricted) {
+//            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"请允许听迹登录icloud" message:nil preferredStyle:UIAlertControllerStyleAlert];
+//
+//            [alert addAction:[UIAlertAction actionWithTitle:@"确定"
+//                                                      style:UIAlertActionStyleCancel
+//                                                    handler:nil]];
+//
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [self presentViewController:alert animated:YES completion:nil];
+//            });
+//        }
+//        else if (accountStatus == CKAccountStatusCouldNotDetermine) {
+//            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"请允许听迹登录icloud" message:nil preferredStyle:UIAlertControllerStyleAlert];
+//
+//            [alert addAction:[UIAlertAction actionWithTitle:@"确定"
+//                                                      style:UIAlertActionStyleCancel
+//                                                    handler:nil]];
+//
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [self presentViewController:alert animated:YES completion:nil];
+//            });
+//        }
+        NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"];
+        if (userId.length) {
+            [self requestData];
         }
     }];
 }
