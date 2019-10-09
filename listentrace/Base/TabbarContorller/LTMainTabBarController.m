@@ -14,7 +14,7 @@
 
 @interface LTMainTabBarController ()<UITabBarControllerDelegate>
 
-@property (nonatomic,strong) NSMutableArray * VCS;//tabbar root VCsetUpAllChildViewController
+@property (nonatomic,strong) NSMutableArray * VCS; // tabbar root VC setUpAllChildViewController
 
 @end
 
@@ -33,8 +33,10 @@
 
 - (void)setUpTabbar {
     [self.tabBar setBackgroundColor:CWhiteColor];
-//    [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
-    [[UITabBar appearance] setBackgroundImage:[[UIImage alloc] init]];
+    [[UITabBar appearance] setShadowImage:[UIImage new]];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, -0.5, KScreenWidth, 0.8)];
+    view.backgroundColor = RGBHex(0xE5EAFA);
+    [[UITabBar appearance] insertSubview:view atIndex:0];
 }
 
 - (void)setUpAllChildViewController {

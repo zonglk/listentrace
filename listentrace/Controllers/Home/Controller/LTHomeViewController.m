@@ -222,7 +222,7 @@
             make.centerY.mas_equalTo(view);
         }];
         self.tipsLable.textColor = RGBHex(0xB2B2B2);
-        self.tipsLable.font = [UIFont systemFontOfSize:17.0];
+        self.tipsLable.font = [UIFont systemFontOfSize:13.0];
         self.tipsLable.text = self.countTipString;
         return view;
     }

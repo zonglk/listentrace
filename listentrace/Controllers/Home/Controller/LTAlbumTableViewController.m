@@ -265,21 +265,6 @@
     if (self.timeTextField.text.length) {
         [parameter setObject:self.timeTextField.text forKey:@"album_duration"];
     }
-    if (self.listeningTimeTextField.text.length) {
-        NSMutableString *string = [NSMutableString stringWithString:self.listeningTimeTextField.text];
-        string = [NSMutableString stringWithString:[string stringByReplacingOccurrencesOfString:@"年" withString:@"-"]];
-        string = [NSMutableString stringWithString:[string stringByReplacingOccurrencesOfString:@"月" withString:@"-"]];
-        string = [NSMutableString stringWithString:[string stringByReplacingOccurrencesOfString:@"日" withString:@""]];
-        [parameter setObject:string forKey:@"listen_time"];
-        
-    }
-    if (self.releasedTimeTextField.text.length) {
-        NSMutableString *string = [NSMutableString stringWithString:self.releasedTimeTextField.text];
-        string = [NSMutableString stringWithString:[string stringByReplacingOccurrencesOfString:@"年" withString:@"-"]];
-        string = [NSMutableString stringWithString:[string stringByReplacingOccurrencesOfString:@"月" withString:@"-"]];
-        string = [NSMutableString stringWithString:[string stringByReplacingOccurrencesOfString:@"日" withString:@""]];
-        [parameter setObject:string forKey:@"album_release_time"];
-    }
     if (self.releasedCountTextField.text.length) {
         [parameter setObject:self.releasedCountTextField.text forKey:@"song_quantity"];
     }
@@ -726,7 +711,7 @@
         if (!self.listeningTimeString) {
             NSDate *date = [NSDate date];
             NSDateFormatter *forMatter = [[NSDateFormatter alloc] init];
-            [forMatter setDateFormat:@"yyyy年MM月dd日"];
+            [forMatter setDateFormat:@"yyyy-MM-dd"];
             NSString *dateStr = [forMatter stringFromDate:date];
             self.listeningTimeString = dateStr;
         }
@@ -736,7 +721,7 @@
         if (!self.releaseTimeString) {
             NSDate *date = [NSDate date];
             NSDateFormatter *forMatter = [[NSDateFormatter alloc] init];
-            [forMatter setDateFormat:@"yyyy年MM月dd日"];
+            [forMatter setDateFormat:@"yyyy-MM-dd"];
             NSString *dateStr = [forMatter stringFromDate:date];
             self.releaseTimeString = dateStr;
         }
@@ -749,7 +734,7 @@
 
 - (void)dateChanged:(UIDatePicker *)picker{
     NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy年MM月dd日"];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
     if (self.isListeningTime) {
         self.listeningTimeString = [formatter stringFromDate:picker.date];
     }
@@ -763,8 +748,8 @@
 - (IBAction)releaseCount:(id)sender {
     [self handleKeyBoard];
     QFDatePickerView *datePickerView = [[QFDatePickerView alloc]initYearPickerWithView:self.view response:^(NSString *str) {
-        if ([str intValue] > 10) {
-            str = @"1 首";
+        if ([str intValue] > 100) {
+            str = @"10 首";
         }
         
         self.releasedCountTextField.text = str;

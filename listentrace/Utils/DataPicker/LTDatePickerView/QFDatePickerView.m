@@ -144,11 +144,8 @@
     pickerView.dataSource = self;
     pickerView.backgroundColor = [UIColor colorWithRed:240.0/255 green:243.0/255 blue:250.0/255 alpha:1];
     
-    //设置pickerView默认选中当前时间
-    [pickerView selectRow:[selectedYear integerValue] - 1970 inComponent:0 animated:YES];
-    if (!onlySelectYear) {
-        [pickerView selectRow:[selectecMonth integerValue] - 1 inComponent:1 animated:YES];
-    }
+    //设置pickerView默认选中
+    [pickerView selectRow:9 inComponent:0 animated:YES];
     
     [contentView addSubview:pickerView];
 }
@@ -171,7 +168,7 @@
 - (void)setYearArray {
     //初始化年数据源数组
     yearArray = [[NSMutableArray alloc]init];
-    for (NSInteger i = 1; i <= 10 ; i++) {
+    for (NSInteger i = 1; i <= 100 ; i++) {
         NSString *yearStr = [NSString stringWithFormat:@"%ld 首",(long)i];
         [yearArray addObject:yearStr];
     }
@@ -224,14 +221,14 @@
         [[UIApplication sharedApplication].keyWindow addSubview:self];
     }
     [UIView animateWithDuration:0.4 animations:^{
-        self->contentView.center = CGPointMake(self.frame.size.width/2, contentView.center.y - contentView.frame.size.height);
+        self->contentView.center = CGPointMake(self.frame.size.width/2, self->contentView.center.y - self->contentView.frame.size.height);
     }];
 }
 #pragma mark - pickerView消失
 - (void)dismiss{
     
     [UIView animateWithDuration:0.4 animations:^{
-        self->contentView.center = CGPointMake(self.frame.size.width/2, contentView.center.y + contentView.frame.size.height);
+        self->contentView.center = CGPointMake(self.frame.size.width/2, self->contentView.center.y + self->contentView.frame.size.height);
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
@@ -239,12 +236,7 @@
 
 #pragma mark - UIPickerViewDataSource UIPickerViewDelegate
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    if (onlySelectYear) {//只选择年
-        return 1;
-    } else {
-        return 2;
-    }
-    
+    return 1;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {

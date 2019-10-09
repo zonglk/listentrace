@@ -39,7 +39,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"LTStyleTableViewCell" bundle:nil] forCellReuseIdentifier:@"LTStyleTableViewCell"];
-    self.tableView.rowHeight = 150;
+    self.tableView.rowHeight = 155;
     if (kDevice_iphone5) {
         self.tableView.rowHeight = 140;
     }
@@ -104,6 +104,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.allKeysArray.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 50;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return [UIView new];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
