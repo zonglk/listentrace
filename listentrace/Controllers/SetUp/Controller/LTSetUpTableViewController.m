@@ -34,7 +34,7 @@
     if (!count) {
         count = @"0";
     }
-    self.icloudlabel.text = [NSString stringWithFormat:@"（云端 %@/%@ 本地)",count,count];
+    self.icloudlabel.text = [NSString stringWithFormat:@"（云端 %@ / %@ 本地)",count,count];
 }
 
 - (void)creatAllViews {

@@ -159,11 +159,12 @@
     //添加确定和取消按钮
     for (int i = 0; i < 2; i ++) {
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake((self.frame.size.width - 60) * i, 0, 60, 40)];
+        [button.titleLabel setFont:[UIFont systemFontOfSize:16]];
         [button setTitle:i == 0 ? @"取消" : @"确定" forState:UIControlStateNormal];
         if (i == 0) {
-            [button setTitleColor:[UIColor colorWithRed:97.0 / 255.0 green:97.0 / 255.0 blue:97.0 / 255.0 alpha:1] forState:UIControlStateNormal];
+            [button setTitleColor:RGBHex(0x8F8F8F) forState:UIControlStateNormal];
         } else {
-            [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+            [button setTitleColor:RGBHex(0x007AFF) forState:UIControlStateNormal];
         }
         [whiteView addSubview:button];
         [button addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
@@ -173,7 +174,8 @@
     UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 40, CGRectGetWidth(self.bounds), 260)];
     pickerView.delegate = self;
     pickerView.dataSource = self;
-    pickerView.backgroundColor = [UIColor colorWithRed:240.0/255 green:243.0/255 blue:250.0/255 alpha:1];
+    pickerView.backgroundColor = [UIColor whiteColor];
+    
     
     //设置pickerView默认第一行 这里也可默认选中其他行 修改selectRow即可
     [pickerView selectRow:0 inComponent:0 animated:YES];

@@ -30,7 +30,7 @@
 - (void)creatAllViews {
     self.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight);
     self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
-    [self.timePicker setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+//    [self.timePicker setBackgroundColor:[UIColor whiteColor]];
 }
 
 - (IBAction)cancleButtonClick:(id)sender {

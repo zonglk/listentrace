@@ -18,7 +18,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="10000" maxY="0.0"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="GgK-Va-X17">
-                            <rect key="frame" x="0.0" y="991" width="414" height="50"/>
+                            <rect key="frame" x="0.0" y="991" width="414" height="100"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YKX-nZ-gdc">
@@ -59,7 +59,7 @@
                                 <constraint firstItem="YKX-nZ-gdc" firstAttribute="leading" secondItem="GgK-Va-X17" secondAttribute="leading" constant="12" id="NT7-da-ayk"/>
                                 <constraint firstItem="YKX-nZ-gdc" firstAttribute="top" secondItem="GgK-Va-X17" secondAttribute="top" id="Rn4-vt-qhV"/>
                                 <constraint firstAttribute="trailing" secondItem="YKX-nZ-gdc" secondAttribute="trailing" constant="12" id="mAs-Bp-ttW"/>
-                                <constraint firstAttribute="bottom" secondItem="YKX-nZ-gdc" secondAttribute="bottom" id="nbP-Kb-Hy8"/>
+                                <constraint firstAttribute="bottom" secondItem="YKX-nZ-gdc" secondAttribute="bottom" constant="50" id="nbP-Kb-Hy8"/>
                             </constraints>
                         </view>
                         <sections>

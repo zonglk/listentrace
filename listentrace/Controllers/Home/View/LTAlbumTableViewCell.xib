@@ -107,7 +107,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="乐器演奏者" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q1G-JZ-Tyd">
-                                <rect key="frame" x="9.5" y="228.5" width="71.5" height="17"/>
+                                <rect key="frame" x="9.5" y="221.5" width="71.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -155,11 +155,11 @@
                             <constraint firstItem="75p-0v-l4f" firstAttribute="top" secondItem="pom-Hc-nih" secondAttribute="bottom" constant="15.67" id="jm9-Oc-Qhz"/>
                             <constraint firstItem="vkr-eV-eQz" firstAttribute="top" secondItem="75p-0v-l4f" secondAttribute="bottom" id="l5x-8o-ObJ"/>
                             <constraint firstItem="h7b-nH-KhK" firstAttribute="top" secondItem="DEi-Ha-bT9" secondAttribute="bottom" id="mrb-R4-rnQ"/>
-                            <constraint firstItem="Q1G-JZ-Tyd" firstAttribute="top" secondItem="4jh-7j-dzC" secondAttribute="bottom" constant="18.329999999999998" id="n9C-Su-sVy"/>
                             <constraint firstItem="vkr-eV-eQz" firstAttribute="trailing" secondItem="02g-M9-gTc" secondAttribute="trailing" id="nwV-98-DRI"/>
                             <constraint firstItem="DEi-Ha-bT9" firstAttribute="top" secondItem="5SZ-fA-LSs" secondAttribute="top" id="oIO-6B-ENw"/>
                             <constraint firstAttribute="trailing" secondItem="h7b-nH-KhK" secondAttribute="trailing" id="oxG-CJ-YLj"/>
                             <constraint firstAttribute="trailing" secondItem="75p-0v-l4f" secondAttribute="trailing" id="pQH-Mh-Q18"/>
+                            <constraint firstItem="v0h-ix-Ekz" firstAttribute="centerY" secondItem="Q1G-JZ-Tyd" secondAttribute="centerY" id="rDT-es-qld"/>
                             <constraint firstItem="xNr-XQ-Inf" firstAttribute="leading" secondItem="5SZ-fA-LSs" secondAttribute="leading" id="vii-I0-Ejj"/>
                             <constraint firstItem="R7S-Zk-7Ye" firstAttribute="trailing" secondItem="pom-Hc-nih" secondAttribute="trailing" id="w2D-J9-9KV"/>
                             <constraint firstItem="R7S-Zk-7Ye" firstAttribute="top" secondItem="xNr-XQ-Inf" secondAttribute="bottom" constant="18.329999999999998" id="wWn-W0-WvR"/>

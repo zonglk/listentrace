@@ -54,7 +54,6 @@
 @property (nonatomic, strong) UIButton *sureButton;
 @property (nonatomic, strong) JPImageresizerView *imageresizerView;
 @property (nonatomic, strong) LTAlbumStyleView *albumStyleView;
-@property (nonatomic, assign) CGPoint styleViewPoint;
 @property (nonatomic, strong) UIView *styleCoverView;
 @property (nonatomic, strong) NSMutableArray *detailDataArray; // 曲目详细信息
 @property (nonatomic, strong) LTAlbumTimePIckerView *timePicker;
@@ -65,6 +64,7 @@
 @property (nonatomic, copy) NSString *imageId; // 上传图片拿到的后台的id
 @property (nonatomic, strong) UIButton *rightNavButton;
 @property (nonatomic, assign) BOOL isSave; // 专辑已存在时候的保存
+@property (nonatomic, assign) BOOL isChange; // 是否有修改
 
 - (IBAction)albumButtonClick:(id)sender; // 专辑封面
 - (IBAction)loveButtonClick:(id)sender; // 喜欢
@@ -181,7 +181,7 @@
         [self.albumTableView reloadData];
     }
     [self.albumButton setImageWithURL:result[@"data"][@"album_img"] forState:UIControlStateNormal placeholder:[UIImage imageNamed:@"album_detail_placeImage"]];
-    if ([result[@"data"][@"favorite"] intValue] == 1 ) {
+    if ([result[@"data"][@"favorite"] intValue] == 1) {
         self.loveButton.selected = YES;
     }
     self.albumNameTextField.text = result[@"data"][@"album_name"];
@@ -223,7 +223,7 @@
     }
 }
 
-#pragma mark - ================ 保存专辑信息 ================
+#pragma mark 保存专辑信息
 
 - (void)saveButtonClick {
     [self handleKeyBoard];
@@ -250,6 +250,11 @@
     }
     if (!self.listeningTimeTextField.text.length) {
         [MBProgressHUD showInfoMessage:@"请选择聆听时间"];
+        return;
+    }
+    
+    if (!self.isChange) {
+        [self.navigationController popViewControllerAnimated:YES];
         return;
     }
     
@@ -332,9 +337,19 @@
     [LTNetworking requestUrl:url WithParam:parameter withMethod:POST success:^(id  _Nonnull result) {
         if ([result[@"code"] intValue] == 0) {
             self.isSave = NO;
-            [MBProgressHUD showInfoMessage:result[@"msg"]];
+            UIImageView *tipImageView = [[UIImageView alloc] init];
+            [tipImageView setImage:[UIImage imageNamed:@"addAlbum_sucess"]];
+            [[UIApplication sharedApplication].delegate.window addSubview:tipImageView];
+            [tipImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.mas_equalTo(self.view.mas_centerX);
+                make.centerY.mas_equalTo(self.view.mas_centerY);
+            }];
+            
             [[NSNotificationCenter defaultCenter] postNotificationName:@"AddAlbumSucess" object:nil];
-            [self.navigationController popViewControllerAnimated:YES];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [tipImageView removeFromSuperview];
+                [self.navigationController popViewControllerAnimated:YES];
+            });
         }
         else if ([result[@"code"] intValue] == 1002) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"已添加过该专辑，是否继续保存。"] preferredStyle:UIAlertControllerStyleAlert];
@@ -355,7 +370,7 @@
     } showHUD:self.view];
 }
 
-#pragma mark - =================== UITableView Delegate\dataSource ===================
+#pragma mark UITableView Delegate\dataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 1) {
@@ -405,7 +420,7 @@
     return [super tableView:tableView indentationLevelForRowAtIndexPath:indexPath];
 }
 
-#pragma mark - ================ 详细曲目信息文本编辑 delegate ================
+#pragma mark 详细曲目信息文本编辑 delegate
 
 - (void)detailCellTextChange:(LTAlbumTableViewCell *)cell string:(NSString *)string index:(NSInteger)index {
     [self handleKeyBoard];
@@ -427,9 +442,10 @@
         self.detailModel.album_player = string;
     }
     [self.detailDataArray replaceObjectAtIndex:indexPath.row withObject:self.detailModel];
+    self.isChange = YES;
 }
 
-#pragma mark - ================ 添加/修改专辑照片 ================
+#pragma mark  添加/修改专辑照片
 
 - (IBAction)albumButtonClick:(id)sender {
     [self handleKeyBoard];
@@ -492,7 +508,7 @@
     [self.navigationController presentViewController:actionSheet animated:YES completion:nil];
 }
 
-#pragma mark - ================ 相册 ================
+#pragma mark  相册
 
 - (void)showAlbum {
     UIImagePickerController *vc = [[UIImagePickerController alloc] init];
@@ -501,7 +517,7 @@
     [self presentViewController:vc animated:YES completion:nil];
 }
 
-#pragma mark - =================== 相机 ===================
+#pragma mark  相机
 
 - (void)showCamera {
     UIImagePickerController *vc = [[UIImagePickerController alloc] init];
@@ -520,8 +536,8 @@
     JPImageresizerConfigure *configure = [JPImageresizerConfigure defaultConfigureWithResizeImage:image make:^(JPImageresizerConfigure *configure) {
         configure
         .jp_resizeImage(image)
-        .jp_maskAlpha(0.7)
-        .jp_strokeColor([UIColor whiteColor])
+        .jp_maskAlpha(0.6)
+        .jp_strokeColor(RGBHex(0xCCCCCC))
         .jp_frameType(JPClassicFrameType)
         .jp_bgColor([UIColor blackColor])
         .jp_isClockwiseRotation(YES)
@@ -548,6 +564,7 @@
 - (void)addImageAction {
     UIView *line = [[UIView alloc] init];
     line.backgroundColor = [UIColor grayColor];
+    line.hidden = YES;
     [self.imageresizerView addSubview:line];
     [line mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.imageresizerView.mas_left);
@@ -563,7 +580,7 @@
     [self.imageresizerView addSubview:cancleButton];
     [cancleButton addTarget:self action:@selector(cancleButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [cancleButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.imageresizerView.mas_left).offset(32);
+        make.left.mas_equalTo(self.imageresizerView.mas_left).offset(25);
         make.top.mas_equalTo(line.mas_bottom).offset(16);
     }];
     self.cancleButton = cancleButton;
@@ -575,13 +592,13 @@
     [self.imageresizerView addSubview:sureButton];
     [sureButton addTarget:self action:@selector(sureButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [sureButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.imageresizerView.mas_right).offset(-32);
+        make.right.mas_equalTo(self.imageresizerView.mas_right).offset(-25);
         make.top.mas_equalTo(line.mas_bottom).offset(16);
     }];
     self.sureButton = sureButton;
 }
 
-#pragma mark - ================ 红心喜欢按钮 ================
+#pragma mark 红心喜欢按钮
 
 - (IBAction)loveButtonClick:(id)sender {
     if ([self.rightNavButton.titleLabel.text isEqualToString:@"编辑"]) {
@@ -590,7 +607,7 @@
     self.loveButton.selected = !self.loveButton.selected;
 }
 
-#pragma mark - ================ 风格编辑 ================
+#pragma mark 风格编辑
 
 - (IBAction)albumStyle:(id)sender forEvent:(UIEvent *)event {
     [self handleKeyBoard];
@@ -603,8 +620,6 @@
     [self.styleCoverView addSubview:button];
     [button addTarget:self action:@selector(tapCoverView) forControlEvents:UIControlEventTouchUpInside];
     
-    UITouch* touch = [[event touchesForView:self.styleButton] anyObject];
-    self.styleViewPoint = [touch locationInView:[UIApplication sharedApplication].keyWindow];
     [self.styleCoverView addSubview:self.styleView];
 }
 
@@ -613,16 +628,15 @@
     [self.styleCoverView removeFromSuperview];
 }
 
-
-#pragma mark - =================== 取消图片选择 ===================
+#pragma mark 取消图片选择
 
 - (void)cancleButtonClick {
     [self.imageresizerView removeFromSuperview];
 }
 
-#pragma mark - =================== 上传选择的图片 ===================
-
+#pragma mark 上传选择的图片
 - (void)sureButtonClick {
+    self.isChange = YES;
     [self.imageresizerView removeFromSuperview];
     kWeakSelf(self);
     [self.imageresizerView originImageresizerWithComplete:^(UIImage *resizeImage) {
@@ -646,7 +660,7 @@
     }];
 }
 
-#pragma mark - =================== 添加曲目详细信息 ===================
+#pragma mark  添加曲目详细信息
 
 - (IBAction)addDetailButtonClick:(id)sender {
     [self handleKeyBoard];
@@ -657,28 +671,31 @@
     LTAddAlbumDetailModel *model = [[LTAddAlbumDetailModel alloc] init];
     [self.detailDataArray addObject:model];
     [self.albumTableView reloadSection:1 withRowAnimation:UITableViewRowAnimationAutomatic];
+    self.isChange = YES;
 }
 
-#pragma mark - =================== 删除曲目详细信息 ===================
+#pragma mark  删除曲目详细信息
 
 - (void)deleteButtonClick:(LTAlbumTableViewCell *)cell {
     [self handleKeyBoard];
     NSIndexPath *index = [self.albumTableView indexPathForCell:cell];
     [self.detailDataArray removeObjectAtIndex:index.row];
     [self.albumTableView reloadSection:1 withRowAnimation:UITableViewRowAnimationAutomatic];
+    self.isChange = YES;
 }
 
-#pragma mark - ================ 时长 ================
+#pragma mark  时长
 
 - (IBAction)albumTimeButtonClick:(id)sender {
     [self handleKeyBoard];
     QFTimePickerView *pickerView = [[QFTimePickerView alloc] initDatePackerWithStartHour:@"0" endHour:@"24" period:1 response:^(NSString *str) {
         self.timeTextField.text = str;
+        self.isChange = YES;
     }];
     [pickerView show];
 }
 
-#pragma mark - ================ 聆听时间 ================
+#pragma mark 聆听时间
 
 - (IBAction)listeningTime:(id)sender {
     [self handleKeyBoard];
@@ -689,9 +706,10 @@
     NSDate *minDate = [fmt dateFromString:@"1997-1-1"];
     self.timePicker.timePicker.minimumDate = minDate;
     [[UIApplication sharedApplication].delegate.window addSubview:self.timePicker];
+    self.isChange = YES;
 }
 
-#pragma mark - ================ 发布时间 ================
+#pragma mark 发布时间
 
 - (IBAction)releaseTime:(id)sender {
     [self handleKeyBoard];
@@ -702,9 +720,10 @@
     NSDate *minDate = [fmt dateFromString:@"1902-1-1"];
     self.timePicker.timePicker.minimumDate = minDate;
     [[UIApplication sharedApplication].delegate.window addSubview:self.timePicker];
+    self.isChange = YES;
 }
 
-#pragma mark - ================ 聆听、发行时间代理 ================
+#pragma mark 聆听、发行时间代理
 
 - (void)timePickerSureButtonClick {
     if (self.isListeningTime) {
@@ -730,7 +749,7 @@
     [self.timePicker removeFromSuperview];
 }
 
-#pragma mark - ================ timePicker delegate ================
+#pragma mark  timePicker delegate
 
 - (void)dateChanged:(UIDatePicker *)picker{
     NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
@@ -741,9 +760,10 @@
     else {
         self.releaseTimeString = [formatter stringFromDate:picker.date];
     }
+    self.isChange = YES;
 }
 
-#pragma mark - ================ 发布数量 ================
+#pragma mark 发布数量
 
 - (IBAction)releaseCount:(id)sender {
     [self handleKeyBoard];
@@ -751,7 +771,7 @@
         if ([str intValue] > 100) {
             str = @"10 首";
         }
-        
+        self.isChange = YES;
         self.releasedCountTextField.text = str;
     }];
     [datePickerView show];
@@ -825,7 +845,9 @@
 
 - (LTAlbumStyleView *)styleView {
     if (!_styleView) {
-        LTAlbumStyleView *albumView = [[LTAlbumStyleView alloc] initWithFrame:CGRectMake(self.styleViewPoint.x - 145, self.styleViewPoint.y + 5, 170, 250)];
+        UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+        CGRect startRact = [self.styleButton convertRect:self.styleButton.bounds toView:window];
+        LTAlbumStyleView *albumView = [[LTAlbumStyleView alloc] initWithFrame:CGRectMake(startRact.origin.x - 137, startRact.origin.y + 20, 170, 250)];
         _styleView = albumView;
     }
     return _styleView;
