@@ -33,6 +33,11 @@
 			</array>
 		</dict>
 	</array>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <!-- 新浪微博 URL Scheme 白名单-->
+        <string>sinaweibo</string>
+    </array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>ITSAppUsesNonExemptEncryption</key>

@@ -22,6 +22,9 @@
 - (IBAction)shareButtonClick:(id)sender; // 分享
 - (IBAction)UrlSchemesButtonClick:(id)sender; // 打开app
 - (IBAction)handsUrlSchemesClick:(id)sender; // 手动录入
+- (IBAction)PMAction:(id)sender;
+- (IBAction)iOSAction:(id)sender;
+- (IBAction)JavaAction:(id)sender;
 
 @end
 
@@ -111,4 +114,24 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://itunes.apple.com/cn/app/id1473462600?action=write-review"]]];
 }
 
+#pragma mark 产品
+
+- (IBAction)PMAction:(id)sender {
+    NSURL *twitterURL = [NSURL URLWithString:@"twitter://user?screen_name=hipperzhu"];
+    [[UIApplication sharedApplication] openURL:twitterURL];
+}
+
+#pragma mark iOS
+
+- (IBAction)iOSAction:(id)sender {
+    NSURL *url = [NSURL URLWithString:@"sinaweibo://userinfo?uid=5242218307"];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        [[UIApplication sharedApplication] openURL:url];
+    }
+}
+
+#pragma mark Java
+
+- (IBAction)JavaAction:(id)sender {
+}
 @end
