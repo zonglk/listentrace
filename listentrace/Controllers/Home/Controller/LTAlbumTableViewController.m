@@ -328,10 +328,10 @@
     }
     
     if (self.isSave) {
-        
+        [parameter setValue:@(YES) forKey:@"repeat"];
     }
     else {
-        
+        [parameter setValue:@(NO) forKey:@"repeat"];
     }
     
     [LTNetworking requestUrl:url WithParam:parameter withMethod:POST success:^(id  _Nonnull result) {
