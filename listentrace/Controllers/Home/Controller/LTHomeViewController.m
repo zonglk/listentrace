@@ -279,7 +279,7 @@
         [_emptView addSubview:emptImageView];
         [emptImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(weakself.emptView.mas_centerX);
-            make.centerY.mas_equalTo(weakself.emptView.mas_centerY).offset(-100);
+            make.centerY.mas_equalTo(weakself.emptView.mas_centerY).offset(-70);
         }];
         [emptImageView setImage:[UIImage imageNamed:@"home_empt"]];
         

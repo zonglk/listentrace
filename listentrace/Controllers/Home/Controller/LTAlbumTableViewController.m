@@ -48,6 +48,8 @@
 @property (weak, nonatomic) IBOutlet UIView *view3;
 @property (weak, nonatomic) IBOutlet UIView *view4;
 @property (weak, nonatomic) IBOutlet UIView *view5;
+@property (weak, nonatomic) IBOutlet UIView *view6;
+@property (weak, nonatomic) IBOutlet UIView *footerView;
 
 @property (nonatomic, weak) LTAlbumStyleView *styleView;
 @property (nonatomic, strong) UIButton *cancleButton;
@@ -98,9 +100,13 @@
     UIButton *rightNavButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     if (self.albumId.length) {
         [rightNavButton setTitle:@"编辑" forState:UIControlStateNormal];
+        self.footerView.hidden = YES;
+        self.footerView.height = 50;
     }
     else {
         [rightNavButton setTitle:@"保存" forState:UIControlStateNormal];
+        self.footerView.hidden = NO;
+        self.footerView.height = 100;
     }
     [rightNavButton.titleLabel setFont:[UIFont systemFontOfSize:16]];
     [rightNavButton setTitleColor:RGBHex(0x007AFF) forState:UIControlStateNormal];
@@ -118,6 +124,7 @@
     ViewBorderRadius(self.view3, 5, 1, RGBHex(0xE5EAFA));
     ViewBorderRadius(self.view4, 5, 1, RGBHex(0xE5EAFA));
     ViewBorderRadius(self.view5, 5, 1, RGBHex(0xE5EAFA));
+    ViewBorderRadius(self.view6, 5, 1, RGBHex(0xE5EAFA));
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -229,6 +236,8 @@
     [self handleKeyBoard];
     if ([self.rightNavButton.titleLabel.text isEqualToString:@"编辑"]) {
         [self.rightNavButton setTitle:@"保存" forState:UIControlStateNormal];
+        self.footerView.hidden = NO;
+        self.footerView.height = 100;
         [self handleUserEnable];
         return;
     }
