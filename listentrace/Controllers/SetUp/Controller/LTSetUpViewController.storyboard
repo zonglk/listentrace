@@ -453,8 +453,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="听迹 v1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtn-bz-pzm">
-                                                    <rect key="frame" x="178" y="32" width="58" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="听迹" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtn-bz-pzm">
+                                                    <rect key="frame" x="182.66666666666666" y="32" width="28.666666666666657" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.59607843137254901" green="0.61568627450980395" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -465,12 +465,20 @@
                                                     <color key="textColor" red="0.59607843140000005" green="0.61568627450000002" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" v1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZEy-Cs-5X8">
+                                                    <rect key="frame" x="213.33333333333334" y="32" width="29.666666666666657" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                    <color key="textColor" red="0.59607843140000005" green="0.61568627450000002" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="dtn-bz-pzm" firstAttribute="top" secondItem="bu9-DG-7SC" secondAttribute="top" constant="32" id="GBG-vO-yUI"/>
                                                 <constraint firstItem="4pu-0y-8H9" firstAttribute="centerX" secondItem="bu9-DG-7SC" secondAttribute="centerX" id="H6n-SO-RdC"/>
                                                 <constraint firstItem="4pu-0y-8H9" firstAttribute="top" secondItem="dtn-bz-pzm" secondAttribute="bottom" constant="15" id="Xer-7z-N1c"/>
-                                                <constraint firstItem="dtn-bz-pzm" firstAttribute="centerX" secondItem="bu9-DG-7SC" secondAttribute="centerX" id="eZ1-rM-0Eg"/>
+                                                <constraint firstItem="dtn-bz-pzm" firstAttribute="centerX" secondItem="bu9-DG-7SC" secondAttribute="centerX" constant="-10" id="eZ1-rM-0Eg"/>
+                                                <constraint firstItem="ZEy-Cs-5X8" firstAttribute="leading" secondItem="dtn-bz-pzm" secondAttribute="trailing" constant="2" id="qes-3p-Ve4"/>
+                                                <constraint firstItem="ZEy-Cs-5X8" firstAttribute="centerY" secondItem="dtn-bz-pzm" secondAttribute="centerY" id="tG0-b1-y01"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.97254901960784312" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>

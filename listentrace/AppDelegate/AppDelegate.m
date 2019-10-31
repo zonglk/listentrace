@@ -20,6 +20,7 @@
     [self initWindow];
     // 初始化用户系统
     [self initUserManager];
+    sleep(2);
     return YES;
 }
 

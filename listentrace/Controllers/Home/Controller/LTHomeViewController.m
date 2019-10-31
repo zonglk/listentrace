@@ -136,9 +136,9 @@
                 NSMutableArray *modelArray = [NSMutableArray array];
                 // 将字典数组转换成模型数组
                 for (int j = 0; j < dicArray.count; j ++) {
-                    LTAlbumModel *model = [LTAlbumModel mj_objectWithKeyValues:dicArray[j]];
-                    [modelArray addObject:model];
-                    self.albumCount += 1;
+//                    LTAlbumModel *model = [LTAlbumModel mj_objectWithKeyValues:dicArray[j]];
+//                    [modelArray addObject:model];
+//                    self.albumCount += 1;
                 }
                 [albumArray addObject:modelArray];
                 self.dataArray = albumArray;
