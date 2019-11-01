@@ -89,6 +89,8 @@
 		00F81F4C232B262400CA8858 /* LTStyleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F81F4B232B262400CA8858 /* LTStyleModel.m */; };
 		6EE3B97A1A0269043BD0DA10 /* Pods_listentraceUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38E092DA3CAADCA1BBE21507 /* Pods_listentraceUITests.framework */; };
 		A37E35B0102F698943C83CCC /* Pods_listentrace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8ADF5B89930780ECF0206F7 /* Pods_listentrace.framework */; };
+		BD1DFD4F236BFC930011B692 /* noNetWork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD1DFD4D236BFC930011B692 /* noNetWork@2x.png */; };
+		BD1DFD50236BFC930011B692 /* noNetWork@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD1DFD4E236BFC930011B692 /* noNetWork@3x.png */; };
 		BD4FB434230A91BB00A6F825 /* LTAlbumTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BD4FB432230A91BB00A6F825 /* LTAlbumTableViewCell.m */; };
 		BD4FB435230A91BB00A6F825 /* LTAlbumTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD4FB433230A91BB00A6F825 /* LTAlbumTableViewCell.xib */; };
 		BD4FB438230AA0B100A6F825 /* album_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD4FB436230AA0B100A6F825 /* album_delete@2x.png */; };
@@ -289,6 +291,8 @@
 		55E9B264334FD90E36AA132A /* Pods-listentraceUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-listentraceUITests.debug.xcconfig"; path = "Target Support Files/Pods-listentraceUITests/Pods-listentraceUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7C8E089B0F9BD896E127FC3D /* Pods-listentraceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-listentraceTests.release.xcconfig"; path = "Target Support Files/Pods-listentraceTests/Pods-listentraceTests.release.xcconfig"; sourceTree = "<group>"; };
 		BC99D9E9D647B74E8A2E19CC /* Pods-listentraceUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-listentraceUITests.release.xcconfig"; path = "Target Support Files/Pods-listentraceUITests/Pods-listentraceUITests.release.xcconfig"; sourceTree = "<group>"; };
+		BD1DFD4D236BFC930011B692 /* noNetWork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noNetWork@2x.png"; sourceTree = "<group>"; };
+		BD1DFD4E236BFC930011B692 /* noNetWork@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noNetWork@3x.png"; sourceTree = "<group>"; };
 		BD4FB431230A91BB00A6F825 /* LTAlbumTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTAlbumTableViewCell.h; sourceTree = "<group>"; };
 		BD4FB432230A91BB00A6F825 /* LTAlbumTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTAlbumTableViewCell.m; sourceTree = "<group>"; };
 		BD4FB433230A91BB00A6F825 /* LTAlbumTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LTAlbumTableViewCell.xib; sourceTree = "<group>"; };
@@ -675,6 +679,8 @@
 				BD7C78742346EA870059585E /* album_detail_placeImage@3x.png */,
 				BD7F2F7E23505F5A00037B58 /* addAlbum_sucess@2x.png */,
 				BD7F2F7F23505F5A00037B58 /* addAlbum_sucess@3x.png */,
+				BD1DFD4D236BFC930011B692 /* noNetWork@2x.png */,
+				BD1DFD4E236BFC930011B692 /* noNetWork@3x.png */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -1184,6 +1190,7 @@
 				00E83BD122E60B2300C47AE5 /* home_tabbar_selected@2x.png in Resources */,
 				BD7C78792346EB9C0059585E /* style_album_placeImage@2x.png in Resources */,
 				00C2B0A122ED9C8F00CFB3E1 /* style_entry@2x.png in Resources */,
+				BD1DFD4F236BFC930011B692 /* noNetWork@2x.png in Resources */,
 				00E83BD622E60B3300C47AE5 /* style_tabbar_normal@3x.png in Resources */,
 				00C2B09822ED8F3F00CFB3E1 /* home_add@2x.png in Resources */,
 				00C2B0A822EDB64700CFB3E1 /* LTSetUpViewController.storyboard in Resources */,
@@ -1213,6 +1220,7 @@
 				002E18B722F723C8004D9F1D /* album_albumImage@3x.png in Resources */,
 				BD7C787D2346EC6B0059585E /* style_detail_placeImage@3x.png in Resources */,
 				BD4FB442230AA96D00A6F825 /* LTAlbumStyleView.xib in Resources */,
+				BD1DFD50236BFC930011B692 /* noNetWork@3x.png in Resources */,
 				00E83BDD22E60B4E00C47AE5 /* setup_tabbar_normal@3x.png in Resources */,
 				002E18B822F723C8004D9F1D /* album_albumImage@2x.png in Resources */,
 				BD7C78762346EA870059585E /* album_detail_placeImage@3x.png in Resources */,

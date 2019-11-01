@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSArray *dataArray;
 @property (nonatomic, strong) NSArray *allKeysArray;
 @property (nonatomic, strong) UIView *emptView; // 无数据视图
+@property (nonatomic, strong) UIView *noNetWorkView; // 无数据视图
 @property (nonatomic, strong) LTStyleModel *model;
 
 @end
@@ -59,7 +60,8 @@
         return;
     }
     [LTNetworking requestUrl:@"/album/style" WithParam:@{@"user_id" : userId} withMethod:GET success:^(id  _Nonnull result) {
-        if ([result[@"code"] intValue] == 0) {
+        if ([result[@"code"] intValue] == 200) {
+            self.noNetWorkView.hidden = YES;
             // 获得所有的key
             self.allKeysArray = [result[@"data"] allKeys];
             NSMutableArray *albumArray = [NSMutableArray array];
@@ -92,8 +94,15 @@
             self.tableView.hidden = NO;
         }
     } failure:^(NSError * _Nonnull erro) {
-        self.emptView.hidden = NO;
         self.tableView.hidden = YES;
+        if (erro.code == -1009 || erro.code == -1005) {
+            self.emptView.hidden = YES;
+            self.noNetWorkView.hidden = NO;
+        }
+        else  {
+            self.noNetWorkView.hidden = YES;
+            self.emptView.hidden = NO;
+        }
     } showHUD:self.view];
 }
 
@@ -198,6 +207,55 @@
         tipLabel.textColor = RGBHex(0xC0C6DA);
     }
     return _emptView;
+}
+
+- (UIView *)noNetWorkView {
+    if (!_noNetWorkView) {
+        _noNetWorkView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - kBottomSafeHeight - kTabBarHeight)];
+        [self.view addSubview:_noNetWorkView];
+        
+        kWeakSelf(self)
+        UIImageView *emptImageView = [[UIImageView alloc] init];
+        [_noNetWorkView addSubview:emptImageView];
+        [emptImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(weakself.emptView.mas_centerX);
+            make.centerY.mas_equalTo(weakself.emptView.mas_centerY).offset(-120);
+        }];
+        [emptImageView setImage:[UIImage imageNamed:@"noNetWork"]];
+        
+        UILabel *tipLabel = [[UILabel alloc] init];
+        [_noNetWorkView addSubview:tipLabel];
+        [tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(emptImageView.mas_centerX);
+            make.top.mas_equalTo(emptImageView.mas_bottom).offset(20);
+        }];
+        tipLabel.text = @"网络连接有点小问题";
+        tipLabel.font = [UIFont systemFontOfSize:13];
+        tipLabel.textColor = RGBHex(0xC0C6DA);
+        
+        UILabel *tipBottmLabel = [[UILabel alloc] init];
+        [_noNetWorkView addSubview:tipBottmLabel];
+        [tipBottmLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(emptImageView.centerX);
+            make.top.mas_equalTo(tipLabel.mas_bottom).offset(10);
+        }];
+        tipBottmLabel.text = @"请检查后点击重试";
+        tipBottmLabel.font = [UIFont systemFontOfSize:13];
+        tipBottmLabel.textColor = RGBHex(0xC0C6DA);
+        UIButton *requestButton = [[UIButton alloc] init];
+        [_noNetWorkView addSubview:requestButton];
+        ViewBorderRadius(requestButton, 18, 1, RGBHex(0xCEE3FB));
+        [requestButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(emptImageView.centerX);
+            make.top.mas_equalTo(tipBottmLabel.mas_bottom).offset(20);
+            make.size.mas_equalTo(CGSizeMake(100, 36));
+        }];
+        [requestButton setTitle:@"点击重试" forState:UIControlStateNormal];
+        [requestButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [requestButton setTitleColor:RGBHex(0xC0C6DA) forState:UIControlStateNormal];
+        [requestButton addTarget:self action:@selector(requestData) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _noNetWorkView;
 }
 
 
