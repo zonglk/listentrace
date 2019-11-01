@@ -154,7 +154,7 @@
 
 - (void)requestData {
     [LTNetworking requestUrl:@"/album/info" WithParam:@{@"album_id" : self.albumId} withMethod:GET success:^(id  _Nonnull result) {
-        if ([result[@"code"] intValue] == 0) {
+        if ([result[@"code"] intValue] == 200) {
             [self handleDate:result];
             [self handleUserEnable];
         }
@@ -234,6 +234,19 @@
 
 - (void)saveButtonClick {
     [self handleKeyBoard];
+    NSString *userIdString = [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"];
+    if (!userIdString.length) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"请开启 iCloud 同步" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消"
+                                                  style:UIAlertActionStyleCancel
+                                                handler:nil]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"确定"
+                                                  style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+        }]];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
     if ([self.rightNavButton.titleLabel.text isEqualToString:@"编辑"]) {
         [self.rightNavButton setTitle:@"保存" forState:UIControlStateNormal];
         self.footerView.hidden = NO;
@@ -273,6 +286,7 @@
     [parameter setObject:self.albumNameTextField.text forKey:@"album_name"];
     [parameter setObject:self.musicianTextField.text forKey:@"album_musician"];
     [parameter setObject:self.styleTextField.text forKey:@"album_style"];
+    [parameter setObject:self.listeningTimeTextField.text forKey:@"listen_time"];
     if (self.imageId.length) {
         [parameter setObject:self.imageId forKey:@"album_img"];
     }
@@ -344,7 +358,7 @@
     }
     
     [LTNetworking requestUrl:url WithParam:parameter withMethod:POST success:^(id  _Nonnull result) {
-        if ([result[@"code"] intValue] == 0) {
+        if ([result[@"code"] intValue] == 200) {
             self.isSave = NO;
             UIImageView *tipImageView = [[UIImageView alloc] init];
             [tipImageView setImage:[UIImage imageNamed:@"addAlbum_sucess"]];
@@ -653,7 +667,7 @@
         NSMutableDictionary *Exparams = [[NSMutableDictionary alloc]init];
         [Exparams addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:imageData,@"file", nil]];
         [LTNetworking uploadImageWithUrl:@"/img/upload" WithParam:[NSDictionary dictionary] withExParam:Exparams withMethod:POST success:^(id  _Nonnull result) {
-            if ([result[@"code"] intValue] == 0) {
+            if ([result[@"code"] intValue] == 200) {
                 [weakself.albumButton setImage:resizeImage forState:UIControlStateNormal];
                 self.imageId = result[@"data"];
                 self.tipsImageLabel.hidden = YES;

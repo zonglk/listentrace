@@ -19,11 +19,14 @@
 @property (nonatomic, strong) UILabel *tipsLable; // 底部专辑张数提醒label
 @property (nonatomic, strong) UIButton *addBttton; // 添加专辑按钮
 @property (nonatomic, strong) NSArray *dataArray;
-@property (nonatomic, strong) NSArray *allKeysArray;
+@property (nonatomic, strong) NSArray *allKeysArray; // 所有年份的key
+@property (nonatomic, strong) NSMutableArray *allMonthKeysArray; // 所有月份的key
 @property (nonatomic, strong) UIView *emptView; // 无数据视图
+@property (nonatomic, strong) UIView *noNetWorkView; // 无数据视图
 @property (nonatomic, strong) LTAlbumModel *model;
 @property (nonatomic, assign) NSInteger albumCount;
 @property (nonatomic, copy) NSString *countTipString;
+@property (nonatomic, assign) BOOL isHasUserId;
 
 @end
 
@@ -34,6 +37,11 @@
     // Do any additional setup after loading the view.
     self.title = @"听迹";
     [self creatAllViews];
+    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"];
+    if (userId.length) {
+        [self requestData];
+        self.isHasUserId = YES;
+    }
     [self loginIcloud];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addAlbumSucess) name:@"AddAlbumSucess" object:nil];
 }
@@ -107,7 +115,7 @@
 //            });
 //        }
         NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"];
-        if (userId.length) {
+        if (userId.length && !self.isHasUserId) {
             [self requestData];
         }
     }];
@@ -119,28 +127,37 @@
 
 - (void)requestData {
     [LTNetworking requestUrl:@"/album/trace" WithParam:@{@"user_id" : [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"]} withMethod:GET success:^(id  _Nonnull result) {
-        if ([result[@"code"] intValue] == 0) {
+        
+        if ([result[@"code"] intValue] == 200) {
+            self.noNetWorkView.hidden = YES;
             self.albumCount = 0;
-            // 获得所有的key
+            // 获得所有的key 对应年份
             self.allKeysArray = [result[@"data"] allKeys];
             self.allKeysArray = [self.allKeysArray sortedArrayUsingComparator:^NSComparisonResult(id obj1,id obj2) {
                 NSComparisonResult result = [obj1 compare:obj2];
                 return result == NSOrderedAscending;
             }];
+            
             NSMutableArray *albumArray = [NSMutableArray array];
             // 循环拿到所有key对应的字典数组
             for (int i = 0; i < self.allKeysArray.count; i ++) {
                 NSString *key = self.allKeysArray[i];
-                // 每一个key放着字典数组，字典数组可能有多个或者一个
-                NSArray *dicArray = result[@"data"][key];
-                NSMutableArray *modelArray = [NSMutableArray array];
-                // 将字典数组转换成模型数组
-                for (int j = 0; j < dicArray.count; j ++) {
-//                    LTAlbumModel *model = [LTAlbumModel mj_objectWithKeyValues:dicArray[j]];
-//                    [modelArray addObject:model];
-//                    self.albumCount += 1;
+                // 获取月份下的所有key
+                NSArray *allMonthKeys = [result[@"data"][key] allKeys];
+                [self.allMonthKeysArray addObject:allMonthKeys];
+                
+                for (int j = 0; j < allMonthKeys.count; j ++) {
+                    // 每一个key放着字典数组，字典数组可能有多个或者一个
+                    NSArray *dicArray = result[@"data"][key][allMonthKeys[j]];
+                    NSMutableArray *modelArray = [NSMutableArray array];
+                    // 将字典数组转换成模型数组
+                    for (int k = 0; k < dicArray.count; k ++) {
+                        LTAlbumModel *model = [LTAlbumModel mj_objectWithKeyValues:dicArray[k]];
+                        [modelArray addObject:model];
+                        self.albumCount += 1;
+                    }
+                    [albumArray addObject:modelArray];
                 }
-                [albumArray addObject:modelArray];
                 self.dataArray = albumArray;
             }
             
@@ -171,15 +188,22 @@
             self.homeTableView.hidden = NO;
         }
     } failure:^(NSError * _Nonnull erro) {
-        self.emptView.hidden = NO;
         self.homeTableView.hidden = YES;
         self.tipsLable.hidden = YES;
+        if (erro.code == -1009 || erro.code == -1005) {
+            self.emptView.hidden = YES;
+            self.noNetWorkView.hidden = NO;
+        }
+        else  {
+            self.noNetWorkView.hidden = YES;
+            self.emptView.hidden = NO;
+        }
     } showHUD:self.view];
 }
 
-#pragma mark - =================== UITableView delegate \ datasources ===================
+#pragma mark - =================== UITableView delegate 、 datasources ===================
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 32;
+    return 45;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -189,19 +213,29 @@
     [view addSubview:dateLabel];
     [dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(view.mas_left).offset(15);
-        make.bottom.mas_equalTo(view.mas_bottom).offset(-4);
+        make.top.mas_equalTo(view.mas_top).offset(4);
     }];
-    dateLabel.textColor = RGBHex(0x989DAD);
-    dateLabel.font = [UIFont systemFontOfSize:13.0];
-    dateLabel.text = self.allKeysArray[section];
+    dateLabel.textColor = RGBHex(0x545C77);
+    dateLabel.font = [UIFont systemFontOfSize:20.0];
+//    dateLabel.text = self.allKeysArray[section];
+    
+    UILabel *monthLabel = [[UILabel alloc] init];
+    [view addSubview:monthLabel];
+    [monthLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(view.mas_left).offset(15);
+        make.top.mas_equalTo(dateLabel.mas_bottom).offset(4);
+    }];
+    monthLabel.textColor = RGBHex(0x989DAD);
+    monthLabel.font = [UIFont systemFontOfSize:13.0];
+//    monthLabel.text = self.allMonthKeysArray[section];
     return view;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if (self.allKeysArray.count < 8) {
+    if (self.albumCount < 8) {
         return 0.00001;
     }
-    else if (section == self.allKeysArray.count - 1) {
+    else if (section == self.dataArray.count - 1) {
         return 60;
     }
     else {
@@ -210,10 +244,10 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    if (self.allKeysArray.count < 8) {
+    if (self.albumCount < 8) {
         return [UIView new];
     }
-    else if (section == self.allKeysArray.count - 1) {
+    else if (section == self.dataArray.count - 1) {
         UIView *view = [[UIView alloc] init];
         self.tipsLable = [[UILabel alloc] init];
         [view addSubview:self.tipsLable];
@@ -232,7 +266,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.allKeysArray.count;
+    return self.dataArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -294,6 +328,96 @@
         tipLabel.textColor = RGBHex(0xC0C6DA);
     }
     return _emptView;
+}
+
+- (UIView *)noNetWorkView {
+    if (!_noNetWorkView) {
+        _noNetWorkView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - kBottomSafeHeight - kTabBarHeight)];
+        [self.view addSubview:_noNetWorkView];
+        
+        kWeakSelf(self)
+        UIImageView *emptImageView = [[UIImageView alloc] init];
+        [_noNetWorkView addSubview:emptImageView];
+        [emptImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(weakself.emptView.mas_centerX);
+            make.centerY.mas_equalTo(weakself.emptView.mas_centerY).offset(-120);
+        }];
+        [emptImageView setImage:[UIImage imageNamed:@"noNetWork"]];
+        
+        UILabel *tipLabel = [[UILabel alloc] init];
+        [_noNetWorkView addSubview:tipLabel];
+        [tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(emptImageView.mas_centerX);
+            make.top.mas_equalTo(emptImageView.mas_bottom).offset(20);
+        }];
+        tipLabel.text = @"网络连接有点小问题";
+        tipLabel.font = [UIFont systemFontOfSize:13];
+        tipLabel.textColor = RGBHex(0xC0C6DA);
+        
+        UILabel *tipBottmLabel = [[UILabel alloc] init];
+        [_noNetWorkView addSubview:tipBottmLabel];
+        [tipBottmLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(emptImageView.centerX);
+            make.top.mas_equalTo(tipLabel.mas_bottom).offset(10);
+        }];
+        tipBottmLabel.text = @"请检查后点击重试";
+        tipBottmLabel.font = [UIFont systemFontOfSize:13];
+        tipBottmLabel.textColor = RGBHex(0xC0C6DA);
+        UIButton *requestButton = [[UIButton alloc] init];
+        [_noNetWorkView addSubview:requestButton];
+        ViewBorderRadius(requestButton, 18, 1, RGBHex(0xCEE3FB));
+        [requestButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(emptImageView.centerX);
+            make.top.mas_equalTo(tipBottmLabel.mas_bottom).offset(20);
+            make.size.mas_equalTo(CGSizeMake(100, 36));
+        }];
+        [requestButton setTitle:@"点击重试" forState:UIControlStateNormal];
+        [requestButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [requestButton setTitleColor:RGBHex(0xC0C6DA) forState:UIControlStateNormal];
+        [requestButton addTarget:self action:@selector(requestData) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _noNetWorkView;
+}
+
+- (NSMutableArray *)allMonthKeysArray {
+    if (!_allMonthKeysArray) {
+        _allMonthKeysArray = [NSMutableArray array];
+    }
+    return _allMonthKeysArray;
+    
+//    2008 = {
+//        15,Dec = {
+//                    (
+//                        {
+//                            "album_arranger" = "<null>";
+//                            "album_composer" = "<null>";
+//                            "sound_mixer" = "<null>";
+//                            "tracks_info" = "<null>";
+//                            "user_id" = "<null>";
+//                        } ,
+//                        {
+//                            "album_arranger" = "<null>";
+//                            "album_composer" = "<null>";
+//                            "album_duration" = "<null>";
+//                            "user_id" = "<null>";
+//                        };
+//                    ），
+//               };
+//        01,Dec = {
+//                    (
+//                        {
+//                            "album_arranger" = "<null>";
+//                            "album_composer" = "<null>";
+//                            "album_duration" = "<null>";
+//                             "tracks_info" = "<null>";
+//                            "user_id" = "<null>";
+//                        }
+//                    )
+//                }
+//            };
+//     2007 = {
+//
+//    }
 }
 
 @end
