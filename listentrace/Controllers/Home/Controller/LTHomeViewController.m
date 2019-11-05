@@ -21,7 +21,7 @@
 @property (nonatomic, strong) NSArray *dataArray;
 @property (nonatomic, strong) NSArray *allKeysArray; // 所有年份的key
 @property (nonatomic, strong) NSMutableArray *allMonthKeysArray; // 所有月份的
-@property (nonatomic, strong) NSMutableArray *yearHeaderIndex; // 具体需要展示的年份
+@property (nonatomic, strong) NSMutableArray *yearKeyIndexArray; // 需要展示的年份section
 @property (nonatomic, strong) UIView *emptView; // 无数据视图
 @property (nonatomic, strong) UIView *noNetWorkView; // 无数据视图
 @property (nonatomic, strong) LTAlbumModel *model;
@@ -139,15 +139,16 @@
                 return result == NSOrderedAscending;
             }];
             
+            NSInteger sectionIndex = 0;
             NSMutableArray *albumArray = [NSMutableArray array];
             // 循环拿到所有key对应的字典数组
             for (int i = 0; i < self.allKeysArray.count; i ++) {
                 NSString *key = self.allKeysArray[i];
                 // 获取月份下的所有key
                 NSArray *allMonthKeys = [result[@"data"][key] allKeys];
-                [self.allMonthKeysArray addObject:allMonthKeys];
                 
                 for (int j = 0; j < allMonthKeys.count; j ++) {
+                    [self.allMonthKeysArray addObject:allMonthKeys[j]];
                     // 每一个key放着字典数组，字典数组可能有多个或者一个
                     NSArray *dicArray = result[@"data"][key][allMonthKeys[j]];
                     NSMutableArray *modelArray = [NSMutableArray array];
@@ -157,11 +158,12 @@
                         [modelArray addObject:model];
                         self.albumCount += 1;
                     }
+                    sectionIndex += 1;
                     [albumArray addObject:modelArray];
                 }
                 self.dataArray = albumArray;
-                NSString *countString = [[NSString alloc] initWithFormat:@"%ld",self.albumCount];
-                [self.yearHeaderIndex addObject:countString];
+                NSString *section = [NSString stringWithFormat:@"%ld",sectionIndex];
+                [self.yearKeyIndexArray addObject:section];
             }
             
             if (self.albumCount > 0) {
@@ -207,14 +209,14 @@
 #pragma mark UITableView delegate 、 datasources
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     BOOL isNeedShowYeah = NO;
-    for (int i = 0; i < self.yearHeaderIndex.count; i ++) {
-        int index = [self.yearHeaderIndex[i] intValue];
+    for (int i = 0; i < self.yearKeyIndexArray.count; i ++) {
+        int index = [self.yearKeyIndexArray[i] intValue];
         if (index == section) {
             isNeedShowYeah = YES;
         }
     }
     if (section == 0 || isNeedShowYeah) {
-        return 145;
+        return 55;
     }
     else {
         return 30;
@@ -223,10 +225,12 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     BOOL isNeedShowYeah = NO;
-    for (int i = 0; i < self.yearHeaderIndex.count; i ++) {
-        int index = [self.yearHeaderIndex[i] intValue];
+    int sectionIndex = 0;
+    for (int i = 0; i < self.yearKeyIndexArray.count; i ++) {
+        int index = [self.yearKeyIndexArray[i] intValue];
         if (index == section) {
             isNeedShowYeah = YES;
+            sectionIndex = i;
         }
     }
     if (section == 0 || isNeedShowYeah) {
@@ -236,11 +240,11 @@
         [view addSubview:dateLabel];
         [dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(view.mas_left).offset(15);
-            make.top.mas_equalTo(view.mas_top).offset(4);
+            make.top.mas_equalTo(view.mas_top).offset(7);
         }];
         dateLabel.textColor = RGBHex(0x545C77);
         dateLabel.font = [UIFont systemFontOfSize:20.0];
-//        dateLabel.text = self.allKeysArray[section];
+        dateLabel.text = isNeedShowYeah ? self.allKeysArray[sectionIndex + 1] : self.allKeysArray[sectionIndex];
         
         UILabel *monthLabel = [[UILabel alloc] init];
         [view addSubview:monthLabel];
@@ -250,7 +254,7 @@
         }];
         monthLabel.textColor = RGBHex(0x989DAD);
         monthLabel.font = [UIFont systemFontOfSize:13.0];
-//        monthLabel.text = self.allMonthKeysArray[section];
+        monthLabel.text = self.allMonthKeysArray[section];
         return view;
     }
     else {
@@ -261,15 +265,13 @@
         [view addSubview:monthLabel];
         [monthLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(view.mas_left).offset(15);
-            make.top.mas_equalTo(view.mas_top).offset(4);
+            make.top.mas_equalTo(view.mas_top).offset(8);
         }];
         monthLabel.textColor = RGBHex(0x989DAD);
         monthLabel.font = [UIFont systemFontOfSize:13.0];
-//        monthLabel.text = self.allMonthKeysArray[section];
+        monthLabel.text = self.allMonthKeysArray[section];
         return view;
     }
-    
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
@@ -427,11 +429,11 @@
     return _allMonthKeysArray;
 }
 
-- (NSMutableArray *)yearHeaderIndex {
-    if (!_yearHeaderIndex) {
-        _yearHeaderIndex = [NSMutableArray array];
+- (NSMutableArray *)yearKeyIndexArray {
+    if (!_yearKeyIndexArray) {
+        _yearKeyIndexArray = [NSMutableArray array];
     }
-    return _yearHeaderIndex;
+    return _yearKeyIndexArray;
 }
 
 @end

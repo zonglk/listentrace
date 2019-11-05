@@ -129,6 +129,17 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(styleChangeNoti:) name:@"AlbumStyleChangeNoti" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChangeValue:) name:UITextFieldTextDidChangeNotification object:self.albumNameTextField];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChangeValue:) name:UITextFieldTextDidChangeNotification object:self.musicianTextField];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChangeValue:) name:UITextFieldTextDidChangeNotification object:self.styleTextField];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChangeValue:) name:UITextFieldTextDidChangeNotification object:self.producerTextField];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChangeValue:) name:UITextFieldTextDidChangeNotification object:self.mixerTextField];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChangeValue:) name:UITextFieldTextDidChangeNotification object:self.mixingTextField];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChangeValue:) name:UITextFieldTextDidChangeNotification object:self.coverTextField];
+}
+
+- (void)textFieldDidChangeValue:(NSNotification *)notification {
+    self.isChange = YES;
 }
 
 - (void)back {
@@ -194,7 +205,6 @@
     self.albumNameTextField.text = result[@"data"][@"album_name"];
     self.musicianTextField.text = result[@"data"][@"album_musician"];
     self.styleTextField.text = result[@"data"][@"album_style"];
-    self.albumNameTextField.text = result[@"data"][@"album_name"];
     NSString *durationString = result[@"data"][@"album_duration"];
     if (durationString != nil && [durationString class] != [NSNull class]) {
         self.timeTextField.text = result[@"data"][@"album_duration"];
@@ -628,6 +638,7 @@
         return;
     }
     self.loveButton.selected = !self.loveButton.selected;
+    self.isChange = YES;
 }
 
 #pragma mark 风格编辑
@@ -769,6 +780,7 @@
         }
         self.releasedTimeTextField.text = self.releaseTimeString;
     }
+    self.isChange = YES;
     [self.timePicker removeFromSuperview];
 }
 
