@@ -160,7 +160,7 @@
                     [albumArray addObject:modelArray];
                 }
                 self.dataArray = albumArray;
-                NSString *countString = [[NSString alloc] initWithFormat:@"%ldd",(long)self.albumCount];
+                NSString *countString = [[NSString alloc] initWithFormat:@"%ld",self.albumCount];
                 [self.yearHeaderIndex addObject:countString];
             }
             
@@ -209,7 +209,7 @@
     BOOL isNeedShowYeah = NO;
     for (int i = 0; i < self.yearHeaderIndex.count; i ++) {
         int index = [self.yearHeaderIndex[i] intValue];
-        if (index - 1 == section) {
+        if (index == section) {
             isNeedShowYeah = YES;
         }
     }
@@ -225,7 +225,7 @@
     BOOL isNeedShowYeah = NO;
     for (int i = 0; i < self.yearHeaderIndex.count; i ++) {
         int index = [self.yearHeaderIndex[i] intValue];
-        if (index - 1 == section) {
+        if (index == section) {
             isNeedShowYeah = YES;
         }
     }
