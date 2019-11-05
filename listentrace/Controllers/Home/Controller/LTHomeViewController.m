@@ -20,7 +20,8 @@
 @property (nonatomic, strong) UIButton *addBttton; // 添加专辑按钮
 @property (nonatomic, strong) NSArray *dataArray;
 @property (nonatomic, strong) NSArray *allKeysArray; // 所有年份的key
-@property (nonatomic, strong) NSMutableArray *allMonthKeysArray; // 所有月份的key
+@property (nonatomic, strong) NSMutableArray *allMonthKeysArray; // 所有月份的
+@property (nonatomic, strong) NSMutableArray *yearHeaderIndex; // 具体需要展示的年份
 @property (nonatomic, strong) UIView *emptView; // 无数据视图
 @property (nonatomic, strong) UIView *noNetWorkView; // 无数据视图
 @property (nonatomic, strong) LTAlbumModel *model;
@@ -70,7 +71,7 @@
     [self.view bringSubviewToFront:self.addBttton];
 }
 
-#pragma mark - =================== icloud ===================
+#pragma mark icloud
 
 - (void)loginIcloud {
     [[CKContainer defaultContainer] accountStatusWithCompletionHandler:^(CKAccountStatus accountStatus, NSError* error) {
@@ -159,6 +160,8 @@
                     [albumArray addObject:modelArray];
                 }
                 self.dataArray = albumArray;
+                NSString *countString = [[NSString alloc] initWithFormat:@"%ldd",(long)self.albumCount];
+                [self.yearHeaderIndex addObject:countString];
             }
             
             if (self.albumCount > 0) {
@@ -201,34 +204,72 @@
     } showHUD:self.view];
 }
 
-#pragma mark - =================== UITableView delegate 、 datasources ===================
+#pragma mark UITableView delegate 、 datasources
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 45;
+    BOOL isNeedShowYeah = NO;
+    for (int i = 0; i < self.yearHeaderIndex.count; i ++) {
+        int index = [self.yearHeaderIndex[i] intValue];
+        if (index - 1 == section) {
+            isNeedShowYeah = YES;
+        }
+    }
+    if (section == 0 || isNeedShowYeah) {
+        return 145;
+    }
+    else {
+        return 30;
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *view = [UIView new];
-    view.backgroundColor = CViewBgColor;
-    UILabel *dateLabel = [[UILabel alloc] init];
-    [view addSubview:dateLabel];
-    [dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(view.mas_left).offset(15);
-        make.top.mas_equalTo(view.mas_top).offset(4);
-    }];
-    dateLabel.textColor = RGBHex(0x545C77);
-    dateLabel.font = [UIFont systemFontOfSize:20.0];
-//    dateLabel.text = self.allKeysArray[section];
+    BOOL isNeedShowYeah = NO;
+    for (int i = 0; i < self.yearHeaderIndex.count; i ++) {
+        int index = [self.yearHeaderIndex[i] intValue];
+        if (index - 1 == section) {
+            isNeedShowYeah = YES;
+        }
+    }
+    if (section == 0 || isNeedShowYeah) {
+        UIView *view = [UIView new];
+        view.backgroundColor = CViewBgColor;
+        UILabel *dateLabel = [[UILabel alloc] init];
+        [view addSubview:dateLabel];
+        [dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(view.mas_left).offset(15);
+            make.top.mas_equalTo(view.mas_top).offset(4);
+        }];
+        dateLabel.textColor = RGBHex(0x545C77);
+        dateLabel.font = [UIFont systemFontOfSize:20.0];
+//        dateLabel.text = self.allKeysArray[section];
+        
+        UILabel *monthLabel = [[UILabel alloc] init];
+        [view addSubview:monthLabel];
+        [monthLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(view.mas_left).offset(15);
+            make.top.mas_equalTo(dateLabel.mas_bottom).offset(4);
+        }];
+        monthLabel.textColor = RGBHex(0x989DAD);
+        monthLabel.font = [UIFont systemFontOfSize:13.0];
+//        monthLabel.text = self.allMonthKeysArray[section];
+        return view;
+    }
+    else {
+        UIView *view = [UIView new];
+        view.backgroundColor = CViewBgColor;
+        
+        UILabel *monthLabel = [[UILabel alloc] init];
+        [view addSubview:monthLabel];
+        [monthLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(view.mas_left).offset(15);
+            make.top.mas_equalTo(view.mas_top).offset(4);
+        }];
+        monthLabel.textColor = RGBHex(0x989DAD);
+        monthLabel.font = [UIFont systemFontOfSize:13.0];
+//        monthLabel.text = self.allMonthKeysArray[section];
+        return view;
+    }
     
-    UILabel *monthLabel = [[UILabel alloc] init];
-    [view addSubview:monthLabel];
-    [monthLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(view.mas_left).offset(15);
-        make.top.mas_equalTo(dateLabel.mas_bottom).offset(4);
-    }];
-    monthLabel.textColor = RGBHex(0x989DAD);
-    monthLabel.font = [UIFont systemFontOfSize:13.0];
-//    monthLabel.text = self.allMonthKeysArray[section];
-    return view;
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
@@ -384,40 +425,13 @@
         _allMonthKeysArray = [NSMutableArray array];
     }
     return _allMonthKeysArray;
-    
-//    2008 = {
-//        15,Dec = {
-//                    (
-//                        {
-//                            "album_arranger" = "<null>";
-//                            "album_composer" = "<null>";
-//                            "sound_mixer" = "<null>";
-//                            "tracks_info" = "<null>";
-//                            "user_id" = "<null>";
-//                        } ,
-//                        {
-//                            "album_arranger" = "<null>";
-//                            "album_composer" = "<null>";
-//                            "album_duration" = "<null>";
-//                            "user_id" = "<null>";
-//                        };
-//                    ），
-//               };
-//        01,Dec = {
-//                    (
-//                        {
-//                            "album_arranger" = "<null>";
-//                            "album_composer" = "<null>";
-//                            "album_duration" = "<null>";
-//                             "tracks_info" = "<null>";
-//                            "user_id" = "<null>";
-//                        }
-//                    )
-//                }
-//            };
-//     2007 = {
-//
-//    }
+}
+
+- (NSMutableArray *)yearHeaderIndex {
+    if (!_yearHeaderIndex) {
+        _yearHeaderIndex = [NSMutableArray array];
+    }
+    return _yearHeaderIndex;
 }
 
 @end
