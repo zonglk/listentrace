@@ -126,6 +126,12 @@
     ViewBorderRadius(self.view5, 5, 1, RGBHex(0xE5EAFA));
     ViewBorderRadius(self.view6, 5, 1, RGBHex(0xE5EAFA));
     
+    [[self.albumButton layer] setShadowOffset:CGSizeZero]; // 阴影扩散的范围控制
+    [[self.albumButton layer] setShadowRadius:4]; // 阴影扩散的范围控制
+    [[self.albumButton layer] setShadowOpacity:1]; // 阴影透明度
+    [[self.albumButton layer] setShadowColor:RGBHexAlpha(0x68BAE9, 0.45).CGColor]; // 阴影的颜色
+    self.albumButton.clipsToBounds = NO;
+    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(styleChangeNoti:) name:@"AlbumStyleChangeNoti" object:nil];
@@ -245,14 +251,18 @@
 - (void)saveButtonClick {
     [self handleKeyBoard];
     NSString *userIdString = [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"];
-    if (!userIdString.length) {
+    if (userIdString.length) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"请开启 iCloud 同步" message:nil preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:@"取消"
                                                   style:UIAlertActionStyleCancel
                                                 handler:nil]];
         [alert addAction:[UIAlertAction actionWithTitle:@"确定"
                                                   style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            
+            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"prefs:root"]]) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root"]];
+            } else {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"App-Prefs:root"]];
+            }
         }]];
         [self presentViewController:alert animated:YES completion:nil];
         return;

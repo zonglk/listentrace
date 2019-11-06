@@ -31,6 +31,24 @@
     
     UITapGestureRecognizer *rightTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(rightTap)];
     [self.rightImageView addGestureRecognizer:rightTap];
+    
+    [[self.leftImageVIew layer] setShadowOffset:CGSizeZero]; // 阴影扩散的范围控制
+    [[self.leftImageVIew layer] setShadowRadius:4]; // 阴影扩散的范围控制
+    [[self.leftImageVIew layer] setShadowOpacity:1]; // 阴影透明度
+    [[self.leftImageVIew layer] setShadowColor:RGBHexAlpha(0x68BAE9, 0.45).CGColor]; // 阴影的颜色
+    self.leftImageVIew.clipsToBounds = NO;
+    
+    [[self.middleImageVIew layer] setShadowOffset:CGSizeZero]; // 阴影扩散的范围控制
+    [[self.middleImageVIew layer] setShadowRadius:4]; // 阴影扩散的范围控制
+    [[self.middleImageVIew layer] setShadowOpacity:1]; // 阴影透明度
+    [[self.middleImageVIew layer] setShadowColor:RGBHexAlpha(0x68BAE9, 0.45).CGColor]; // 阴影的颜色
+    self.middleImageVIew.clipsToBounds = NO;
+    
+    [[self.rightImageView layer] setShadowOffset:CGSizeZero]; // 阴影扩散的范围控制
+    [[self.rightImageView layer] setShadowRadius:4]; // 阴影扩散的范围控制
+    [[self.rightImageView layer] setShadowOpacity:1]; // 阴影透明度
+    [[self.rightImageView layer] setShadowColor:RGBHexAlpha(0x68BAE9, 0.45).CGColor]; // 阴影的颜色
+    self.rightImageView.clipsToBounds = NO;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

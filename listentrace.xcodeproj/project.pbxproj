@@ -111,7 +111,6 @@
 		BD5B8C1523273F10005D18FF /* QFTimerDataSourceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5B8C1123273F10005D18FF /* QFTimerDataSourceModel.m */; };
 		BD5B8C1923273F38005D18FF /* QFTimerPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5B8C1823273F38005D18FF /* QFTimerPicker.m */; };
 		BD5B8C1D23273F53005D18FF /* QFTimerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5B8C1B23273F53005D18FF /* QFTimerUtil.m */; };
-		BD5B8C1F23274FEB005D18FF /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = BD5B8C1E23274FEA005D18FF /* launch.png */; };
 		BD7C78712346E9B20059585E /* home_placeImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD7C786F2346E9B20059585E /* home_placeImage@3x.png */; };
 		BD7C78722346E9B20059585E /* home_placeImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD7C78702346E9B20059585E /* home_placeImage@2x.png */; };
 		BD7C78752346EA870059585E /* album_detail_placeImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD7C78732346EA870059585E /* album_detail_placeImage@2x.png */; };
@@ -323,7 +322,6 @@
 		BD5B8C1823273F38005D18FF /* QFTimerPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFTimerPicker.m; sourceTree = "<group>"; };
 		BD5B8C1B23273F53005D18FF /* QFTimerUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFTimerUtil.m; sourceTree = "<group>"; };
 		BD5B8C1C23273F53005D18FF /* QFTimerUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFTimerUtil.h; sourceTree = "<group>"; };
-		BD5B8C1E23274FEA005D18FF /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
 		BD7C786F2346E9B20059585E /* home_placeImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_placeImage@3x.png"; sourceTree = "<group>"; };
 		BD7C78702346E9B20059585E /* home_placeImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_placeImage@2x.png"; sourceTree = "<group>"; };
 		BD7C78732346EA870059585E /* album_detail_placeImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "album_detail_placeImage@2x.png"; sourceTree = "<group>"; };
@@ -570,7 +568,6 @@
 				00601BD422E0C908005B33F2 /* Assets.xcassets */,
 				00601BDA22E0C908005B33F2 /* main.m */,
 				00601BD922E0C908005B33F2 /* Info.plist */,
-				BD5B8C1E23274FEA005D18FF /* launch.png */,
 				00601BD622E0C908005B33F2 /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting Files";
@@ -1213,7 +1210,6 @@
 				BDE88E3A2320B63F004495A9 /* LTAlbumTimePIckerView.xib in Resources */,
 				00973822232D377600F2E7F9 /* appIcon@2x.png in Resources */,
 				00E83BE522E60B6A00C47AE5 /* style_tabbar_selected@2x.png in Resources */,
-				BD5B8C1F23274FEB005D18FF /* launch.png in Resources */,
 				BD7C78752346EA870059585E /* album_detail_placeImage@2x.png in Resources */,
 				BD56EB2F2302B7680005271B /* nav_back@3x.png in Resources */,
 				00E83BDE22E60B4E00C47AE5 /* setup_tabbar_normal@2x.png in Resources */,
@@ -1603,7 +1599,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = listentrace/listentrace.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = QS8N6LMV2J;
@@ -1629,7 +1625,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = listentrace/listentrace.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = QS8N6LMV2J;
