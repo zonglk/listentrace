@@ -49,7 +49,7 @@
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cellId"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = self.styleDataArray[indexPath.row];
-    cell.textLabel.font = FONT(@"San Francisco Text", 14);
+    cell.textLabel.font = [UIFont systemFontOfSize:14];
     cell.textLabel.textColor = RGBHex(0x545C77);
 
     return cell;

@@ -18,6 +18,7 @@
     [[self.image layer] setShadowOpacity:1]; // 阴影透明度
     [[self.image layer] setShadowColor:RGBHexAlpha(0x68BAE9, 0.45).CGColor]; // 阴影的颜色
     self.image.clipsToBounds = NO;
+    self.backgroundColor = CViewBgColor;
 }
 
 + (instancetype)creatCell {

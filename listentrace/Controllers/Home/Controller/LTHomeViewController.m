@@ -297,9 +297,7 @@
     self.model = array[indexPath.row];
     LTHomeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LTHomeTableViewCell" forIndexPath:indexPath];
     if (!cell) {
-        cell = [LTHomeTableViewCell creatCell];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = CViewBgColor;
+        cell = [LTHomeTableViewCell creatCell];;
     }
     cell.model = self.model;
     

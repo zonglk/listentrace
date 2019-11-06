@@ -47,10 +47,6 @@
 	<string>上传专辑图片需要访问您的相机权限，否则您将无法通过相机拍摄照片作为专辑封面</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>上传专辑图片需要访问您的相册权限，否则您将无法选取相册内的图片作为专辑封面</string>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchImage</string>
-	<key>UIMainStoryboardFile</key>
-	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

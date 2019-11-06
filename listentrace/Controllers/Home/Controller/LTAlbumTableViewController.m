@@ -88,6 +88,14 @@
         [self requestData];
         self.tipsImageLabel.hidden = YES;
     }
+    else {
+        NSDate *date = [NSDate date];
+        NSDateFormatter *forMatter = [[NSDateFormatter alloc] init];
+        [forMatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *dateStr = [forMatter stringFromDate:date];
+        self.listeningTimeString = dateStr;
+        self.listeningTimeTextField.text = self.listeningTimeString;
+    }
 }
 
 - (void)creatAllViews {
