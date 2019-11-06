@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *loveImage;
 @property (nonatomic, strong) LTAlbumModel *model;
 
++ (instancetype)creatCell;
+
 @end
 
 NS_ASSUME_NONNULL_END

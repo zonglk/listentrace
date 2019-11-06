@@ -20,6 +20,10 @@
     self.image.clipsToBounds = NO;
 }
 
++ (instancetype)creatCell {
+    return [[[NSBundle mainBundle] loadNibNamed:@"LTHomeTableViewCell" owner:nil options:nil] lastObject];
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

@@ -296,8 +296,11 @@
     NSArray *array = self.dataArray[indexPath.section];
     self.model = array[indexPath.row];
     LTHomeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LTHomeTableViewCell" forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.backgroundColor = CViewBgColor;
+    if (!cell) {
+        cell = [LTHomeTableViewCell creatCell];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = CViewBgColor;
+    }
     cell.model = self.model;
     
     return cell;
