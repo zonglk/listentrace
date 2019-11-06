@@ -90,6 +90,8 @@
 }
 
 - (void)addAlbumSucess {
+    [self.allMonthKeysArray removeAllObjects];
+    [self.yearKeyIndexArray removeAllObjects];
     [self requestData];
 }
 
@@ -187,7 +189,7 @@
         }
     }
     if (section == 0 || isNeedShowYeah) {
-        return 55;
+        return 65;
     }
     else {
         return 30;
@@ -211,11 +213,13 @@
         [view addSubview:dateLabel];
         [dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(view.mas_left).offset(15);
-            make.top.mas_equalTo(view.mas_top).offset(7);
+            make.top.mas_equalTo(view.mas_top).offset(18);
         }];
         dateLabel.textColor = RGBHex(0x545C77);
         dateLabel.font = [UIFont systemFontOfSize:20.0];
-        dateLabel.text = isNeedShowYeah ? self.allKeysArray[sectionIndex + 1] : self.allKeysArray[sectionIndex];
+        if (self.allKeysArray.count > sectionIndex + 1) {
+            dateLabel.text = isNeedShowYeah ? self.allKeysArray[sectionIndex + 1] : self.allKeysArray[sectionIndex];
+        }
         
         UILabel *monthLabel = [[UILabel alloc] init];
         [view addSubview:monthLabel];

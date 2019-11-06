@@ -251,7 +251,7 @@
 - (void)saveButtonClick {
     [self handleKeyBoard];
     NSString *userIdString = [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"];
-    if (userIdString.length) {
+    if (!userIdString.length) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"请开启 iCloud 同步" message:nil preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:@"取消"
                                                   style:UIAlertActionStyleCancel
@@ -557,16 +557,20 @@
     UIImagePickerController *vc = [[UIImagePickerController alloc] init];
     vc.delegate = self;
     vc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    vc.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:vc animated:YES completion:nil];
 }
 
 #pragma mark  相机
 
 - (void)showCamera {
-    UIImagePickerController *vc = [[UIImagePickerController alloc] init];
-    vc.delegate = self;
-    vc.sourceType = UIImagePickerControllerSourceTypeCamera;
-    [self presentViewController:vc animated:YES completion:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+       UIImagePickerController *vc = [[UIImagePickerController alloc] init];
+       vc.delegate = self;
+       vc.sourceType = UIImagePickerControllerSourceTypeCamera;
+       vc.modalPresentationStyle = UIModalPresentationFullScreen;
+       [self presentViewController:vc animated:YES completion:nil];
+    });
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {

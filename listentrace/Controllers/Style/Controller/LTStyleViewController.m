@@ -41,7 +41,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"LTStyleTableViewCell" bundle:nil] forCellReuseIdentifier:@"LTStyleTableViewCell"];
-    self.tableView.rowHeight = 155;
+    self.tableView.rowHeight = 170;
     if (kDevice_iphone5) {
         self.tableView.rowHeight = 140;
     }
@@ -66,19 +66,22 @@
             // 获得所有的key
             self.allKeysArray = [result[@"data"] allKeys];
             NSMutableArray *albumArray = [NSMutableArray array];
-            // 循环拿到所有key对应的字典数组
-            for (int i = 0; i < self.allKeysArray.count; i ++) {
-                NSString *key = self.allKeysArray[i];
-                // 每一个key放着字典数组，字典数组可能有多个或者一个
-                NSArray *dicArray = result[@"data"][key];
-                NSMutableArray *modelArray = [NSMutableArray array];
-                // 将字典数组转换成模型数组
-                for (int j = 0; j < dicArray.count; j ++) {
-                    LTStyleModel *model = [LTStyleModel mj_objectWithKeyValues:dicArray[j]];
-                    [modelArray addObject:model];
+            
+            @autoreleasepool {
+                // 循环拿到所有key对应的字典数组
+                for (int i = 0; i < self.allKeysArray.count; i ++) {
+                    NSString *key = self.allKeysArray[i];
+                    // 每一个key放着字典数组，字典数组可能有多个或者一个
+                    NSArray *dicArray = result[@"data"][key];
+                    NSMutableArray *modelArray = [NSMutableArray array];
+                    // 将字典数组转换成模型数组
+                    for (int j = 0; j < dicArray.count; j ++) {
+                        LTStyleModel *model = [LTStyleModel mj_objectWithKeyValues:dicArray[j]];
+                        [modelArray addObject:model];
+                    }
+                    [albumArray addObject:modelArray];
+                    self.dataArray = albumArray;
                 }
-                [albumArray addObject:modelArray];
-                self.dataArray = albumArray;
             }
             [self.tableView reloadData];
         }
