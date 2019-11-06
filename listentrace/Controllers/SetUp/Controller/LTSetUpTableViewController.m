@@ -33,11 +33,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self creatAllViews];
-    NSString *count = [[NSUserDefaults standardUserDefaults] objectForKey:@"albumCount"];
-    if (!count) {
-        count = @"0";
-    }
-    self.icloudlabel.text = [NSString stringWithFormat:@"（云端 %@ / %@ 本地)",count,count];
+    [self setCount];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setCount) name:@"LTDidBecomeActive" object:nil];
 }
 
 - (void)creatAllViews {
@@ -49,7 +46,15 @@
     ViewBorderRadius(self.view4, 5, 1, RGBHex(0xE5EAFA));
 }
 
-#pragma mark - =================== 分享 ===================
+- (void)setCount {
+    NSString *count = [[NSUserDefaults standardUserDefaults] objectForKey:@"albumCount"];
+    if (!count) {
+        count = @"0";
+    }
+    self.icloudlabel.text = [NSString stringWithFormat:@"（云端 %@ / %@ 本地)",count,count];
+}
+
+#pragma mark 分享
 
 - (IBAction)shareButtonClick:(id)sender {
     // 1、设置分享的内容，并将内容添加到数组中
@@ -78,7 +83,7 @@
     [self presentViewController:activityVC animated:YES completion:nil];
 }
 
-#pragma mark - =================== 打开手动录入界面 ===================
+#pragma mark 打开手动录入界面
 
 - (IBAction)handsUrlSchemesClick:(id)sender {
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
@@ -87,7 +92,7 @@
     [MBProgressHUD showTipMessageInView:@"已复制到粘贴板"];
 }
 
-#pragma mark - =================== 打击app ===================
+#pragma mark 打击app
 
 - (IBAction)UrlSchemesButtonClick:(id)sender {
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
@@ -96,7 +101,7 @@
     [MBProgressHUD showTipMessageInView:@"已复制到粘贴板"];
 }
 
-#pragma mark - =================== 建议与反馈 ===================
+#pragma mark 建议与反馈
 
 - (IBAction)feedbackButtonClick:(id)sender {
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
@@ -108,7 +113,7 @@
     [self.navigationController presentViewController:alert animated:YES completion:nil];
 }
 
-#pragma mark - =================== 评分 ===================
+#pragma mark 评分
 
 - (IBAction)scoreButtonClick:(id)sender {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://itunes.apple.com/cn/app/id1473462600?action=write-review"]]];
@@ -118,20 +123,32 @@
 
 - (IBAction)PMAction:(id)sender {
     NSURL *twitterURL = [NSURL URLWithString:@"twitter://user?screen_name=hipperzhu"];
-    [[UIApplication sharedApplication] openURL:twitterURL];
+    
+    if ([[UIApplication sharedApplication] canOpenURL:twitterURL]) {
+        [[UIApplication sharedApplication] openURL:twitterURL];
+    }
+    else {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://twitter.com/hipperzhu"]];
+    }
 }
 
 #pragma mark iOS
 
 - (IBAction)iOSAction:(id)sender {
     NSURL *url = [NSURL URLWithString:@"sinaweibo://userinfo?uid=5242218307"];
+    
     if ([[UIApplication sharedApplication] canOpenURL:url]) {
         [[UIApplication sharedApplication] openURL:url];
+    }
+    else {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://m.weibo.cn/u/5242218307"]];
     }
 }
 
 #pragma mark Java
 
 - (IBAction)JavaAction:(id)sender {
+    NSURL *url = [NSURL URLWithString:@"https://github.com/LeaderYeDion"];
+    [[UIApplication sharedApplication] openURL:url];
 }
 @end

@@ -45,6 +45,7 @@
     }
     [self loginIcloud];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addAlbumSucess) name:@"AddAlbumSucess" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(LTDidBecomeActive) name:@"LTDidBecomeActive" object:nil];
 }
 
 - (void)creatAllViews {
@@ -90,6 +91,10 @@
 
 - (void)addAlbumSucess {
     [self requestData];
+}
+
+- (void)LTDidBecomeActive {
+    [self loginIcloud];
 }
 
 - (void)requestData {
