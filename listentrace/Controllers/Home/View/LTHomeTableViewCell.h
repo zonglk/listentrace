@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *producter;
 @property (weak, nonatomic) IBOutlet UIImageView *loveImage;
+@property (weak, nonatomic) IBOutlet UIView *lineView;
 @property (nonatomic, strong) LTAlbumModel *model;
 
 + (instancetype)creatCell;
