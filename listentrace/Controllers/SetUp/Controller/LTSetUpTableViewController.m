@@ -58,7 +58,7 @@
 
 - (IBAction)shareButtonClick:(id)sender {
     // 1、设置分享的内容，并将内容添加到数组中
-    NSString *shareText = @"我正在使用「听迹」App，感觉还不错。不妨试试看：D";
+    NSString *shareText = @"我正在使用「听迹」App，感觉还不错。不妨试试看:D";
     NSURL *shareUrl = [NSURL URLWithString:@"itms-apps://itunes.apple.com/cn/app/id1473462600?mt=8"];
     NSArray *activityItemsArray = @[shareText,shareUrl];
     
@@ -122,13 +122,13 @@
 #pragma mark 产品
 
 - (IBAction)PMAction:(id)sender {
-    NSURL *twitterURL = [NSURL URLWithString:@"twitter://user?screen_name=hipperzhu"];
+    NSURL *twitterURL = [NSURL URLWithString:@"twitter://user?screen_name=hippiezhu"];
     
     if ([[UIApplication sharedApplication] canOpenURL:twitterURL]) {
         [[UIApplication sharedApplication] openURL:twitterURL];
     }
     else {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://twitter.com/hipperzhu"]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://twitter.com/hippiezhu"]];
     }
 }
 

@@ -259,7 +259,7 @@
     [self handleKeyBoard];
     NSString *userIdString = [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"];
     if (!userIdString.length) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"请开启 iCloud 同步" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"请开启 iCloud 同步\n方可使用完整功能" preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:@"取消"
                                                   style:UIAlertActionStyleCancel
                                                 handler:nil]];
