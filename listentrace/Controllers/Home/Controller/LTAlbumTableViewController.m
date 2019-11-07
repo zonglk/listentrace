@@ -55,7 +55,6 @@
 @property (nonatomic, strong) UIButton *cancleButton;
 @property (nonatomic, strong) UIButton *sureButton;
 @property (nonatomic, strong) JPImageresizerView *imageresizerView;
-@property (nonatomic, strong) LTAlbumStyleView *albumStyleView;
 @property (nonatomic, strong) UIView *styleCoverView;
 @property (nonatomic, strong) NSMutableArray *detailDataArray; // 曲目详细信息
 @property (nonatomic, strong) LTAlbumTimePIckerView *timePicker;
@@ -444,6 +443,7 @@
             cell.composerTextField.enabled = NO;
             cell.arrangerTextField.enabled = NO;
             cell.songPerformerTextField.enabled = NO;
+            cell.deleteButton.hidden = YES;
         }
         else {
             cell.songTextField.enabled = YES;
@@ -451,6 +451,7 @@
             cell.composerTextField.enabled = YES;
             cell.arrangerTextField.enabled = YES;
             cell.songPerformerTextField.enabled = YES;
+            cell.deleteButton.hidden = NO;
         }
         return cell;
     }
