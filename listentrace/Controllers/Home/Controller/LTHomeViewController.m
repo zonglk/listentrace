@@ -62,7 +62,7 @@
     [self.view addSubview:self.addBttton];
     [self.addBttton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.view.mas_right).offset(-15);
-        make.bottom.mas_equalTo(self.homeTableView.mas_bottom).offset(-20);
+        make.bottom.mas_equalTo(self.homeTableView.mas_bottom).offset(-18);
     }];
     [self.addBttton setBackgroundImage:[UIImage imageNamed:@"home_add"] forState:UIControlStateNormal];
     [self.addBttton setBackgroundImage:[UIImage imageNamed:@"home_add"] forState:UIControlStateHighlighted];
