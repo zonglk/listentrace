@@ -43,6 +43,8 @@
     else {
         self.loveImage.hidden = YES;
     }
+    
+    
 }
 
 @end
