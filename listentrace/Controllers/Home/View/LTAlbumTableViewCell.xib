@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -29,96 +29,86 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="作词人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pom-Hc-nih">
-                                <rect key="frame" x="38" y="68.5" width="43" height="17"/>
+                                <rect key="frame" x="38" y="68" width="43" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="作曲人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eot-7s-JkZ">
-                                <rect key="frame" x="38" y="119.5" width="43" height="17"/>
+                                <rect key="frame" x="38" y="118.5" width="43" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h7b-nH-KhK">
-                                <rect key="frame" x="0.0" y="50" width="474" height="1"/>
+                                <rect key="frame" x="0.0" y="50" width="474" height="0.5"/>
                                 <color key="backgroundColor" red="0.8980392157" green="0.91764705879999997" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="QcV-pP-l2i"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="lY0-1M-G1N"/>
+                                    <constraint firstAttribute="height" constant="0.5" id="QcV-pP-l2i"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="75p-0v-l4f">
-                                <rect key="frame" x="0.0" y="101" width="474" height="1"/>
+                                <rect key="frame" x="0.0" y="100.5" width="474" height="0.5"/>
                                 <color key="backgroundColor" red="0.8980392157" green="0.91764705879999997" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="5N5-1i-YLf"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="1" id="DQc-45-6nH"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="gpW-05-JOr"/>
+                                    <constraint firstAttribute="height" constant="0.5" id="5N5-1i-YLf"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xNr-XQ-Inf">
-                                <rect key="frame" x="0.0" y="153" width="474" height="1"/>
+                                <rect key="frame" x="0.0" y="152" width="474" height="0.5"/>
                                 <color key="backgroundColor" red="0.8980392157" green="0.91764705879999997" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="1" id="ItF-9V-FwP"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="1" id="P7g-pX-kNv"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="cev-Fb-ixg"/>
-                                    <constraint firstAttribute="height" constant="1" id="zST-FX-JWP"/>
+                                    <constraint firstAttribute="height" constant="0.5" id="zST-FX-JWP"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4jh-7j-dzC">
-                                <rect key="frame" x="0.0" y="205" width="474" height="1"/>
+                                <rect key="frame" x="0.0" y="203.5" width="474" height="0.5"/>
                                 <color key="backgroundColor" red="0.8980392157" green="0.91764705879999997" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="6pD-ys-hhh"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="1" id="7EP-u5-e6z"/>
-                                    <constraint firstAttribute="height" constant="1" id="8ko-4z-aGe"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="1" id="DaJ-ha-jsZ"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="1" id="iCt-5H-YHZ"/>
+                                    <constraint firstAttribute="height" constant="0.5" id="8ko-4z-aGe"/>
                                 </constraints>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DEi-Ha-bT9">
                                 <rect key="frame" x="107" y="1" width="347" height="49"/>
                                 <color key="textColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="02g-M9-gTc">
-                                <rect key="frame" x="107" y="52" width="347" height="49"/>
+                                <rect key="frame" x="107" y="51.5" width="347" height="49"/>
                                 <color key="textColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vkr-eV-eQz">
-                                <rect key="frame" x="107" y="103" width="347" height="50"/>
+                                <rect key="frame" x="107" y="102" width="347" height="50"/>
                                 <color key="textColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AYI-z7-rvF">
-                                <rect key="frame" x="107" y="154" width="347" height="51"/>
+                                <rect key="frame" x="107" y="152.5" width="347" height="51"/>
                                 <color key="textColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="编曲人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R7S-Zk-7Ye">
-                                <rect key="frame" x="38" y="171.5" width="43" height="17"/>
+                                <rect key="frame" x="38" y="170" width="43" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="乐器演奏者" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q1G-JZ-Tyd">
-                                <rect key="frame" x="9.5" y="219.5" width="71.5" height="17"/>
+                                <rect key="frame" x="9.5" y="218.5" width="71.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v0h-ix-Ekz">
-                                <rect key="frame" x="107" y="206" width="347" height="43.5"/>
+                                <rect key="frame" x="107" y="204" width="347" height="45.5"/>
                                 <color key="textColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

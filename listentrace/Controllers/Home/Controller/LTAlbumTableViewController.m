@@ -19,7 +19,7 @@
 #import "LTAlbumTimePIckerView.h"
 #import "LTAddAlbumDetailModel.h"
 
-@interface LTAlbumTableViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, LTAlbumTableViewCellDelegate, UIPickerViewDelegate, LTAlbumTimePickerDelegate>
+@interface LTAlbumTableViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, LTAlbumTableViewCellDelegate, UIPickerViewDelegate, LTAlbumTimePickerDelegate, UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *albumTableView;
 @property (weak, nonatomic) IBOutlet UILabel *tipsImageLabel;
 @property (weak, nonatomic) IBOutlet UIButton *albumButton;
@@ -67,6 +67,7 @@
 @property (nonatomic, strong) UIButton *rightNavButton;
 @property (nonatomic, assign) BOOL isSave; // 专辑已存在时候的保存
 @property (nonatomic, assign) BOOL isChange; // 是否有修改
+@property (nonatomic,strong) LTAlbumTableViewCell *detailCell;
 
 - (IBAction)albumButtonClick:(id)sender; // 专辑封面
 - (IBAction)loveButtonClick:(id)sender; // 喜欢
@@ -455,6 +456,13 @@
             cell.songPerformerTextField.enabled = YES;
             cell.deleteButton.hidden = NO;
         }
+        cell.songTextField.delegate = self;
+        cell.lyricistTextField.delegate = self;
+        cell.composerTextField.delegate = self;
+        cell.arrangerTextField.delegate = self;
+        cell.songPerformerTextField.delegate = self;
+        self.detailCell = cell;
+        
         return cell;
     }
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -901,6 +909,11 @@
     [self.mixingTextField resignFirstResponder];
     [self.masteringTextField resignFirstResponder];
     [self.coverTextField resignFirstResponder];
+    [self.detailCell.songTextField resignFirstResponder];
+    [self.detailCell.lyricistTextField resignFirstResponder];
+    [self.detailCell.composerTextField resignFirstResponder];
+    [self.detailCell.arrangerTextField resignFirstResponder];
+    [self.detailCell.songPerformerTextField resignFirstResponder];
 }
 
 - (LTAlbumStyleView *)styleView {

@@ -46,30 +46,58 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yzJ-mg-Ngu">
                         <rect key="frame" x="25" y="50" width="328" height="115.5"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NVe-bi-4q0">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F2L-2p-Ehn">
+                                <rect key="frame" x="44" y="-7" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NVe-bi-4q0">
                                 <rect key="frame" x="-10" y="0.0" width="109.5" height="115.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="109.5" id="P8Z-qs-poz"/>
+                                    <constraint firstAttribute="height" constant="115.5" id="WzI-9z-NrR"/>
+                                </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WXB-yy-M91">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qwr-fE-wAf">
+                                <rect key="frame" x="44" y="-7" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WXB-yy-M91">
                                 <rect key="frame" x="109.5" y="0.0" width="109" height="115.5"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lF3-6L-eKW">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y0p-wh-2Ag">
+                                <rect key="frame" x="44" y="-7" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lF3-6L-eKW">
                                 <rect key="frame" x="228.5" y="0.0" width="109.5" height="115.5"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="lF3-6L-eKW" firstAttribute="width" secondItem="WXB-yy-M91" secondAttribute="width" id="4Kf-l3-SQF"/>
+                            <constraint firstItem="F2L-2p-Ehn" firstAttribute="centerX" secondItem="NVe-bi-4q0" secondAttribute="centerX" id="6hV-qU-hbI"/>
                             <constraint firstItem="NVe-bi-4q0" firstAttribute="top" secondItem="yzJ-mg-Ngu" secondAttribute="top" id="77c-hf-LP7"/>
+                            <constraint firstItem="lF3-6L-eKW" firstAttribute="height" secondItem="Y0p-wh-2Ag" secondAttribute="height" id="DT4-fG-5Dj"/>
                             <constraint firstItem="WXB-yy-M91" firstAttribute="height" secondItem="NVe-bi-4q0" secondAttribute="height" id="H2d-Dt-0Sr"/>
+                            <constraint firstItem="lF3-6L-eKW" firstAttribute="width" secondItem="Y0p-wh-2Ag" secondAttribute="width" id="MF8-OJ-Ejk"/>
                             <constraint firstItem="lF3-6L-eKW" firstAttribute="height" secondItem="WXB-yy-M91" secondAttribute="height" id="MJB-7D-CE3"/>
                             <constraint firstItem="WXB-yy-M91" firstAttribute="centerY" secondItem="yzJ-mg-Ngu" secondAttribute="centerY" id="N4c-0x-YyD"/>
                             <constraint firstItem="WXB-yy-M91" firstAttribute="centerX" secondItem="yzJ-mg-Ngu" secondAttribute="centerX" id="Npn-gp-XCY"/>
+                            <constraint firstItem="F2L-2p-Ehn" firstAttribute="height" secondItem="NVe-bi-4q0" secondAttribute="height" id="P9h-wN-5Ey"/>
                             <constraint firstItem="lF3-6L-eKW" firstAttribute="centerY" secondItem="yzJ-mg-Ngu" secondAttribute="centerY" id="WPp-Gs-Plg"/>
                             <constraint firstItem="NVe-bi-4q0" firstAttribute="width" secondItem="yzJ-mg-Ngu" secondAttribute="width" multiplier="1/3" id="Yc9-Yv-HQU"/>
+                            <constraint firstItem="WXB-yy-M91" firstAttribute="height" secondItem="qwr-fE-wAf" secondAttribute="height" id="bC8-5e-WzH"/>
+                            <constraint firstItem="lF3-6L-eKW" firstAttribute="centerY" secondItem="Y0p-wh-2Ag" secondAttribute="centerY" id="dYX-UF-7zl"/>
                             <constraint firstItem="lF3-6L-eKW" firstAttribute="leading" secondItem="WXB-yy-M91" secondAttribute="trailing" constant="10" id="ehE-95-6DM"/>
                             <constraint firstItem="NVe-bi-4q0" firstAttribute="leading" secondItem="yzJ-mg-Ngu" secondAttribute="leading" constant="-10" id="gWl-NT-Mm3"/>
+                            <constraint firstItem="F2L-2p-Ehn" firstAttribute="centerY" secondItem="NVe-bi-4q0" secondAttribute="centerY" id="iSP-Ke-b9r"/>
+                            <constraint firstItem="F2L-2p-Ehn" firstAttribute="width" secondItem="NVe-bi-4q0" secondAttribute="width" id="mCZ-s1-aZf"/>
+                            <constraint firstItem="WXB-yy-M91" firstAttribute="centerX" secondItem="qwr-fE-wAf" secondAttribute="centerX" id="nVo-AM-Py1"/>
                             <constraint firstItem="WXB-yy-M91" firstAttribute="width" secondItem="NVe-bi-4q0" secondAttribute="width" id="rNq-pV-TDi"/>
+                            <constraint firstItem="WXB-yy-M91" firstAttribute="width" secondItem="qwr-fE-wAf" secondAttribute="width" id="sGy-zj-GZm"/>
                             <constraint firstAttribute="bottom" secondItem="NVe-bi-4q0" secondAttribute="bottom" id="sX7-3P-2mt"/>
+                            <constraint firstItem="WXB-yy-M91" firstAttribute="centerY" secondItem="qwr-fE-wAf" secondAttribute="centerY" id="xBe-FS-6uU"/>
+                            <constraint firstItem="lF3-6L-eKW" firstAttribute="centerX" secondItem="Y0p-wh-2Ag" secondAttribute="centerX" id="zcd-OT-fGb"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -98,6 +126,9 @@
                 <outlet property="middleImageVIew" destination="WXB-yy-M91" id="GPY-RG-4Gb"/>
                 <outlet property="rightImageView" destination="lF3-6L-eKW" id="29V-FQ-5M0"/>
                 <outlet property="styleLabel" destination="Je3-4C-umv" id="NQM-dA-mPQ"/>
+                <outlet property="view1" destination="F2L-2p-Ehn" id="1iK-Mh-dcn"/>
+                <outlet property="view2" destination="qwr-fE-wAf" id="IKX-9G-M9j"/>
+                <outlet property="view3" destination="Y0p-wh-2Ag" id="LFl-Bo-oRd"/>
             </connections>
             <point key="canvasLocation" x="155.07246376811597" y="208.92857142857142"/>
         </tableViewCell>

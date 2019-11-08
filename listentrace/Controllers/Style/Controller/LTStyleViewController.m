@@ -148,22 +148,28 @@
             [cell.leftImageVIew setImageWithURL:[NSURL URLWithString:self.model.album_img] placeholder:[UIImage imageNamed:@"style_album_placeImage"]];
             cell.middleImageVIew.hidden = YES;
             cell.rightImageView.hidden = YES;
+            cell.view2.hidden = YES;
+            cell.view3.hidden = YES;
         }
         else if (i == 1) {
             self.model = array[1];
             [cell.middleImageVIew setImageWithURL:[NSURL URLWithString:self.model.album_img] placeholder:[UIImage imageNamed:@"style_album_placeImage"]];
             cell.middleImageVIew.hidden = NO;
             cell.rightImageView.hidden = YES;
+            cell.view2.hidden = NO;
+            cell.view3.hidden = YES;
         }
         else if (i == 2) {
             self.model = array[2];
             [cell.rightImageView setImageWithURL:[NSURL URLWithString:self.model.album_img] placeholder:[UIImage imageNamed:@"style_album_placeImage"]];
             cell.middleImageVIew.hidden = NO;
             cell.rightImageView.hidden = NO;
+            cell.view2.hidden = NO;
+            cell.view3.hidden = NO;
         }
         else {
-            cell.middleImageVIew.hidden = NO;
-            cell.rightImageView.hidden = NO;
+            cell.view2.hidden = NO;
+            cell.view3.hidden = NO;
             break;
         }
     }
