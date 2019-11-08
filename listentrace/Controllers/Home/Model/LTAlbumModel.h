@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LTAlbumModel : NSObject
 
+
+
 /*
  "data": {
  "2019-8": [
