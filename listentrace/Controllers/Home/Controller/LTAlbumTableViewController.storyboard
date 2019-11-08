@@ -74,7 +74,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="189.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pGQ-HD-aAP">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="album_albumImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="pGQ-HD-aAP">
                                                     <rect key="frame" x="117.5" y="25" width="140" height="140"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="140" id="9q7-aS-ZIu"/>
@@ -87,13 +87,12 @@
                                                         <constraint firstAttribute="width" constant="140" id="pbL-Sv-JU6"/>
                                                         <constraint firstAttribute="height" constant="140" id="zQn-YZ-prv"/>
                                                     </constraints>
-                                                    <state key="normal" image="album_albumImage.png"/>
                                                     <connections>
                                                         <action selector="albumButtonClick:" destination="yVZ-Bj-Hec" eventType="touchUpInside" id="nqr-cn-snT"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="必填" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkN-cR-9fu">
-                                                    <rect key="frame" x="217.5" y="135" width="25" height="15"/>
+                                                    <rect key="frame" x="217.5" y="138" width="25" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.82745098039215681" green="0.82745098039215681" blue="0.82745098039215681" alpha="0.54109589041095896" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -114,7 +113,7 @@
                                                 <constraint firstItem="rkN-cR-9fu" firstAttribute="trailing" secondItem="ZLo-c3-UVi" secondAttribute="trailing" constant="-15" id="gbx-hb-Ufq"/>
                                                 <constraint firstItem="ZLo-c3-UVi" firstAttribute="centerX" secondItem="hJZ-bW-c34" secondAttribute="centerX" id="oom-Nq-Cj1"/>
                                                 <constraint firstItem="ZLo-c3-UVi" firstAttribute="centerY" secondItem="hJZ-bW-c34" secondAttribute="centerY" id="rNI-7G-juH"/>
-                                                <constraint firstItem="rkN-cR-9fu" firstAttribute="bottom" secondItem="ZLo-c3-UVi" secondAttribute="bottom" constant="-15" id="sIe-fO-gyl"/>
+                                                <constraint firstItem="rkN-cR-9fu" firstAttribute="bottom" secondItem="ZLo-c3-UVi" secondAttribute="bottom" constant="-12" id="sIe-fO-gyl"/>
                                                 <constraint firstAttribute="trailing" secondItem="SRg-xX-0Oc" secondAttribute="trailing" constant="12" id="sN9-Du-6sO"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -799,7 +798,7 @@
     </scenes>
     <resources>
         <image name="album_add.png" width="26" height="26"/>
-        <image name="album_albumImage.png" width="155" height="155"/>
+        <image name="album_albumImage.png" width="140" height="140"/>
         <image name="album_down_arrow.png" width="14" height="8"/>
         <image name="album_grayHeart.png" width="19" height="17.5"/>
         <image name="album_redHeart.png" width="19" height="17.5"/>
