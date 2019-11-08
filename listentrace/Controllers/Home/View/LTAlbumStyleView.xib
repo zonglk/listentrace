@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="style_backGround.png" translatesAutoresizingMaskIntoConstraints="NO" id="440-3Y-2Y1">
-                    <rect key="frame" x="-60" y="-15" width="377" height="458"/>
+                    <rect key="frame" x="-60" y="-15" width="377" height="448"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="album_style.png" translatesAutoresizingMaskIntoConstraints="NO" id="kgK-oW-zh4">
                     <rect key="frame" x="219" y="0.0" width="23" height="9"/>
@@ -36,7 +36,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="440-3Y-2Y1" firstAttribute="leading" secondItem="8u7-la-Toq" secondAttribute="leading" constant="-60" id="6AN-C4-70D"/>
-                <constraint firstAttribute="bottom" secondItem="440-3Y-2Y1" secondAttribute="bottom" constant="-60" id="DBR-17-Ahd"/>
+                <constraint firstAttribute="bottom" secondItem="440-3Y-2Y1" secondAttribute="bottom" constant="-50" id="DBR-17-Ahd"/>
                 <constraint firstAttribute="bottom" secondItem="EdA-ZO-Z3m" secondAttribute="bottom" id="DMU-EG-h75"/>
                 <constraint firstAttribute="trailing" secondItem="440-3Y-2Y1" secondAttribute="trailing" constant="-60" id="FiN-dE-cRT"/>
                 <constraint firstItem="kgK-oW-zh4" firstAttribute="top" secondItem="8u7-la-Toq" secondAttribute="top" id="QLe-kU-gBb"/>
