@@ -680,7 +680,7 @@
     [self handleKeyBoard];
     UIView *coverView = [[UIView alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
     [[UIApplication sharedApplication].keyWindow addSubview:coverView];
-    coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
+    coverView.backgroundColor = [UIColor clearColor];
     self.styleCoverView = coverView;
     
     UIButton *button = [[UIButton alloc] initWithFrame:coverView.frame];
