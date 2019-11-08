@@ -135,7 +135,7 @@
                     [albumArray addObject:modelArray];
                 }
                 self.dataArray = albumArray;
-                NSString *section = [NSString stringWithFormat:@"%ld",sectionIndex];
+                NSString *section = [NSString stringWithFormat:@"%ld",(long)sectionIndex];
                 [self.yearKeyIndexArray addObject:section];
             }
             
@@ -216,7 +216,7 @@
             make.top.mas_equalTo(view.mas_top).offset(18);
         }];
         dateLabel.textColor = RGBHex(0x545C77);
-        dateLabel.font = [UIFont systemFontOfSize:20.0];
+        dateLabel.font = [UIFont systemFontOfSize:20.0 weight:UIFontWeightLight];
         if (self.allKeysArray.count > sectionIndex + 1) {
             dateLabel.text = isNeedShowYeah ? self.allKeysArray[sectionIndex + 1] : self.allKeysArray[sectionIndex];
         }
@@ -228,7 +228,7 @@
             make.top.mas_equalTo(dateLabel.mas_bottom).offset(5);
         }];
         monthLabel.textColor = RGBHex(0x989DAD);
-        monthLabel.font = [UIFont systemFontOfSize:13.0];
+        monthLabel.font = [UIFont systemFontOfSize:13.0 weight:UIFontWeightLight];
         monthLabel.text = self.allMonthKeysArray[section];
         return view;
     }
@@ -243,7 +243,7 @@
             make.top.mas_equalTo(view.mas_top).offset(10);
         }];
         monthLabel.textColor = RGBHex(0x989DAD);
-        monthLabel.font = [UIFont systemFontOfSize:13.0];
+        monthLabel.font = [UIFont systemFontOfSize:13.0 weight:UIFontWeightLight];
         monthLabel.text = self.allMonthKeysArray[section];
         return view;
     }
@@ -274,7 +274,7 @@
             make.centerY.mas_equalTo(view);
         }];
         self.tipsLable.textColor = RGBHex(0xB2B2B2);
-        self.tipsLable.font = [UIFont systemFontOfSize:13.0];
+        self.tipsLable.font = [UIFont systemFontOfSize:12.0];
         self.tipsLable.text = self.countTipString;
         return view;
     }

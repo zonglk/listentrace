@@ -485,7 +485,6 @@
 #pragma mark 详细曲目信息文本编辑 delegate
 
 - (void)detailCellTextChange:(LTAlbumTableViewCell *)cell string:(NSString *)string index:(NSInteger)index {
-    [self handleKeyBoard];
     NSIndexPath *indexPath = [self.albumTableView indexPathForCell:cell];
     self.detailModel = self.detailDataArray[indexPath.row];
     if (index == 0) {
