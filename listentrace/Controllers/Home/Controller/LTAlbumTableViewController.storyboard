@@ -74,7 +74,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="190"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLo-c3-UVi">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pGQ-HD-aAP">
+                                                    <rect key="frame" x="137" y="25" width="140" height="140"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="140" id="9q7-aS-ZIu"/>
+                                                        <constraint firstAttribute="height" constant="140" id="q5w-qK-Mwn"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="bottomLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLo-c3-UVi">
                                                     <rect key="frame" x="137" y="25" width="140" height="140"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="140" id="pbL-Sv-JU6"/>
@@ -101,6 +108,8 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="pGQ-HD-aAP" firstAttribute="centerY" secondItem="ZLo-c3-UVi" secondAttribute="centerY" id="8bt-D9-B05"/>
+                                                <constraint firstItem="pGQ-HD-aAP" firstAttribute="centerX" secondItem="ZLo-c3-UVi" secondAttribute="centerX" id="QEd-bq-ZjB"/>
                                                 <constraint firstItem="SRg-xX-0Oc" firstAttribute="bottom" secondItem="ZLo-c3-UVi" secondAttribute="bottom" constant="2" id="bdZ-Sv-AdX"/>
                                                 <constraint firstItem="rkN-cR-9fu" firstAttribute="trailing" secondItem="ZLo-c3-UVi" secondAttribute="trailing" constant="-15" id="gbx-hb-Ufq"/>
                                                 <constraint firstItem="ZLo-c3-UVi" firstAttribute="centerX" secondItem="hJZ-bW-c34" secondAttribute="centerX" id="oom-Nq-Cj1"/>
@@ -744,6 +753,7 @@
                     <connections>
                         <outlet property="addDetailButton" destination="C8E-o7-JXA" id="K73-u5-U7Q"/>
                         <outlet property="albumButton" destination="ZLo-c3-UVi" id="8Ey-hM-fd9"/>
+                        <outlet property="albumImageView" destination="pGQ-HD-aAP" id="Lzk-z4-yba"/>
                         <outlet property="albumNameTextField" destination="MYa-hq-4lz" id="rs2-56-58n"/>
                         <outlet property="albumTableView" destination="mwT-9g-i7I" id="FJX-Mr-Ni1"/>
                         <outlet property="coverTextField" destination="b0J-I4-wBS" id="oQk-3S-Jzm"/>
@@ -775,7 +785,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rAV-eh-EqR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="457" y="-421"/>
+            <point key="canvasLocation" x="456.52173913043481" y="-421.46739130434787"/>
         </scene>
     </scenes>
     <resources>

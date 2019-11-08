@@ -20,8 +20,11 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self = [[[NSBundle mainBundle] loadNibNamed:@"LTAlbumStyleView" owner:self options:nil] lastObject];
-        self.layer.cornerRadius = 8;
-        self.clipsToBounds = YES;
+        [[self layer] setShadowOffset:CGSizeZero];
+        [[self layer] setShadowRadius:4]; // 阴影扩散的范围控制
+        [[self layer] setShadowOpacity:1]; // 阴影透明度
+        [[self layer] setShadowColor:RGBHexAlpha(0x68BAE9, 0.45).CGColor]; // 阴影的颜色
+        
         self.frame = frame;
         [self cratAllViews];
     }

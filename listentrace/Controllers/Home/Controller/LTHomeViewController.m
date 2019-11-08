@@ -90,8 +90,6 @@
 }
 
 - (void)addAlbumSucess {
-    [self.allMonthKeysArray removeAllObjects];
-    [self.yearKeyIndexArray removeAllObjects];
     [self requestData];
 }
 
@@ -103,6 +101,8 @@
     [LTNetworking requestUrl:@"/album/trace" WithParam:@{@"user_id" : [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"]} withMethod:GET success:^(id  _Nonnull result) {
         
         if ([result[@"code"] intValue] == 200) {
+            [self.allMonthKeysArray removeAllObjects];
+            [self.yearKeyIndexArray removeAllObjects];
             self.noNetWorkView.hidden = YES;
             self.albumCount = 0;
             // 获得所有的key 对应年份
@@ -189,7 +189,7 @@
         }
     }
     if (section == 0 || isNeedShowYeah) {
-        return 65;
+        return 62;
     }
     else {
         return 30;
@@ -225,7 +225,7 @@
         [view addSubview:monthLabel];
         [monthLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(view.mas_left).offset(15);
-            make.top.mas_equalTo(dateLabel.mas_bottom).offset(4);
+            make.top.mas_equalTo(dateLabel.mas_bottom).offset(5);
         }];
         monthLabel.textColor = RGBHex(0x989DAD);
         monthLabel.font = [UIFont systemFontOfSize:13.0];
@@ -240,7 +240,7 @@
         [view addSubview:monthLabel];
         [monthLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(view.mas_left).offset(15);
-            make.top.mas_equalTo(view.mas_top).offset(8);
+            make.top.mas_equalTo(view.mas_top).offset(14);
         }];
         monthLabel.textColor = RGBHex(0x989DAD);
         monthLabel.font = [UIFont systemFontOfSize:13.0];

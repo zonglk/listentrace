@@ -23,6 +23,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *albumTableView;
 @property (weak, nonatomic) IBOutlet UILabel *tipsImageLabel;
 @property (weak, nonatomic) IBOutlet UIButton *albumButton;
+@property (weak, nonatomic) IBOutlet UIImageView *albumImageView;
 @property (weak, nonatomic) IBOutlet UIButton *loveButton; // 红心
 @property (weak, nonatomic) IBOutlet UIButton *styleButton; // 风格
 @property (weak, nonatomic) IBOutlet UITextField *albumNameTextField; // 专辑名
@@ -133,11 +134,11 @@
     ViewBorderRadius(self.view5, 5, 1, RGBHex(0xE5EAFA));
     ViewBorderRadius(self.view6, 5, 1, RGBHex(0xE5EAFA));
     
-    [[self.albumButton layer] setShadowOffset:CGSizeZero]; // 阴影扩散的范围控制
-    [[self.albumButton layer] setShadowRadius:4]; // 阴影扩散的范围控制
-    [[self.albumButton layer] setShadowOpacity:1]; // 阴影透明度
-    [[self.albumButton layer] setShadowColor:RGBHexAlpha(0x68BAE9, 0.45).CGColor]; // 阴影的颜色
-    self.albumButton.clipsToBounds = NO;
+    [[self.albumImageView layer] setShadowOffset:CGSizeZero];
+    [[self.albumImageView layer] setShadowRadius:6]; // 阴影扩散的范围控制
+    [[self.albumImageView layer] setShadowOpacity:1]; // 阴影透明度
+    [[self.albumImageView layer] setShadowColor:RGBHexAlpha(0x68BAE9, 0.45).CGColor]; // 阴影的颜色
+    self.albumImageView.clipsToBounds = NO;
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -211,7 +212,8 @@
     if (self.detailDataArray.count) {
         [self.albumTableView reloadData];
     }
-    [self.albumButton setImageWithURL:result[@"data"][@"album_img"] forState:UIControlStateNormal placeholder:[UIImage imageNamed:@"album_detail_placeImage"]];
+    [self.albumButton setImageWithURL:nil forState:UIControlStateNormal placeholder:nil];
+    [self.albumImageView sd_setImageWithURL:result[@"data"][@"album_img"] placeholderImage:[UIImage imageNamed:@"album_detail_placeImage"]];
     if ([result[@"data"][@"favorite"] intValue] == 1) {
         self.loveButton.selected = YES;
     }

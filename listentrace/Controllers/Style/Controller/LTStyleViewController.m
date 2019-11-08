@@ -45,6 +45,9 @@
     if (kDevice_iphone5) {
         self.tableView.rowHeight = 140;
     }
+    else if (kDevice_iphone6) {
+        self.tableView.rowHeight = 160;
+    }
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     
