@@ -276,6 +276,15 @@
                                                                 <action selector="albumTimeButtonClick:" destination="yVZ-Bj-Hec" eventType="touchUpInside" id="n2e-UE-xPv"/>
                                                             </connections>
                                                         </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oUO-aO-Kj3">
+                                                            <rect key="frame" x="251" y="0.0" width="100" height="51"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="100" id="ppK-TV-nGS"/>
+                                                            </constraints>
+                                                            <connections>
+                                                                <action selector="albumStyle:forEvent:" destination="yVZ-Bj-Hec" eventType="touchUpInside" id="E2m-4P-X18"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -283,6 +292,7 @@
                                                         <constraint firstAttribute="bottom" secondItem="UuZ-wZ-sNC" secondAttribute="bottom" id="75a-4e-xBK"/>
                                                         <constraint firstItem="KTS-PC-qYe" firstAttribute="leading" secondItem="pSY-vm-hte" secondAttribute="leading" id="8Lg-Hy-kUb"/>
                                                         <constraint firstItem="HkI-75-Sto" firstAttribute="leading" secondItem="pSY-vm-hte" secondAttribute="leading" constant="48" id="9cx-ud-maV"/>
+                                                        <constraint firstAttribute="trailing" secondItem="oUO-aO-Kj3" secondAttribute="trailing" id="9cy-KU-fSk"/>
                                                         <constraint firstItem="Pg9-Ak-FNy" firstAttribute="leading" secondItem="v39-fd-pOs" secondAttribute="trailing" constant="10" id="BcK-bm-eAH"/>
                                                         <constraint firstItem="N0x-A2-tDO" firstAttribute="centerY" secondItem="pSY-vm-hte" secondAttribute="centerY" multiplier="1.5" id="MfZ-95-Spx"/>
                                                         <constraint firstItem="UuZ-wZ-sNC" firstAttribute="top" secondItem="KTS-PC-qYe" secondAttribute="bottom" id="Pxd-cc-7KS"/>
@@ -291,6 +301,7 @@
                                                         <constraint firstItem="e7e-Bt-s3W" firstAttribute="leading" secondItem="Pg9-Ak-FNy" secondAttribute="leading" id="SA2-Rx-Lt2"/>
                                                         <constraint firstAttribute="trailing" secondItem="Pg9-Ak-FNy" secondAttribute="trailing" constant="25" id="TEv-xv-Y4v"/>
                                                         <constraint firstItem="KTS-PC-qYe" firstAttribute="centerY" secondItem="pSY-vm-hte" secondAttribute="centerY" id="TmB-e2-VaG"/>
+                                                        <constraint firstItem="KTS-PC-qYe" firstAttribute="top" secondItem="oUO-aO-Kj3" secondAttribute="bottom" id="W81-bn-5Nh"/>
                                                         <constraint firstItem="KTS-PC-qYe" firstAttribute="top" secondItem="v39-fd-pOs" secondAttribute="bottom" id="WLU-KZ-gWp"/>
                                                         <constraint firstAttribute="trailing" secondItem="KTS-PC-qYe" secondAttribute="trailing" id="YKN-Zx-hD3"/>
                                                         <constraint firstItem="ekd-R2-Wwg" firstAttribute="top" secondItem="KTS-PC-qYe" secondAttribute="bottom" id="YOg-rd-xMU"/>
@@ -301,6 +312,7 @@
                                                         <constraint firstItem="UuZ-wZ-sNC" firstAttribute="leading" secondItem="N0x-A2-tDO" secondAttribute="trailing" id="fPA-IT-8Wd"/>
                                                         <constraint firstAttribute="trailing" secondItem="UuZ-wZ-sNC" secondAttribute="trailing" id="gLI-t0-q02"/>
                                                         <constraint firstItem="HkI-75-Sto" firstAttribute="centerY" secondItem="pSY-vm-hte" secondAttribute="centerY" multiplier="0.5" id="jCU-IP-xwS"/>
+                                                        <constraint firstItem="oUO-aO-Kj3" firstAttribute="top" secondItem="pSY-vm-hte" secondAttribute="top" id="mjf-c3-pc1"/>
                                                         <constraint firstItem="e7e-Bt-s3W" firstAttribute="trailing" secondItem="Pg9-Ak-FNy" secondAttribute="trailing" id="p8W-TO-Y1T"/>
                                                         <constraint firstAttribute="bottom" secondItem="ekd-R2-Wwg" secondAttribute="bottom" id="rcn-Lb-ISD"/>
                                                         <constraint firstItem="e7e-Bt-s3W" firstAttribute="centerX" secondItem="Pg9-Ak-FNy" secondAttribute="centerX" id="sZR-55-fCN"/>
