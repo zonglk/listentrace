@@ -221,6 +221,10 @@
             dateLabel.text = isNeedShowYeah ? self.allKeysArray[sectionIndex + 1] : self.allKeysArray[sectionIndex];
         }
         
+        if (self.allKeysArray.count == 1) {
+            dateLabel.text = self.allKeysArray[0];
+        }
+        
         UILabel *monthLabel = [[UILabel alloc] init];
         [view addSubview:monthLabel];
         [monthLabel mas_makeConstraints:^(MASConstraintMaker *make) {
