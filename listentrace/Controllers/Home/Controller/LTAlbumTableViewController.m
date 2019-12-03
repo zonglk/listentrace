@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *albumImageView;
 @property (weak, nonatomic) IBOutlet UIButton *loveButton; // 红心
 @property (weak, nonatomic) IBOutlet UIButton *styleButton; // 风格
+@property (weak, nonatomic) IBOutlet UIButton *styleViewButton;
 @property (weak, nonatomic) IBOutlet UITextField *albumNameTextField; // 专辑名
 @property (weak, nonatomic) IBOutlet UITextField *musicianTextField; // 音乐人
 @property (weak, nonatomic) IBOutlet UITextField *styleTextField; // 风格
@@ -71,7 +72,7 @@
 
 - (IBAction)albumButtonClick:(id)sender; // 专辑封面
 - (IBAction)loveButtonClick:(id)sender; // 喜欢
-- (IBAction)albumStyle:(id)sender forEvent:(UIEvent *)event; // 风格
+- (IBAction)albumStyle:(id)sender; // 风格
 - (IBAction)albumTimeButtonClick:(id)sender; // 专辑时长
 - (IBAction)listeningTime:(id)sender; // 聆听时间
 - (IBAction)releaseTime:(id)sender; // 发布时间
@@ -675,7 +676,7 @@
 
 #pragma mark 风格编辑
 
-- (IBAction)albumStyle:(id)sender forEvent:(UIEvent *)event {
+- (IBAction)albumStyle:(id)sender {
     [self handleKeyBoard];
     UIView *coverView = [[UIView alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
     [[UIApplication sharedApplication].keyWindow addSubview:coverView];
@@ -918,7 +919,7 @@
 - (LTAlbumStyleView *)styleView {
     if (!_styleView) {
         UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
-        CGRect startRact = [self.styleButton convertRect:self.styleButton.bounds toView:window];
+        CGRect startRact = [self.styleViewButton convertRect:self.styleViewButton.bounds toView:window];
         LTAlbumStyleView *albumView = [[LTAlbumStyleView alloc] initWithFrame:CGRectMake(startRact.origin.x - 137, startRact.origin.y + 20, 170, 250)];
         _styleView = albumView;
     }

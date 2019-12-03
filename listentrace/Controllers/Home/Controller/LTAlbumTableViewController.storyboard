@@ -261,9 +261,6 @@
                                                                 <constraint firstAttribute="width" constant="14" id="Iiu-lO-9ZO"/>
                                                             </constraints>
                                                             <state key="normal" image="album_down_arrow.png"/>
-                                                            <connections>
-                                                                <action selector="albumStyle:forEvent:" destination="yVZ-Bj-Hec" eventType="touchUpInside" id="ZDV-el-tUQ"/>
-                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e7e-Bt-s3W">
                                                             <rect key="frame" x="312" y="66" width="14" height="22"/>
@@ -281,7 +278,7 @@
                                                                 <constraint firstAttribute="width" constant="100" id="ppK-TV-nGS"/>
                                                             </constraints>
                                                             <connections>
-                                                                <action selector="albumStyle:forEvent:" destination="yVZ-Bj-Hec" eventType="touchUpInside" id="E2m-4P-X18"/>
+                                                                <action selector="albumStyle:" destination="yVZ-Bj-Hec" eventType="touchUpInside" id="NRJ-5Z-WzM"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -778,8 +775,9 @@
                         <outlet property="releaseCountButton" destination="Unr-fO-f3X" id="QbA-DC-f4d"/>
                         <outlet property="releasedCountTextField" destination="uUD-bQ-CPx" id="83V-Q0-RYK"/>
                         <outlet property="releasedTimeTextField" destination="1wM-YU-cOl" id="LVN-SI-P95"/>
-                        <outlet property="styleButton" destination="Pg9-Ak-FNy" id="FTR-le-OwA"/>
+                        <outlet property="styleButton" destination="oUO-aO-Kj3" id="C7y-fg-qcu"/>
                         <outlet property="styleTextField" destination="v39-fd-pOs" id="Fht-5P-PhD"/>
+                        <outlet property="styleViewButton" destination="Pg9-Ak-FNy" id="OSg-5h-SZH"/>
                         <outlet property="timeButton" destination="UuZ-wZ-sNC" id="ZeP-DR-lCG"/>
                         <outlet property="timeTextField" destination="ekd-R2-Wwg" id="JkT-XX-Vmf"/>
                         <outlet property="tipsImageLabel" destination="rkN-cR-9fu" id="4tg-u8-2Dd"/>
