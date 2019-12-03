@@ -324,6 +324,9 @@
     if (self.timeTextField.text.length) {
         [parameter setObject:self.timeTextField.text forKey:@"album_duration"];
     }
+    if (self.releasedTimeTextField.text.length) {
+        [parameter setObject:self.releasedTimeTextField.text forKey:@"album_release_time"];
+    }
     if (self.releasedCountTextField.text.length) {
         [parameter setObject:self.releasedCountTextField.text forKey:@"song_quantity"];
     }
