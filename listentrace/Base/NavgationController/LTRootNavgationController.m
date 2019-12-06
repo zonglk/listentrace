@@ -26,7 +26,11 @@
     [navBar setBackgroundColor:CWhiteColor];
     [navBar setBackgroundImage:[UIImage imageWithColor:CWhiteColor] forBarMetrics:UIBarMetricsDefault];
     [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : CNavTextColor, NSFontAttributeName : FONT(@".PingFangSC-Regular", 18.0)}];
-    [navBar setShadowImage:[UIImage imageWithColor:RGBHex(0xE5EAFA)]]; // 导航栏下分割线
+    // 导航栏下分割线
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 44, KScreenWidth, 0.5)];
+    view.backgroundColor = RGBHex(0xE5EAFA);
+    [[UINavigationBar appearance] insertSubview:view atIndex:0];
+//    [navBar setShadowImage:[UIImage imageWithColor:RGBHex(0xE5EAFA)]]; // 导航栏下分割线
 }
 
 - (void)viewDidLoad {

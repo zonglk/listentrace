@@ -34,7 +34,8 @@
 - (void)setUpTabbar {
     [self.tabBar setBackgroundColor:CWhiteColor];
     [[UITabBar appearance] setShadowImage:[UIImage new]];
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, -0.5, KScreenWidth, 0.8)];
+    // 分割线
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, -0.5, KScreenWidth, 0.5)];
     view.backgroundColor = RGBHex(0xE5EAFA);
     [[UITabBar appearance] insertSubview:view atIndex:0];
 }

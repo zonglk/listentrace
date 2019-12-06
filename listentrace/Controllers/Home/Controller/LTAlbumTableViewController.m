@@ -393,7 +393,7 @@
             [[UIApplication sharedApplication].delegate.window addSubview:tipImageView];
             [tipImageView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.mas_equalTo(self.view.mas_centerX);
-                make.centerY.mas_equalTo(self.view.mas_centerY);
+                [make.centerY.mas_equalTo(self.view.mas_centerY) setOffset:(-30)];
             }];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"AddAlbumSucess" object:nil];
