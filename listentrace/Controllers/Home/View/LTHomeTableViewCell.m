@@ -13,11 +13,6 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    [[self.image layer] setShadowOffset:CGSizeZero]; // 阴影扩散的范围控制
-    [[self.image layer] setShadowRadius:4]; // 阴影扩散的范围控制
-    [[self.image layer] setShadowOpacity:1]; // 阴影透明度
-    [[self.image layer] setShadowColor:RGBHexAlpha(0x68BAE9, 0.45).CGColor]; // 阴影的颜色
-    self.image.clipsToBounds = NO;
     self.backgroundColor = CViewBgColor;
 }
 

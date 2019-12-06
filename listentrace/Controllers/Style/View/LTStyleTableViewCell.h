@@ -25,9 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *leftImageVIew;
 @property (weak, nonatomic) IBOutlet UIImageView *middleImageVIew;
 @property (weak, nonatomic) IBOutlet UIImageView *rightImageView;
-@property (weak, nonatomic) IBOutlet UIView *view1;
-@property (weak, nonatomic) IBOutlet UIView *view2;
-@property (weak, nonatomic) IBOutlet UIView *view3;
+@property (weak, nonatomic) IBOutlet UIImageView *view1;
+@property (weak, nonatomic) IBOutlet UIImageView *view2;
+@property (weak, nonatomic) IBOutlet UIImageView *view3;
 @property (nonatomic, weak) id<styleTableViewCellDelegate>delegate;
 
 + (instancetype)creatCell;

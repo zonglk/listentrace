@@ -136,12 +136,6 @@
     ViewBorderRadius(self.view5, 5, 1, RGBHex(0xE5EAFA));
     ViewBorderRadius(self.view6, 5, 1, RGBHex(0xE5EAFA));
     
-    [[self.albumImageView layer] setShadowOffset:CGSizeZero];
-    [[self.albumImageView layer] setShadowRadius:6]; // 阴影扩散的范围控制
-    [[self.albumImageView layer] setShadowOpacity:1]; // 阴影透明度
-    [[self.albumImageView layer] setShadowColor:RGBHexAlpha(0x68BAE9, 0.45).CGColor]; // 阴影的颜色
-    self.albumImageView.clipsToBounds = NO;
-    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(styleChangeNoti:) name:@"AlbumStyleChangeNoti" object:nil];

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -12,18 +12,21 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="LTStyleDetailCollectionViewCell" reuseIdentifier="LTStyleDetailCollectionViewCell" id="gTV-IL-0wX" customClass="LTStyleDetailCollectionViewCell">
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="LTStyleDetailCollectionViewCell" reuseIdentifier="LTStyleDetailCollectionViewCell" id="gTV-IL-0wX" customClass="LTStyleDetailCollectionViewCell">
             <rect key="frame" x="0.0" y="0.0" width="112" height="112"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="112" height="112"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="style_detail_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="tyq-eM-qON">
+                        <rect key="frame" x="-13" y="0.0" width="138" height="97.5"/>
+                    </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Oro-CW-7Hy">
                         <rect key="frame" x="0.0" y="0.0" width="112" height="92"/>
                         <color key="backgroundColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1CU-xJ-eIb">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1CU-xJ-eIb">
                         <rect key="frame" x="2" y="97.5" width="108" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
@@ -37,9 +40,13 @@
                 <constraint firstAttribute="trailing" secondItem="Oro-CW-7Hy" secondAttribute="trailing" id="432-7g-KH0"/>
                 <constraint firstItem="Oro-CW-7Hy" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="4fm-IT-qc7"/>
                 <constraint firstItem="1CU-xJ-eIb" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="8nb-xN-QJq"/>
+                <constraint firstItem="tyq-eM-qON" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="-10" id="AYt-GN-Gm0"/>
                 <constraint firstAttribute="bottom" secondItem="1CU-xJ-eIb" secondAttribute="bottom" id="SQ6-NW-Mxb"/>
+                <constraint firstItem="1CU-xJ-eIb" firstAttribute="top" secondItem="tyq-eM-qON" secondAttribute="bottom" constant="10" id="Tg0-Vq-YSf"/>
                 <constraint firstAttribute="trailing" secondItem="1CU-xJ-eIb" secondAttribute="trailing" constant="2" id="atU-1w-aMm"/>
                 <constraint firstAttribute="bottom" secondItem="Oro-CW-7Hy" secondAttribute="bottom" constant="20" id="b5V-IX-GoW"/>
+                <constraint firstItem="tyq-eM-qON" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="-11" id="bza-yb-l5h"/>
+                <constraint firstAttribute="trailing" secondItem="tyq-eM-qON" secondAttribute="trailing" constant="-11" id="ho6-ts-BH4"/>
                 <constraint firstItem="1CU-xJ-eIb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="2" id="qEI-Jv-WYM"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
@@ -48,7 +55,10 @@
                 <outlet property="image" destination="Oro-CW-7Hy" id="cvB-CO-ZNf"/>
                 <outlet property="nameLabel" destination="1CU-xJ-eIb" id="3Hg-99-FGa"/>
             </connections>
-            <point key="canvasLocation" x="218.84057971014494" y="192.52232142857142"/>
+            <point key="canvasLocation" x="218.75" y="192.1875"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="style_detail_bg.png" width="263" height="263"/>
+    </resources>
 </document>

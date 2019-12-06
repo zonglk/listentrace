@@ -31,24 +31,6 @@
     
     UITapGestureRecognizer *rightTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(rightTap)];
     [self.rightImageView addGestureRecognizer:rightTap];
-    
-    [[self.view1 layer] setShadowOffset:CGSizeZero]; // 阴影扩散的范围控制
-    [[self.view1 layer] setShadowRadius:4]; // 阴影扩散的范围控制
-    [[self.view1 layer] setShadowOpacity:1]; // 阴影透明度
-    [[self.view1 layer] setShadowColor:RGBHexAlpha(0x68BAE9, 0.45).CGColor]; // 阴影的颜色
-    self.view1.clipsToBounds = NO;
-    
-    [[self.view2 layer] setShadowOffset:CGSizeZero]; // 阴影扩散的范围控制
-    [[self.view2 layer] setShadowRadius:4]; // 阴影扩散的范围控制
-    [[self.view2 layer] setShadowOpacity:1]; // 阴影透明度
-    [[self.view2 layer] setShadowColor:RGBHexAlpha(0x68BAE9, 0.45).CGColor]; // 阴影的颜色
-    self.view2.clipsToBounds = NO;
-    
-    [[self.view3 layer] setShadowOffset:CGSizeZero]; // 阴影扩散的范围控制
-    [[self.view3 layer] setShadowRadius:4]; // 阴影扩散的范围控制
-    [[self.view3 layer] setShadowOpacity:1]; // 阴影透明度
-    [[self.view3 layer] setShadowColor:RGBHexAlpha(0x68BAE9, 0.45).CGColor]; // 阴影的颜色
-    self.view3.clipsToBounds = NO;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
