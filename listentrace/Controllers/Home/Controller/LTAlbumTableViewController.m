@@ -158,6 +158,7 @@
 
 - (void )styleChangeNoti:(NSNotification *)noti {
     self.styleTextField.text = [NSString stringWithFormat:@"%@",noti.userInfo[@"style"]];
+    self.isChange = YES;
     [self.styleCoverView removeAllSubviews];
     [self.styleCoverView removeFromSuperview];
 }
@@ -389,7 +390,7 @@
         if ([result[@"code"] intValue] == 200) {
             self.isSave = NO;
             UIImageView *tipImageView = [[UIImageView alloc] init];
-            [tipImageView setImage:[UIImage imageNamed:@"addAlbum_sucess"]];
+            [tipImageView setImage:[UIImage imageNamed:self.albumId.length ? @"editAlbum_sucess" : @"addAlbum_sucess"]];
             [[UIApplication sharedApplication].delegate.window addSubview:tipImageView];
             [tipImageView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.mas_equalTo(self.view.mas_centerX);
