@@ -22,15 +22,14 @@
 // App生命周期只会执行一次
 + (void)initialize {
     UINavigationBar *navBar = [UINavigationBar appearance];
-    [navBar setBarTintColor:CWhiteColor];
-    [navBar setBackgroundColor:CWhiteColor];
+    navBar.translucent = NO;
     [navBar setBackgroundImage:[UIImage imageWithColor:CWhiteColor] forBarMetrics:UIBarMetricsDefault];
     [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : CNavTextColor, NSFontAttributeName : FONT(@".PingFangSC-Regular", 18.0)}];
     // 导航栏下分割线
+    [navBar setShadowImage:[UIImage imageWithColor:RGBHex(0xE5EAFA)]];
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 44, KScreenWidth, 0.5)];
     view.backgroundColor = RGBHex(0xE5EAFA);
     [[UINavigationBar appearance] insertSubview:view atIndex:0];
-//    [navBar setShadowImage:[UIImage imageWithColor:RGBHex(0xE5EAFA)]]; // 导航栏下分割线
 }
 
 - (void)viewDidLoad {

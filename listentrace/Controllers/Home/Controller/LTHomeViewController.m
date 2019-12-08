@@ -303,6 +303,12 @@
     if (!cell) {
         cell = [LTHomeTableViewCell creatCell];;
     }
+    if (array.count == indexPath.row + 1) {
+        cell.lineView.hidden = YES;
+    }
+    else {
+        cell.lineView.hidden = NO;
+    }
     cell.model = self.model;
     
     return cell;
