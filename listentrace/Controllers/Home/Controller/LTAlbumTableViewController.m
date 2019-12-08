@@ -833,7 +833,7 @@
 
 - (IBAction)releaseCount:(id)sender {
     [self handleKeyBoard];
-    QFDatePickerView *datePickerView = [[QFDatePickerView alloc]initYearPickerWithView:self.view response:^(NSString *str) {
+    QFDatePickerView *datePickerView = [[QFDatePickerView alloc] initYearPickerWithView:self.view response:^(NSString *str) {
         if ([str intValue] > 100) {
             str = @"10 首";
         }

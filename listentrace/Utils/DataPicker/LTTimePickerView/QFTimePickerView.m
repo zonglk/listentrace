@@ -147,11 +147,14 @@
 
 #pragma mark - initAppreaence
 - (void)initAppreaence {
-
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, self.frame.size.height)];
+    [button addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:button];
+    
     contentView = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height, self.frame.size.width, 300)];
     [self addSubview:contentView];
     //设置背景颜色为黑色，并有0.4的透明度
-    self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4];
+    self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
     //添加白色view
     UIView *whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 40)];
     whiteView.backgroundColor = [UIColor whiteColor];
