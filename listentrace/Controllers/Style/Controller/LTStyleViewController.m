@@ -50,8 +50,6 @@
     }
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
-    
-    self.emptView.hidden = NO;
 }
 
 - (void)addAlbumSucess {
@@ -218,6 +216,7 @@
         tipLabel.text = @"暂时没有专辑";
         tipLabel.font = [UIFont systemFontOfSize:18];
         tipLabel.textColor = RGBHex(0xC0C6DA);
+        self.emptView.hidden = YES;
     }
     return _emptView;
 }

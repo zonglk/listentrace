@@ -68,7 +68,6 @@
     [self.addBttton setBackgroundImage:[UIImage imageNamed:@"home_add"] forState:UIControlStateHighlighted];
     [self.addBttton addTarget:self action:@selector(addAlbum) forControlEvents:UIControlEventTouchUpInside];
     
-    self.emptView.hidden = NO;
     [self.view bringSubviewToFront:self.addBttton];
 }
 
@@ -358,6 +357,7 @@
         tipLabel.text = @"暂时没有专辑";
         tipLabel.font = [UIFont systemFontOfSize:18];
         tipLabel.textColor = RGBHex(0xC0C6DA);
+        self.emptView.hidden = YES;
     }
     return _emptView;
 }
