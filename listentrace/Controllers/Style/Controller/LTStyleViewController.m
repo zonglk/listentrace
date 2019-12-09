@@ -66,6 +66,10 @@
             self.noNetWorkView.hidden = YES;
             // 获得所有的key
             self.allKeysArray = [result[@"data"] allKeys];
+            self.allKeysArray = [self.allKeysArray sortedArrayUsingComparator:^NSComparisonResult(id obj1,id obj2) {
+                NSComparisonResult result = [obj1 compare:obj2];
+                return result == NSOrderedDescending;
+            }];
             NSMutableArray *albumArray = [NSMutableArray array];
             
             @autoreleasepool {
@@ -137,7 +141,9 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = CViewBgColor;
     cell.delegate = self;
-    cell.styleLabel.text = self.allKeysArray[indexPath.row];
+    NSString *string = self.allKeysArray[indexPath.row];
+    NSArray *keyArray = [string componentsSeparatedByString:@"-"];
+    cell.styleLabel.text = keyArray.lastObject;
     cell.albumCountLabel.text = [NSString stringWithFormat:@"%lu 张专辑",(unsigned long)array.count];
 
     for (int i = 0; i < array.count; i ++) {
@@ -178,7 +184,9 @@
 - (void)allStyleButtonClick:(LTBaseTableViewCell *)cell {
     NSIndexPath *index = [self.tableView indexPathForCell:cell];
     LTStyleDetailViewController *detail = [[LTStyleDetailViewController alloc] init];
-    detail.navTitle = self.allKeysArray[index.row];
+    NSString *string = self.allKeysArray[index.row];
+    NSArray *keyArray = [string componentsSeparatedByString:@"-"];
+    detail.navTitle = keyArray.lastObject;;
     detail.dataArray = self.dataArray[index.row];
     [self.navigationController pushViewController:detail animated:YES];
 }

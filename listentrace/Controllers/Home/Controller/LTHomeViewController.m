@@ -118,6 +118,10 @@
                 NSString *key = self.allKeysArray[i];
                 // 获取月份下的所有key
                 NSArray *allMonthKeys = [result[@"data"][key] allKeys];
+                allMonthKeys = [allMonthKeys sortedArrayUsingComparator:^NSComparisonResult(id obj1,id obj2) {
+                    NSComparisonResult result = [obj1 compare:obj2];
+                    return result == NSOrderedDescending;
+                }];
                 
                 for (int j = 0; j < allMonthKeys.count; j ++) {
                     [self.allMonthKeysArray addObject:allMonthKeys[j]];
@@ -235,7 +239,9 @@
         }];
         monthLabel.textColor = RGBHex(0x989DAD);
         monthLabel.font = [UIFont systemFontOfSize:13.0 weight:UIFontWeightLight];
-        monthLabel.text = self.allMonthKeysArray[section];
+        NSString *string = self.allMonthKeysArray[section];
+        NSArray *array = [string componentsSeparatedByString:@"-"];
+        monthLabel.text = array.lastObject;
         return view;
     }
     else {
@@ -250,7 +256,9 @@
         }];
         monthLabel.textColor = RGBHex(0x989DAD);
         monthLabel.font = [UIFont systemFontOfSize:13.0 weight:UIFontWeightLight];
-        monthLabel.text = self.allMonthKeysArray[section];
+        NSString *string = self.allMonthKeysArray[section];
+        NSArray *array = [string componentsSeparatedByString:@"-"];
+        monthLabel.text = array.lastObject;
         return view;
     }
 }

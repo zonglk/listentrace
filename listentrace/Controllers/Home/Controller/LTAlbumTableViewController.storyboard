@@ -74,7 +74,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="768" height="189.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="album_detail_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="w7y-Of-cNn">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera.png" translatesAutoresizingMaskIntoConstraints="NO" id="w7y-Of-cNn">
                                                     <rect key="frame" x="294" y="5" width="180" height="180"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="180" id="ZRx-OZ-EkA"/>
@@ -807,9 +807,9 @@
     <resources>
         <image name="album_add.png" width="26" height="26"/>
         <image name="album_albumImage.png" width="140" height="140"/>
-        <image name="album_detail_bg.png" width="370" height="370"/>
         <image name="album_down_arrow.png" width="14" height="8"/>
         <image name="album_grayHeart.png" width="19" height="17.5"/>
         <image name="album_redHeart.png" width="19" height="17.5"/>
+        <image name="camera.png" width="360" height="360"/>
     </resources>
 </document>
