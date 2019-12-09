@@ -95,7 +95,7 @@
                 [MBProgressHUD showErrorMessage:@"未能找到使用指定主机名的服务器"];
             }
             else { // 网络出错了~请稍后重试
-                [MBProgressHUD showErrorMessage:@"网络出错了~请稍后重试"];
+                [MBProgressHUD showErrorMessage:@"网络较差，请稍后重试"];
             }
             
             if (failure != nil) {
@@ -178,7 +178,7 @@
                 [MBProgressHUD showErrorMessage:@"未能找到使用指定主机名的服务器"];
             }
             else { // 网络出错了~请稍后重试
-                [MBProgressHUD showErrorMessage:@"网络出错了~请稍后重试"];
+                [MBProgressHUD showErrorMessage:@"网络较差，请稍后重试"];
             }
             
             if (failure != nil) {

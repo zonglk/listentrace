@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina5_9" orientation="portrait">
+    <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -32,13 +32,13 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X 张专辑" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L2j-81-8jO">
-                        <rect key="frame" x="307" y="23.5" width="48.5" height="15"/>
+                        <rect key="frame" x="306.5" y="23.5" width="49" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.59607843137254901" green="0.61568627450980395" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ig-VO-zOy">
-                        <rect key="frame" x="275" y="16" width="88.5" height="30"/>
+                        <rect key="frame" x="274.5" y="16" width="89" height="30"/>
                         <connections>
                             <action selector="allStyleButtonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="DlE-hy-SW5"/>
                         </connections>
@@ -47,10 +47,10 @@
                         <rect key="frame" x="25" y="50" width="328.5" height="115.5"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="style_cell_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="4gl-4N-5fn">
-                                <rect key="frame" x="-16.5" y="-7.5" width="122" height="130"/>
+                                <rect key="frame" x="-9.5" y="-7.5" width="108" height="130"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="RWR-7T-q3m"/>
-                                    <constraint firstAttribute="width" constant="122" id="YT7-Qa-cmm"/>
+                                    <constraint firstAttribute="width" constant="108" id="YT7-Qa-cmm"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NVe-bi-4q0">
@@ -61,20 +61,20 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="style_cell_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="UAd-Jl-wbh">
-                                <rect key="frame" x="104" y="31" width="120" height="69"/>
+                                <rect key="frame" x="110" y="31" width="108" height="69"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="5XX-gu-toW"/>
-                                    <constraint firstAttribute="width" constant="120" id="tGZ-dE-2ro"/>
+                                    <constraint firstAttribute="width" constant="108" id="tGZ-dE-2ro"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WXB-yy-M91">
                                 <rect key="frame" x="109.5" y="0.0" width="109.5" height="115.5"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="style_cell_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="c3E-rz-Rro">
-                                <rect key="frame" x="223.5" y="35" width="120" height="60"/>
+                                <rect key="frame" x="229.5" y="35" width="108" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="Xr4-wa-Hfn"/>
-                                    <constraint firstAttribute="width" constant="120" id="mSZ-pH-ZmY"/>
+                                    <constraint firstAttribute="width" constant="108" id="mSZ-pH-ZmY"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lF3-6L-eKW">
@@ -133,11 +133,11 @@
                 <outlet property="view2" destination="UAd-Jl-wbh" id="X6H-dd-fHN"/>
                 <outlet property="view3" destination="c3E-rz-Rro" id="6zd-5v-5wy"/>
             </connections>
-            <point key="canvasLocation" x="155.07246376811597" y="210.32608695652175"/>
+            <point key="canvasLocation" x="158" y="187"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="style_cell_bg.png" width="256" height="256"/>
-        <image name="style_entry.png" width="12.666666984558105" height="20.666666030883789"/>
+        <image name="style_entry.png" width="6" height="10"/>
     </resources>
 </document>
