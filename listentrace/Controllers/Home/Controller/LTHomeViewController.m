@@ -188,11 +188,14 @@
             isNeedShowYeah = YES;
         }
     }
-    if (section == 0 || isNeedShowYeah) {
+    if (section == 0) {
         return 62;
     }
+    else if (isNeedShowYeah) {
+        return 55;
+    }
     else {
-        return 24;
+        return 18;
     }
 }
 
@@ -213,7 +216,7 @@
         [view addSubview:dateLabel];
         [dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(view.mas_left).offset(15);
-            make.top.mas_equalTo(view.mas_top).offset(18);
+            make.top.mas_equalTo(view.mas_top).offset(isNeedShowYeah ? 12 : 18);
         }];
         dateLabel.textColor = RGBHex(0x545C77);
         dateLabel.font = [UIFont systemFontOfSize:20.0 weight:UIFontWeightLight];
@@ -244,7 +247,7 @@
         [view addSubview:monthLabel];
         [monthLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(view.mas_left).offset(15);
-            make.top.mas_equalTo(view.mas_top).offset(10);
+            make.top.mas_equalTo(view.mas_top).offset(4);
         }];
         monthLabel.textColor = RGBHex(0x989DAD);
         monthLabel.font = [UIFont systemFontOfSize:13.0 weight:UIFontWeightLight];
