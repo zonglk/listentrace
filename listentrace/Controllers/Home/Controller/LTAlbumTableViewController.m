@@ -771,7 +771,7 @@
 
 - (IBAction)albumTimeButtonClick:(id)sender {
     [self handleKeyBoard];
-    QFTimePickerView *pickerView = [[QFTimePickerView alloc] initDatePackerWithStartHour:@"0" endHour:@"24" period:1 response:^(NSString *str) {
+    QFTimePickerView *pickerView = [[QFTimePickerView alloc] initDatePackerWithStartHour:@"0" endHour:@"24" period:1 timeString:self.timeTextField.text response:^(NSString *str) {
         self.timeTextField.text = str;
         self.isChange = YES;
     }];
@@ -788,6 +788,20 @@
     fmt.dateFormat = @"yyyy-MM-dd";
     NSDate *minDate = [fmt dateFromString:@"1997-1-1"];
     self.timePicker.timePicker.minimumDate = minDate;
+    if (self.listeningTimeTextField.text.length) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"YYYY-MM-dd"];
+        NSDate *tempDate = [dateFormatter dateFromString:self.listeningTimeTextField.text];
+        [self.timePicker.timePicker setDate:tempDate animated:NO];
+    }
+    else {
+        NSDate *date = [NSDate date];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"YYYY-MM-dd"];
+        NSString *DateTime = [formatter stringFromDate:date];
+        NSDate *tempDate = [formatter dateFromString:DateTime];
+        [self.timePicker.timePicker setDate:tempDate animated:NO];
+    }
     [[UIApplication sharedApplication].delegate.window addSubview:self.timePicker];
     self.isChange = YES;
 }
@@ -802,6 +816,20 @@
     fmt.dateFormat = @"yyyy-MM-dd";
     NSDate *minDate = [fmt dateFromString:@"1902-1-1"];
     self.timePicker.timePicker.minimumDate = minDate;
+    if (self.releasedTimeTextField.text.length) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"YYYY-MM-dd"];
+        NSDate *tempDate = [dateFormatter dateFromString:self.releasedTimeTextField.text];
+        [self.timePicker.timePicker setDate:tempDate animated:NO];
+    }
+    else {
+        NSDate *date = [NSDate date];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"YYYY-MM-dd"];
+        NSString *DateTime = [formatter stringFromDate:date];
+        NSDate *tempDate = [formatter dateFromString:DateTime];
+        [self.timePicker.timePicker setDate:tempDate animated:NO];
+    }
     [[UIApplication sharedApplication].delegate.window addSubview:self.timePicker];
     self.isChange = YES;
 }
@@ -836,7 +864,7 @@
 #pragma mark  timePicker delegate
 
 - (void)dateChanged:(UIDatePicker *)picker{
-    NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd"];
     if (self.isListeningTime) {
         self.listeningTimeString = [formatter stringFromDate:picker.date];
@@ -851,7 +879,7 @@
 
 - (IBAction)releaseCount:(id)sender {
     [self handleKeyBoard];
-    QFDatePickerView *datePickerView = [[QFDatePickerView alloc] initYearPickerWithView:self.view response:^(NSString *str) {
+    QFDatePickerView *datePickerView = [[QFDatePickerView alloc] initYearPickerWithView:self.view countString:self.releasedCountTextField.text response:^(NSString *str) {
         if ([str intValue] > 100) {
             str = @"10 首";
         }

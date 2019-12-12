@@ -28,6 +28,7 @@
 @property (nonatomic, assign) NSString *startTime;
 @property (nonatomic, assign) NSString *endTime;
 @property (nonatomic, assign) NSInteger period;
+@property (nonatomic, copy) NSString *timeString;
 
 @end
 
@@ -42,13 +43,14 @@
  @param block 返回选中的时间
  @return QFTimePickerView实例
  */
-- (instancetype)initDatePackerWithStartHour:(NSString *)startHour endHour:(NSString *)endHour period:(NSInteger)period response:(void (^)(NSString *))block {
+- (instancetype)initDatePackerWithStartHour:(NSString *)startHour endHour:(NSString *)endHour period:(NSInteger)period timeString:(NSString *)timeString response:(void (^)(NSString *))block {
     if (self = [super init]) {
         self.frame = [UIScreen mainScreen].bounds;
     }
     _startTime = startHour;
     _endTime = endHour;
     _period = period;
+    _timeString = timeString;
     
     [self initDataSource];
     [self initAppreaence];
@@ -181,9 +183,20 @@
     
     
     //设置pickerView默认第一行 这里也可默认选中其他行 修改selectRow即可
-    [pickerView selectRow:0 inComponent:0 animated:YES];
-    [pickerView selectRow:0 inComponent:1 animated:YES];
-    [pickerView selectRow:0 inComponent:2 animated:YES];
+    if (_timeString.length) {
+        NSArray *array = [_timeString componentsSeparatedByString:@":"];
+        selectedHour = hourArray[[array[0] intValue]];
+        selectedMin = minArray[[array[1] intValue]];
+        selectedSec = secArray[[array[2] intValue]];
+        [pickerView selectRow:[array[0] intValue] inComponent:0 animated:YES];
+        [pickerView selectRow:[array[1] intValue] inComponent:1 animated:YES];
+        [pickerView selectRow:[array[2] intValue] inComponent:2 animated:YES];
+    }
+    else {
+        [pickerView selectRow:0 inComponent:0 animated:YES];
+        [pickerView selectRow:0 inComponent:1 animated:YES];
+        [pickerView selectRow:0 inComponent:2 animated:YES];
+    }
     
     [contentView addSubview:pickerView];
 }

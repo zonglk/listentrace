@@ -19,7 +19,7 @@
  @param block 返回选中的时间
  @return QFTimePickerView实例
  */
-- (instancetype)initDatePackerWithStartHour:(NSString *)startHour endHour:(NSString *)endHour period:(NSInteger)period response:(void (^)(NSString *))block;
+- (instancetype)initDatePackerWithStartHour:(NSString *)startHour endHour:(NSString *)endHour period:(NSInteger)period timeString:(NSString *)timeString response:(void (^)(NSString *))block;
 
 - (void)show;
 

@@ -44,7 +44,7 @@
  @param block 返回选中的年份
  @return QFDatePickerView对象
  */
-- (instancetype)initYearPickerWithView:(UIView *)superView response:(void(^)(NSString*))block;
+- (instancetype)initYearPickerWithView:(UIView *)superView  countString:(NSString *)countString response:(void(^)(NSString*))block;
 
 /**
  显示方法

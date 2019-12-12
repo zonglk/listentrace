@@ -21,6 +21,7 @@
     
     NSString *selectedYear;
     NSString *selectecMonth;
+    NSString *countStr;
     
     BOOL onlySelectYear;
     
@@ -95,10 +96,11 @@
  @param block 返回选中的年份
  @return QFDatePickerView对象
  */
-- (instancetype)initYearPickerWithView:(UIView *)superView response:(void(^)(NSString*))block {
+- (instancetype)initYearPickerWithView:(UIView *)superView countString:(NSString *)countString response:(void(^)(NSString*))block {
     if (self = [super init]) {
         self.frame = [UIScreen mainScreen].bounds;
     }
+    countStr = countString;
     [self setViewInterface];
     if (block) {
         backBlock = block;
@@ -147,7 +149,13 @@
     pickerView.dataSource = self;
     
     //设置pickerView默认选中
-    [pickerView selectRow:9 inComponent:0 animated:YES];
+    if (countStr.length) {
+        NSArray *array = [countStr componentsSeparatedByString:@"首"];
+        [pickerView selectRow:[array[0] intValue] -1 inComponent:0 animated:NO];
+    }
+    else {
+        [pickerView selectRow:9 inComponent:0 animated:YES];
+    }
     
     [contentView addSubview:pickerView];
 }
