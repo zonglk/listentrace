@@ -24,7 +24,7 @@
     UINavigationBar *navBar = [UINavigationBar appearance];
     navBar.translucent = NO;
     [navBar setBackgroundImage:[UIImage imageWithColor:CWhiteColor] forBarMetrics:UIBarMetricsDefault];
-    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : CNavTextColor, NSFontAttributeName : FONT(@".PingFangSC-Regular", 18.0)}];
+    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : CNavTextColor, NSFontAttributeName : [UIFont systemFontOfSize:18.0]}];
     // 导航栏下分割线
     [navBar setShadowImage:[UIImage imageNamed:@"navLine"]];
 }
