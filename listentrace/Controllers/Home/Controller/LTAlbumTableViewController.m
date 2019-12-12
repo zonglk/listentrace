@@ -611,7 +611,14 @@
     JPImageresizerView *imageresizerView = [JPImageresizerView imageresizerViewWithConfigure:configure imageresizerIsCanRecovery:^(BOOL isCanRecovery) {
 
     } imageresizerIsPrepareToScale:^(BOOL isPrepareToScale) {
-
+        if (isPrepareToScale) {
+            self.sureButton.hidden = YES;
+            self.cancleButton.hidden = YES;
+        }
+        else {
+            self.sureButton.hidden = NO;
+            self.cancleButton.hidden = NO;
+        }
     }];
     [imageresizerView setResizeWHScale:(1.0 / 1.0) isToBeArbitrarily:YES animated:YES];
     [[UIApplication sharedApplication].keyWindow addSubview:imageresizerView];
