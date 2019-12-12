@@ -36,6 +36,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *releaseButton;
 @property (weak, nonatomic) IBOutlet UIButton *releaseCountButton;
 @property (weak, nonatomic) IBOutlet UIButton *addDetailButton;
+@property (weak, nonatomic) IBOutlet UIButton *arrowButton; // 指示箭头 （做显隐处理）
+@property (weak, nonatomic) IBOutlet UIButton *arrowButton1;
+@property (weak, nonatomic) IBOutlet UIButton *arrowButton2;
+@property (weak, nonatomic) IBOutlet UIButton *arrowButton3;
+
 
 @property (weak, nonatomic) IBOutlet UITextField *listeningTimeTextField; // 聆听时间
 @property (weak, nonatomic) IBOutlet UITextField *releasedTimeTextField; // 发行时间
@@ -859,6 +864,11 @@
         self.albumNameTextField.enabled = NO;
         self.musicianTextField.enabled = NO;
         self.styleButton.enabled = NO;
+        self.styleViewButton.hidden = YES;
+        self.arrowButton.hidden = YES;
+        self.arrowButton1.hidden = YES;
+        self.arrowButton2.hidden = YES;
+        self.arrowButton3.hidden = YES;
         self.styleTextField.enabled = NO;
         self.timeButton.enabled = NO;
         self.timeTextField.enabled = NO;
@@ -880,6 +890,11 @@
         self.albumNameTextField.enabled = YES;
         self.musicianTextField.enabled = YES;
         self.styleButton.enabled = YES;
+        self.styleViewButton.hidden = NO;
+        self.arrowButton.hidden = NO;
+        self.arrowButton1.hidden = NO;
+        self.arrowButton2.hidden = NO;
+        self.arrowButton3.hidden = NO;
         self.styleTextField.enabled = YES;
         self.timeButton.enabled = YES;
         self.timeTextField.enabled = YES;
