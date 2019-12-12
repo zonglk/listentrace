@@ -365,6 +365,8 @@
         tipLabel.font = [UIFont systemFontOfSize:18];
         tipLabel.textColor = RGBHex(0xC0C6DA);
         self.emptView.hidden = YES;
+        
+        [self.view bringSubviewToFront:self.addBttton];
     }
     return _emptView;
 }
