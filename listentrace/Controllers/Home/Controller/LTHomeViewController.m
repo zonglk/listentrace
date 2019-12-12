@@ -142,11 +142,10 @@
                 [self.yearKeyIndexArray addObject:section];
             }
             
-            if (self.albumCount > 0) {
-                self.countTipString = [NSString stringWithFormat:@"%ld 张专辑",(long)self.albumCount];
-                [[NSUserDefaults standardUserDefaults] setObject:@(self.albumCount) forKey:@"albumCount"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-            }
+            self.countTipString = [NSString stringWithFormat:@"%ld 张专辑",(long)self.albumCount];
+            [[NSUserDefaults standardUserDefaults] setObject:@(self.albumCount) forKey:@"albumCount"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
             [self.homeTableView reloadData];
         }
         else {
