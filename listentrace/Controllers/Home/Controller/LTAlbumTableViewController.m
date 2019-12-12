@@ -36,6 +36,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *releaseButton;
 @property (weak, nonatomic) IBOutlet UIButton *releaseCountButton;
 @property (weak, nonatomic) IBOutlet UIButton *addDetailButton;
+@property (weak, nonatomic) IBOutlet UIButton *arrowButton; // 指示箭头 （做显隐处理）
+@property (weak, nonatomic) IBOutlet UIButton *arrowButton1;
+@property (weak, nonatomic) IBOutlet UIButton *arrowButton2;
+@property (weak, nonatomic) IBOutlet UIButton *arrowButton3;
+
 
 @property (weak, nonatomic) IBOutlet UITextField *listeningTimeTextField; // 聆听时间
 @property (weak, nonatomic) IBOutlet UITextField *releasedTimeTextField; // 发行时间
@@ -68,6 +73,7 @@
 @property (nonatomic, strong) UIButton *rightNavButton;
 @property (nonatomic, assign) BOOL isSave; // 专辑已存在时候的保存
 @property (nonatomic, assign) BOOL isChange; // 是否有修改
+@property (nonatomic, assign) BOOL isEditImage; // 编辑图片时按钮不可用
 @property (nonatomic,strong) LTAlbumTableViewCell *detailCell;
 
 - (IBAction)albumButtonClick:(id)sender; // 专辑封面
@@ -611,7 +617,17 @@
     JPImageresizerView *imageresizerView = [JPImageresizerView imageresizerViewWithConfigure:configure imageresizerIsCanRecovery:^(BOOL isCanRecovery) {
 
     } imageresizerIsPrepareToScale:^(BOOL isPrepareToScale) {
-
+        if (isPrepareToScale) {
+            self.sureButton.hidden = YES;
+            self.cancleButton.hidden = YES;
+            self.isEditImage = YES;
+        }
+        else {
+            self.sureButton.hidden = NO;
+            self.cancleButton.hidden = NO;
+            self.isEditImage = NO;
+        }
+        [self handleUserEnable];
     }];
     [imageresizerView setResizeWHScale:(1.0 / 1.0) isToBeArbitrarily:YES animated:YES];
     [[UIApplication sharedApplication].keyWindow addSubview:imageresizerView];
@@ -844,10 +860,15 @@
 }
 
 - (void)handleUserEnable {
-    if ([self.rightNavButton.titleLabel.text isEqualToString:@"编辑"]) {
+    if ([self.rightNavButton.titleLabel.text isEqualToString:@"编辑"] || self.isEditImage) {
         self.albumNameTextField.enabled = NO;
         self.musicianTextField.enabled = NO;
         self.styleButton.enabled = NO;
+        self.styleViewButton.hidden = YES;
+        self.arrowButton.hidden = YES;
+        self.arrowButton1.hidden = YES;
+        self.arrowButton2.hidden = YES;
+        self.arrowButton3.hidden = YES;
         self.styleTextField.enabled = NO;
         self.timeButton.enabled = NO;
         self.timeTextField.enabled = NO;
@@ -869,6 +890,11 @@
         self.albumNameTextField.enabled = YES;
         self.musicianTextField.enabled = YES;
         self.styleButton.enabled = YES;
+        self.styleViewButton.hidden = NO;
+        self.arrowButton.hidden = NO;
+        self.arrowButton1.hidden = NO;
+        self.arrowButton2.hidden = NO;
+        self.arrowButton3.hidden = NO;
         self.styleTextField.enabled = YES;
         self.timeButton.enabled = YES;
         self.timeTextField.enabled = YES;

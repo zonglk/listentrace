@@ -142,11 +142,10 @@
                 [self.yearKeyIndexArray addObject:section];
             }
             
-            if (self.albumCount > 0) {
-                self.countTipString = [NSString stringWithFormat:@"%ld 张专辑",(long)self.albumCount];
-                [[NSUserDefaults standardUserDefaults] setObject:@(self.albumCount) forKey:@"albumCount"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-            }
+            self.countTipString = [NSString stringWithFormat:@"%ld 张专辑",(long)self.albumCount];
+            [[NSUserDefaults standardUserDefaults] setObject:@(self.albumCount) forKey:@"albumCount"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
             [self.homeTableView reloadData];
         }
         else {
@@ -366,6 +365,8 @@
         tipLabel.font = [UIFont systemFontOfSize:18];
         tipLabel.textColor = RGBHex(0xC0C6DA);
         self.emptView.hidden = YES;
+        
+        [self.view bringSubviewToFront:self.addBttton];
     }
     return _emptView;
 }
