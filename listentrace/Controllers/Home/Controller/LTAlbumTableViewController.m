@@ -68,6 +68,7 @@
 @property (nonatomic, strong) UIButton *rightNavButton;
 @property (nonatomic, assign) BOOL isSave; // 专辑已存在时候的保存
 @property (nonatomic, assign) BOOL isChange; // 是否有修改
+@property (nonatomic, assign) BOOL isEditImage; // 编辑图片时按钮不可用
 @property (nonatomic,strong) LTAlbumTableViewCell *detailCell;
 
 - (IBAction)albumButtonClick:(id)sender; // 专辑封面
@@ -614,11 +615,14 @@
         if (isPrepareToScale) {
             self.sureButton.hidden = YES;
             self.cancleButton.hidden = YES;
+            self.isEditImage = YES;
         }
         else {
             self.sureButton.hidden = NO;
             self.cancleButton.hidden = NO;
+            self.isEditImage = NO;
         }
+        [self handleUserEnable];
     }];
     [imageresizerView setResizeWHScale:(1.0 / 1.0) isToBeArbitrarily:YES animated:YES];
     [[UIApplication sharedApplication].keyWindow addSubview:imageresizerView];
@@ -851,7 +855,7 @@
 }
 
 - (void)handleUserEnable {
-    if ([self.rightNavButton.titleLabel.text isEqualToString:@"编辑"]) {
+    if ([self.rightNavButton.titleLabel.text isEqualToString:@"编辑"] || self.isEditImage) {
         self.albumNameTextField.enabled = NO;
         self.musicianTextField.enabled = NO;
         self.styleButton.enabled = NO;
