@@ -99,7 +99,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="必填" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkN-cR-9fu">
-                                                    <rect key="frame" x="217.66666666666666" y="138" width="25" height="15"/>
+                                                    <rect key="frame" x="222.66666666666666" y="142" width="25" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.82745098039215681" green="0.82745098039215681" blue="0.82745098039215681" alpha="0.54109589041095896" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -118,10 +118,10 @@
                                                 <constraint firstItem="pGQ-HD-aAP" firstAttribute="centerX" secondItem="ZLo-c3-UVi" secondAttribute="centerX" id="QEd-bq-ZjB"/>
                                                 <constraint firstItem="w7y-Of-cNn" firstAttribute="centerY" secondItem="ZLo-c3-UVi" secondAttribute="centerY" id="VxN-Rv-yph"/>
                                                 <constraint firstItem="SRg-xX-0Oc" firstAttribute="bottom" secondItem="ZLo-c3-UVi" secondAttribute="bottom" constant="2" id="bdZ-Sv-AdX"/>
-                                                <constraint firstItem="rkN-cR-9fu" firstAttribute="trailing" secondItem="ZLo-c3-UVi" secondAttribute="trailing" constant="-15" id="gbx-hb-Ufq"/>
+                                                <constraint firstItem="rkN-cR-9fu" firstAttribute="trailing" secondItem="ZLo-c3-UVi" secondAttribute="trailing" constant="-10" id="gbx-hb-Ufq"/>
                                                 <constraint firstItem="ZLo-c3-UVi" firstAttribute="centerX" secondItem="hJZ-bW-c34" secondAttribute="centerX" id="oom-Nq-Cj1"/>
                                                 <constraint firstItem="ZLo-c3-UVi" firstAttribute="centerY" secondItem="hJZ-bW-c34" secondAttribute="centerY" id="rNI-7G-juH"/>
-                                                <constraint firstItem="rkN-cR-9fu" firstAttribute="bottom" secondItem="ZLo-c3-UVi" secondAttribute="bottom" constant="-12" id="sIe-fO-gyl"/>
+                                                <constraint firstItem="rkN-cR-9fu" firstAttribute="bottom" secondItem="ZLo-c3-UVi" secondAttribute="bottom" constant="-8" id="sIe-fO-gyl"/>
                                                 <constraint firstAttribute="trailing" secondItem="SRg-xX-0Oc" secondAttribute="trailing" constant="12" id="sN9-Du-6sO"/>
                                                 <constraint firstItem="w7y-Of-cNn" firstAttribute="centerX" secondItem="ZLo-c3-UVi" secondAttribute="centerX" id="ysd-lH-5Nz"/>
                                             </constraints>
