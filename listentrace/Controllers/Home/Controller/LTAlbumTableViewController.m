@@ -317,7 +317,7 @@
         [self.navigationController popViewControllerAnimated:YES];
         return;
     }
-    
+    self.rightNavButton.enabled = NO;
     NSMutableDictionary *parameter = [NSMutableDictionary dictionary];
     NSString  *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"];
     [parameter setObject:userId forKey:@"user_id"];
@@ -413,11 +413,12 @@
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [tipImageView removeFromSuperview];
                 [self.navigationController popViewControllerAnimated:YES];
+                self.rightNavButton.enabled = YES;
             });
         }
         else if ([result[@"code"] intValue] == 1002) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"已添加过该专辑，是否继续保存。"] preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *action = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
             UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"保存" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 self.isSave = YES;
                 [self saveButtonClick];
@@ -425,9 +426,11 @@
             [alert addAction:action];
             [alert addAction:sureAction];
             [self.navigationController presentViewController:alert animated:YES completion:nil];
+            self.rightNavButton.enabled = YES;
         }
         else {
             [MBProgressHUD showInfoMessage:result[@"msg"]];
+            self.rightNavButton.enabled = YES;
         }
     } failure:^(NSError * _Nonnull erro) {
             [MBProgressHUD showInfoMessage:@"网络连接失败，请稍后重试"];
