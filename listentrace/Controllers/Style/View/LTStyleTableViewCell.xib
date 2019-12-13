@@ -47,13 +47,13 @@
                         <rect key="frame" x="25" y="50.000000000000007" width="328.66666666666669" height="115.66666666666669"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_cell_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="4gl-4N-5fn">
-                                <rect key="frame" x="-22.666666666666671" y="-14" width="135" height="144"/>
+                                <rect key="frame" x="-22.666666666666671" y="-17" width="135" height="150"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="144" id="RWR-7T-q3m"/>
+                                    <constraint firstAttribute="height" constant="150" id="RWR-7T-q3m"/>
                                     <constraint firstAttribute="width" constant="135" id="YT7-Qa-cmm"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NVe-bi-4q0">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NVe-bi-4q0">
                                 <rect key="frame" x="-10" y="0.0" width="109.66666666666667" height="115.66666666666667"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="109.5" id="P8Z-qs-poz"/>
@@ -61,23 +61,23 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_cell_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="UAd-Jl-wbh">
-                                <rect key="frame" x="97" y="-14.666666666666664" width="135" height="145"/>
+                                <rect key="frame" x="97" y="-17" width="135" height="150"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="145" id="5XX-gu-toW"/>
+                                    <constraint firstAttribute="height" constant="150" id="5XX-gu-toW"/>
                                     <constraint firstAttribute="width" constant="135" id="tGZ-dE-2ro"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WXB-yy-M91">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WXB-yy-M91">
                                 <rect key="frame" x="109.66666666666669" y="0.0" width="109.33333333333331" height="115.66666666666667"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_cell_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="c3E-rz-Rro">
-                                <rect key="frame" x="216.33333333333337" y="-14.666666666666664" width="135" height="145"/>
+                                <rect key="frame" x="216.33333333333337" y="-17" width="135" height="150"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="145" id="Xr4-wa-Hfn"/>
+                                    <constraint firstAttribute="height" constant="150" id="Xr4-wa-Hfn"/>
                                     <constraint firstAttribute="width" constant="135" id="mSZ-pH-ZmY"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lF3-6L-eKW">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lF3-6L-eKW">
                                 <rect key="frame" x="229.00000000000003" y="0.0" width="109.66666666666666" height="115.66666666666667"/>
                             </imageView>
                         </subviews>

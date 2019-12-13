@@ -95,7 +95,12 @@
     if (self.albumId.length) {
         [self requestData];
         self.tipsImageLabel.hidden = YES;
-        self.albumButton.hidden = YES;
+        [self.albumImageView setImage:[UIImage imageNamed:@"album_detail_placeImage"]];
+        self.albumNameTextField.placeholder = @"";
+        self.musicianTextField.placeholder = @"";
+        self.styleTextField.placeholder = @"";
+        self.listeningTimeTextField.placeholder = @"";
+        [self handleUserEnable];
     }
     else {
         NSDate *date = [NSDate date];
@@ -217,7 +222,6 @@
         [self.albumTableView reloadData];
     }
     [self.albumButton setImageWithURL:nil forState:UIControlStateNormal placeholder:nil];
-    self.albumButton.hidden = NO;
     [self.albumImageView sd_setImageWithURL:result[@"data"][@"album_img"] placeholderImage:[UIImage imageNamed:@"album_detail_placeImage"]];
     if ([result[@"data"][@"favorite"] intValue] == 1) {
         self.loveButton.selected = YES;

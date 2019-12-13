@@ -81,7 +81,7 @@
                                                         <constraint firstAttribute="height" constant="180" id="sJF-Sa-ZKJ"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="album_albumImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="pGQ-HD-aAP">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="album_albumImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="pGQ-HD-aAP">
                                                     <rect key="frame" x="117.66666666666669" y="25" width="140" height="140"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="140" id="9q7-aS-ZIu"/>
