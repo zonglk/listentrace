@@ -308,11 +308,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="200" id="hpr-ql-2xn">
-                                        <rect key="frame" x="0.0" y="427" width="375" height="200"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="195" id="hpr-ql-2xn">
+                                        <rect key="frame" x="0.0" y="427" width="375" height="195"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hpr-ql-2xn" id="L4C-9Z-92n">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="199.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="194.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="创作团队" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5RW-J8-KKW">
@@ -455,33 +455,33 @@
                                         <color key="backgroundColor" red="0.97254901960784312" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="110" id="CNT-ty-5jv">
-                                        <rect key="frame" x="0.0" y="627" width="375" height="110"/>
+                                        <rect key="frame" x="0.0" y="622" width="375" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CNT-ty-5jv" id="bu9-DG-7SC">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="109.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="听迹" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtn-bz-pzm">
-                                                    <rect key="frame" x="161" y="36" width="29" height="17"/>
+                                                    <rect key="frame" x="161" y="34" width="29" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.59607843137254901" green="0.61568627450980395" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created with love by Hippies." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4pu-0y-8H9">
-                                                    <rect key="frame" x="105" y="63" width="165.5" height="14.5"/>
+                                                    <rect key="frame" x="105" y="61" width="165.5" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.59607843140000005" green="0.61568627450000002" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" v1.0.1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZEy-Cs-5X8">
-                                                    <rect key="frame" x="192" y="36" width="37.5" height="17"/>
+                                                    <rect key="frame" x="192" y="34" width="37.5" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                     <color key="textColor" red="0.59607843140000005" green="0.61568627450000002" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="dtn-bz-pzm" firstAttribute="top" secondItem="bu9-DG-7SC" secondAttribute="top" constant="36" id="GBG-vO-yUI"/>
+                                                <constraint firstItem="dtn-bz-pzm" firstAttribute="top" secondItem="bu9-DG-7SC" secondAttribute="top" constant="34" id="GBG-vO-yUI"/>
                                                 <constraint firstItem="4pu-0y-8H9" firstAttribute="centerX" secondItem="bu9-DG-7SC" secondAttribute="centerX" id="H6n-SO-RdC"/>
                                                 <constraint firstItem="4pu-0y-8H9" firstAttribute="top" secondItem="dtn-bz-pzm" secondAttribute="bottom" constant="10" id="Xer-7z-N1c"/>
                                                 <constraint firstItem="dtn-bz-pzm" firstAttribute="centerX" secondItem="bu9-DG-7SC" secondAttribute="centerX" constant="-12" id="eZ1-rM-0Eg"/>

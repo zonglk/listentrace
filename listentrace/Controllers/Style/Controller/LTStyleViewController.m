@@ -59,6 +59,8 @@
 - (void)requestData {
     NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"];
     if (!userId.length) {
+        self.emptView.hidden = NO;
+        self.tableView.hidden = YES;
         return;
     }
     [LTNetworking requestUrl:@"/album/style" WithParam:@{@"user_id" : userId} withMethod:GET success:^(id  _Nonnull result) {
@@ -129,6 +131,19 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return [UIView new];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return 7;
+    }
+    else {
+        return 0.00001;
+    }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     return [UIView new];
 }
 

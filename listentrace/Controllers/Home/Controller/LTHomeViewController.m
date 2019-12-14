@@ -28,6 +28,7 @@
 @property (nonatomic, assign) NSInteger albumCount;
 @property (nonatomic, copy) NSString *countTipString;
 @property (nonatomic, assign) BOOL isHasUserId;
+@property (nonatomic, assign) BOOL isNeedStyleRefreshData;
 
 @end
 
@@ -42,6 +43,11 @@
     if (userId.length) {
         [self requestData];
         self.isHasUserId = YES;
+    }
+    else {
+        self.emptView.hidden = NO;
+        self.homeTableView.hidden = YES;
+        self.tipsLable.hidden = YES;
     }
     [self loginIcloud];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addAlbumSucess) name:@"AddAlbumSucess" object:nil];
@@ -83,6 +89,9 @@
                 if (!self.isHasUserId) {
                     [self requestData];
                 }
+                if (self.isNeedStyleRefreshData) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"LTDidBecomeActive" object:nil];
+                }
             }];
         }
     }];
@@ -94,6 +103,7 @@
 
 - (void)LTDidBecomeActive {
     [self loginIcloud];
+    self.isNeedStyleRefreshData = YES;
 }
 
 - (void)requestData {

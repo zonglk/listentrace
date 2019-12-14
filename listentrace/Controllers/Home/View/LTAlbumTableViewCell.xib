@@ -160,10 +160,10 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rg-FQ-a4u">
-                        <rect key="frame" x="468" y="1" width="17" height="17"/>
+                        <rect key="frame" x="470" y="0.0" width="16" height="16"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="17" id="idt-Y7-Gyi"/>
-                            <constraint firstAttribute="width" constant="17" id="wFz-5y-WRz"/>
+                            <constraint firstAttribute="height" constant="16" id="idt-Y7-Gyi"/>
+                            <constraint firstAttribute="width" constant="16" id="wFz-5y-WRz"/>
                         </constraints>
                         <state key="normal" backgroundImage="album_delete.png"/>
                         <connections>
@@ -172,12 +172,12 @@
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="5rg-FQ-a4u" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="1" id="7Tg-KH-IYc"/>
+                    <constraint firstItem="5rg-FQ-a4u" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="7Tg-KH-IYc"/>
                     <constraint firstAttribute="trailing" secondItem="5SZ-fA-LSs" secondAttribute="trailing" constant="12" id="H6x-eq-Ndm"/>
                     <constraint firstAttribute="bottom" secondItem="5SZ-fA-LSs" secondAttribute="bottom" constant="10" id="LcT-dV-5v9"/>
                     <constraint firstItem="5SZ-fA-LSs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="abF-eq-6F3"/>
                     <constraint firstItem="5SZ-fA-LSs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="eYL-TX-qzI"/>
-                    <constraint firstAttribute="trailing" secondItem="5rg-FQ-a4u" secondAttribute="trailing" constant="13" id="sVZ-ut-Ew0"/>
+                    <constraint firstAttribute="trailing" secondItem="5rg-FQ-a4u" secondAttribute="trailing" constant="12" id="sVZ-ut-Ew0"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.97254901959999995" green="0.97647058819999999" blue="0.98039215690000003" alpha="0.25109696061643838" colorSpace="custom" customColorSpace="calibratedRGB"/>
