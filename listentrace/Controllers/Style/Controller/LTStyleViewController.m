@@ -105,14 +105,16 @@
             self.tableView.hidden = NO;
         }
     } failure:^(NSError * _Nonnull erro) {
-        self.tableView.hidden = YES;
-        if (erro.code == -1009 || erro.code == -1005) {
-            self.emptView.hidden = YES;
-            self.noNetWorkView.hidden = NO;
-        }
-        else  {
-            self.noNetWorkView.hidden = YES;
-            self.emptView.hidden = NO;
+        if (!self.dataArray.count) {
+            self.tableView.hidden = YES;
+            if (erro.code == -1009 || erro.code == -1005) {
+                self.emptView.hidden = YES;
+                self.noNetWorkView.hidden = NO;
+            }
+            else  {
+                self.noNetWorkView.hidden = YES;
+                self.emptView.hidden = NO;
+            }
         }
     } showHUD:self.view];
 }

@@ -89,6 +89,7 @@
                 if (!self.isHasUserId) {
                     [self requestData];
                 }
+                self.isNeedStyleRefreshData = YES;
                 if (self.isNeedStyleRefreshData) {
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"LTDidBecomeActive" object:nil];
                 }
@@ -102,8 +103,9 @@
 }
 
 - (void)LTDidBecomeActive {
-    [self loginIcloud];
-    self.isNeedStyleRefreshData = YES;
+    if (!self.isNeedStyleRefreshData) {
+        [self loginIcloud];
+    }
 }
 
 - (void)requestData {
@@ -178,15 +180,17 @@
             self.homeTableView.hidden = NO;
         }
     } failure:^(NSError * _Nonnull erro) {
-        self.homeTableView.hidden = YES;
-        self.tipsLable.hidden = YES;
-        if (erro.code == -1009 || erro.code == -1005) {
-            self.emptView.hidden = YES;
-            self.noNetWorkView.hidden = NO;
-        }
-        else  {
-            self.noNetWorkView.hidden = YES;
-            self.emptView.hidden = NO;
+        if (!self.dataArray.count) {
+            self.homeTableView.hidden = YES;
+            self.tipsLable.hidden = YES;
+            if (erro.code == -1009 || erro.code == -1005) {
+                self.emptView.hidden = YES;
+                self.noNetWorkView.hidden = NO;
+            }
+            else  {
+                self.noNetWorkView.hidden = YES;
+                self.emptView.hidden = NO;
+            }
         }
     } showHUD:self.view];
 }
