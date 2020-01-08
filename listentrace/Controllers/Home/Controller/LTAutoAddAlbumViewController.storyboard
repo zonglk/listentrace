@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--链接导入-->
+        <scene sceneID="jz5-1x-vRJ">
+            <objects>
+                <viewController storyboardIdentifier="LTAutoAddAlbumViewController" title="链接导入" useStoryboardIdentifierAsRestorationIdentifier="YES" id="J2N-Tg-muh" customClass="LTAutoAddAlbumViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JiG-SM-cJ2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EzX-3I-aqo">
+                                <rect key="frame" x="0.0" y="44" width="414" height="758"/>
+                                <color key="backgroundColor" red="0.97254901960784312" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <segue destination="uBo-kZ-tg5" kind="embed" id="L4E-0G-gwr"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="FjL-Is-rFx" firstAttribute="bottom" secondItem="EzX-3I-aqo" secondAttribute="bottom" constant="60" id="84K-01-A8s"/>
+                            <constraint firstItem="EzX-3I-aqo" firstAttribute="leading" secondItem="FjL-Is-rFx" secondAttribute="leading" id="SSN-1s-eIP"/>
+                            <constraint firstItem="FjL-Is-rFx" firstAttribute="trailing" secondItem="EzX-3I-aqo" secondAttribute="trailing" id="hLc-8t-3ez"/>
+                            <constraint firstItem="EzX-3I-aqo" firstAttribute="top" secondItem="FjL-Is-rFx" secondAttribute="top" id="yOa-Ou-hKT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="FjL-Is-rFx"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zhk-G5-iZe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-216" y="-127"/>
+        </scene>
+        <!--Auto Add Album Table View Controller-->
+        <scene sceneID="vLZ-Jl-jQ5">
+            <objects>
+                <tableViewController storyboardIdentifier="LTAutoAddAlbumTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uBo-kZ-tg5" customClass="LTAutoAddAlbumTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="MZe-Vv-Owg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <sections>
+                            <tableViewSection id="1Mf-7F-wVV">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="486" id="Z7a-Tn-ZQN">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="486"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Z7a-Tn-ZQN" id="DsS-l2-d4d">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="486"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支持专辑链接解析的音乐流媒体平台有： " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VgU-6y-EcJ">
+                                                    <rect key="frame" x="15" y="16" width="261" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNS-7m-uEy">
+                                                    <rect key="frame" x="15" y="43" width="60" height="17"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="- Spotify ">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" metaFont="system" size="14"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- 网易云音乐" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l7w-Iq-ZRM">
+                                                    <rect key="frame" x="15" y="87" width="82" height="17"/>
+                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                                    <color key="textColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- QQ 音乐" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYe-e1-r6s">
+                                                    <rect key="frame" x="15" y="65" width="64" height="17"/>
+                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                                    <color key="textColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- Bandcamp" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6LS-QL-JAH">
+                                                    <rect key="frame" x="15" y="109" width="79.5" height="17"/>
+                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                                    <color key="textColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- Apple Music" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QdU-sG-YLE">
+                                                    <rect key="frame" x="15" y="131" width="90" height="17"/>
+                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                                    <color key="textColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请粘贴专辑链接：" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGa-S5-hQQ">
+                                                    <rect key="frame" x="15" y="172" width="114.5" height="17"/>
+                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                                    <color key="textColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WPO-hY-ila">
+                                                    <rect key="frame" x="15" y="199" width="384" height="60"/>
+                                                    <subviews>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ATz-sW-8Yk">
+                                                            <rect key="frame" x="10" y="16" width="364" height="28"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <inset key="scrollIndicatorInsets" minX="10" minY="30" maxX="10" maxY="0.0"/>
+                                                            <color key="textColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="namePhonePad" returnKeyType="done"/>
+                                                        </textView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="ATz-sW-8Yk" firstAttribute="leading" secondItem="WPO-hY-ila" secondAttribute="leading" constant="10" id="DMI-DT-fxP"/>
+                                                        <constraint firstItem="ATz-sW-8Yk" firstAttribute="top" secondItem="WPO-hY-ila" secondAttribute="top" constant="16" id="FLH-dN-9Sc"/>
+                                                        <constraint firstAttribute="height" constant="60" id="KvA-yU-CwV"/>
+                                                        <constraint firstAttribute="trailing" secondItem="ATz-sW-8Yk" secondAttribute="trailing" constant="10" id="dum-5B-CQZ"/>
+                                                        <constraint firstAttribute="bottom" secondItem="ATz-sW-8Yk" secondAttribute="bottom" constant="16" id="fUX-3e-O4W"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="6LS-QL-JAH" firstAttribute="leading" secondItem="TNS-7m-uEy" secondAttribute="leading" id="0aX-Ld-VXQ"/>
+                                                <constraint firstItem="dYe-e1-r6s" firstAttribute="top" secondItem="TNS-7m-uEy" secondAttribute="bottom" constant="5" id="630-l3-hfk"/>
+                                                <constraint firstItem="dYe-e1-r6s" firstAttribute="leading" secondItem="TNS-7m-uEy" secondAttribute="leading" id="81l-ji-Yjt"/>
+                                                <constraint firstItem="DGa-S5-hQQ" firstAttribute="top" secondItem="QdU-sG-YLE" secondAttribute="bottom" constant="24" id="CF7-Of-tji"/>
+                                                <constraint firstItem="WPO-hY-ila" firstAttribute="leading" secondItem="DsS-l2-d4d" secondAttribute="leading" constant="15" id="Ec5-Ss-0td"/>
+                                                <constraint firstItem="VgU-6y-EcJ" firstAttribute="top" secondItem="DsS-l2-d4d" secondAttribute="top" constant="16" id="IUX-L3-7rS"/>
+                                                <constraint firstItem="l7w-Iq-ZRM" firstAttribute="leading" secondItem="TNS-7m-uEy" secondAttribute="leading" id="MtV-AE-eBD"/>
+                                                <constraint firstItem="TNS-7m-uEy" firstAttribute="leading" secondItem="VgU-6y-EcJ" secondAttribute="leading" id="YM1-OX-bbS"/>
+                                                <constraint firstItem="QdU-sG-YLE" firstAttribute="top" secondItem="6LS-QL-JAH" secondAttribute="bottom" constant="5" id="Ydc-Nr-mBf"/>
+                                                <constraint firstItem="6LS-QL-JAH" firstAttribute="top" secondItem="l7w-Iq-ZRM" secondAttribute="bottom" constant="5" id="cKp-a3-Fdg"/>
+                                                <constraint firstItem="TNS-7m-uEy" firstAttribute="top" secondItem="VgU-6y-EcJ" secondAttribute="bottom" constant="10" id="cKz-gY-i4l"/>
+                                                <constraint firstAttribute="trailing" secondItem="WPO-hY-ila" secondAttribute="trailing" constant="15" id="nwl-ju-ZzP"/>
+                                                <constraint firstItem="l7w-Iq-ZRM" firstAttribute="top" secondItem="dYe-e1-r6s" secondAttribute="bottom" constant="5" id="rgu-JS-2Bf"/>
+                                                <constraint firstItem="VgU-6y-EcJ" firstAttribute="leading" secondItem="DsS-l2-d4d" secondAttribute="leading" constant="15" id="uMC-43-g90"/>
+                                                <constraint firstItem="WPO-hY-ila" firstAttribute="top" secondItem="DGa-S5-hQQ" secondAttribute="bottom" constant="10" id="yRT-lG-qlk"/>
+                                                <constraint firstItem="DGa-S5-hQQ" firstAttribute="leading" secondItem="TNS-7m-uEy" secondAttribute="leading" id="zhg-wB-lS4"/>
+                                                <constraint firstItem="QdU-sG-YLE" firstAttribute="leading" secondItem="TNS-7m-uEy" secondAttribute="leading" id="zpj-hg-bLM"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.97254901960784312" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="uBo-kZ-tg5" id="11d-uN-f7O"/>
+                            <outlet property="delegate" destination="uBo-kZ-tg5" id="sgk-Bv-HWN"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="autoTextView" destination="ATz-sW-8Yk" id="oOF-kw-VLh"/>
+                        <outlet property="autoView" destination="WPO-hY-ila" id="zvj-8s-OaO"/>
+                        <outlet property="autoViewHeight" destination="KvA-yU-CwV" id="xRb-6n-1L7"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f6m-BA-r5V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="527.536231884058" y="-132.58928571428572"/>
+        </scene>
+    </scenes>
+</document>

@@ -14,6 +14,7 @@
 #import "LTAlbumModel.h"
 #import "LTHelpTableViewController.h"
 #import "LTHelpTipViewController.h"
+#import "LTAutoAddAlbumViewController.h"
 
 @interface LTHomeViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -361,6 +362,10 @@
     self.coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.0];
     self.coverView.hidden = YES;
     self.addView.alpha = 0;
+    
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTAutoAddAlbumViewController" bundle:nil];
+    LTAutoAddAlbumViewController *autoVC = [story instantiateViewControllerWithIdentifier:@"LTAutoAddAlbumViewController"];
+    [self.navigationController pushViewController:autoVC animated:YES];
 }
 
 #pragma mark - =================== 添加专辑 ===================

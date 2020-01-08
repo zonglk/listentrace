@@ -98,6 +98,9 @@
 		00F17D2723C6173B00FE6439 /* home_autoButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00F17D2323C6173A00FE6439 /* home_autoButton@3x.png */; };
 		00F17D2823C6173B00FE6439 /* home_manuelButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00F17D2423C6173A00FE6439 /* home_manuelButton@2x.png */; };
 		00F17D2923C6173B00FE6439 /* home_manuelButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00F17D2523C6173B00FE6439 /* home_manuelButton@3x.png */; };
+		00F17D2C23C62DD900FE6439 /* LTAutoAddAlbumTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F17D2B23C62DD900FE6439 /* LTAutoAddAlbumTableViewController.m */; };
+		00F17D3123C62EB100FE6439 /* LTAutoAddAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F17D3023C62EB100FE6439 /* LTAutoAddAlbumViewController.m */; };
+		00F17D3323C62EC600FE6439 /* LTAutoAddAlbumViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00F17D3223C62EC600FE6439 /* LTAutoAddAlbumViewController.storyboard */; };
 		00F81F4C232B262400CA8858 /* LTStyleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F81F4B232B262400CA8858 /* LTStyleModel.m */; };
 		6EE3B97A1A0269043BD0DA10 /* Pods_listentraceUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38E092DA3CAADCA1BBE21507 /* Pods_listentraceUITests.framework */; };
 		A37E35B0102F698943C83CCC /* Pods_listentrace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8ADF5B89930780ECF0206F7 /* Pods_listentrace.framework */; };
@@ -321,6 +324,11 @@
 		00F17D2323C6173A00FE6439 /* home_autoButton@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_autoButton@3x.png"; sourceTree = "<group>"; };
 		00F17D2423C6173A00FE6439 /* home_manuelButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_manuelButton@2x.png"; sourceTree = "<group>"; };
 		00F17D2523C6173B00FE6439 /* home_manuelButton@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_manuelButton@3x.png"; sourceTree = "<group>"; };
+		00F17D2A23C62DD900FE6439 /* LTAutoAddAlbumTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTAutoAddAlbumTableViewController.h; sourceTree = "<group>"; };
+		00F17D2B23C62DD900FE6439 /* LTAutoAddAlbumTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTAutoAddAlbumTableViewController.m; sourceTree = "<group>"; };
+		00F17D2F23C62EB100FE6439 /* LTAutoAddAlbumViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTAutoAddAlbumViewController.h; sourceTree = "<group>"; };
+		00F17D3023C62EB100FE6439 /* LTAutoAddAlbumViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTAutoAddAlbumViewController.m; sourceTree = "<group>"; };
+		00F17D3223C62EC600FE6439 /* LTAutoAddAlbumViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LTAutoAddAlbumViewController.storyboard; sourceTree = "<group>"; };
 		00F81F4A232B262400CA8858 /* LTStyleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LTStyleModel.h; path = listentrace/Controllers/Home/Model/LTStyleModel.h; sourceTree = SOURCE_ROOT; };
 		00F81F4B232B262400CA8858 /* LTStyleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LTStyleModel.m; path = listentrace/Controllers/Home/Model/LTStyleModel.m; sourceTree = SOURCE_ROOT; };
 		38E092DA3CAADCA1BBE21507 /* Pods_listentraceUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_listentraceUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -675,6 +683,11 @@
 				009B3F8523C4E1AE000C963A /* LTHelpTipViewController.storyboard */,
 				009B3F7D23C4D1D4000C963A /* LTHelpTipsTableViewController.h */,
 				009B3F7E23C4D1D4000C963A /* LTHelpTipsTableViewController.m */,
+				00F17D2F23C62EB100FE6439 /* LTAutoAddAlbumViewController.h */,
+				00F17D3023C62EB100FE6439 /* LTAutoAddAlbumViewController.m */,
+				00F17D3223C62EC600FE6439 /* LTAutoAddAlbumViewController.storyboard */,
+				00F17D2A23C62DD900FE6439 /* LTAutoAddAlbumTableViewController.h */,
+				00F17D2B23C62DD900FE6439 /* LTAutoAddAlbumTableViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1288,6 +1301,7 @@
 				002E18BB22F726C9004D9F1D /* album_grayHeart@2x.png in Resources */,
 				BD3AEB1923A32EC700CC970F /* camera@3x.png in Resources */,
 				00E83BDA22E60B3F00C47AE5 /* setup_tabbar_selected@2x.png in Resources */,
+				00F17D3323C62EC600FE6439 /* LTAutoAddAlbumViewController.storyboard in Resources */,
 				00A83AB922EF346000C59ACB /* LTStyleDetailCollectionViewCell.xib in Resources */,
 				00E83BD522E60B3300C47AE5 /* style_tabbar_normal@2x.png in Resources */,
 				00A0D21422F8966F0002D234 /* album_add@2x.png in Resources */,
@@ -1457,6 +1471,7 @@
 				003D86A8232553DE002C0D5E /* LTAlbumModel.m in Sources */,
 				00C2B0A422EDB60A00CFB3E1 /* LTSetUpViewController.m in Sources */,
 				005C3E8822E481840015CCB9 /* LTMainTabBarController.m in Sources */,
+				00F17D3123C62EB100FE6439 /* LTAutoAddAlbumViewController.m in Sources */,
 				BD5B8C1923273F38005D18FF /* QFTimerPicker.m in Sources */,
 				005C3E8422E47E960015CCB9 /* Appdelegate+AppService.m in Sources */,
 				BD5B8C1D23273F53005D18FF /* QFTimerUtil.m in Sources */,
@@ -1493,6 +1508,7 @@
 				002747C622E8B2B000752BD2 /* LTRootWebViewController.m in Sources */,
 				0027480A22E8BEB300752BD2 /* TADotView.m in Sources */,
 				BD5B8C1523273F10005D18FF /* QFTimerDataSourceModel.m in Sources */,
+				00F17D2C23C62DD900FE6439 /* LTAutoAddAlbumTableViewController.m in Sources */,
 				00A83AB422EF2FE800C59ACB /* LTStyleDetailViewController.m in Sources */,
 				00A481B823C38CE4007DF56D /* LTHelpTableViewController.m in Sources */,
 				002747BB22E8AFCA00752BD2 /* AESCipher.m in Sources */,
