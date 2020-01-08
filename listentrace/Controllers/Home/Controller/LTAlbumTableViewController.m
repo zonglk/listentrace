@@ -117,7 +117,6 @@
     [backItem setTintColor:RGBHex(0xE6E6E6)];
     self.navigationItem.leftBarButtonItem = backItem;
     
-    self.title = @"专辑信息";
     self.tableView.backgroundColor = CViewBgColor;
     UIButton *rightNavButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     if (self.albumId.length) {

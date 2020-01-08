@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--帮助说明-->
+        <scene sceneID="bWj-WV-VYf">
+            <objects>
+                <viewController storyboardIdentifier="LTHelpTipViewController" title="帮助说明" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yDQ-os-Sro" customClass="LTHelpTipViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2vo-wj-Oae">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ot3-64-M51">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <connections>
+                                    <segue destination="dtB-oU-53L" kind="embed" id="xv5-jv-16G"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="eCQ-kI-2SO" firstAttribute="trailing" secondItem="ot3-64-M51" secondAttribute="trailing" id="f5k-d4-uKw"/>
+                            <constraint firstItem="ot3-64-M51" firstAttribute="leading" secondItem="eCQ-kI-2SO" secondAttribute="leading" id="fiO-sf-RhK"/>
+                            <constraint firstItem="eCQ-kI-2SO" firstAttribute="bottom" secondItem="ot3-64-M51" secondAttribute="bottom" id="nrF-II-UtG"/>
+                            <constraint firstItem="ot3-64-M51" firstAttribute="top" secondItem="eCQ-kI-2SO" secondAttribute="top" id="vx1-DY-4NR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="eCQ-kI-2SO"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ckI-Uk-bwh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-265" y="54"/>
+        </scene>
+        <!--Help Table View Controller-->
+        <scene sceneID="nzH-1W-On8">
+            <objects>
+                <tableViewController storyboardIdentifier="LTHelpTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dtB-oU-53L" customClass="LTHelpTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="eg4-CZ-Tfr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <sections>
+                            <tableViewSection id="DBI-tV-c8W">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="832" id="Wi8-u2-LaC">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="832"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wi8-u2-LaC" id="hvK-ZW-GUy">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="832"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eu7-sD-H0O">
+                                                    <rect key="frame" x="15" y="12" width="384" height="32"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="在音乐平台选择「专辑」进行分享，注意是专辑不是单曲，点击分享后会出现路径选择。">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="14" name=".PingFangSC-Regular"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="charWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="复制链接：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bY7-WL-QA2">
+                                                    <rect key="frame" x="15" y="54" width="71.5" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share Sheet:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qqy-du-dei">
+                                                    <rect key="frame" x="15" y="119" width="83" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5EO-en-KiC">
+                                                    <rect key="frame" x="15" y="77" width="384" height="32"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="国内音乐平台基本上只能点击复制链接，然后粘贴到输入框进行复制。">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <font key="NSFont" size="14" name=".PingFangSC-Regular"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C67-P3-z8l">
+                                                    <rect key="frame" x="15" y="142" width="384" height="32"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="国外音乐平台如 Spotify 既可以复制链接，也可使用 Share Sheet 进行分享。">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <font key="NSFont" size="14" name=".PingFangSC-Regular"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="seX-3p-oFn">
+                                                    <rect key="frame" x="15" y="184" width="384" height="160"/>
+                                                    <color key="backgroundColor" red="0.67843137249999996" green="0.67843137249999996" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="160" id="U9k-kW-Vg8"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S3T-xh-ee3">
+                                                    <rect key="frame" x="15" y="414" width="384" height="145"/>
+                                                    <color key="backgroundColor" red="0.67843137249999996" green="0.67843137249999996" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="145" id="W0x-e4-Vof"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T49-Ob-QfY">
+                                                    <rect key="frame" x="15" y="354" width="384" height="50"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="分享 App 选择列表，请左滑至最右，从「更多」入口找到听迹。点击页面右上角的编辑并打开听迹的开关，再点击左侧的 + 按钮，拖动位置到最前面，并点击完成进行保存。">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <font key="NSFont" size="14" name=".PingFangSC-Regular"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7i-X6-O4n">
+                                                    <rect key="frame" x="15" y="569" width="384" height="32"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="操作完成之后，则可以选择 Share Sheet 页的听迹图标直接分享，进行专辑信息解析。">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <font key="NSFont" size="14" name=".PingFangSC-Regular"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Axn-Ln-tYw">
+                                                    <rect key="frame" x="15" y="611" width="384" height="160"/>
+                                                    <color key="backgroundColor" red="0.67843137249999996" green="0.67843137249999996" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="160" id="E6c-FG-w1U"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="S3T-xh-ee3" firstAttribute="leading" secondItem="hvK-ZW-GUy" secondAttribute="leading" constant="15" id="1Hq-QW-aeY"/>
+                                                <constraint firstItem="bY7-WL-QA2" firstAttribute="leading" secondItem="eu7-sD-H0O" secondAttribute="leading" id="1yh-jY-KYh"/>
+                                                <constraint firstAttribute="trailing" secondItem="Axn-Ln-tYw" secondAttribute="trailing" constant="15" id="3ML-qX-6im"/>
+                                                <constraint firstItem="bY7-WL-QA2" firstAttribute="top" secondItem="eu7-sD-H0O" secondAttribute="bottom" constant="10" id="4e0-dH-BHo"/>
+                                                <constraint firstItem="5EO-en-KiC" firstAttribute="top" secondItem="bY7-WL-QA2" secondAttribute="bottom" constant="6" id="5dB-Uj-6eX"/>
+                                                <constraint firstAttribute="trailing" secondItem="5EO-en-KiC" secondAttribute="trailing" constant="15" id="6qY-wb-3Tu"/>
+                                                <constraint firstItem="C7i-X6-O4n" firstAttribute="top" secondItem="S3T-xh-ee3" secondAttribute="bottom" constant="10" id="7ws-qa-nKD"/>
+                                                <constraint firstItem="C67-P3-z8l" firstAttribute="leading" secondItem="Qqy-du-dei" secondAttribute="leading" id="9SM-Tg-Hdd"/>
+                                                <constraint firstAttribute="trailing" secondItem="T49-Ob-QfY" secondAttribute="trailing" constant="15" id="BkL-SC-ZYR"/>
+                                                <constraint firstItem="eu7-sD-H0O" firstAttribute="leading" secondItem="hvK-ZW-GUy" secondAttribute="leading" constant="15" id="Deo-Ut-kMV"/>
+                                                <constraint firstItem="eu7-sD-H0O" firstAttribute="top" secondItem="hvK-ZW-GUy" secondAttribute="top" constant="12" id="F5z-Sq-VCD"/>
+                                                <constraint firstItem="Axn-Ln-tYw" firstAttribute="leading" secondItem="hvK-ZW-GUy" secondAttribute="leading" constant="15" id="Gwc-1c-eFG"/>
+                                                <constraint firstAttribute="trailing" secondItem="seX-3p-oFn" secondAttribute="trailing" constant="15" id="IoU-b7-pGr"/>
+                                                <constraint firstItem="seX-3p-oFn" firstAttribute="top" secondItem="C67-P3-z8l" secondAttribute="bottom" constant="10" id="JNQ-Kk-e3b"/>
+                                                <constraint firstItem="Axn-Ln-tYw" firstAttribute="top" secondItem="C7i-X6-O4n" secondAttribute="bottom" constant="10" id="OFl-mx-Kot"/>
+                                                <constraint firstAttribute="trailing" secondItem="C67-P3-z8l" secondAttribute="trailing" constant="15" id="OLd-wA-yRS"/>
+                                                <constraint firstItem="seX-3p-oFn" firstAttribute="leading" secondItem="hvK-ZW-GUy" secondAttribute="leading" constant="15" id="VLk-2O-d1b"/>
+                                                <constraint firstItem="C7i-X6-O4n" firstAttribute="leading" secondItem="hvK-ZW-GUy" secondAttribute="leading" constant="15" id="XJL-El-hFR"/>
+                                                <constraint firstItem="C67-P3-z8l" firstAttribute="top" secondItem="Qqy-du-dei" secondAttribute="bottom" constant="6" id="XJq-3N-VzF"/>
+                                                <constraint firstItem="S3T-xh-ee3" firstAttribute="top" secondItem="T49-Ob-QfY" secondAttribute="bottom" constant="10" id="YOy-OJ-f2i"/>
+                                                <constraint firstItem="T49-Ob-QfY" firstAttribute="top" secondItem="seX-3p-oFn" secondAttribute="bottom" constant="10" id="e4H-UU-wH1"/>
+                                                <constraint firstItem="T49-Ob-QfY" firstAttribute="leading" secondItem="hvK-ZW-GUy" secondAttribute="leading" constant="15" id="iPz-Py-HKS"/>
+                                                <constraint firstAttribute="trailing" secondItem="S3T-xh-ee3" secondAttribute="trailing" constant="15" id="is5-Q0-1Ec"/>
+                                                <constraint firstItem="Qqy-du-dei" firstAttribute="leading" secondItem="5EO-en-KiC" secondAttribute="leading" id="m6C-fQ-DKF"/>
+                                                <constraint firstItem="Qqy-du-dei" firstAttribute="top" secondItem="5EO-en-KiC" secondAttribute="bottom" constant="10" id="mgF-EY-IQb"/>
+                                                <constraint firstAttribute="trailing" secondItem="C7i-X6-O4n" secondAttribute="trailing" constant="15" id="xF1-rs-IY5"/>
+                                                <constraint firstItem="5EO-en-KiC" firstAttribute="leading" secondItem="bY7-WL-QA2" secondAttribute="leading" id="xfA-kF-Xu1"/>
+                                                <constraint firstAttribute="trailing" secondItem="eu7-sD-H0O" secondAttribute="trailing" constant="15" id="xox-It-R61"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.97254901959999995" green="0.97647058819999999" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="dtB-oU-53L" id="3HX-bU-DQg"/>
+                            <outlet property="delegate" destination="dtB-oU-53L" id="IoE-0P-kWa"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wSp-xl-M80" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="537.68115942028987" y="26.785714285714285"/>
+        </scene>
+    </scenes>
+</document>

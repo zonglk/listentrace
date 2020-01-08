@@ -54,10 +54,16 @@
 		0097381F232D338A00F2E7F9 /* LTActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 0097381E232D338A00F2E7F9 /* LTActivity.m */; };
 		00973822232D377600F2E7F9 /* appIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00973820232D377500F2E7F9 /* appIcon@2x.png */; };
 		00973823232D377600F2E7F9 /* appIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00973821232D377600F2E7F9 /* appIcon@3x.png */; };
+		009B3F7F23C4D1D4000C963A /* LTHelpTipsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 009B3F7E23C4D1D4000C963A /* LTHelpTipsTableViewController.m */; };
+		009B3F8423C4DEEC000C963A /* LTHelpTipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 009B3F8323C4DEEC000C963A /* LTHelpTipViewController.m */; };
+		009B3F8623C4E1AE000C963A /* LTHelpTipViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 009B3F8523C4E1AE000C963A /* LTHelpTipViewController.storyboard */; };
 		00A0D20F22F887630002D234 /* album_down_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A0D20D22F887620002D234 /* album_down_arrow@3x.png */; };
 		00A0D21022F887630002D234 /* album_down_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A0D20E22F887620002D234 /* album_down_arrow@2x.png */; };
 		00A0D21322F8966F0002D234 /* album_add@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A0D21122F8966E0002D234 /* album_add@3x.png */; };
 		00A0D21422F8966F0002D234 /* album_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A0D21222F8966E0002D234 /* album_add@2x.png */; };
+		00A481B323C38C15007DF56D /* LTHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A481B223C38C15007DF56D /* LTHelpViewController.m */; };
+		00A481B523C38CA8007DF56D /* LTHelpViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00A481B423C38CA8007DF56D /* LTHelpViewController.storyboard */; };
+		00A481B823C38CE4007DF56D /* LTHelpTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A481B723C38CE4007DF56D /* LTHelpTableViewController.m */; };
 		00A83AB422EF2FE800C59ACB /* LTStyleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A83AB322EF2FE800C59ACB /* LTStyleDetailViewController.m */; };
 		00A83AB822EF346000C59ACB /* LTStyleDetailCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A83AB622EF346000C59ACB /* LTStyleDetailCollectionViewCell.m */; };
 		00A83AB922EF346000C59ACB /* LTStyleDetailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00A83AB722EF346000C59ACB /* LTStyleDetailCollectionViewCell.xib */; };
@@ -255,10 +261,20 @@
 		0097381E232D338A00F2E7F9 /* LTActivity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LTActivity.m; path = listentrace/Controllers/Home/Model/LTActivity.m; sourceTree = SOURCE_ROOT; };
 		00973820232D377500F2E7F9 /* appIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appIcon@2x.png"; sourceTree = "<group>"; };
 		00973821232D377600F2E7F9 /* appIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appIcon@3x.png"; sourceTree = "<group>"; };
+		009B3F7D23C4D1D4000C963A /* LTHelpTipsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTHelpTipsTableViewController.h; sourceTree = "<group>"; };
+		009B3F7E23C4D1D4000C963A /* LTHelpTipsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTHelpTipsTableViewController.m; sourceTree = "<group>"; };
+		009B3F8223C4DEEC000C963A /* LTHelpTipViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTHelpTipViewController.h; sourceTree = "<group>"; };
+		009B3F8323C4DEEC000C963A /* LTHelpTipViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTHelpTipViewController.m; sourceTree = "<group>"; };
+		009B3F8523C4E1AE000C963A /* LTHelpTipViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LTHelpTipViewController.storyboard; sourceTree = "<group>"; };
 		00A0D20D22F887620002D234 /* album_down_arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "album_down_arrow@3x.png"; sourceTree = "<group>"; };
 		00A0D20E22F887620002D234 /* album_down_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "album_down_arrow@2x.png"; sourceTree = "<group>"; };
 		00A0D21122F8966E0002D234 /* album_add@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "album_add@3x.png"; sourceTree = "<group>"; };
 		00A0D21222F8966E0002D234 /* album_add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "album_add@2x.png"; sourceTree = "<group>"; };
+		00A481B123C38C15007DF56D /* LTHelpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTHelpViewController.h; sourceTree = "<group>"; };
+		00A481B223C38C15007DF56D /* LTHelpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTHelpViewController.m; sourceTree = "<group>"; };
+		00A481B423C38CA8007DF56D /* LTHelpViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LTHelpViewController.storyboard; sourceTree = "<group>"; };
+		00A481B623C38CE4007DF56D /* LTHelpTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTHelpTableViewController.h; sourceTree = "<group>"; };
+		00A481B723C38CE4007DF56D /* LTHelpTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTHelpTableViewController.m; sourceTree = "<group>"; };
 		00A83AB222EF2FE800C59ACB /* LTStyleDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTStyleDetailViewController.h; sourceTree = "<group>"; };
 		00A83AB322EF2FE800C59ACB /* LTStyleDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTStyleDetailViewController.m; sourceTree = "<group>"; };
 		00A83AB522EF346000C59ACB /* LTStyleDetailCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTStyleDetailCollectionViewCell.h; sourceTree = "<group>"; };
@@ -641,6 +657,16 @@
 				002E18AE22F72224004D9F1D /* LTAlbumTableViewController.h */,
 				002E18AF22F72224004D9F1D /* LTAlbumTableViewController.m */,
 				002E18B322F722BF004D9F1D /* LTAlbumTableViewController.storyboard */,
+				00A481B123C38C15007DF56D /* LTHelpViewController.h */,
+				00A481B223C38C15007DF56D /* LTHelpViewController.m */,
+				00A481B423C38CA8007DF56D /* LTHelpViewController.storyboard */,
+				00A481B623C38CE4007DF56D /* LTHelpTableViewController.h */,
+				00A481B723C38CE4007DF56D /* LTHelpTableViewController.m */,
+				009B3F8223C4DEEC000C963A /* LTHelpTipViewController.h */,
+				009B3F8323C4DEEC000C963A /* LTHelpTipViewController.m */,
+				009B3F8523C4E1AE000C963A /* LTHelpTipViewController.storyboard */,
+				009B3F7D23C4D1D4000C963A /* LTHelpTipsTableViewController.h */,
+				009B3F7E23C4D1D4000C963A /* LTHelpTipsTableViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1227,6 +1253,7 @@
 			files = (
 				BD4FB446230AAA5E00A6F825 /* album_style@3x.png in Resources */,
 				BD0FB0F0239A0C84006638F8 /* album_detail_bg.png in Resources */,
+				009B3F8623C4E1AE000C963A /* LTHelpTipViewController.storyboard in Resources */,
 				00E83BD122E60B2300C47AE5 /* home_tabbar_selected@2x.png in Resources */,
 				BD7C78792346EB9C0059585E /* style_album_placeImage@2x.png in Resources */,
 				00C2B0A122ED9C8F00CFB3E1 /* style_entry@2x.png in Resources */,
@@ -1244,6 +1271,7 @@
 				BD4FB43D230AA79400A6F825 /* album_redHeart@2x.png in Resources */,
 				0029AD97239D43A800E84D29 /* editAlbum_sucess@2x.png in Resources */,
 				00A0D20F22F887630002D234 /* album_down_arrow@3x.png in Resources */,
+				00A481B523C38CA8007DF56D /* LTHelpViewController.storyboard in Resources */,
 				BD7F2F8023505F5A00037B58 /* addAlbum_sucess@2x.png in Resources */,
 				002E18BB22F726C9004D9F1D /* album_grayHeart@2x.png in Resources */,
 				BD3AEB1923A32EC700CC970F /* camera@3x.png in Resources */,
@@ -1428,6 +1456,7 @@
 				002747DA22E8BB1700752BD2 /* PPNetworkHelper.m in Sources */,
 				BDE2421622E5567E002F87E4 /* LTStyleViewController.m in Sources */,
 				BD8106252329DFE9004EF8B6 /* LTAddAlbumDetailModel.m in Sources */,
+				00A481B323C38C15007DF56D /* LTHelpViewController.m in Sources */,
 				002747D122E8B68600752BD2 /* MBProgressHUD+LT.m in Sources */,
 				00C2B08F22ED5AD500CFB3E1 /* LTHomeTableViewCell.m in Sources */,
 				003D869E23251AEF002C0D5E /* LYLUnicode.m in Sources */,
@@ -1442,11 +1471,14 @@
 				BD4FB434230A91BB00A6F825 /* LTAlbumTableViewCell.m in Sources */,
 				002747E322E8BD7B00752BD2 /* XZPickView.m in Sources */,
 				002747BF22E8B06D00752BD2 /* LTHeaderModel.m in Sources */,
+				009B3F7F23C4D1D4000C963A /* LTHelpTipsTableViewController.m in Sources */,
+				009B3F8423C4DEEC000C963A /* LTHelpTipViewController.m in Sources */,
 				BD5B8C0323273EB9005D18FF /* QFDatePickerView.m in Sources */,
 				002747C622E8B2B000752BD2 /* LTRootWebViewController.m in Sources */,
 				0027480A22E8BEB300752BD2 /* TADotView.m in Sources */,
 				BD5B8C1523273F10005D18FF /* QFTimerDataSourceModel.m in Sources */,
 				00A83AB422EF2FE800C59ACB /* LTStyleDetailViewController.m in Sources */,
+				00A481B823C38CE4007DF56D /* LTHelpTableViewController.m in Sources */,
 				002747BB22E8AFCA00752BD2 /* AESCipher.m in Sources */,
 				00C2B0AB22EDC97100CFB3E1 /* LTSetUpTableViewController.m in Sources */,
 				BDE2421322E554EE002F87E4 /* LTHomeViewController.m in Sources */,

@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Album Table View Controller-->
+        <!--专辑信息-->
         <scene sceneID="AG7-Z1-Juk">
             <objects>
-                <tableViewController storyboardIdentifier="LTAlbumTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yVZ-Bj-Hec" customClass="LTAlbumTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="LTAlbumTableViewController" title="专辑信息" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yVZ-Bj-Hec" customClass="LTAlbumTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="mwT-9g-i7I">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -764,7 +764,6 @@
                             <outlet property="delegate" destination="yVZ-Bj-Hec" id="Aw5-t8-Usv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="7Gx-uc-QgY"/>
                     <connections>
                         <outlet property="addDetailButton" destination="C8E-o7-JXA" id="K73-u5-U7Q"/>
                         <outlet property="albumButton" destination="ZLo-c3-UVi" id="8Ey-hM-fd9"/>

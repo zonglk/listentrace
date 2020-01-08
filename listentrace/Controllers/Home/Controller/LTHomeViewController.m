@@ -12,6 +12,8 @@
 #import <CloudKit/CloudKit.h>
 #import "LTNetworking.h"
 #import "LTAlbumModel.h"
+#import "LTHelpTableViewController.h"
+#import "LTHelpTipViewController.h"
 
 @interface LTHomeViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -345,7 +347,17 @@
 
 #pragma mark - =================== 添加专辑 ===================
 - (void)addAlbum {
-    [self addAlbum:nil];
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"LTIsClickAdd"]) {
+        UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTHelpViewController" bundle:nil];
+        LTHelpTableViewController *helpVC = [story instantiateViewControllerWithIdentifier:@"LTHelpViewController"];
+        [self.navigationController pushViewController:helpVC animated:YES];
+        
+        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"LTIsClickAdd"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    else {
+        [self addAlbum:nil];
+    }
 }
 
 - (void)addAlbum:(NSString *)albumId {
