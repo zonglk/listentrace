@@ -31,6 +31,8 @@
 @property (nonatomic, copy) NSString *countTipString;
 @property (nonatomic, assign) BOOL isHasUserId;
 @property (nonatomic, assign) BOOL isNeedStyleRefreshData;
+@property (nonatomic, strong) UIView *coverView;
+@property (nonatomic, strong) UIView *addView;
 
 @end
 
@@ -345,6 +347,22 @@
     [self addAlbum:self.model.album_id];
 }
 
+#pragma mark - =================== 手动添加 ===================
+- (void)manaulButtonClick {
+    self.coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.0];
+    self.coverView.hidden = YES;
+    self.addView.alpha = 0;
+    
+    [self addAlbum:nil];
+}
+
+#pragma mark - =================== 自动 ===================
+- (void)autoButtonClick {
+    self.coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.0];
+    self.coverView.hidden = YES;
+    self.addView.alpha = 0;
+}
+
 #pragma mark - =================== 添加专辑 ===================
 - (void)addAlbum {
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"LTIsClickAdd"]) {
@@ -356,8 +374,24 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     else {
-        [self addAlbum:nil];
+        self.coverView =  [self creatCoverView];
+        [[UIApplication sharedApplication].delegate.window addSubview:_coverView];
+        self.coverView.hidden = NO;
+        [UIView animateWithDuration:0.4 animations:^{
+            self.coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
+            self.addView.alpha = 1;
+        }];
     }
+}
+
+- (void)coverButtonClick {
+    [UIView animateWithDuration:0.5 animations:^{
+        self.coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.0];
+        self.addView.alpha = 0;
+    }];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.coverView.hidden = YES;
+    });
 }
 
 - (void)addAlbum:(NSString *)albumId {
@@ -458,6 +492,85 @@
         _yearKeyIndexArray = [NSMutableArray array];
     }
     return _yearKeyIndexArray;
+}
+
+- (UIView *)creatCoverView {
+    if (!_coverView) {
+        _coverView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
+        _coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.0];
+        _coverView.hidden = YES;
+        [[UIApplication sharedApplication].delegate.window addSubview:_coverView];
+        
+        UIButton *coverButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
+        [_coverView addSubview:coverButton];
+        [coverButton addTarget:self action:@selector(coverButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        
+        _addView = [[UIView alloc] init];
+        [_coverView addSubview:_addView];
+        [_addView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(self.coverView.mas_right).offset(-15);
+            make.bottom.mas_equalTo(self.coverView.mas_bottom).offset(- kBottomSafeHeight - 140);
+            make.size.mas_equalTo(CGSizeMake(200, 110));
+        }];
+        _addView.backgroundColor = [UIColor whiteColor];
+        ViewBorderRadius(_addView, 5, 0, [UIColor whiteColor]);
+        _addView.alpha = 0;
+        
+        UIView *autoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 55)];
+        [_addView addSubview:autoView];
+        
+        UIImageView *autoImageView = [[UIImageView alloc] init];
+        [autoView addSubview:autoImageView];
+        [autoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.addView).offset(22);
+            make.centerY.mas_equalTo(autoView);
+        }];
+        [autoImageView setImage:[UIImage imageNamed:@"home_autoButton"]];
+        
+        UILabel *autoLabel = [[UILabel alloc] init];
+        [autoView addSubview:autoLabel];
+        [autoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(autoImageView.mas_right).offset(17);
+            make.centerY.mas_equalTo(autoView);
+        }];
+        autoLabel.textColor = [UIColor colorWithHexString:@"0x007AFF"];
+        autoLabel.font = [UIFont systemFontOfSize:15];
+        autoLabel.text = @"链接导入";
+        
+        UIButton *autoButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 55)];
+        [autoView addSubview:autoButton];
+        [autoButton addTarget:self action:@selector(autoButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIView *mamuelView = [[UIView alloc] initWithFrame:CGRectMake(0, 55, 200, 55)];
+        [_addView addSubview:mamuelView];
+
+        UIImageView *manuelImageView = [[UIImageView alloc] init];
+        [mamuelView addSubview:manuelImageView];
+        [manuelImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.addView).offset(23);
+            make.centerY.mas_equalTo(mamuelView);
+        }];
+        [manuelImageView setImage:[UIImage imageNamed:@"home_manuelButton"]];
+        
+        UILabel *manuelLabel = [[UILabel alloc] init];
+        [mamuelView addSubview:manuelLabel];
+        [manuelLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(manuelImageView.mas_right).offset(17);
+            make.centerY.mas_equalTo(mamuelView);
+        }];
+        manuelLabel.textColor = [UIColor colorWithHexString:@"0x007AFF"];
+        manuelLabel.font = [UIFont systemFontOfSize:15];
+        manuelLabel.text = @"手动导入";
+        
+        UIButton *manuelButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 55)];
+        [mamuelView addSubview:manuelButton];
+        [manuelButton addTarget:self action:@selector(manaulButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 55, 200, 0.5)];
+        [_addView addSubview:lineView];
+        [lineView setBackgroundColor:[UIColor colorWithHexString:@"0xDDE2F4"]];
+    }
+    return _coverView;
 }
 
 @end
