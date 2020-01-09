@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LTAlbumTableViewController : UITableViewController
 
 @property (nonatomic, copy) NSString *albumId;
+@property (strong, nonatomic) NSDictionary *result;
 
 @end
 

@@ -107,10 +107,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WPO-hY-ila">
-                                                    <rect key="frame" x="15" y="199" width="384" height="60"/>
+                                                    <rect key="frame" x="15" y="199" width="384" height="50"/>
                                                     <subviews>
                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ATz-sW-8Yk">
-                                                            <rect key="frame" x="10" y="16" width="364" height="28"/>
+                                                            <rect key="frame" x="10" y="16" width="364" height="18"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <inset key="scrollIndicatorInsets" minX="10" minY="30" maxX="10" maxY="0.0"/>
                                                             <color key="textColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -122,7 +122,7 @@
                                                     <constraints>
                                                         <constraint firstItem="ATz-sW-8Yk" firstAttribute="leading" secondItem="WPO-hY-ila" secondAttribute="leading" constant="10" id="DMI-DT-fxP"/>
                                                         <constraint firstItem="ATz-sW-8Yk" firstAttribute="top" secondItem="WPO-hY-ila" secondAttribute="top" constant="16" id="FLH-dN-9Sc"/>
-                                                        <constraint firstAttribute="height" constant="60" id="KvA-yU-CwV"/>
+                                                        <constraint firstAttribute="height" constant="50" id="KvA-yU-CwV"/>
                                                         <constraint firstAttribute="trailing" secondItem="ATz-sW-8Yk" secondAttribute="trailing" constant="10" id="dum-5B-CQZ"/>
                                                         <constraint firstAttribute="bottom" secondItem="ATz-sW-8Yk" secondAttribute="bottom" constant="16" id="fUX-3e-O4W"/>
                                                     </constraints>

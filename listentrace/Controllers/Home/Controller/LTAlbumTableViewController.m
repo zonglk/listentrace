@@ -40,8 +40,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *arrowButton1;
 @property (weak, nonatomic) IBOutlet UIButton *arrowButton2;
 @property (weak, nonatomic) IBOutlet UIButton *arrowButton3;
-
-
 @property (weak, nonatomic) IBOutlet UITextField *listeningTimeTextField; // 聆听时间
 @property (weak, nonatomic) IBOutlet UITextField *releasedTimeTextField; // 发行时间
 @property (weak, nonatomic) IBOutlet UITextField *releasedCountTextField; // 发行数目
@@ -109,6 +107,10 @@
         NSString *dateStr = [forMatter stringFromDate:date];
         self.listeningTimeString = dateStr;
         self.listeningTimeTextField.text = self.listeningTimeString;
+    }
+    
+    if (self.result) {
+        [self handleDate:self.result];
     }
 }
 
@@ -202,37 +204,65 @@
 - (void)handleDate:(id)result {
     [self.detailDataArray removeAllObjects];
     NSString *infoString = result[@"data"][@"tracks_info"];
-    NSArray *array = [NSMutableArray arrayWithArray:[infoString componentsSeparatedByString:@"|"]];
-    for (int i = 0; i < array.count; i ++) {
-        NSArray *valueArray = [NSMutableArray arrayWithArray:[array[i] componentsSeparatedByString:@","]];
-        LTAddAlbumDetailModel *model = [[LTAddAlbumDetailModel alloc] init];
-        if (valueArray.count == 5) {
-            model.album_tracks = valueArray[0];
-            model.album_composer = valueArray[1];
-            model.album_lyricist = valueArray[2];
-            model.album_player = valueArray[3];
-            model.album_arranger = valueArray[4];
-            if (model.album_tracks.length || model.album_composer.length || model.album_lyricist.length || model.album_player.length || model.album_arranger.length) {
-                [self.detailDataArray addObject:model];
+    if ([infoString class] != [NSNull class]) {
+        NSArray *array = [NSMutableArray arrayWithArray:[infoString componentsSeparatedByString:@"|"]];
+        for (int i = 0; i < array.count; i ++) {
+            NSArray *valueArray = [NSMutableArray arrayWithArray:[array[i] componentsSeparatedByString:@","]];
+            LTAddAlbumDetailModel *model = [[LTAddAlbumDetailModel alloc] init];
+            if (valueArray.count == 5) {
+                model.album_tracks = valueArray[0];
+                model.album_composer = valueArray[1];
+                model.album_lyricist = valueArray[2];
+                model.album_player = valueArray[3];
+                model.album_arranger = valueArray[4];
+                if (model.album_tracks.length || model.album_composer.length || model.album_lyricist.length || model.album_player.length || model.album_arranger.length) {
+                    [self.detailDataArray addObject:model];
+                }
             }
         }
     }
+    
     if (self.detailDataArray.count) {
         [self.albumTableView reloadData];
     }
-    [self.albumButton setImageWithURL:nil forState:UIControlStateNormal placeholder:nil];
-    [self.albumImageView sd_setImageWithURL:result[@"data"][@"album_img"] placeholderImage:[UIImage imageNamed:@"album_detail_placeImage"]];
-    if ([result[@"data"][@"favorite"] intValue] == 1) {
-        self.loveButton.selected = YES;
+    
+    NSString *albumString = result[@"data"][@"album_img"];
+    if (albumString != nil && [albumString class] != [NSNull class]) {
+        [self.albumButton setImageWithURL:nil forState:UIControlStateNormal placeholder:nil];
+        [self.albumImageView sd_setImageWithURL:result[@"data"][@"album_img"] placeholderImage:[UIImage imageNamed:@"album_detail_placeImage"]];
+        if (self.result) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self postLinkImage];
+            });
+        }
     }
-    self.albumNameTextField.text = result[@"data"][@"album_name"];
-    self.musicianTextField.text = result[@"data"][@"album_musician"];
-    self.styleTextField.text = result[@"data"][@"album_style"];
+    
+    NSString *loveString = result[@"data"][@"favorite"];
+    if (loveString != nil && [loveString class] != [NSNull class]) {
+        if ([result[@"data"][@"favorite"] intValue] == 1) {
+            self.loveButton.selected = YES;
+        }
+    }
+    NSString *albumNameString = result[@"data"][@"album_name"];
+    if (albumNameString != nil && [albumNameString class] != [NSNull class]) {
+        self.albumNameTextField.text = result[@"data"][@"album_name"];
+    }
+    NSString *musicianTextString = result[@"data"][@"album_musician"];
+    if (musicianTextString != nil && [musicianTextString class] != [NSNull class]) {
+        self.musicianTextField.text = result[@"data"][@"album_musician"];
+    }
+    NSString *styleTextString = result[@"data"][@"album_style"];
+    if (styleTextString != nil && [styleTextString class] != [NSNull class]) {
+        self.styleTextField.text = result[@"data"][@"album_style"];
+    }
     NSString *durationString = result[@"data"][@"album_duration"];
     if (durationString != nil && [durationString class] != [NSNull class]) {
         self.timeTextField.text = result[@"data"][@"album_duration"];
     }
-    self.listeningTimeTextField.text = result[@"data"][@"listen_time"];
+    NSString *listeningTimeString = result[@"data"][@"listen_time"];
+    if (listeningTimeString != nil && [listeningTimeString class] != [NSNull class]) {
+        self.listeningTimeTextField.text = result[@"data"][@"listen_time"];
+    }
     NSString *releaseTimeString = result[@"data"][@"album_release_time"];
     if (releaseTimeString != nil && [releaseTimeString class] != [NSNull class]) {
         self.releasedTimeTextField.text = result[@"data"][@"album_release_time"];
@@ -291,7 +321,8 @@
         [self handleUserEnable];
         return;
     }
-    if (!self.imageId.length && !self.albumId.length) {
+    NSString *albumString = self.result[@"data"][@"album_img"];
+    if (!albumString.length && (!self.imageId.length && !self.albumId.length)) {
         [MBProgressHUD showInfoMessage:@"请上传专辑封面图"];
         return;
     }
@@ -411,7 +442,7 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"AddAlbumSucess" object:nil];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [tipImageView removeFromSuperview];
-                [self.navigationController popViewControllerAnimated:YES];
+                [self.navigationController popToRootViewControllerAnimated:YES];
                 self.rightNavButton.enabled = YES;
             });
         }
@@ -746,6 +777,25 @@
         } failure:^(NSError * _Nonnull erro) {
             [MBProgressHUD showInfoMessage:@"网络连接失败，请稍后重试"];
         }];
+    }];
+}
+
+- (void)postLinkImage {
+    NSData *imageData = UIImageJPEGRepresentation(self.albumImageView.image, 0.2f);
+    NSMutableDictionary *Exparams = [[NSMutableDictionary alloc]init];
+    [Exparams addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:imageData,@"file", nil]];
+    [LTNetworking uploadImageWithUrl:@"/img/upload" WithParam:[NSDictionary dictionary] withExParam:Exparams withMethod:POST success:^(id  _Nonnull result) {
+        if ([result[@"code"] intValue] == 200) {
+            self.imageId = result[@"data"];
+            self.tipsImageLabel.hidden = YES;
+        }
+        else {
+            [MBProgressHUD showErrorMessage:result[@"msg"]];
+        }
+    } uploadFileProgress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } failure:^(NSError * _Nonnull erro) {
+        [MBProgressHUD showInfoMessage:@"网络连接失败，请稍后重试"];
     }];
 }
 

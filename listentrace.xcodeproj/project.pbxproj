@@ -42,6 +42,8 @@
 		003D869E23251AEF002C0D5E /* LYLUnicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 003D869D23251AEF002C0D5E /* LYLUnicode.m */; };
 		003D86A8232553DE002C0D5E /* LTAlbumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 003D86A7232553DE002C0D5E /* LTAlbumModel.m */; };
 		004505AF231809DE004500A9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004505AE231809DE004500A9 /* CloudKit.framework */; };
+		004E246123C7916F00143C52 /* auto_link_handing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 004E245F23C7916F00143C52 /* auto_link_handing@2x.png */; };
+		004E246223C7916F00143C52 /* auto_link_handing@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 004E246023C7916F00143C52 /* auto_link_handing@3x.png */; };
 		005C3E8422E47E960015CCB9 /* Appdelegate+AppService.m in Sources */ = {isa = PBXBuildFile; fileRef = 005C3E8322E47E960015CCB9 /* Appdelegate+AppService.m */; };
 		005C3E8822E481840015CCB9 /* LTMainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005C3E8722E481840015CCB9 /* LTMainTabBarController.m */; };
 		005C3EA322E489CC0015CCB9 /* LTRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005C3EA222E489CC0015CCB9 /* LTRootViewController.m */; };
@@ -244,6 +246,8 @@
 		003D86A7232553DE002C0D5E /* LTAlbumModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTAlbumModel.m; sourceTree = "<group>"; };
 		004505AD231809D6004500A9 /* listentrace.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = listentrace.entitlements; sourceTree = "<group>"; };
 		004505AE231809DE004500A9 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		004E245F23C7916F00143C52 /* auto_link_handing@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "auto_link_handing@2x.png"; sourceTree = "<group>"; };
+		004E246023C7916F00143C52 /* auto_link_handing@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "auto_link_handing@3x.png"; sourceTree = "<group>"; };
 		005C3E7522E455600015CCB9 /* UtilsMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilsMacros.h; sourceTree = "<group>"; };
 		005C3E7822E45D9C0015CCB9 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		005C3E8222E47E960015CCB9 /* Appdelegate+AppService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Appdelegate+AppService.h"; sourceTree = "<group>"; };
@@ -767,6 +771,8 @@
 				00F17D2323C6173A00FE6439 /* home_autoButton@3x.png */,
 				00F17D2423C6173A00FE6439 /* home_manuelButton@2x.png */,
 				00F17D2523C6173B00FE6439 /* home_manuelButton@3x.png */,
+				004E245F23C7916F00143C52 /* auto_link_handing@2x.png */,
+				004E246023C7916F00143C52 /* auto_link_handing@3x.png */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -1280,6 +1286,7 @@
 				BD0FB0F0239A0C84006638F8 /* album_detail_bg.png in Resources */,
 				009B3F8623C4E1AE000C963A /* LTHelpTipViewController.storyboard in Resources */,
 				00E83BD122E60B2300C47AE5 /* home_tabbar_selected@2x.png in Resources */,
+				004E246223C7916F00143C52 /* auto_link_handing@3x.png in Resources */,
 				BD7C78792346EB9C0059585E /* style_album_placeImage@2x.png in Resources */,
 				00C2B0A122ED9C8F00CFB3E1 /* style_entry@2x.png in Resources */,
 				BD1DFD4F236BFC930011B692 /* noNetWork@2x.png in Resources */,
@@ -1339,6 +1346,7 @@
 				BD4FB439230AA0B100A6F825 /* album_delete@3x.png in Resources */,
 				00601BD822E0C908005B33F2 /* LaunchScreen.storyboard in Resources */,
 				BD7C78722346E9B20059585E /* home_placeImage@2x.png in Resources */,
+				004E246123C7916F00143C52 /* auto_link_handing@2x.png in Resources */,
 				00E83BE622E60B6A00C47AE5 /* style_tabbar_selected@3x.png in Resources */,
 				BD8D5C4623A0915E0089B078 /* navLine@3x.png in Resources */,
 				00973823232D377600F2E7F9 /* appIcon@3x.png in Resources */,
