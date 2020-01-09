@@ -48,6 +48,7 @@
     if (!userId.length) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"LTDidBecomeActive" object:nil];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"LTDidBecomeActiveHandlePasteBoard" object:nil];
 }
 
 

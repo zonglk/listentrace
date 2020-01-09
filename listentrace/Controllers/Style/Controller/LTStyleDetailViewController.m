@@ -46,6 +46,12 @@
 }
 
 #pragma mark - =================== UICollectionView delegate 、 dataSource ===================
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    return CGSizeMake(screenWidth, 50);
+}
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }

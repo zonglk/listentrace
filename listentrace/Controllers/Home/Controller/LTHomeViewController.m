@@ -34,6 +34,7 @@
 @property (nonatomic, assign) BOOL isNeedStyleRefreshData;
 @property (nonatomic, strong) UIView *coverView;
 @property (nonatomic, strong) UIView *addView;
+@property (copy, nonatomic) NSString *pasteBoardString;
 
 @end
 
@@ -57,6 +58,8 @@
     [self loginIcloud];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addAlbumSucess) name:@"AddAlbumSucess" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(LTDidBecomeActive) name:@"LTDidBecomeActive" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getPastedBoardString) name:@"LTDidBecomeActiveHandlePasteBoard" object:nil];
+    [self getPastedBoardString];
 }
 
 - (void)creatAllViews {
@@ -368,6 +371,14 @@
     [self.navigationController pushViewController:autoVC animated:YES];
 }
 
+#pragma mark - =================== 获取剪贴板的内容 ===================
+- (void)getPastedBoardString {
+    self.pasteBoardString = [[UIPasteboard generalPasteboard] string];
+    if ([self.pasteBoardString containsString:@"open.spotify.com"] || [self.pasteBoardString containsString:@"music.apple.com"] || [self.pasteBoardString containsString:@"music.163.com"] || [self.pasteBoardString containsString:@"y.qq.com"] || [self.pasteBoardString containsString:@"bandcamp.com"]) {
+        [self addCoverView];
+    }
+}
+
 #pragma mark - =================== 添加专辑 ===================
 - (void)addAlbum {
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"LTIsClickAdd"]) {
@@ -379,14 +390,18 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     else {
-        self.coverView =  [self creatCoverView];
-        [[UIApplication sharedApplication].delegate.window addSubview:_coverView];
-        self.coverView.hidden = NO;
-        [UIView animateWithDuration:0.4 animations:^{
-            self.coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
-            self.addView.alpha = 1;
-        }];
+        [self addCoverView];
     }
+}
+
+- (void)addCoverView {
+    self.coverView =  [self creatCoverView];
+    [[UIApplication sharedApplication].delegate.window addSubview:_coverView];
+    self.coverView.hidden = NO;
+    [UIView animateWithDuration:0.4 animations:^{
+        self.coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
+        self.addView.alpha = 1;
+    }];
 }
 
 - (void)coverButtonClick {

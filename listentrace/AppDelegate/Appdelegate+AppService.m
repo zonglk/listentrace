@@ -9,6 +9,7 @@
 #import "Appdelegate+AppService.h"
 #import "IQKeyboardManager.h"
 #import "LTAlbumTableViewController.h"
+#import "LTAutoAddAlbumViewController.h"
 
 @implementation AppDelegate (AppService)
 
@@ -82,17 +83,22 @@
 
 #pragma mark - =================== URL Schemes ===================
 
--(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
     NSString *str = url.absoluteString;
     
     UITabBarController *tbc = (UITabBarController *)self.window.rootViewController;
     UINavigationController *nav = tbc.viewControllers[tbc.selectedIndex];
     [nav popToRootViewControllerAnimated:YES];
     //判断url是否包含addAlbum
-    if([str containsString:@"Listentrace://addAlbum"]) {
+    if([str containsString:@"Listentrace://manual"]) { // 手动
         UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTAlbumTableViewController" bundle:[NSBundle mainBundle]];
         LTAlbumTableViewController *albumVC = [story instantiateViewControllerWithIdentifier:@"LTAlbumTableViewController"];
         [nav pushViewController:albumVC animated:YES];
+    }
+    else if ([str containsString:@"Listentrace://link"]) { // 自动
+        UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTAutoAddAlbumViewController" bundle:nil];
+        LTAutoAddAlbumViewController *autoVC = [story instantiateViewControllerWithIdentifier:@"LTAutoAddAlbumViewController"];
+        [nav pushViewController:autoVC animated:YES];
     }
     return YES;
 }

@@ -22,6 +22,7 @@
 - (IBAction)shareButtonClick:(id)sender; // 分享
 - (IBAction)UrlSchemesButtonClick:(id)sender; // 打开app
 - (IBAction)handsUrlSchemesClick:(id)sender; // 手动录入
+- (IBAction)autoLinkClick:(id)sender; // 链接导入
 - (IBAction)PMAction:(id)sender;
 - (IBAction)iOSAction:(id)sender;
 - (IBAction)JavaAction:(id)sender;
@@ -87,12 +88,21 @@
 
 - (IBAction)handsUrlSchemesClick:(id)sender {
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    pasteboard.string = @"Listentrace://addAlbum";
+    pasteboard.string = @"Listentrace://manual";
     
     [MBProgressHUD showTipMessageInView:@"已复制到粘贴板"];
 }
 
-#pragma mark 打击app
+#pragma mark 打开链接界面
+
+- (IBAction)autoLinkClick:(id)sender {
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = @"Listentrace://link";
+    
+    [MBProgressHUD showTipMessageInView:@"已复制到粘贴板"];
+}
+
+#pragma mark 打开App
 
 - (IBAction)UrlSchemesButtonClick:(id)sender {
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
