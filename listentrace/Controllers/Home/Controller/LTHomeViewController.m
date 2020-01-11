@@ -36,15 +36,32 @@
 @property (nonatomic, strong) UIView *addView;
 @property (copy, nonatomic) NSString *pasteBoardString;
 @property (nonatomic, strong) UILabel *linkLable;
+@property (nonatomic, strong) UILabel *titleLable;
+@property (strong, strong) UIImageView *trangleImageView;
+@property (strong, strong) UIImageView *rectangleImageView;
+@property (nonatomic, assign) BOOL isHomeVC;
+@property (nonatomic, assign) BOOL isCancle;
 
 @end
 
 @implementation LTHomeViewController
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.isHomeVC = YES;
+    [self getPastedBoardString];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    self.isHomeVC = NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"听迹";
+    self.isHomeVC = YES;
     [self creatAllViews];
     NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"];
     if (userId.length) {
@@ -60,6 +77,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addAlbumSucess) name:@"AddAlbumSucess" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(LTDidBecomeActive) name:@"LTDidBecomeActive" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getPastedBoardString) name:@"LTDidBecomeActiveHandlePasteBoard" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appEnterBackGround) name:@"LTDidEnterBackGround" object:nil];
     [self getPastedBoardString];
 }
 
@@ -115,6 +133,10 @@
     if (!self.isNeedStyleRefreshData) {
         [self loginIcloud];
     }
+}
+
+- (void)appEnterBackGround {
+    self.isCancle = NO;
 }
 
 - (void)requestData {
@@ -205,6 +227,7 @@
 }
 
 #pragma mark UITableView delegate 、 datasources
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     BOOL isNeedShowYeah = NO;
     for (int i = 0; i < self.yearKeyIndexArray.count; i ++) {
@@ -352,50 +375,8 @@
     [self addAlbum:self.model.album_id];
 }
 
-#pragma mark - =================== 手动添加 ===================
-- (void)manaulButtonClick {
-    self.coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.0];
-    self.coverView.hidden = YES;
-    self.addView.alpha = 0;
-    
-    [self addAlbum:nil];
-}
-
-#pragma mark - =================== 自动 ===================
-- (void)autoButtonClick {
-    self.coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.0];
-    self.coverView.hidden = YES;
-    self.addView.alpha = 0;
-    
-    UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTAutoAddAlbumViewController" bundle:nil];
-    LTAutoAddAlbumViewController *autoVC = [story instantiateViewControllerWithIdentifier:@"LTAutoAddAlbumViewController"];
-    [self.navigationController pushViewController:autoVC animated:YES];
-}
-
-#pragma mark 获取剪贴板的内容
-- (void)getPastedBoardString {
-    self.pasteBoardString = [[UIPasteboard generalPasteboard] string];
-    if ([self.pasteBoardString containsString:@"open.spotify.com"] || [self.pasteBoardString containsString:@"music.apple.com"] || [self.pasteBoardString containsString:@"music.163.com"] || [self.pasteBoardString containsString:@"y.qq.com"] || [self.pasteBoardString containsString:@"bandcamp.com"]) {
-        [self addCoverView];
-        if ([self.pasteBoardString containsString:@"open.spotify.com"]) {
-            self.linkLable.text = @"open.spotify.com";
-        }
-        else if ([self.pasteBoardString containsString:@"music.apple.com"]) {
-            self.linkLable.text = @"music.apple.com";
-        }
-        else if ([self.pasteBoardString containsString:@"music.163.com"]) {
-            self.linkLable.text = @"music.163.com";
-        }
-        else if ([self.pasteBoardString containsString:@"y.qq.com"]) {
-            self.linkLable.text = @"y.qq.com";
-        }
-        else if ([self.pasteBoardString containsString:@"bandcamp.com"]) {
-            self.linkLable.text = @"bandcamp.com";
-        }
-    }
-}
-
 #pragma mark 添加专辑
+
 - (void)addAlbum {
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"LTIsClickAdd"]) {
         UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTHelpViewController" bundle:nil];
@@ -407,7 +388,91 @@
     }
     else {
         [self addCoverView];
+        [self getPastedBoardString];
     }
+}
+
+#pragma mark 手动添加
+
+- (void)manaulButtonClick {
+    self.coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.0];
+    self.coverView.hidden = YES;
+    self.addView.alpha = 0;
+    
+    [self addAlbum:nil];
+    self.isCancle = YES;
+}
+
+#pragma mark 自动
+
+- (void)autoButtonClick {
+    self.coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.0];
+    self.coverView.hidden = YES;
+    self.addView.alpha = 0;
+    
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTAutoAddAlbumViewController" bundle:nil];
+    LTAutoAddAlbumViewController *autoVC = [story instantiateViewControllerWithIdentifier:@"LTAutoAddAlbumViewController"];
+    autoVC.linkString = self.pasteBoardString;
+    [self.navigationController pushViewController:autoVC animated:YES];
+    self.isCancle = YES;
+}
+
+#pragma mark 获取剪贴板的内容
+
+- (void)getPastedBoardString {
+    if (!self.isHomeVC || self.isCancle) {
+        self.linkLable.alpha = 0;
+        self.rectangleImageView.alpha = 0;
+        self.trangleImageView.alpha = 0;
+        self.titleLable.alpha = 0;
+        return;
+    }
+    
+    self.pasteBoardString = [[UIPasteboard generalPasteboard] string];
+    if ([self.pasteBoardString containsString:@"open.spotify.com"] || [self.pasteBoardString containsString:@"music.apple.com"] || [self.pasteBoardString containsString:@"music.163.com"] || [self.pasteBoardString containsString:@"y.qq.com"] || [self.pasteBoardString containsString:@"bandcamp.com"]) {
+        [self addCoverView];
+        if ([self.pasteBoardString containsString:@"open.spotify.com"]) {
+            self.linkLable.text = @"open.spotify.com";
+            [self updateConstraints:212];
+        }
+        else if ([self.pasteBoardString containsString:@"music.apple.com"]) {
+            self.linkLable.text = @"music.apple.com";
+            [self updateConstraints:210];
+        }
+        else if ([self.pasteBoardString containsString:@"music.163.com"]) {
+            self.linkLable.text = @"music.163.com";
+            [self updateConstraints:196];
+        }
+        else if ([self.pasteBoardString containsString:@"y.qq.com"]) {
+            self.linkLable.text = @"y.qq.com";
+            [self.trangleImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.width.mas_equalTo(160);
+            }];
+            [self.linkLable mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.centerX.mas_equalTo(self.addView).mas_offset(-10);
+            }];
+        }
+        else if ([self.pasteBoardString containsString:@"bandcamp.com"]) {
+            self.linkLable.text = @"bandcamp.com";
+            [self updateConstraints:194];
+        }
+    }
+    else {
+        self.pasteBoardString = nil;
+        self.linkLable.alpha = 0;
+        self.rectangleImageView.alpha = 0;
+        self.trangleImageView.alpha = 0;
+        self.titleLable.alpha = 0;
+    }
+}
+
+- (void)updateConstraints:(NSInteger)constraints {
+    [self.trangleImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(constraints);
+    }];
+    [self.linkLable mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.addView);
+    }];
 }
 
 - (void)addCoverView {
@@ -417,6 +482,10 @@
     [UIView animateWithDuration:0.4 animations:^{
         self.coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
         self.addView.alpha = 1;
+        self.linkLable.alpha = 1;
+        self.rectangleImageView.alpha = 1;
+        self.trangleImageView.alpha = 1;
+        self.titleLable.alpha = 1;
     }];
 }
 
@@ -424,10 +493,15 @@
     [UIView animateWithDuration:0.5 animations:^{
         self.coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.0];
         self.addView.alpha = 0;
+        self.linkLable.alpha = 0;
+        self.rectangleImageView.alpha = 0;
+        self.trangleImageView.alpha = 0;
+        self.titleLable.alpha = 0;
     }];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.coverView.hidden = YES;
     });
+    self.isCancle = YES;
 }
 
 - (void)addAlbum:(NSString *)albumId {
@@ -607,42 +681,50 @@
         [lineView setBackgroundColor:[UIColor colorWithHexString:@"0xDDE2F4"]];
         
         // 发现链接
-        UIImageView *rectangle = [[UIImageView alloc] init];
-        [_coverView addSubview:rectangle];
-        [rectangle mas_makeConstraints:^(MASConstraintMaker *make) {
+        _trangleImageView = [[UIImageView alloc] init];
+        [_coverView addSubview:_trangleImageView];
+        [_trangleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.mas_equalTo(self.addView.mas_top).mas_offset(25);
+            make.height.mas_equalTo(130);
+            make.centerX.mas_equalTo(self.addView);
+            make.width.mas_equalTo(220);
+        }];
+        _trangleImageView.userInteractionEnabled = YES;
+        [_trangleImageView setImage:[UIImage imageNamed:@"home_link_Auto_rectangle"]];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(autoButtonClick)];
+        [_trangleImageView addGestureRecognizer:tap];
+        
+        _rectangleImageView = [[UIImageView alloc] init];
+        [_coverView addSubview:_rectangleImageView];
+        [_rectangleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(self.addView);
             make.bottom.mas_equalTo(self.addView.mas_top);
         }];
-        [rectangle setImage:[UIImage imageNamed:@"home_link_Auto_triangle"]];
-        
-        UIImageView *trangle = [[UIImageView alloc] init];
-        [_coverView addSubview:trangle];
-        [trangle mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(rectangle.mas_top);
-            make.height.mas_equalTo(130);
-//            make.left.mas_equalTo(self.linkLable.mas_left).mas_offset(10);
-//            make.right.mas_equalTo(self.linkLable.mas_right).mas_offset(10);
-        }];
-        [trangle setImage:[UIImage imageNamed:@"home_link_Auto_rectangle"]];
+        [_rectangleImageView setImage:[UIImage imageNamed:@"home_link_Auto_triangle"]];
         
         self.linkLable = [[UILabel alloc] init];
         [_coverView addSubview:self.linkLable];
         [self.linkLable mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(self.addView);
-            make.bottom.mas_equalTo(rectangle.mas_top).mas_offset(-18);
+            make.bottom.mas_equalTo(self.rectangleImageView.mas_top).mas_offset(-14);
         }];
         self.linkLable.textColor = [UIColor whiteColor];
         self.linkLable.font = [UIFont systemFontOfSize:14];
         
-        UILabel *titleLable = [[UILabel alloc] init];
-        [_coverView addSubview:titleLable];
-        [titleLable mas_makeConstraints:^(MASConstraintMaker *make) {
+        self.titleLable = [[UILabel alloc] init];
+        [_coverView addSubview:self.titleLable];
+        [self.titleLable mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.linkLable.mas_left);
-            make.bottom.mas_equalTo(self.linkLable.mas_top).mas_offset(-8);
+            make.bottom.mas_equalTo(self.linkLable.mas_top).mas_offset(-5);
         }];
-        titleLable.textColor = [UIColor whiteColor];
-        titleLable.font = [UIFont systemFontOfSize:14];
-        titleLable.text = @"发现新链接:";
+        self.titleLable.textColor = [UIColor whiteColor];
+        self.titleLable.font = [UIFont systemFontOfSize:14];
+        self.titleLable.text = @"发现新链接:";
+        
+        self.linkLable.alpha = 0;
+        self.rectangleImageView.alpha = 0;
+        self.trangleImageView.alpha = 0;
+        self.titleLable.alpha = 0;
     }
     return _coverView;
 }
