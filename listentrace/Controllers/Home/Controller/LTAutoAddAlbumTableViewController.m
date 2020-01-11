@@ -10,7 +10,7 @@
 #import "LTNetworking.h"
 #import "LTAlbumTableViewController.h"
 
-@interface LTAutoAddAlbumTableViewController ()
+@interface LTAutoAddAlbumTableViewController ()<UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *autoView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *autoViewHeight;
@@ -25,6 +25,7 @@
     
     self.view.backgroundColor = CViewBgColor;
     ViewBorderRadius(self.autoView, 5, 1, RGBHex(0xE5EAFA));
+    self.autoTextView.delegate = self;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(autoButtonClick) name:@"AutoButtonNoti" object:nil];
 }
@@ -54,6 +55,25 @@
     } failure:^(NSError * _Nonnull erro) {
         
     } showHUD:self.view];
+}
+
+-(void)textViewDidChange:(UITextView *)textView{
+    float textViewHeight =  [textView sizeThatFits:CGSizeMake(textView.frame.size.width, MAXFLOAT)].height;
+    if (textViewHeight == 100) {
+        self.autoViewHeight.constant  = 100 + 17;
+        self.autoTextView.scrollEnabled = YES;
+    }
+    else if (textViewHeight > 0) {
+        self.autoViewHeight.constant = textViewHeight + 17;
+        self.autoTextView.scrollEnabled = NO;
+    }
+    else {
+        self.autoViewHeight.constant = 55;
+        self.autoTextView.scrollEnabled = NO;
+    }
+    CGRect frame = textView.frame;
+    frame.size.height = textViewHeight+100;
+    textView.frame = frame;
 }
 
 - (void)dealloc {
