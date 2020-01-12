@@ -12,8 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LTAutoAddAlbumViewController : LTRootViewController
 
-@property (copy, nonatomic) NSString *linkString;
-
 @end
 
 NS_ASSUME_NONNULL_END

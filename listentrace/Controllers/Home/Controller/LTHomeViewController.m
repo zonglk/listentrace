@@ -14,7 +14,7 @@
 #import "LTAlbumModel.h"
 #import "LTHelpTableViewController.h"
 #import "LTHelpTipViewController.h"
-#import "LTAutoAddAlbumViewController.h"
+#import "LTAutoAddAlbumTableViewController.h"
 
 @interface LTHomeViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -411,8 +411,7 @@
     self.addView.alpha = 0;
     
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTAutoAddAlbumViewController" bundle:nil];
-    LTAutoAddAlbumViewController *autoVC = [story instantiateViewControllerWithIdentifier:@"LTAutoAddAlbumViewController"];
-    autoVC.linkString = self.pasteBoardString;
+    LTAutoAddAlbumTableViewController *autoVC = [story instantiateViewControllerWithIdentifier:@"LTAutoAddAlbumViewController"];
     [self.navigationController pushViewController:autoVC animated:YES];
     self.isCancle = YES;
 }
@@ -456,6 +455,8 @@
             self.linkLable.text = @"bandcamp.com";
             [self updateConstraints:194];
         }
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"LinkUrl"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
     else {
         self.pasteBoardString = nil;
@@ -463,6 +464,8 @@
         self.rectangleImageView.alpha = 0;
         self.trangleImageView.alpha = 0;
         self.titleLable.alpha = 0;
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"LinkUrl"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
 }
 

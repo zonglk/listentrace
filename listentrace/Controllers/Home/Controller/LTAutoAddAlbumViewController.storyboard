@@ -49,11 +49,11 @@
                         <sections>
                             <tableViewSection id="1Mf-7F-wVV">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="486" id="Z7a-Tn-ZQN">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="486"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="560" id="Z7a-Tn-ZQN">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="560"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Z7a-Tn-ZQN" id="DsS-l2-d4d">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="486"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="560"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支持专辑链接解析的音乐流媒体平台有： " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VgU-6y-EcJ">
@@ -113,7 +113,8 @@
                                                             <inset key="scrollIndicatorInsets" minX="10" minY="30" maxX="10" maxY="0.0"/>
                                                             <color key="textColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="namePhonePad" returnKeyType="done"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="alphabet" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                            <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                                         </textView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -127,17 +128,34 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EP3-x5-RuO">
                                                     <rect key="frame" x="0.0" y="249" width="414" height="200"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="link_linkUrl.png" translatesAutoresizingMaskIntoConstraints="NO" id="kBx-PM-Pkh">
-                                                            <rect key="frame" x="132" y="-24" width="150" height="270"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mFe-6R-vhK">
+                                                            <rect key="frame" x="107" y="22" width="200" height="65"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TsK-I6-Y4m">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="65"/>
+                                                                    <connections>
+                                                                        <action selector="linkButtonClick:" destination="uBo-kZ-tg5" eventType="touchUpInside" id="X4e-wL-2aa"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                            <color key="backgroundColor" red="0.41307570759468176" green="0.34717465753424659" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="150" id="Yje-Ri-WUT"/>
+                                                                <constraint firstAttribute="width" constant="200" id="CJ1-c9-jdW"/>
+                                                                <constraint firstItem="TsK-I6-Y4m" firstAttribute="top" secondItem="mFe-6R-vhK" secondAttribute="top" id="QDX-wa-L7U"/>
+                                                                <constraint firstAttribute="bottom" secondItem="TsK-I6-Y4m" secondAttribute="bottom" id="QQK-5J-FGZ"/>
+                                                                <constraint firstAttribute="height" constant="65" id="apC-B9-cLS"/>
+                                                                <constraint firstItem="TsK-I6-Y4m" firstAttribute="leading" secondItem="mFe-6R-vhK" secondAttribute="leading" id="cuS-GD-EWS"/>
+                                                                <constraint firstAttribute="trailing" secondItem="TsK-I6-Y4m" secondAttribute="trailing" id="qJc-7l-cXP"/>
                                                             </constraints>
-                                                        </imageView>
+                                                        </view>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="link_linkUrl_up.png" translatesAutoresizingMaskIntoConstraints="NO" id="CxV-xH-yKG">
                                                             <rect key="frame" x="182" y="0.0" width="50" height="22"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="www.LT.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lLa-xQ-pvN">
                                                             <rect key="frame" x="166.5" y="45" width="81" height="17"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="81" id="e3k-PC-aeZ"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -151,32 +169,52 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstItem="kBx-PM-Pkh" firstAttribute="top" secondItem="EP3-x5-RuO" secondAttribute="top" constant="-24" id="3Ze-su-5YS"/>
+                                                        <constraint firstItem="mFe-6R-vhK" firstAttribute="top" secondItem="CxV-xH-yKG" secondAttribute="bottom" id="1Ls-cP-NcU"/>
                                                         <constraint firstItem="lLa-xQ-pvN" firstAttribute="top" secondItem="EP3-x5-RuO" secondAttribute="top" constant="45" id="FHb-2p-UjH"/>
                                                         <constraint firstItem="lLa-xQ-pvN" firstAttribute="centerX" secondItem="EP3-x5-RuO" secondAttribute="centerX" id="GOt-7c-rB8"/>
-                                                        <constraint firstItem="kBx-PM-Pkh" firstAttribute="centerX" secondItem="EP3-x5-RuO" secondAttribute="centerX" id="MHn-9T-YDX"/>
                                                         <constraint firstAttribute="height" constant="200" id="TLs-R4-TEk"/>
                                                         <constraint firstItem="CxV-xH-yKG" firstAttribute="centerX" secondItem="EP3-x5-RuO" secondAttribute="centerX" id="abb-wg-21T"/>
                                                         <constraint firstItem="KqF-1F-Ac5" firstAttribute="top" secondItem="CxV-xH-yKG" secondAttribute="bottom" constant="12" id="dzE-ye-Qzz"/>
                                                         <constraint firstItem="lLa-xQ-pvN" firstAttribute="leading" secondItem="KqF-1F-Ac5" secondAttribute="leading" id="iY3-zj-bXI"/>
                                                         <constraint firstItem="CxV-xH-yKG" firstAttribute="top" secondItem="EP3-x5-RuO" secondAttribute="top" id="sNa-Aw-ibu"/>
+                                                        <constraint firstItem="mFe-6R-vhK" firstAttribute="centerX" secondItem="EP3-x5-RuO" secondAttribute="centerX" id="sZ6-R8-AQN"/>
                                                     </constraints>
                                                 </view>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMi-lj-hOX">
+                                                    <rect key="frame" x="0.0" y="339" width="414" height="221"/>
+                                                    <connections>
+                                                        <action selector="button2Click:" destination="uBo-kZ-tg5" eventType="touchUpInside" id="JNh-iO-glB"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4BL-dU-sA2">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="240"/>
+                                                    <connections>
+                                                        <action selector="button1Click:" destination="uBo-kZ-tg5" eventType="touchUpInside" id="63y-7r-dx3"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="6LS-QL-JAH" firstAttribute="leading" secondItem="TNS-7m-uEy" secondAttribute="leading" id="0aX-Ld-VXQ"/>
+                                                <constraint firstAttribute="bottom" secondItem="cMi-lj-hOX" secondAttribute="bottom" id="5ao-YY-tth"/>
                                                 <constraint firstItem="dYe-e1-r6s" firstAttribute="top" secondItem="TNS-7m-uEy" secondAttribute="bottom" constant="5" id="630-l3-hfk"/>
+                                                <constraint firstAttribute="trailing" secondItem="cMi-lj-hOX" secondAttribute="trailing" id="6K7-ul-f4Q"/>
                                                 <constraint firstItem="dYe-e1-r6s" firstAttribute="leading" secondItem="TNS-7m-uEy" secondAttribute="leading" id="81l-ji-Yjt"/>
+                                                <constraint firstItem="cMi-lj-hOX" firstAttribute="leading" secondItem="DsS-l2-d4d" secondAttribute="leading" id="AZ2-s0-dC2"/>
                                                 <constraint firstItem="DGa-S5-hQQ" firstAttribute="top" secondItem="QdU-sG-YLE" secondAttribute="bottom" constant="24" id="CF7-Of-tji"/>
                                                 <constraint firstItem="WPO-hY-ila" firstAttribute="leading" secondItem="DsS-l2-d4d" secondAttribute="leading" constant="15" id="Ec5-Ss-0td"/>
                                                 <constraint firstItem="VgU-6y-EcJ" firstAttribute="top" secondItem="DsS-l2-d4d" secondAttribute="top" constant="16" id="IUX-L3-7rS"/>
                                                 <constraint firstItem="EP3-x5-RuO" firstAttribute="leading" secondItem="DsS-l2-d4d" secondAttribute="leading" id="LRt-1C-069"/>
                                                 <constraint firstItem="l7w-Iq-ZRM" firstAttribute="leading" secondItem="TNS-7m-uEy" secondAttribute="leading" id="MtV-AE-eBD"/>
                                                 <constraint firstItem="EP3-x5-RuO" firstAttribute="top" secondItem="WPO-hY-ila" secondAttribute="bottom" id="N0W-bv-E6x"/>
+                                                <constraint firstItem="4BL-dU-sA2" firstAttribute="top" secondItem="DsS-l2-d4d" secondAttribute="top" id="XH5-g5-UPn"/>
                                                 <constraint firstItem="TNS-7m-uEy" firstAttribute="leading" secondItem="VgU-6y-EcJ" secondAttribute="leading" id="YM1-OX-bbS"/>
                                                 <constraint firstItem="QdU-sG-YLE" firstAttribute="top" secondItem="6LS-QL-JAH" secondAttribute="bottom" constant="5" id="Ydc-Nr-mBf"/>
+                                                <constraint firstItem="4BL-dU-sA2" firstAttribute="bottom" secondItem="ATz-sW-8Yk" secondAttribute="bottom" id="bSE-5a-kPz"/>
                                                 <constraint firstItem="6LS-QL-JAH" firstAttribute="top" secondItem="l7w-Iq-ZRM" secondAttribute="bottom" constant="5" id="cKp-a3-Fdg"/>
                                                 <constraint firstItem="TNS-7m-uEy" firstAttribute="top" secondItem="VgU-6y-EcJ" secondAttribute="bottom" constant="10" id="cKz-gY-i4l"/>
+                                                <constraint firstItem="4BL-dU-sA2" firstAttribute="leading" secondItem="DsS-l2-d4d" secondAttribute="leading" id="chQ-4l-ZAY"/>
+                                                <constraint firstAttribute="trailing" secondItem="4BL-dU-sA2" secondAttribute="trailing" id="lWQ-oi-BKO"/>
+                                                <constraint firstItem="cMi-lj-hOX" firstAttribute="top" secondItem="WPO-hY-ila" secondAttribute="bottom" constant="90" id="nTU-F2-wF3"/>
                                                 <constraint firstAttribute="trailing" secondItem="WPO-hY-ila" secondAttribute="trailing" constant="15" id="nwl-ju-ZzP"/>
                                                 <constraint firstItem="l7w-Iq-ZRM" firstAttribute="top" secondItem="dYe-e1-r6s" secondAttribute="bottom" constant="5" id="rgu-JS-2Bf"/>
                                                 <constraint firstItem="VgU-6y-EcJ" firstAttribute="leading" secondItem="DsS-l2-d4d" secondAttribute="leading" constant="15" id="uMC-43-g90"/>
@@ -197,9 +235,17 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="autoLinkVIew" destination="mFe-6R-vhK" id="UfS-dG-SPE"/>
                         <outlet property="autoTextView" destination="ATz-sW-8Yk" id="oOF-kw-VLh"/>
                         <outlet property="autoView" destination="WPO-hY-ila" id="zvj-8s-OaO"/>
                         <outlet property="autoViewHeight" destination="KvA-yU-CwV" id="HF3-gv-XFV"/>
+                        <outlet property="button1" destination="4BL-dU-sA2" id="Pwf-HN-InJ"/>
+                        <outlet property="button2" destination="cMi-lj-hOX" id="P32-BC-ujv"/>
+                        <outlet property="linkLabelWidth" destination="e3k-PC-aeZ" id="XKT-uO-g8U"/>
+                        <outlet property="linkTableView" destination="MZe-Vv-Owg" id="JsC-OY-NRE"/>
+                        <outlet property="linkUrl" destination="lLa-xQ-pvN" id="TKz-N3-Yp6"/>
+                        <outlet property="linkView" destination="EP3-x5-RuO" id="Ddb-kv-ROb"/>
+                        <outlet property="linkViewWidth" destination="CJ1-c9-jdW" id="9md-MV-Wi6"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f6m-BA-r5V" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -208,7 +254,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="link_linkUrl.png" width="395" height="135"/>
         <image name="link_linkUrl_up.png" width="25" height="11"/>
     </resources>
 </document>

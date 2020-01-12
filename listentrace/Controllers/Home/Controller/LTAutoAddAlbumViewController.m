@@ -22,6 +22,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self creatAllViews];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusChange:) name:@"LinkUrlButton" object:nil];
 }
 
 - (void)creatAllViews {
@@ -47,6 +48,16 @@
     [self.autoButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.autoButton setBackgroundColor:RGBHex(0x78B9FF)];
     [self.autoButton addTarget:self action:@selector(autoButtonClick) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)statusChange:(NSNotification *)noti {
+    NSString *status = noti.userInfo[@"status"];
+    if ([status isEqualToString:@"1"]) {
+        [self.autoButton setBackgroundColor:[UIColor colorWithHexString:@"0x6D6BED"]];
+    }
+    else {
+        [self.autoButton setBackgroundColor:[UIColor colorWithHexString:@"0x78B9FF"]];
+    }
 }
 
 - (void)helpButtonClick {
