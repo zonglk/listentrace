@@ -229,9 +229,9 @@
     NSString *albumString = result[@"data"][@"album_img"];
     if (albumString != nil && [albumString class] != [NSNull class]) {
         [self.albumButton setImageWithURL:nil forState:UIControlStateNormal placeholder:nil];
-        [self.albumImageView sd_setImageWithURL:result[@"data"][@"album_img"] placeholderImage:[UIImage imageNamed:@"album_detail_placeImage"]];
-        if (self.result) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.albumImageView sd_setImageWithURL:[NSURL URLWithString:albumString] placeholderImage:[UIImage imageNamed:@"album_detail_placeImage"]];
+        if (albumString) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self postLinkImage];
             });
         }
@@ -779,6 +779,8 @@
         }];
     }];
 }
+
+#pragma mark  链接传图
 
 - (void)postLinkImage {
     NSData *imageData = UIImageJPEGRepresentation(self.albumImageView.image, 0.2f);
