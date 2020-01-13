@@ -228,13 +228,12 @@
     
     NSString *albumString = result[@"data"][@"album_img"];
     if (albumString != nil && [albumString class] != [NSNull class]) {
-        [self.albumButton setImageWithURL:nil forState:UIControlStateNormal placeholder:nil];
-        [self.albumImageView sd_setImageWithURL:[NSURL URLWithString:albumString] placeholderImage:[UIImage imageNamed:@"album_detail_placeImage"]];
-        if (self.result) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.albumImageView sd_setImageWithURL:[NSURL URLWithString:albumString] placeholderImage:[UIImage imageNamed:@"album_detail_placeImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            if (!error) {
                 [self postLinkImage];
-            });
-        }
+                [self.albumButton setImageWithURL:nil forState:UIControlStateNormal placeholder:nil];
+            }
+        }];
     }
     
     NSString *loveString = result[@"data"][@"favorite"];
