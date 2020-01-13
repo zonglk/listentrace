@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00098D9E23CCCBD9007C770E /* LTShareTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00098D9D23CCCBD9007C770E /* LTShareTableViewController.m */; };
+		00098DA023CCCBE5007C770E /* LTShareTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00098D9F23CCCBE5007C770E /* LTShareTableViewController.storyboard */; };
+		00098DB123CCD548007C770E /* LTdddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00098DAF23CCD548007C770E /* LTdddViewController.m */; };
+		00098DB223CCD548007C770E /* LTdddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00098DB023CCD548007C770E /* LTdddViewController.xib */; };
 		002747B222E8AE6700752BD2 /* LTJSHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 002747B122E8AE6700752BD2 /* LTJSHandler.m */; };
 		002747B522E8AEFE00752BD2 /* LTWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 002747B422E8AEFE00752BD2 /* LTWebViewController.m */; };
 		002747BB22E8AFCA00752BD2 /* AESCipher.m in Sources */ = {isa = PBXBuildFile; fileRef = 002747BA22E8AFCA00752BD2 /* AESCipher.m */; };
@@ -212,6 +216,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		00098D9C23CCCBD9007C770E /* LTShareTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTShareTableViewController.h; sourceTree = "<group>"; };
+		00098D9D23CCCBD9007C770E /* LTShareTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTShareTableViewController.m; sourceTree = "<group>"; };
+		00098D9F23CCCBE5007C770E /* LTShareTableViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LTShareTableViewController.storyboard; sourceTree = "<group>"; };
+		00098DAE23CCD548007C770E /* LTdddViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTdddViewController.h; sourceTree = "<group>"; };
+		00098DAF23CCD548007C770E /* LTdddViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTdddViewController.m; sourceTree = "<group>"; };
+		00098DB023CCD548007C770E /* LTdddViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LTdddViewController.xib; sourceTree = "<group>"; };
 		002747AC22E8AB9E00752BD2 /* UrlMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UrlMacros.h; sourceTree = "<group>"; };
 		002747AD22E8AC0400752BD2 /* CommonMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonMacros.h; sourceTree = "<group>"; };
 		002747AE22E8AC5000752BD2 /* ThirdMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThirdMacros.h; sourceTree = "<group>"; };
@@ -1117,6 +1127,12 @@
 				BD55C47B23CC4C0C0002684E /* ShareViewController.m */,
 				BD55C47D23CC4C0C0002684E /* MainInterface.storyboard */,
 				BD55C48023CC4C0C0002684E /* Info.plist */,
+				00098D9C23CCCBD9007C770E /* LTShareTableViewController.h */,
+				00098D9D23CCCBD9007C770E /* LTShareTableViewController.m */,
+				00098D9F23CCCBE5007C770E /* LTShareTableViewController.storyboard */,
+				00098DAE23CCD548007C770E /* LTdddViewController.h */,
+				00098DAF23CCD548007C770E /* LTdddViewController.m */,
+				00098DB023CCD548007C770E /* LTdddViewController.xib */,
 			);
 			path = listentraceShare;
 			sourceTree = "<group>";
@@ -1491,6 +1507,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00098DB223CCD548007C770E /* LTdddViewController.xib in Resources */,
+				00098DA023CCCBE5007C770E /* LTShareTableViewController.storyboard in Resources */,
 				BD55C47F23CC4C0C0002684E /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1675,6 +1693,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD55C47C23CC4C0C0002684E /* ShareViewController.m in Sources */,
+				00098D9E23CCCBD9007C770E /* LTShareTableViewController.m in Sources */,
+				00098DB123CCD548007C770E /* LTdddViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
