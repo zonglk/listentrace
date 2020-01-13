@@ -134,6 +134,9 @@
 		BD4FB442230AA96D00A6F825 /* LTAlbumStyleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD4FB441230AA96D00A6F825 /* LTAlbumStyleView.xib */; };
 		BD4FB445230AAA5E00A6F825 /* album_style@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD4FB443230AAA5D00A6F825 /* album_style@2x.png */; };
 		BD4FB446230AAA5E00A6F825 /* album_style@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD4FB444230AAA5D00A6F825 /* album_style@3x.png */; };
+		BD55C47C23CC4C0C0002684E /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD55C47B23CC4C0C0002684E /* ShareViewController.m */; };
+		BD55C47F23CC4C0C0002684E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD55C47D23CC4C0C0002684E /* MainInterface.storyboard */; };
+		BD55C48323CC4C0C0002684E /* listentraceShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BD55C47823CC4C0C0002684E /* listentraceShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BD56EB2F2302B7680005271B /* nav_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD56EB2D2302B7680005271B /* nav_back@3x.png */; };
 		BD56EB302302B7680005271B /* nav_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD56EB2E2302B7680005271B /* nav_back@2x.png */; };
 		BD5B8C0323273EB9005D18FF /* QFDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5B8C0123273EB9005D18FF /* QFDatePickerView.m */; };
@@ -185,7 +188,28 @@
 			remoteGlobalIDString = 00601BC722E0C907005B33F2;
 			remoteInfo = listentrace;
 		};
+		BD55C48123CC4C0C0002684E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00601BC022E0C907005B33F2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BD55C47723CC4C0B0002684E;
+			remoteInfo = listentraceShare;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BD55C48723CC4C0C0002684E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				BD55C48323CC4C0C0002684E /* listentraceShare.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		002747AC22E8AB9E00752BD2 /* UrlMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UrlMacros.h; sourceTree = "<group>"; };
@@ -380,6 +404,11 @@
 		BD4FB441230AA96D00A6F825 /* LTAlbumStyleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LTAlbumStyleView.xib; sourceTree = "<group>"; };
 		BD4FB443230AAA5D00A6F825 /* album_style@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "album_style@2x.png"; sourceTree = "<group>"; };
 		BD4FB444230AAA5D00A6F825 /* album_style@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "album_style@3x.png"; sourceTree = "<group>"; };
+		BD55C47823CC4C0C0002684E /* listentraceShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = listentraceShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD55C47A23CC4C0C0002684E /* ShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
+		BD55C47B23CC4C0C0002684E /* ShareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
+		BD55C47E23CC4C0C0002684E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		BD55C48023CC4C0C0002684E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD56EB2D2302B7680005271B /* nav_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_back@3x.png"; sourceTree = "<group>"; };
 		BD56EB2E2302B7680005271B /* nav_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_back@2x.png"; sourceTree = "<group>"; };
 		BD5B8C0123273EB9005D18FF /* QFDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFDatePickerView.m; sourceTree = "<group>"; };
@@ -456,6 +485,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EE3B97A1A0269043BD0DA10 /* Pods_listentraceUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BD55C47523CC4C0B0002684E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -984,6 +1020,7 @@
 		00601BBF22E0C907005B33F2 = {
 			isa = PBXGroup;
 			children = (
+				BD55C47923CC4C0C0002684E /* listentraceShare */,
 				00601BCA22E0C907005B33F2 /* listentrace */,
 				00601BE322E0C908005B33F2 /* listentraceTests */,
 				00601BEE22E0C908005B33F2 /* listentraceUITests */,
@@ -999,6 +1036,7 @@
 				00601BC822E0C907005B33F2 /* listentrace.app */,
 				00601BE022E0C908005B33F2 /* listentraceTests.xctest */,
 				00601BEB22E0C908005B33F2 /* listentraceUITests.xctest */,
+				BD55C47823CC4C0C0002684E /* listentraceShare.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1070,6 +1108,17 @@
 				38E092DA3CAADCA1BBE21507 /* Pods_listentraceUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BD55C47923CC4C0C0002684E /* listentraceShare */ = {
+			isa = PBXGroup;
+			children = (
+				BD55C47A23CC4C0C0002684E /* ShareViewController.h */,
+				BD55C47B23CC4C0C0002684E /* ShareViewController.m */,
+				BD55C47D23CC4C0C0002684E /* MainInterface.storyboard */,
+				BD55C48023CC4C0C0002684E /* Info.plist */,
+			);
+			path = listentraceShare;
 			sourceTree = "<group>";
 		};
 		BD56EB2C2302B6C10005271B /* resource */ = {
@@ -1202,10 +1251,12 @@
 				00601BC522E0C907005B33F2 /* Frameworks */,
 				00601BC622E0C907005B33F2 /* Resources */,
 				3583FDD4D26F9AB75A798896 /* [CP] Embed Pods Frameworks */,
+				BD55C48723CC4C0C0002684E /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				BD55C48223CC4C0C0002684E /* PBXTargetDependency */,
 			);
 			name = listentrace;
 			productName = listentrace;
@@ -1250,6 +1301,23 @@
 			productReference = 00601BEB22E0C908005B33F2 /* listentraceUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		BD55C47723CC4C0B0002684E /* listentraceShare */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BD55C48623CC4C0C0002684E /* Build configuration list for PBXNativeTarget "listentraceShare" */;
+			buildPhases = (
+				BD55C47423CC4C0B0002684E /* Sources */,
+				BD55C47523CC4C0B0002684E /* Frameworks */,
+				BD55C47623CC4C0B0002684E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = listentraceShare;
+			productName = listentraceShare;
+			productReference = BD55C47823CC4C0C0002684E /* listentraceShare.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1257,6 +1325,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = LT;
+				DefaultBuildSystemTypeForWorkspace = Original;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = listentrace;
 				TargetAttributes = {
@@ -1279,6 +1348,9 @@
 						CreatedOnToolsVersion = 10.2.1;
 						TestTargetID = 00601BC722E0C907005B33F2;
 					};
+					BD55C47723CC4C0B0002684E = {
+						CreatedOnToolsVersion = 10.3;
+					};
 				};
 			};
 			buildConfigurationList = 00601BC322E0C907005B33F2 /* Build configuration list for PBXProject "listentrace" */;
@@ -1297,6 +1369,7 @@
 				00601BC722E0C907005B33F2 /* listentrace */,
 				00601BDF22E0C908005B33F2 /* listentraceTests */,
 				00601BEA22E0C908005B33F2 /* listentraceUITests */,
+				BD55C47723CC4C0B0002684E /* listentraceShare */,
 			);
 		};
 /* End PBXProject section */
@@ -1411,6 +1484,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BD55C47623CC4C0B0002684E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD55C47F23CC4C0C0002684E /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1589,6 +1670,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BD55C47423CC4C0B0002684E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD55C47C23CC4C0C0002684E /* ShareViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1602,6 +1691,11 @@
 			target = 00601BC722E0C907005B33F2 /* listentrace */;
 			targetProxy = 00601BEC22E0C908005B33F2 /* PBXContainerItemProxy */;
 		};
+		BD55C48223CC4C0C0002684E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BD55C47723CC4C0B0002684E /* listentraceShare */;
+			targetProxy = BD55C48123CC4C0C0002684E /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1611,6 +1705,14 @@
 				00601BD722E0C908005B33F2 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		BD55C47D23CC4C0C0002684E /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BD55C47E23CC4C0C0002684E /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1860,6 +1962,46 @@
 			};
 			name = Release;
 		};
+		BD55C48423CC4C0C0002684E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QS8N6LMV2J;
+				INFOPLIST_FILE = listentraceShare/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rock.listentrace.listentraceShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BD55C48523CC4C0C0002684E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QS8N6LMV2J;
+				INFOPLIST_FILE = listentraceShare/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rock.listentrace.listentraceShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1895,6 +2037,15 @@
 			buildConfigurations = (
 				00601BFB22E0C908005B33F2 /* Debug */,
 				00601BFC22E0C908005B33F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BD55C48623CC4C0C0002684E /* Build configuration list for PBXNativeTarget "listentraceShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD55C48423CC4C0C0002684E /* Debug */,
+				BD55C48523CC4C0C0002684E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
