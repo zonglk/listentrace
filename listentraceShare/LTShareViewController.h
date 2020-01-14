@@ -1,16 +1,16 @@
 //
-//  LTdddViewController.h
+//  LTShareViewController.h
 //  listentraceShare
 //
-//  Created by 宗丽康 on 2020/1/14.
+//  Created by luojie on 2020/1/14.
 //  Copyright © 2020 listentrace. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Social/Social.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LTdddViewController : UIViewController
+@interface LTShareViewController : UIViewController
 
 @end
 
