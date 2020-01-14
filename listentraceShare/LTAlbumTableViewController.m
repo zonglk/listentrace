@@ -12,10 +12,11 @@
 #import "LTAlbumStyleView.h"
 //#import "JPImageresizerView.h"
 #import "LTAlbumStyleView.h"
-#import "LTNetworking.h"
+#import "LTShareNetworking.h"
 #import "QFTimePickerView.h"
 #import "QFDatePickerView.h"
 #import "LTAlbumTimePIckerView.h"
+#import "UIImageView+WebCache.h"
 
 #define RGBHex(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
@@ -60,7 +61,6 @@
 @property (nonatomic, strong) UIButton *sureButton;
 //@property (nonatomic, strong) JPImageresizerView *imageresizerView;
 @property (nonatomic, strong) UIView *styleCoverView;
-@property (nonatomic, strong) NSMutableArray *detailDataArray; // 曲目详细信息
 @property (nonatomic, strong) LTAlbumTimePIckerView *timePicker;
 @property (nonatomic, copy) NSString *listeningTimeString;
 @property (nonatomic, copy) NSString *releaseTimeString;
@@ -105,10 +105,6 @@
     ViewBorderRadius(self.view2, 5, 1, RGBHex(0xE5EAFA));
     ViewBorderRadius(self.view3, 5, 1, RGBHex(0xE5EAFA));
     ViewBorderRadius(self.view4, 5, 1, RGBHex(0xE5EAFA));
-    
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(styleChangeNoti:) name:@"AlbumStyleChangeNoti" object:nil];
 }
 
 - (void)styleChangeNoti:(NSNotification *)noti {
@@ -117,295 +113,163 @@
     [self.styleCoverView removeFromSuperview];
 }
 
-//#pragma mark 键盘出现
-//- (void)keyboardWillShow:(NSNotification *)note {
-//    CGRect keyBoardRect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-//    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, keyBoardRect.size.height, 0);
-//}
-
-#pragma mark 键盘消失
-- (void)keyboardWillHide:(NSNotification *)note {
-    self.tableView.contentInset = UIEdgeInsetsZero;
-}
-
 - (void)requestData {
-//    [LTNetworking requestUrl:@"/album/info" WithParam:@{@"album_id" : self.albumId} withMethod:GET success:^(id  _Nonnull result) {
-//        if ([result[@"code"] intValue] == 200) {
-//            [self handleDate:result];
-//            [self handleUserEnable];
-//        }
-//        else {
-//            [MBProgressHUD showInfoMessage:result[@"msg"]];
-//        }
-//    } failure:^(NSError * _Nonnull erro) {
-//        [MBProgressHUD showInfoMessage:@"网络连接失败，请稍后重试"];
-//    } showHUD:self.view];
+    [LTShareNetworking requestUrl:@"/album/resolve" WithParam:@{@"url" : self.urlString} withMethod:GET success:^(id  _Nonnull result) {
+        NSDictionary *dic = result[@"data"];
+        if ([result[@"code"] intValue] == 200 && [dic class] != [NSNull class]) {
+            [self handleDate:result];
+        }
+        else {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"解析失败" message:[NSString stringWithFormat:@"请检查专辑链接后，再重新尝试"] preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:action];
+            [self.navigationController presentViewController:alert animated:YES completion:nil];
+        }
+    } failure:^(NSError * _Nonnull erro) {
+        
+    } showHUD:self.view];
 }
 
 - (void)handleDate:(id)result {
-//    [self.detailDataArray removeAllObjects];
-//    NSString *infoString = result[@"data"][@"tracks_info"];
-//    if ([infoString class] != [NSNull class]) {
-//        NSArray *array = [NSMutableArray arrayWithArray:[infoString componentsSeparatedByString:@"|"]];
-//        for (int i = 0; i < array.count; i ++) {
-//            NSArray *valueArray = [NSMutableArray arrayWithArray:[array[i] componentsSeparatedByString:@","]];
-//            LTAddAlbumDetailModel *model = [[LTAddAlbumDetailModel alloc] init];
-//            if (valueArray.count == 5) {
-//                model.album_tracks = valueArray[0];
-//                model.album_composer = valueArray[1];
-//                model.album_lyricist = valueArray[2];
-//                model.album_player = valueArray[3];
-//                model.album_arranger = valueArray[4];
-//                if (model.album_tracks.length || model.album_composer.length || model.album_lyricist.length || model.album_player.length || model.album_arranger.length) {
-//                    [self.detailDataArray addObject:model];
-//                }
-//            }
-//        }
-//    }
-//
-//    if (self.detailDataArray.count) {
-//        [self.albumTableView reloadData];
-//    }
+    NSString *infoString = result[@"data"][@"tracks_info"];
     
-//    NSString *albumString = result[@"data"][@"album_img"];
-//    if (albumString != nil && [albumString class] != [NSNull class]) {
-//        [self.albumImageView sd_setImageWithURL:[NSURL URLWithString:albumString] placeholderImage:[UIImage imageNamed:@"album_detail_placeImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//            if (!error) {
-//                [self postLinkImage];
-//                [self.albumButton setImageWithURL:nil forState:UIControlStateNormal placeholder:nil];
-//            }
-//        }];
-//    }
-//
-//    NSString *loveString = result[@"data"][@"favorite"];
-//    if (loveString != nil && [loveString class] != [NSNull class]) {
-//        if ([result[@"data"][@"favorite"] intValue] == 1) {
-//            self.loveButton.selected = YES;
-//        }
-//    }
-//    NSString *albumNameString = result[@"data"][@"album_name"];
-//    if (albumNameString != nil && [albumNameString class] != [NSNull class]) {
-//        self.albumNameTextField.text = result[@"data"][@"album_name"];
-//    }
-//    NSString *musicianTextString = result[@"data"][@"album_musician"];
-//    if (musicianTextString != nil && [musicianTextString class] != [NSNull class]) {
-//        self.musicianTextField.text = result[@"data"][@"album_musician"];
-//    }
-//    NSString *styleTextString = result[@"data"][@"album_style"];
-//    if (styleTextString != nil && [styleTextString class] != [NSNull class]) {
-//        self.styleTextField.text = result[@"data"][@"album_style"];
-//    }
-//    NSString *durationString = result[@"data"][@"album_duration"];
-//    if (durationString != nil && [durationString class] != [NSNull class]) {
-//        self.timeTextField.text = result[@"data"][@"album_duration"];
-//    }
-//    NSString *listeningTimeString = result[@"data"][@"listen_time"];
-//    if (listeningTimeString != nil && [listeningTimeString class] != [NSNull class]) {
-//        self.listeningTimeTextField.text = result[@"data"][@"listen_time"];
-//    }
-//    NSString *releaseTimeString = result[@"data"][@"album_release_time"];
-//    if (releaseTimeString != nil && [releaseTimeString class] != [NSNull class]) {
-//        self.releasedTimeTextField.text = result[@"data"][@"album_release_time"];
-//    }
-//    NSString *quantityString = result[@"data"][@"song_quantity"];
-//    if (quantityString != nil  && [quantityString class] != [NSNull class]) {
-//        self.releasedCountTextField.text = result[@"data"][@"song_quantity"];
-//    }
-//    NSString *producerString = result[@"data"][@"album_producer"];
-//    if (producerString != nil && [producerString class] != [NSNull class]) {
-//        self.producerTextField.text = result[@"data"][@"album_producer"];
-//    }
-//    NSString *engineerString = result[@"data"][@"sound_engineer"];
-//    if (engineerString != nil && [engineerString class] != [NSNull class]) {
-//        self.mixerTextField.text = result[@"data"][@"sound_engineer"];
-//    }
-//    NSString *mixerString = result[@"data"][@"sound_mixer"];
-//    if (mixerString != nil && [mixerString class] != [NSNull class]) {
-//        self.mixingTextField.text = result[@"data"][@"sound_mixer"];
-//    }
-//    NSString *maxsAngineerString = result[@"data"][@"mastering_engineer"];
-//    if (maxsAngineerString != nil && [maxsAngineerString class] != [NSNull class]) {
-//        self.masteringTextField.text = result[@"data"][@"mastering_engineer"];
-//    }
-//    NSString *designerString = result[@"data"][@"cover_designer"];
-//    if (designerString != nil && [designerString class] != [NSNull class]) {
-//        self.coverTextField.text = result[@"data"][@"cover_designer"];
-//    }
+    NSString *albumString = result[@"data"][@"album_img"];
+    if (albumString != nil && [albumString class] != [NSNull class]) {
+        [self.albumImageView sd_setImageWithURL:[NSURL URLWithString:albumString] placeholderImage:[UIImage imageNamed:@"album_detail_placeImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            if (!error) {
+                [self postLinkImage];
+                [self.albumButton setImage:nil forState:UIControlStateNormal];
+            }
+        }];
+    }
+
+    NSString *albumNameString = result[@"data"][@"album_name"];
+    if (albumNameString != nil && [albumNameString class] != [NSNull class]) {
+        self.albumNameTextField.text = result[@"data"][@"album_name"];
+    }
+    NSString *musicianTextString = result[@"data"][@"album_musician"];
+    if (musicianTextString != nil && [musicianTextString class] != [NSNull class]) {
+        self.musicianTextField.text = result[@"data"][@"album_musician"];
+    }
+    NSString *styleTextString = result[@"data"][@"album_style"];
+    if (styleTextString != nil && [styleTextString class] != [NSNull class]) {
+        self.styleTextField.text = result[@"data"][@"album_style"];
+    }
+    NSString *durationString = result[@"data"][@"album_duration"];
+    if (durationString != nil && [durationString class] != [NSNull class]) {
+        self.timeTextField.text = result[@"data"][@"album_duration"];
+    }
+    NSString *listeningTimeString = result[@"data"][@"listen_time"];
+    if (listeningTimeString != nil && [listeningTimeString class] != [NSNull class]) {
+        self.listeningTimeTextField.text = result[@"data"][@"listen_time"];
+    }
+    NSString *releaseTimeString = result[@"data"][@"album_release_time"];
+    if (releaseTimeString != nil && [releaseTimeString class] != [NSNull class]) {
+        self.releasedTimeTextField.text = result[@"data"][@"album_release_time"];
+    }
+    NSString *quantityString = result[@"data"][@"song_quantity"];
+    if (quantityString != nil  && [quantityString class] != [NSNull class]) {
+        self.releasedCountTextField.text = result[@"data"][@"song_quantity"];
+    }
 }
 
 #pragma mark 保存专辑信息
 
 - (void)saveButtonClick {
-//    [self handleKeyBoard];
-//    NSString *userIdString = [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"];
-//    if (!userIdString.length) {
-//        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"请开启 iCloud 同步\n方可使用完整功能" preferredStyle:UIAlertControllerStyleAlert];
-//        [alert addAction:[UIAlertAction actionWithTitle:@"取消"
-//                                                  style:UIAlertActionStyleCancel
-//                                                handler:nil]];
-//        [alert addAction:[UIAlertAction actionWithTitle:@"确定"
-//                                                  style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"prefs:root"]]) {
-//                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root"]];
-//            } else {
-//                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"App-Prefs:root"]];
-//            }
-//        }]];
-//        [self presentViewController:alert animated:YES completion:nil];
-//        return;
-//    }
-//    if ([self.rightNavButton.titleLabel.text isEqualToString:@"编辑"]) {
-//        [self.rightNavButton setTitle:@"保存" forState:UIControlStateNormal];
-//        self.footerView.hidden = NO;
-//        self.footerView.height = 100;
-//        [self handleUserEnable];
-//        return;
-//    }
-//    NSString *albumString = self.result[@"data"][@"album_img"];
-//    if (!albumString.length && (!self.imageId.length && !self.albumId.length)) {
+    [self handleKeyBoard];
+    NSString *userIdString = [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"];
+    if (!userIdString.length) {
+        
+    }
+
+    NSString *albumString = self.result[@"data"][@"album_img"];
+    if (!albumString.length && (!self.imageId.length && !self.albumId.length)) {
 //        [MBProgressHUD showInfoMessage:@"请上传专辑封面图"];
-//        return;
-//    }
-//    if (!self.albumNameTextField.text.length) {
+        return;
+    }
+    if (!self.albumNameTextField.text.length) {
 //        [MBProgressHUD showInfoMessage:@"请填写专辑名"];
-//        return;
-//    }
-//    if (!self.musicianTextField.text.length) {
+        return;
+    }
+    if (!self.musicianTextField.text.length) {
 //        [MBProgressHUD showInfoMessage:@"请填写专辑音乐人"];
-//        return;
-//    }
-//    if (!self.styleTextField.text.length) {
+        return;
+    }
+    if (!self.styleTextField.text.length) {
 //        [MBProgressHUD showInfoMessage:@"请选择专辑风格"];
-//        return;
-//    }
-//    if (!self.listeningTimeTextField.text.length) {
+        return;
+    }
+    if (!self.listeningTimeTextField.text.length) {
 //        [MBProgressHUD showInfoMessage:@"请选择聆听时间"];
-//        return;
-//    }
-//
-//    if (!self.isChange) {
-//        [self.navigationController popViewControllerAnimated:YES];
-//        return;
-//    }
-//    self.rightNavButton.enabled = NO;
-//    NSMutableDictionary *parameter = [NSMutableDictionary dictionary];
-//    NSString  *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"];
-//    [parameter setObject:userId forKey:@"user_id"];
-//    [parameter setObject:self.albumNameTextField.text forKey:@"album_name"];
-//    [parameter setObject:self.musicianTextField.text forKey:@"album_musician"];
-//    [parameter setObject:self.styleTextField.text forKey:@"album_style"];
-//    [parameter setObject:self.listeningTimeTextField.text forKey:@"listen_time"];
-//    if (self.imageId.length) {
-//        [parameter setObject:self.imageId forKey:@"album_img"];
-//    }
-//    if (self.timeTextField.text.length) {
-//        [parameter setObject:self.timeTextField.text forKey:@"album_duration"];
-//    }
-//    if (self.releasedTimeTextField.text.length) {
-//        [parameter setObject:self.releasedTimeTextField.text forKey:@"album_release_time"];
-//    }
-//    if (self.releasedCountTextField.text.length) {
-//        [parameter setObject:self.releasedCountTextField.text forKey:@"song_quantity"];
-//    }
-//    if (self.mixerTextField.text.length) {
-//        [parameter setObject:self.mixerTextField.text forKey:@"sound_engineer"];
-//    }
-//    if (self.mixingTextField.text.length) {
-//        [parameter setObject:self.mixingTextField.text forKey:@"sound_mixer"];
-//    }
-//    if (self.masteringTextField.text.length) {
-//        [parameter setObject:self.masteringTextField.text forKey:@"mastering_engineer"];
-//    }
-//    if (self.coverTextField.text.length) {
-//        [parameter setObject:self.coverTextField.text forKey:@"cover_designer"];
-//    }
-//    if (self.producerTextField.text.length) {
-//        [parameter setObject:self.producerTextField.text forKey:@"album_producer"];
-//    }
-//    if (self.loveButton.selected) {
-//        [parameter setObject:@(1) forKey:@"favorite"];
-//    }
-//    else {
-//        [parameter setObject:@(0) forKey:@"favorite"];
-//    }
-//
-//    // 详细曲目信息
-//    NSMutableString *mulString = [NSMutableString string];
-//    for (int i = 0; i < self.detailDataArray.count; i++) {
-//        self.detailModel = self.detailDataArray[i];
-//        self.detailModel.album_tracks = self.detailModel.album_tracks.length ? self.detailModel.album_tracks : @"";
-//        self.detailModel.album_lyricist = self.detailModel.album_lyricist.length ? self.detailModel.album_lyricist : @"";
-//        self.detailModel.album_composer = self.detailModel.album_composer.length ? self.detailModel.album_composer : @"";
-//        self.detailModel.album_arranger = self.detailModel.album_arranger.length ? self.detailModel.album_arranger : @"";
-//        self.detailModel.album_player = self.detailModel.album_player.length ? self.detailModel.album_player : @"";
-//
-//        [mulString appendString:[NSString stringWithFormat:@"%@,",self.detailModel.album_tracks]];
-//        [mulString appendString:[NSString stringWithFormat:@"%@,",self.detailModel.album_lyricist]];
-//        [mulString appendString:[NSString stringWithFormat:@"%@,",self.detailModel.album_composer]];
-//        [mulString appendString:[NSString stringWithFormat:@"%@,",self.detailModel.album_arranger]];
-//        if (i == self.detailDataArray.count - 1) {
-//            [mulString appendString:[NSString stringWithFormat:@"%@",self.detailModel.album_player]];
-//        }
-//        else {
-//            [mulString appendString:[NSString stringWithFormat:@"%@|",self.detailModel.album_player]];
-//        }
-//    }
-//    [parameter setObject:mulString forKey:@"tracks_info"];
-//
-//    NSString *url;
-//    if (self.albumId.length) {
-//        url = @"/album/update";
-//        [parameter setObject:self.albumId forKey:@"album_id"];
-//    }
-//    else {
-//        url = @"/album/add";
-//    }
-//
-//    if (self.isSave) {
-//        [parameter setValue:@(YES) forKey:@"repeat"];
-//    }
-//    else {
-//        [parameter setValue:@(NO) forKey:@"repeat"];
-//    }
-//
-//    [LTNetworking requestUrl:url WithParam:parameter withMethod:POST success:^(id  _Nonnull result) {
-//        if ([result[@"code"] intValue] == 200) {
-//            self.isSave = NO;
-//            UIImageView *tipImageView = [[UIImageView alloc] init];
-//            [tipImageView setImage:[UIImage imageNamed:self.albumId.length ? @"editAlbum_sucess" : @"addAlbum_sucess"]];
-//            [[UIApplication sharedApplication].delegate.window addSubview:tipImageView];
-//            [tipImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//                make.centerX.mas_equalTo(self.view.mas_centerX);
-//                [make.centerY.mas_equalTo(self.view.mas_centerY) setOffset:(-30)];
-//            }];
-//
-//            [[NSNotificationCenter defaultCenter] postNotificationName:@"AddAlbumSucess" object:nil];
-//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                [tipImageView removeFromSuperview];
-//                [self.navigationController popToRootViewControllerAnimated:YES];
-//                self.rightNavButton.enabled = YES;
-//            });
-//        }
-//        else if ([result[@"code"] intValue] == 1002) {
-//            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"已添加过该专辑，是否继续保存。"] preferredStyle:UIAlertControllerStyleAlert];
-//            UIAlertAction *action = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
-//            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"保存" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//                self.isSave = YES;
-//                [self saveButtonClick];
-//            }];
-//            [alert addAction:action];
-//            [alert addAction:sureAction];
-//            [self.navigationController presentViewController:alert animated:YES completion:nil];
-//            self.rightNavButton.enabled = YES;
-//        }
-//        else {
+        return;
+    }
+
+    NSMutableDictionary *parameter = [NSMutableDictionary dictionary];
+    NSString  *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"];
+    [parameter setObject:userId forKey:@"user_id"];
+    [parameter setObject:self.albumNameTextField.text forKey:@"album_name"];
+    [parameter setObject:self.musicianTextField.text forKey:@"album_musician"];
+    [parameter setObject:self.styleTextField.text forKey:@"album_style"];
+    [parameter setObject:self.listeningTimeTextField.text forKey:@"listen_time"];
+    if (self.imageId.length) {
+        [parameter setObject:self.imageId forKey:@"album_img"];
+    }
+    if (self.timeTextField.text.length) {
+        [parameter setObject:self.timeTextField.text forKey:@"album_duration"];
+    }
+    if (self.releasedTimeTextField.text.length) {
+        [parameter setObject:self.releasedTimeTextField.text forKey:@"album_release_time"];
+    }
+    if (self.releasedCountTextField.text.length) {
+        [parameter setObject:self.releasedCountTextField.text forKey:@"song_quantity"];
+    }
+    if (self.loveButton.selected) {
+        [parameter setObject:@(1) forKey:@"favorite"];
+    }
+    else {
+        [parameter setObject:@(0) forKey:@"favorite"];
+    }
+
+    NSString *url;
+    if (self.albumId.length) {
+        url = @"/album/update";
+        [parameter setObject:self.albumId forKey:@"album_id"];
+    }
+    else {
+        url = @"/album/add";
+    }
+
+    if (self.isSave) {
+        [parameter setValue:@(YES) forKey:@"repeat"];
+    }
+    else {
+        [parameter setValue:@(NO) forKey:@"repeat"];
+    }
+
+    [LTShareNetworking requestUrl:url WithParam:parameter withMethod:POST success:^(id  _Nonnull result) {
+        if ([result[@"code"] intValue] == 200) {
+            self.isSave = NO;
+    
+        }
+        else if ([result[@"code"] intValue] == 1002) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"已添加过该专辑，是否继续保存。"] preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"保存" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                self.isSave = YES;
+                [self saveButtonClick];
+            }];
+            [alert addAction:action];
+            [alert addAction:sureAction];
+            [self.navigationController presentViewController:alert animated:YES completion:nil];
+            self.rightNavButton.enabled = YES;
+        }
+        else {
 //            [MBProgressHUD showInfoMessage:result[@"msg"]];
-//            self.rightNavButton.enabled = YES;
-//        }
-//    } failure:^(NSError * _Nonnull erro) {
+            self.rightNavButton.enabled = YES;
+        }
+    } failure:^(NSError * _Nonnull erro) {
 //            [MBProgressHUD showInfoMessage:@"网络连接失败，请稍后重试"];
-//    } showHUD:self.view];
-//}
+    } showHUD:self.view];
 }
 
 #pragma mark  添加/修改专辑照片
@@ -820,7 +684,7 @@
 }
 
 - (IBAction)saveButtonClick:(id)sender {
-    [self disMisSelf];
+    [self saveButtonClick];
 }
 
 - (void)disMisSelf {
