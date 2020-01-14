@@ -9,7 +9,6 @@
 #import "LTAlbumTableViewController.h"
 #import <Photos/Photos.h>
 #import <AVFoundation/AVFoundation.h>
-#import "LTAlbumTableViewCell.h"
 #import "LTAlbumStyleView.h"
 //#import "JPImageresizerView.h"
 #import "LTAlbumStyleView.h"
@@ -17,9 +16,18 @@
 #import "QFTimePickerView.h"
 #import "QFDatePickerView.h"
 #import "LTAlbumTimePIckerView.h"
-#import "LTAddAlbumDetailModel.h"
 
-@interface LTAlbumTableViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, LTAlbumTableViewCellDelegate, UIPickerViewDelegate, LTAlbumTimePickerDelegate, UITextFieldDelegate>
+#define RGBHex(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+//View 圆角和加边框
+#define ViewBorderRadius(View, Radius, Width, Color)\
+\
+[View.layer setCornerRadius:(Radius)];\
+[View.layer setMasksToBounds:YES];\
+[View.layer setBorderWidth:(Width)];\
+[View.layer setBorderColor:[Color CGColor]]
+
+@interface LTAlbumTableViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, LTAlbumTimePickerDelegate, UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *albumTableView;
 @property (weak, nonatomic) IBOutlet UILabel *tipsImageLabel;
 @property (weak, nonatomic) IBOutlet UIButton *albumButton;
@@ -35,7 +43,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *listeningTimeButton;
 @property (weak, nonatomic) IBOutlet UIButton *releaseButton;
 @property (weak, nonatomic) IBOutlet UIButton *releaseCountButton;
-@property (weak, nonatomic) IBOutlet UIButton *addDetailButton;
 @property (weak, nonatomic) IBOutlet UIButton *arrowButton; // 指示箭头 （做显隐处理）
 @property (weak, nonatomic) IBOutlet UIButton *arrowButton1;
 @property (weak, nonatomic) IBOutlet UIButton *arrowButton2;
@@ -43,18 +50,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *listeningTimeTextField; // 聆听时间
 @property (weak, nonatomic) IBOutlet UITextField *releasedTimeTextField; // 发行时间
 @property (weak, nonatomic) IBOutlet UITextField *releasedCountTextField; // 发行数目
-@property (weak, nonatomic) IBOutlet UITextField *producerTextField; // 制作人
-@property (weak, nonatomic) IBOutlet UITextField *mixerTextField; // 录音师
-@property (weak, nonatomic) IBOutlet UITextField *mixingTextField; // 混音师
-@property (weak, nonatomic) IBOutlet UITextField *masteringTextField; // 母带工程师
-@property (weak, nonatomic) IBOutlet UITextField *coverTextField; // 封面设计师
 @property (weak, nonatomic) IBOutlet UIView *view1;
 @property (weak, nonatomic) IBOutlet UIView *view2;
 @property (weak, nonatomic) IBOutlet UIView *view3;
 @property (weak, nonatomic) IBOutlet UIView *view4;
-@property (weak, nonatomic) IBOutlet UIView *view5;
-@property (weak, nonatomic) IBOutlet UIView *view6;
-@property (weak, nonatomic) IBOutlet UIView *footerView;
 
 @property (nonatomic, weak) LTAlbumStyleView *styleView;
 @property (nonatomic, strong) UIButton *cancleButton;
@@ -66,13 +65,10 @@
 @property (nonatomic, copy) NSString *listeningTimeString;
 @property (nonatomic, copy) NSString *releaseTimeString;
 @property (nonatomic, assign) BOOL isListeningTime;
-@property (nonatomic, strong) LTAddAlbumDetailModel *detailModel;
 @property (nonatomic, copy) NSString *imageId; // 上传图片拿到的后台的id
 @property (nonatomic, strong) UIButton *rightNavButton;
 @property (nonatomic, assign) BOOL isSave; // 专辑已存在时候的保存
-@property (nonatomic, assign) BOOL isChange; // 是否有修改
 @property (nonatomic, assign) BOOL isEditImage; // 编辑图片时按钮不可用
-@property (nonatomic,strong) LTAlbumTableViewCell *detailCell;
 
 - (IBAction)albumButtonClick:(id)sender; // 专辑封面
 - (IBAction)loveButtonClick:(id)sender; // 喜欢
@@ -81,7 +77,6 @@
 - (IBAction)listeningTime:(id)sender; // 聆听时间
 - (IBAction)releaseTime:(id)sender; // 发布时间
 - (IBAction)releaseCount:(id)sender; // 发布数量
-- (IBAction)addDetailButtonClick:(id)sender;
 - (IBAction)cancleButtonClick:(id)sender;
 - (IBAction)saveButtonClick:(id)sender;
 
@@ -91,105 +86,49 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [self creatAllViews];
-//    if (self.albumId.length) {
-//        [self requestData];
-//        self.tipsImageLabel.hidden = YES;
-//        [self.albumImageView setImage:[UIImage imageNamed:@"album_detail_placeImage"]];
-//        self.albumNameTextField.placeholder = @"";
-//        self.musicianTextField.placeholder = @"";
-//        self.styleTextField.placeholder = @"";
-//        self.listeningTimeTextField.placeholder = @"";
-//        [self handleUserEnable];
-//    }
-//    else {
-//        NSDate *date = [NSDate date];
-//        NSDateFormatter *forMatter = [[NSDateFormatter alloc] init];
-//        [forMatter setDateFormat:@"yyyy-MM-dd"];
-//        NSString *dateStr = [forMatter stringFromDate:date];
-//        self.listeningTimeString = dateStr;
-//        self.listeningTimeTextField.text = self.listeningTimeString;
-//    }
-//
-//    if (self.result) {
-//        [self handleDate:self.result];
-//    }
+    [self creatAllViews];
+
+    NSDate *date = [NSDate date];
+    NSDateFormatter *forMatter = [[NSDateFormatter alloc] init];
+    [forMatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateStr = [forMatter stringFromDate:date];
+    self.listeningTimeString = dateStr;
+    self.listeningTimeTextField.text = self.listeningTimeString;
+
+    if (self.urlString) {
+        [self requestData];
+    }
 }
 
 - (void)creatAllViews {
-//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_back"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
-//    [backItem setTintColor:RGBHex(0xE6E6E6)];
-//    self.navigationItem.leftBarButtonItem = backItem;
-    
-    self.tableView.backgroundColor = [UIColor blackColor];
-//    UIButton *rightNavButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-//    if (self.albumId.length) {
-//        [rightNavButton setTitle:@"编辑" forState:UIControlStateNormal];
-//        self.footerView.hidden = YES;
-//        self.footerView.height = 50;
-//    }
-//    else {
-//        [rightNavButton setTitle:@"保存" forState:UIControlStateNormal];
-//        self.footerView.hidden = NO;
-//        self.footerView.height = 100;
-//    }
-//    [rightNavButton.titleLabel setFont:[UIFont systemFontOfSize:16]];
-//    [rightNavButton setTitleColor:RGBHex(0x007AFF) forState:UIControlStateNormal];
-//    [rightNavButton addTarget:self action:@selector(saveButtonClick) forControlEvents:UIControlEventTouchUpInside];
-//    self.rightNavButton = rightNavButton;
-//    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.rightNavButton];
-//    self.navigationItem.rightBarButtonItem = rightButtonItem;
-//    [self.albumTableView registerNib:[UINib nibWithNibName:@"LTAlbumTableViewCell" bundle:nil] forCellReuseIdentifier:@"LTAlbumTableViewCell"];
-//    self.albumTableView.estimatedRowHeight = 0;
-//    self.albumTableView.estimatedSectionHeaderHeight = 0;
-//    self.albumTableView.estimatedSectionFooterHeight = 0;
-    
-//    ViewBorderRadius(self.view1, 5, 1, RGBHex(0xE5EAFA));
-//    ViewBorderRadius(self.view2, 5, 1, RGBHex(0xE5EAFA));
-//    ViewBorderRadius(self.view3, 5, 1, RGBHex(0xE5EAFA));
-//    ViewBorderRadius(self.view4, 5, 1, RGBHex(0xE5EAFA));
-//    ViewBorderRadius(self.view5, 5, 1, RGBHex(0xE5EAFA));
-//    ViewBorderRadius(self.view6, 5, 1, RGBHex(0xE5EAFA));
+    ViewBorderRadius(self.view1, 5, 1, RGBHex(0xE5EAFA));
+    ViewBorderRadius(self.view2, 5, 1, RGBHex(0xE5EAFA));
+    ViewBorderRadius(self.view3, 5, 1, RGBHex(0xE5EAFA));
+    ViewBorderRadius(self.view4, 5, 1, RGBHex(0xE5EAFA));
     
 //    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
 //    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 //    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(styleChangeNoti:) name:@"AlbumStyleChangeNoti" object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChangeValue:) name:UITextFieldTextDidChangeNotification object:self.albumNameTextField];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChangeValue:) name:UITextFieldTextDidChangeNotification object:self.musicianTextField];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChangeValue:) name:UITextFieldTextDidChangeNotification object:self.styleTextField];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChangeValue:) name:UITextFieldTextDidChangeNotification object:self.producerTextField];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChangeValue:) name:UITextFieldTextDidChangeNotification object:self.mixerTextField];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChangeValue:) name:UITextFieldTextDidChangeNotification object:self.mixingTextField];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChangeValue:) name:UITextFieldTextDidChangeNotification object:self.coverTextField];
 }
 
-//- (void)textFieldDidChangeValue:(NSNotification *)notification {
-//    self.isChange = YES;
-//}
-
-//- (void)back {
-//    [self.navigationController popViewControllerAnimated:YES];
-//}
-
-//- (void )styleChangeNoti:(NSNotification *)noti {
-//    self.styleTextField.text = [NSString stringWithFormat:@"%@",noti.userInfo[@"style"]];
-//    self.isChange = YES;
+- (void)styleChangeNoti:(NSNotification *)noti {
+    self.styleTextField.text = [NSString stringWithFormat:@"%@",noti.userInfo[@"style"]];
 //    [self.styleCoverView removeAllSubviews];
-//    [self.styleCoverView removeFromSuperview];
-//}
+    [self.styleCoverView removeFromSuperview];
+}
 
 //#pragma mark 键盘出现
 //- (void)keyboardWillShow:(NSNotification *)note {
 //    CGRect keyBoardRect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
 //    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, keyBoardRect.size.height, 0);
 //}
-//
-//#pragma mark 键盘消失
-//- (void)keyboardWillHide:(NSNotification *)note {
-//    self.tableView.contentInset = UIEdgeInsetsZero;
-//}
-//
-//- (void)requestData {
+
+#pragma mark 键盘消失
+- (void)keyboardWillHide:(NSNotification *)note {
+    self.tableView.contentInset = UIEdgeInsetsZero;
+}
+
+- (void)requestData {
 //    [LTNetworking requestUrl:@"/album/info" WithParam:@{@"album_id" : self.albumId} withMethod:GET success:^(id  _Nonnull result) {
 //        if ([result[@"code"] intValue] == 200) {
 //            [self handleDate:result];
@@ -201,9 +140,9 @@
 //    } failure:^(NSError * _Nonnull erro) {
 //        [MBProgressHUD showInfoMessage:@"网络连接失败，请稍后重试"];
 //    } showHUD:self.view];
-//}
+}
 
-//- (void)handleDate:(id)result {
+- (void)handleDate:(id)result {
 //    [self.detailDataArray removeAllObjects];
 //    NSString *infoString = result[@"data"][@"tracks_info"];
 //    if ([infoString class] != [NSNull class]) {
@@ -292,7 +231,7 @@
 //    if (designerString != nil && [designerString class] != [NSNull class]) {
 //        self.coverTextField.text = result[@"data"][@"cover_designer"];
 //    }
-//}
+}
 
 #pragma mark 保存专辑信息
 
@@ -467,173 +406,88 @@
 //            [MBProgressHUD showInfoMessage:@"网络连接失败，请稍后重试"];
 //    } showHUD:self.view];
 //}
-//
-//#pragma mark UITableView Delegate\dataSource
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    if (section == 1) {
-//        return self.detailDataArray.count;
-//    }
-//    return [super tableView:tableView numberOfRowsInSection:section];
-//}
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if (indexPath.section == 1) {
-//        self.detailModel = self.detailDataArray[indexPath.row];
-//        LTAlbumTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LTAlbumTableViewCell" forIndexPath:indexPath];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        cell.backgroundColor = CViewBgColor;
-//        cell.delegate = self;
-//        cell.model = self.detailModel;
-//        if ([self.rightNavButton.titleLabel.text isEqualToString:@"编辑"]) {
-//            cell.songTextField.enabled = NO;
-//            cell.lyricistTextField.enabled = NO;
-//            cell.composerTextField.enabled = NO;
-//            cell.arrangerTextField.enabled = NO;
-//            cell.songPerformerTextField.enabled = NO;
-//            cell.deleteButton.hidden = YES;
-//        }
-//        else {
-//            cell.songTextField.enabled = YES;
-//            cell.lyricistTextField.enabled = YES;
-//            cell.composerTextField.enabled = YES;
-//            cell.arrangerTextField.enabled = YES;
-//            cell.songPerformerTextField.enabled = YES;
-//            cell.deleteButton.hidden = NO;
-//        }
-//        cell.songTextField.delegate = self;
-//        cell.lyricistTextField.delegate = self;
-//        cell.composerTextField.delegate = self;
-//        cell.arrangerTextField.delegate = self;
-//        cell.songPerformerTextField.delegate = self;
-//        self.detailCell = cell;
-//
-//        return cell;
-//    }
-//    return [super tableView:tableView cellForRowAtIndexPath:indexPath];
 }
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if (indexPath.section == 1) {
-//        return 267;
-//    }
-//    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if(indexPath.section == 1) {
-//        return [super tableView:tableView indentationLevelForRowAtIndexPath: [NSIndexPath indexPathForRow:0 inSection:indexPath.section]];
-//    }
-//    return [super tableView:tableView indentationLevelForRowAtIndexPath:indexPath];
-//}
-
-#pragma mark 详细曲目信息文本编辑 delegate
-
-//- (void)detailCellTextChange:(LTAlbumTableViewCell *)cell string:(NSString *)string index:(NSInteger)index {
-//    NSIndexPath *indexPath = [self.albumTableView indexPathForCell:cell];
-//    self.detailModel = self.detailDataArray[indexPath.row];
-//    if (index == 0) {
-//        self.detailModel.album_tracks = string;
-//    }
-//    else if (index == 1) {
-//        self.detailModel.album_lyricist = string;
-//    }
-//    else if (index == 2) {
-//        self.detailModel.album_composer = string;
-//    }
-//    else if (index == 3) {
-//        self.detailModel.album_arranger = string;
-//    }
-//    else if (index == 4) {
-//        self.detailModel.album_player = string;
-//    }
-//    [self.detailDataArray replaceObjectAtIndex:indexPath.row withObject:self.detailModel];
-//    self.isChange = YES;
-//}
 
 #pragma mark  添加/修改专辑照片
 
 - (IBAction)albumButtonClick:(id)sender {
-//    [self handleKeyBoard];
-//    if ([self.rightNavButton.titleLabel.text isEqualToString:@"编辑"]) {
-//        return;
-//    }
-//    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"选择图片" message:nil
-//                                                            preferredStyle:UIAlertControllerStyleActionSheet];
-//    NSMutableAttributedString *alertControllerStr = [[NSMutableAttributedString alloc] initWithString:@"选择照片"];
-//    [alertControllerStr addAttribute:NSForegroundColorAttributeName value:RGBHex(0x8F8F8F) range:NSMakeRange(0, 4)];
-//    [alertControllerStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:13] range:NSMakeRange(0, 4)];
-//    [actionSheet setValue:alertControllerStr forKey:@"attributedTitle"];
-//
-//    UIAlertAction *albumAction = [UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//        PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
-//        if (status == PHAuthorizationStatusRestricted || status == PHAuthorizationStatusDenied) {
+    [self handleKeyBoard];
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"选择图片" message:nil
+                                                            preferredStyle:UIAlertControllerStyleActionSheet];
+    NSMutableAttributedString *alertControllerStr = [[NSMutableAttributedString alloc] initWithString:@"选择照片"];
+    [alertControllerStr addAttribute:NSForegroundColorAttributeName value:RGBHex(0x8F8F8F) range:NSMakeRange(0, 4)];
+    [alertControllerStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:13] range:NSMakeRange(0, 4)];
+    [actionSheet setValue:alertControllerStr forKey:@"attributedTitle"];
+
+    UIAlertAction *albumAction = [UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+        if (status == PHAuthorizationStatusRestricted || status == PHAuthorizationStatusDenied) {
 //            [MBProgressHUD showErrorMessage:@"请打开相册访问权限"];
-//        }
-//        else if (status == PHAuthorizationStatusNotDetermined) {
-//            [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-//                if (status == PHAuthorizationStatusAuthorized) {
-//                    [self showAlbum];
-//                }
-//                else {
+        }
+        else if (status == PHAuthorizationStatusNotDetermined) {
+            [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+                if (status == PHAuthorizationStatusAuthorized) {
+                    [self showAlbum];
+                }
+                else {
 //                    [MBProgressHUD showErrorMessage:@"请先打开相册访问权限，否则您无法使用上传专辑图片功能"];
-//                }
-//            }];
-//        }
-//        else if (status == PHAuthorizationStatusAuthorized) {
-//            [self showAlbum];
-//        }
-//    }];
-//
-//    UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//        AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-//        if (status == AVAuthorizationStatusRestricted || status == AVAuthorizationStatusDenied) {
+                }
+            }];
+        }
+        else if (status == PHAuthorizationStatusAuthorized) {
+            [self showAlbum];
+        }
+    }];
+
+    UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+        if (status == AVAuthorizationStatusRestricted || status == AVAuthorizationStatusDenied) {
 //            [MBProgressHUD showErrorMessage:@"请打开相机访问权限"];
-//        }
-//        else if (status == AVAuthorizationStatusNotDetermined) {
-//            [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-//                if (status == PHAuthorizationStatusAuthorized) {
-//                    [self showCamera];
-//                }
-//                else {
+        }
+        else if (status == AVAuthorizationStatusNotDetermined) {
+            [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+                if (status == PHAuthorizationStatusAuthorized) {
+                    [self showCamera];
+                }
+                else {
 //                    [MBProgressHUD showErrorMessage:@"请先打开相册访问权限，否则您无法使用上传专辑图片功能"];
-//                }
-//            }];
-//        }
-//        else if (status == AVAuthorizationStatusAuthorized) {
-//            [self showCamera];
-//        }
-//    }];
-//
-//    UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-//    [cancleAction setValue:RGBHex(0x8F8F8F) forKey:@"titleTextColor"];
-//
-//    [actionSheet addAction:albumAction];
-//    [actionSheet addAction:cameraAction];
-//    [actionSheet addAction:cancleAction];
-//    [self.navigationController presentViewController:actionSheet animated:YES completion:nil];
+                }
+            }];
+        }
+        else if (status == AVAuthorizationStatusAuthorized) {
+            [self showCamera];
+        }
+    }];
+
+    UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [cancleAction setValue:RGBHex(0x8F8F8F) forKey:@"titleTextColor"];
+
+    [actionSheet addAction:albumAction];
+    [actionSheet addAction:cameraAction];
+    [actionSheet addAction:cancleAction];
+    [self.navigationController presentViewController:actionSheet animated:YES completion:nil];
 }
 
 #pragma mark  相册
 
 - (void)showAlbum {
-//    UIImagePickerController *vc = [[UIImagePickerController alloc] init];
-//    vc.delegate = self;
-//    vc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-//    vc.modalPresentationStyle = UIModalPresentationFullScreen;
-//    [self presentViewController:vc animated:YES completion:nil];
+    UIImagePickerController *vc = [[UIImagePickerController alloc] init];
+    vc.delegate = self;
+    vc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    vc.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 #pragma mark  相机
 
 - (void)showCamera {
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//       UIImagePickerController *vc = [[UIImagePickerController alloc] init];
-//       vc.delegate = self;
-//       vc.sourceType = UIImagePickerControllerSourceTypeCamera;
-//       vc.modalPresentationStyle = UIModalPresentationFullScreen;
-//       [self presentViewController:vc animated:YES completion:nil];
-//    });
+    dispatch_async(dispatch_get_main_queue(), ^{
+       UIImagePickerController *vc = [[UIImagePickerController alloc] init];
+       vc.delegate = self;
+       vc.sourceType = UIImagePickerControllerSourceTypeCamera;
+       vc.modalPresentationStyle = UIModalPresentationFullScreen;
+       [self presentViewController:vc animated:YES completion:nil];
+    });
 }
 
 //- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
@@ -725,7 +579,6 @@
         return;
     }
     self.loveButton.selected = !self.loveButton.selected;
-    self.isChange = YES;
 }
 
 #pragma mark 风格编辑
@@ -802,30 +655,6 @@
 //    }];
 }
 
-#pragma mark  添加曲目详细信息
-
-- (IBAction)addDetailButtonClick:(id)sender {
-//    [self handleKeyBoard];
-//    if (self.detailDataArray.count == 12) {
-//        [MBProgressHUD showErrorMessage:@"最多仅支持12个曲信息卡片"];
-//        return;
-//    }
-//    LTAddAlbumDetailModel *model = [[LTAddAlbumDetailModel alloc] init];
-//    [self.detailDataArray addObject:model];
-//    [self.albumTableView reloadSection:1 withRowAnimation:UITableViewRowAnimationAutomatic];
-//    self.isChange = YES;
-}
-
-#pragma mark  删除曲目详细信息
-
-- (void)deleteButtonClick:(LTAlbumTableViewCell *)cell {
-//    [self handleKeyBoard];
-//    NSIndexPath *index = [self.albumTableView indexPathForCell:cell];
-//    [self.detailDataArray removeObjectAtIndex:index.row];
-//    [self.albumTableView reloadSection:1 withRowAnimation:UITableViewRowAnimationAutomatic];
-//    self.isChange = YES;
-}
-
 #pragma mark  时长
 
 - (IBAction)albumTimeButtonClick:(id)sender {
@@ -840,98 +669,94 @@
 #pragma mark 聆听时间
 
 - (IBAction)listeningTime:(id)sender {
-//    [self handleKeyBoard];
-//    self.isListeningTime = YES;
-//
-//    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-//    fmt.dateFormat = @"yyyy-MM-dd";
-//    NSDate *minDate = [fmt dateFromString:@"1997-1-1"];
-//    self.timePicker.timePicker.minimumDate = minDate;
-//    if (self.listeningTimeTextField.text.length) {
-//        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//        [dateFormatter setDateFormat:@"YYYY-MM-dd"];
-//        NSDate *tempDate = [dateFormatter dateFromString:self.listeningTimeTextField.text];
-//        [self.timePicker.timePicker setDate:tempDate animated:NO];
-//    }
-//    else {
-//        NSDate *date = [NSDate date];
-//        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//        [formatter setDateFormat:@"YYYY-MM-dd"];
-//        NSString *DateTime = [formatter stringFromDate:date];
-//        NSDate *tempDate = [formatter dateFromString:DateTime];
-//        [self.timePicker.timePicker setDate:tempDate animated:NO];
-//    }
+    [self handleKeyBoard];
+    self.isListeningTime = YES;
+
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    fmt.dateFormat = @"yyyy-MM-dd";
+    NSDate *minDate = [fmt dateFromString:@"1997-1-1"];
+    self.timePicker.timePicker.minimumDate = minDate;
+    if (self.listeningTimeTextField.text.length) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"YYYY-MM-dd"];
+        NSDate *tempDate = [dateFormatter dateFromString:self.listeningTimeTextField.text];
+        [self.timePicker.timePicker setDate:tempDate animated:NO];
+    }
+    else {
+        NSDate *date = [NSDate date];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"YYYY-MM-dd"];
+        NSString *DateTime = [formatter stringFromDate:date];
+        NSDate *tempDate = [formatter dateFromString:DateTime];
+        [self.timePicker.timePicker setDate:tempDate animated:NO];
+    }
 //    [[UIApplication sharedApplication].delegate.window addSubview:self.timePicker];
-//    self.isChange = YES;
 }
 
 #pragma mark 发布时间
 
 - (IBAction)releaseTime:(id)sender {
-//    [self handleKeyBoard];
-//    self.isListeningTime = NO;
-//
-//    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-//    fmt.dateFormat = @"yyyy-MM-dd";
-//    NSDate *minDate = [fmt dateFromString:@"1902-1-1"];
-//    self.timePicker.timePicker.minimumDate = minDate;
-//    if (self.releasedTimeTextField.text.length) {
-//        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//        [dateFormatter setDateFormat:@"YYYY-MM-dd"];
-//        NSDate *tempDate = [dateFormatter dateFromString:self.releasedTimeTextField.text];
-//        [self.timePicker.timePicker setDate:tempDate animated:NO];
-//    }
-//    else {
-//        NSDate *date = [NSDate date];
-//        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//        [formatter setDateFormat:@"YYYY-MM-dd"];
-//        NSString *DateTime = [formatter stringFromDate:date];
-//        NSDate *tempDate = [formatter dateFromString:DateTime];
-//        [self.timePicker.timePicker setDate:tempDate animated:NO];
-//    }
+    [self handleKeyBoard];
+    self.isListeningTime = NO;
+
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    fmt.dateFormat = @"yyyy-MM-dd";
+    NSDate *minDate = [fmt dateFromString:@"1902-1-1"];
+    self.timePicker.timePicker.minimumDate = minDate;
+    if (self.releasedTimeTextField.text.length) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"YYYY-MM-dd"];
+        NSDate *tempDate = [dateFormatter dateFromString:self.releasedTimeTextField.text];
+        [self.timePicker.timePicker setDate:tempDate animated:NO];
+    }
+    else {
+        NSDate *date = [NSDate date];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"YYYY-MM-dd"];
+        NSString *DateTime = [formatter stringFromDate:date];
+        NSDate *tempDate = [formatter dateFromString:DateTime];
+        [self.timePicker.timePicker setDate:tempDate animated:NO];
+    }
 //    [[UIApplication sharedApplication].delegate.window addSubview:self.timePicker];
-//    self.isChange = YES;
 }
 
 #pragma mark 聆听、发行时间代理
 
 - (void)timePickerSureButtonClick {
-//    if (self.isListeningTime) {
-//        if (!self.listeningTimeString) {
-//            NSDate *date = [NSDate date];
-//            NSDateFormatter *forMatter = [[NSDateFormatter alloc] init];
-//            [forMatter setDateFormat:@"yyyy-MM-dd"];
-//            NSString *dateStr = [forMatter stringFromDate:date];
-//            self.listeningTimeString = dateStr;
-//        }
-//        self.listeningTimeTextField.text = self.listeningTimeString;
-//    }
-//    else {
-//        if (!self.releaseTimeString) {
-//            NSDate *date = [NSDate date];
-//            NSDateFormatter *forMatter = [[NSDateFormatter alloc] init];
-//            [forMatter setDateFormat:@"yyyy-MM-dd"];
-//            NSString *dateStr = [forMatter stringFromDate:date];
-//            self.releaseTimeString = dateStr;
-//        }
-//        self.releasedTimeTextField.text = self.releaseTimeString;
-//    }
-//    self.isChange = YES;
-//    [self.timePicker removeFromSuperview];
+    if (self.isListeningTime) {
+        if (!self.listeningTimeString) {
+            NSDate *date = [NSDate date];
+            NSDateFormatter *forMatter = [[NSDateFormatter alloc] init];
+            [forMatter setDateFormat:@"yyyy-MM-dd"];
+            NSString *dateStr = [forMatter stringFromDate:date];
+            self.listeningTimeString = dateStr;
+        }
+        self.listeningTimeTextField.text = self.listeningTimeString;
+    }
+    else {
+        if (!self.releaseTimeString) {
+            NSDate *date = [NSDate date];
+            NSDateFormatter *forMatter = [[NSDateFormatter alloc] init];
+            [forMatter setDateFormat:@"yyyy-MM-dd"];
+            NSString *dateStr = [forMatter stringFromDate:date];
+            self.releaseTimeString = dateStr;
+        }
+        self.releasedTimeTextField.text = self.releaseTimeString;
+    }
+    [self.timePicker removeFromSuperview];
 }
 
 #pragma mark  timePicker delegate
 
 - (void)dateChanged:(UIDatePicker *)picker{
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//    [formatter setDateFormat:@"yyyy-MM-dd"];
-//    if (self.isListeningTime) {
-//        self.listeningTimeString = [formatter stringFromDate:picker.date];
-//    }
-//    else {
-//        self.releaseTimeString = [formatter stringFromDate:picker.date];
-//    }
-//    self.isChange = YES;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    if (self.isListeningTime) {
+        self.listeningTimeString = [formatter stringFromDate:picker.date];
+    }
+    else {
+        self.releaseTimeString = [formatter stringFromDate:picker.date];
+    }
 }
 
 #pragma mark 发布数量
@@ -942,66 +767,9 @@
 //        if ([str intValue] > 100) {
 //            str = @"10 首";
 //        }
-//        self.isChange = YES;
 //        self.releasedCountTextField.text = str;
 //    }];
 //    [datePickerView show];
-}
-
-- (void)handleUserEnable {
-    if ([self.rightNavButton.titleLabel.text isEqualToString:@"编辑"] || self.isEditImage) {
-        self.albumNameTextField.enabled = NO;
-        self.musicianTextField.enabled = NO;
-        self.styleButton.enabled = NO;
-        self.styleViewButton.hidden = YES;
-        self.arrowButton.hidden = YES;
-        self.arrowButton1.hidden = YES;
-        self.arrowButton2.hidden = YES;
-        self.arrowButton3.hidden = YES;
-        self.styleTextField.enabled = NO;
-        self.timeButton.enabled = NO;
-        self.timeTextField.enabled = NO;
-        self.listeningTimeTextField.enabled = NO;
-        self.releasedTimeTextField.enabled = NO;
-        self.releasedCountTextField.enabled = NO;
-        self.producerTextField.enabled = NO;
-        self.listeningTimeButton.enabled = NO;
-        self.releaseButton.enabled = NO;
-        self.releaseCountButton.enabled = NO;
-        self.mixerTextField.enabled = NO;
-        self.mixingTextField.enabled = NO;
-        self.masteringTextField.enabled = NO;
-        self.coverTextField.enabled = NO;
-        self.addDetailButton.enabled = NO;
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"addAlbumEditEnable" object:nil userInfo:@{@"edit":@"0"}];
-    }
-    else {
-        self.albumNameTextField.enabled = YES;
-        self.musicianTextField.enabled = YES;
-        self.styleButton.enabled = YES;
-        self.styleViewButton.hidden = NO;
-        self.arrowButton.hidden = NO;
-        self.arrowButton1.hidden = NO;
-        self.arrowButton2.hidden = NO;
-        self.arrowButton3.hidden = NO;
-        self.styleTextField.enabled = YES;
-        self.timeButton.enabled = YES;
-        self.timeTextField.enabled = YES;
-        self.listeningTimeTextField.enabled = YES;
-        self.producerTextField.enabled = YES;
-        self.listeningTimeButton.enabled = YES;
-        self.releaseButton.enabled = YES;
-        self.releasedTimeTextField.enabled = YES;
-        self.releasedCountTextField.enabled = YES;
-        self.releaseCountButton.enabled = YES;
-        self.mixerTextField.enabled = YES;
-        self.mixingTextField.enabled = YES;
-        self.masteringTextField.enabled = YES;
-        self.coverTextField.enabled = YES;
-        self.addDetailButton.enabled = YES;
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"addAlbumEditEnable" object:nil userInfo:@{@"edit":@"1"}];
-    }
-    [self.albumTableView reloadData];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -1015,18 +783,8 @@
     [self.styleTextField resignFirstResponder];
     [self.timeTextField resignFirstResponder];
     [self.listeningTimeTextField resignFirstResponder];
-    [self.producerTextField resignFirstResponder];
     [self.releasedTimeTextField resignFirstResponder];
     [self.releasedCountTextField resignFirstResponder];
-    [self.mixerTextField resignFirstResponder];
-    [self.mixingTextField resignFirstResponder];
-    [self.masteringTextField resignFirstResponder];
-    [self.coverTextField resignFirstResponder];
-    [self.detailCell.songTextField resignFirstResponder];
-    [self.detailCell.lyricistTextField resignFirstResponder];
-    [self.detailCell.composerTextField resignFirstResponder];
-    [self.detailCell.arrangerTextField resignFirstResponder];
-    [self.detailCell.songPerformerTextField resignFirstResponder];
 }
 
 //- (LTAlbumStyleView *)styleView {
