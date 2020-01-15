@@ -682,6 +682,7 @@
 		BD5B8C1823273F38005D18FF /* QFTimerPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFTimerPicker.m; sourceTree = "<group>"; };
 		BD5B8C1B23273F53005D18FF /* QFTimerUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFTimerUtil.m; sourceTree = "<group>"; };
 		BD5B8C1C23273F53005D18FF /* QFTimerUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFTimerUtil.h; sourceTree = "<group>"; };
+		BD67F08C23CF15E2002E6E4A /* listentraceShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = listentraceShare.entitlements; sourceTree = "<group>"; };
 		BD7C786F2346E9B20059585E /* home_placeImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_placeImage@3x.png"; sourceTree = "<group>"; };
 		BD7C78702346E9B20059585E /* home_placeImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_placeImage@2x.png"; sourceTree = "<group>"; };
 		BD7C78732346EA870059585E /* album_detail_placeImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "album_detail_placeImage@2x.png"; sourceTree = "<group>"; };
@@ -1577,6 +1578,7 @@
 		BD55C47923CC4C0C0002684E /* listentraceShare */ = {
 			isa = PBXGroup;
 			children = (
+				BD67F08C23CF15E2002E6E4A /* listentraceShare.entitlements */,
 				00AE57D923CDEB0D001FF637 /* Info.plist */,
 				00AE57DD23CDEB0D001FF637 /* LTShareViewController.h */,
 				00AE57DC23CDEB0D001FF637 /* LTShareViewController.m */,
@@ -2517,6 +2519,7 @@
 		BD55C48423CC4C0C0002684E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = listentraceShare/listentraceShare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QS8N6LMV2J;
@@ -2537,6 +2540,7 @@
 		BD55C48523CC4C0C0002684E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = listentraceShare/listentraceShare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QS8N6LMV2J;

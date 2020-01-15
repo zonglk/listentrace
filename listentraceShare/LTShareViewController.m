@@ -51,7 +51,7 @@
 }
 
 - (void)didSelectPost {
-    
+    [self.extensionContext completeRequestReturningItems:@[] completionHandler:nil];
 }
 
 /*

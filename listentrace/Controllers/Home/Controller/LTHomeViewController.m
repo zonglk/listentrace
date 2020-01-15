@@ -113,6 +113,10 @@
             [[CKContainer defaultContainer] fetchUserRecordIDWithCompletionHandler:^(CKRecordID * _Nullable recordID, NSError * _Nullable error) {
                 [[NSUserDefaults standardUserDefaults] setObject:recordID.recordName forKey:@"icloudName"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
+                
+                NSUserDefaults *shareUserDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.listentrace"];
+                [shareUserDefaults setValue:recordID.recordName forKey:@"shareIcloudName"];
+                
                 if (!self.isHasUserId) {
                     [self requestData];
                 }

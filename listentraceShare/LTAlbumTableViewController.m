@@ -44,10 +44,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *listeningTimeButton;
 @property (weak, nonatomic) IBOutlet UIButton *releaseButton;
 @property (weak, nonatomic) IBOutlet UIButton *releaseCountButton;
-@property (weak, nonatomic) IBOutlet UIButton *arrowButton; // 指示箭头 （做显隐处理）
-@property (weak, nonatomic) IBOutlet UIButton *arrowButton1;
-@property (weak, nonatomic) IBOutlet UIButton *arrowButton2;
-@property (weak, nonatomic) IBOutlet UIButton *arrowButton3;
 @property (weak, nonatomic) IBOutlet UITextField *listeningTimeTextField; // 聆听时间
 @property (weak, nonatomic) IBOutlet UITextField *releasedTimeTextField; // 发行时间
 @property (weak, nonatomic) IBOutlet UITextField *releasedCountTextField; // 发行数目
@@ -66,9 +62,9 @@
 @property (nonatomic, copy) NSString *releaseTimeString;
 @property (nonatomic, assign) BOOL isListeningTime;
 @property (nonatomic, copy) NSString *imageId; // 上传图片拿到的后台的id
-@property (nonatomic, strong) UIButton *rightNavButton;
 @property (nonatomic, assign) BOOL isSave; // 专辑已存在时候的保存
 @property (nonatomic, assign) BOOL isEditImage; // 编辑图片时按钮不可用
+@property (copy, nonatomic) NSString *userId;
 
 - (IBAction)albumButtonClick:(id)sender; // 专辑封面
 - (IBAction)loveButtonClick:(id)sender; // 喜欢
@@ -131,8 +127,6 @@
 }
 
 - (void)handleDate:(id)result {
-    NSString *infoString = result[@"data"][@"tracks_info"];
-    
     NSString *albumString = result[@"data"][@"album_img"];
     if (albumString != nil && [albumString class] != [NSNull class]) {
         [self.albumImageView sd_setImageWithURL:[NSURL URLWithString:albumString] placeholderImage:[UIImage imageNamed:@"album_detail_placeImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
@@ -177,9 +171,17 @@
 
 - (void)saveButtonClick {
     [self handleKeyBoard];
-    NSString *userIdString = [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"];
-    if (!userIdString.length) {
-        
+
+    NSUserDefaults *shareUserDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.listentrace"];
+    self.userId = [shareUserDefaults objectForKey:@"shareIcloudName"];
+    if (!self.userId.length) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"请先前往《听迹》App登录"] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self disMisSelf];
+        }];
+        [alert addAction:sureAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
     }
 
     NSString *albumString = self.result[@"data"][@"album_img"];
@@ -205,8 +207,7 @@
     }
 
     NSMutableDictionary *parameter = [NSMutableDictionary dictionary];
-    NSString  *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"icloudName"];
-    [parameter setObject:userId forKey:@"user_id"];
+    [parameter setObject:self.userId forKey:@"user_id"];
     [parameter setObject:self.albumNameTextField.text forKey:@"album_name"];
     [parameter setObject:self.musicianTextField.text forKey:@"album_musician"];
     [parameter setObject:self.styleTextField.text forKey:@"album_style"];
@@ -249,7 +250,7 @@
     [LTShareNetworking requestUrl:url WithParam:parameter withMethod:POST success:^(id  _Nonnull result) {
         if ([result[@"code"] intValue] == 200) {
             self.isSave = NO;
-    
+            [self disMisSelf];
         }
         else if ([result[@"code"] intValue] == 1002) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"已添加过该专辑，是否继续保存。"] preferredStyle:UIAlertControllerStyleAlert];
@@ -261,11 +262,9 @@
             [alert addAction:action];
             [alert addAction:sureAction];
             [self.navigationController presentViewController:alert animated:YES completion:nil];
-            self.rightNavButton.enabled = YES;
         }
         else {
 //            [MBProgressHUD showInfoMessage:result[@"msg"]];
-            self.rightNavButton.enabled = YES;
         }
     } failure:^(NSError * _Nonnull erro) {
 //            [MBProgressHUD showInfoMessage:@"网络连接失败，请稍后重试"];
@@ -439,9 +438,6 @@
 #pragma mark 红心喜欢按钮
 
 - (IBAction)loveButtonClick:(id)sender {
-    if ([self.rightNavButton.titleLabel.text isEqualToString:@"编辑"]) {
-        return;
-    }
     self.loveButton.selected = !self.loveButton.selected;
 }
 
@@ -501,22 +497,22 @@
 #pragma mark  链接传图
 
 - (void)postLinkImage {
-//    NSData *imageData = UIImageJPEGRepresentation(self.albumImageView.image, 0.2f);
-//    NSMutableDictionary *Exparams = [[NSMutableDictionary alloc]init];
-//    [Exparams addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:imageData,@"file", nil]];
-//    [LTNetworking uploadImageWithUrl:@"/img/upload" WithParam:[NSDictionary dictionary] withExParam:Exparams withMethod:POST success:^(id  _Nonnull result) {
-//        if ([result[@"code"] intValue] == 200) {
-//            self.imageId = result[@"data"];
-//            self.tipsImageLabel.hidden = YES;
-//        }
-//        else {
+    NSData *imageData = UIImageJPEGRepresentation(self.albumImageView.image, 0.2f);
+    NSMutableDictionary *Exparams = [[NSMutableDictionary alloc]init];
+    [Exparams addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:imageData,@"file", nil]];
+    [LTShareNetworking uploadImageWithUrl:@"/img/upload" WithParam:[NSDictionary dictionary] withExParam:Exparams withMethod:POST success:^(id  _Nonnull result) {
+        if ([result[@"code"] intValue] == 200) {
+            self.imageId = result[@"data"];
+            self.tipsImageLabel.hidden = YES;
+        }
+        else {
 //            [MBProgressHUD showErrorMessage:result[@"msg"]];
-//        }
-//    } uploadFileProgress:^(NSProgress * _Nonnull uploadProgress) {
-//
-//    } failure:^(NSError * _Nonnull erro) {
+        }
+    } uploadFileProgress:^(NSProgress * _Nonnull uploadProgress) {
+
+    } failure:^(NSError * _Nonnull erro) {
 //        [MBProgressHUD showInfoMessage:@"网络连接失败，请稍后重试"];
-//    }];
+    }];
 }
 
 #pragma mark  时长
@@ -659,13 +655,6 @@
 //        _styleView = albumView;
 //    }
 //    return _styleView;
-//}
-
-//- (NSMutableArray *)detailDataArray {
-//    if (!_detailDataArray) {
-//        _detailDataArray = [NSMutableArray array];
-//    }
-//    return _detailDataArray;
 //}
 
 //- (LTAlbumTimePIckerView *)timePicker {
