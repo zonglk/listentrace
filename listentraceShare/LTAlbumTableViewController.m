@@ -11,7 +11,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import "LTAlbumStyleView.h"
 //#import "JPImageresizerView.h"
-#import "LTAlbumStyleView.h"
 #import "LTShareNetworking.h"
 #import "QFTimePickerView.h"
 #import "QFDatePickerView.h"
@@ -94,6 +93,7 @@
     if (self.urlString) {
         [self requestData];
     }
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(styleChangeNoti:) name:@"AlbumStyleChangeNoti" object:nil];
 }
 
 - (void)creatAllViews {
@@ -105,7 +105,6 @@
 
 - (void)styleChangeNoti:(NSNotification *)noti {
     self.styleTextField.text = [NSString stringWithFormat:@"%@",noti.userInfo[@"style"]];
-//    [self.styleCoverView removeAllSubviews];
     [self.styleCoverView removeFromSuperview];
 }
 
@@ -444,22 +443,21 @@
 #pragma mark 风格编辑
 
 - (IBAction)albumStyle:(id)sender {
-//    [self handleKeyBoard];
-//    UIView *coverView = [[UIView alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
-//    [[UIApplication sharedApplication].keyWindow addSubview:coverView];
-//    coverView.backgroundColor = [UIColor clearColor];
-//    self.styleCoverView = coverView;
-//
-//    UIButton *button = [[UIButton alloc] initWithFrame:coverView.frame];
-//    [self.styleCoverView addSubview:button];
-//    [button addTarget:self action:@selector(tapCoverView) forControlEvents:UIControlEventTouchUpInside];
-//
-//    [self.styleCoverView addSubview:self.styleView];
+    [self handleKeyBoard];
+    UIView *coverView = [[UIView alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
+    [[UIApplication sharedApplication].keyWindow addSubview:coverView];
+    coverView.backgroundColor = [UIColor clearColor];
+    self.styleCoverView = coverView;
+
+    UIButton *button = [[UIButton alloc] initWithFrame:coverView.frame];
+    [self.styleCoverView addSubview:button];
+    [button addTarget:self action:@selector(tapCoverView) forControlEvents:UIControlEventTouchUpInside];
+
+    [self.styleCoverView addSubview:self.styleView];
 }
 
 - (void)tapCoverView {
-//    [self.styleCoverView removeAllSubviews];
-//    [self.styleCoverView removeFromSuperview];
+    [self.styleCoverView removeFromSuperview];
 }
 
 #pragma mark 取消图片选择
@@ -531,7 +529,7 @@
 - (IBAction)listeningTime:(id)sender {
     [self handleKeyBoard];
     self.isListeningTime = YES;
-
+    
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
     fmt.dateFormat = @"yyyy-MM-dd";
     NSDate *minDate = [fmt dateFromString:@"1997-1-1"];
@@ -550,7 +548,8 @@
         NSDate *tempDate = [formatter dateFromString:DateTime];
         [self.timePicker.timePicker setDate:tempDate animated:NO];
     }
-//    [[UIApplication sharedApplication].delegate.window addSubview:self.timePicker];
+    [[UIApplication sharedApplication].delegate.window addSubview:self.timePicker];
+    [[UIApplication sharedApplication].delegate.window bringSubviewToFront:self.timePicker];
 }
 
 #pragma mark 发布时间
@@ -577,7 +576,7 @@
         NSDate *tempDate = [formatter dateFromString:DateTime];
         [self.timePicker.timePicker setDate:tempDate animated:NO];
     }
-//    [[UIApplication sharedApplication].delegate.window addSubview:self.timePicker];
+    [[UIApplication sharedApplication].delegate.window addSubview:self.timePicker];
 }
 
 #pragma mark 聆听、发行时间代理
@@ -647,26 +646,26 @@
     [self.releasedCountTextField resignFirstResponder];
 }
 
-//- (LTAlbumStyleView *)styleView {
-//    if (!_styleView) {
-//        UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
-//        CGRect startRact = [self.styleViewButton convertRect:self.styleViewButton.bounds toView:window];
-//        LTAlbumStyleView *albumView = [[LTAlbumStyleView alloc] initWithFrame:CGRectMake(startRact.origin.x - 137, startRact.origin.y + 20, 170, 250)];
-//        _styleView = albumView;
-//    }
-//    return _styleView;
-//}
+- (LTAlbumStyleView *)styleView {
+    if (!_styleView) {
+        UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+        CGRect startRact = [self.styleViewButton convertRect:self.styleViewButton.bounds toView:window];
+        LTAlbumStyleView *albumView = [[LTAlbumStyleView alloc] initWithFrame:CGRectMake(startRact.origin.x - 137, startRact.origin.y + 20, 170, 250)];
+        _styleView = albumView;
+    }
+    return _styleView;
+}
 
-//- (LTAlbumTimePIckerView *)timePicker {
-//    if (!_timePicker) {
-//        _timePicker = [LTAlbumTimePIckerView creatXib];
-//        _timePicker.delegate = self;
-//        // 设置显示最大时间（此处为当前时间）
-//        [_timePicker.timePicker setMaximumDate:[NSDate date]];
-//        [_timePicker.timePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
-//    }
-//    return _timePicker;
-//}
+- (LTAlbumTimePIckerView *)timePicker {
+    if (!_timePicker) {
+        _timePicker = [LTAlbumTimePIckerView creatXib];
+        _timePicker.delegate = self;
+        // 设置显示最大时间（此处为当前时间）
+        [_timePicker.timePicker setMaximumDate:[NSDate date]];
+        [_timePicker.timePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
+    }
+    return _timePicker;
+}
 
 - (IBAction)cancleButtonClick:(id)sender {
     [self disMisSelf];

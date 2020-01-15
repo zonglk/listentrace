@@ -193,6 +193,14 @@
 		00E83BE222E60B6200C47AE5 /* home_tabbar_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E83BE022E60B6200C47AE5 /* home_tabbar_normal@2x.png */; };
 		00E83BE522E60B6A00C47AE5 /* style_tabbar_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E83BE322E60B6A00C47AE5 /* style_tabbar_selected@2x.png */; };
 		00E83BE622E60B6A00C47AE5 /* style_tabbar_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E83BE422E60B6A00C47AE5 /* style_tabbar_selected@3x.png */; };
+		00E97C5823CF5775007DE061 /* LTAlbumStyleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00E97C5623CF5775007DE061 /* LTAlbumStyleView.xib */; };
+		00E97C5B23CF580A007DE061 /* LTAlbumStyleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E97C5723CF5775007DE061 /* LTAlbumStyleView.m */; };
+		00E97C6023CF5904007DE061 /* style_backGround@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E97C5C23CF5904007DE061 /* style_backGround@3x.png */; };
+		00E97C6123CF5904007DE061 /* album_style@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E97C5D23CF5904007DE061 /* album_style@3x.png */; };
+		00E97C6223CF5904007DE061 /* style_backGround@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E97C5E23CF5904007DE061 /* style_backGround@2x.png */; };
+		00E97C6323CF5904007DE061 /* album_style@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E97C5F23CF5904007DE061 /* album_style@2x.png */; };
+		00E97C6723CF60E2007DE061 /* LTAlbumTimePIckerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00E97C6423CF60E1007DE061 /* LTAlbumTimePIckerView.xib */; };
+		00E97C6823CF60E2007DE061 /* LTAlbumTimePIckerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E97C6623CF60E1007DE061 /* LTAlbumTimePIckerView.m */; };
 		00F17D2623C6173B00FE6439 /* home_autoButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00F17D2223C6173A00FE6439 /* home_autoButton@2x.png */; };
 		00F17D2723C6173B00FE6439 /* home_autoButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00F17D2323C6173A00FE6439 /* home_autoButton@3x.png */; };
 		00F17D2823C6173B00FE6439 /* home_manuelButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00F17D2423C6173A00FE6439 /* home_manuelButton@2x.png */; };
@@ -623,6 +631,16 @@
 		00E83BE022E60B6200C47AE5 /* home_tabbar_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_tabbar_normal@2x.png"; sourceTree = "<group>"; };
 		00E83BE322E60B6A00C47AE5 /* style_tabbar_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "style_tabbar_selected@2x.png"; sourceTree = "<group>"; };
 		00E83BE422E60B6A00C47AE5 /* style_tabbar_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "style_tabbar_selected@3x.png"; sourceTree = "<group>"; };
+		00E97C5523CF5775007DE061 /* LTAlbumStyleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTAlbumStyleView.h; sourceTree = "<group>"; };
+		00E97C5623CF5775007DE061 /* LTAlbumStyleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LTAlbumStyleView.xib; sourceTree = "<group>"; };
+		00E97C5723CF5775007DE061 /* LTAlbumStyleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTAlbumStyleView.m; sourceTree = "<group>"; };
+		00E97C5C23CF5904007DE061 /* style_backGround@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "style_backGround@3x.png"; sourceTree = "<group>"; };
+		00E97C5D23CF5904007DE061 /* album_style@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "album_style@3x.png"; sourceTree = "<group>"; };
+		00E97C5E23CF5904007DE061 /* style_backGround@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "style_backGround@2x.png"; sourceTree = "<group>"; };
+		00E97C5F23CF5904007DE061 /* album_style@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "album_style@2x.png"; sourceTree = "<group>"; };
+		00E97C6423CF60E1007DE061 /* LTAlbumTimePIckerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LTAlbumTimePIckerView.xib; sourceTree = "<group>"; };
+		00E97C6523CF60E1007DE061 /* LTAlbumTimePIckerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTAlbumTimePIckerView.h; sourceTree = "<group>"; };
+		00E97C6623CF60E1007DE061 /* LTAlbumTimePIckerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTAlbumTimePIckerView.m; sourceTree = "<group>"; };
 		00F17D2223C6173A00FE6439 /* home_autoButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_autoButton@2x.png"; sourceTree = "<group>"; };
 		00F17D2323C6173A00FE6439 /* home_autoButton@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_autoButton@3x.png"; sourceTree = "<group>"; };
 		00F17D2423C6173A00FE6439 /* home_manuelButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_manuelButton@2x.png"; sourceTree = "<group>"; };
@@ -1525,6 +1543,10 @@
 		00AE57C423CDEA69001FF637 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				00E97C5F23CF5904007DE061 /* album_style@2x.png */,
+				00E97C5D23CF5904007DE061 /* album_style@3x.png */,
+				00E97C5E23CF5904007DE061 /* style_backGround@2x.png */,
+				00E97C5C23CF5904007DE061 /* style_backGround@3x.png */,
 				00AE57C523CDEA95001FF637 /* album_albumImage@2x.png */,
 				00AE57C923CDEA95001FF637 /* album_albumImage@3x.png */,
 				00AE57C723CDEA95001FF637 /* album_down_arrow@2x.png */,
@@ -1585,6 +1607,12 @@
 				00AE57E523CDEBDC001FF637 /* LTAlbumTableViewController.h */,
 				00AE57E323CDEBDC001FF637 /* LTAlbumTableViewController.m */,
 				00AE57E423CDEBDC001FF637 /* LTAlbumTableViewController.storyboard */,
+				00E97C5523CF5775007DE061 /* LTAlbumStyleView.h */,
+				00E97C5723CF5775007DE061 /* LTAlbumStyleView.m */,
+				00E97C5623CF5775007DE061 /* LTAlbumStyleView.xib */,
+				00E97C6523CF60E1007DE061 /* LTAlbumTimePIckerView.h */,
+				00E97C6623CF60E1007DE061 /* LTAlbumTimePIckerView.m */,
+				00E97C6423CF60E1007DE061 /* LTAlbumTimePIckerView.xib */,
 				00212F1723CE1B9F002DB6DB /* LTShareNetworking.h */,
 				00212F1823CE1B9F002DB6DB /* LTShareNetworking.m */,
 				00212F2F23CE23A2002DB6DB /* SDWebImage */,
@@ -1968,12 +1996,18 @@
 				00AE57D423CDEA95001FF637 /* album_redHeart@2x.png in Resources */,
 				00AE57D623CDEA95001FF637 /* album_grayHeart@2x.png in Resources */,
 				00AE57D523CDEA95001FF637 /* camera@2x.png in Resources */,
+				00E97C6323CF5904007DE061 /* album_style@2x.png in Resources */,
+				00E97C6223CF5904007DE061 /* style_backGround@2x.png in Resources */,
 				00AE57D023CDEA95001FF637 /* camera@3x.png in Resources */,
 				00AE57D723CDEA95001FF637 /* album_redHeart@3x.png in Resources */,
 				00AE57CF23CDEA95001FF637 /* album_albumImage@2x.png in Resources */,
+				00E97C6023CF5904007DE061 /* style_backGround@3x.png in Resources */,
 				00AE57D823CDEA95001FF637 /* album_down_arrow@3x.png in Resources */,
+				00E97C6723CF60E2007DE061 /* LTAlbumTimePIckerView.xib in Resources */,
+				00E97C6123CF5904007DE061 /* album_style@3x.png in Resources */,
 				00AE57E723CDEBDC001FF637 /* LTAlbumTableViewController.storyboard in Resources */,
 				00AE57DF23CDEB0D001FF637 /* Info.plist in Resources */,
+				00E97C5823CF5775007DE061 /* LTAlbumStyleView.xib in Resources */,
 				00AE57D223CDEA95001FF637 /* album_grayHeart@3x.png in Resources */,
 				00AE57D323CDEA95001FF637 /* album_albumImage@3x.png in Resources */,
 			);
@@ -2197,6 +2231,7 @@
 				00212FD723CE23A3002DB6DB /* SDWebImageDownloaderResponseModifier.m in Sources */,
 				00212FC023CE23A2002DB6DB /* NSImage+Compatibility.m in Sources */,
 				00212FCF23CE23A2002DB6DB /* SDWebImageIndicator.m in Sources */,
+				00E97C6823CF60E2007DE061 /* LTAlbumTimePIckerView.m in Sources */,
 				00212FFD23CE23A3002DB6DB /* SDFileAttributeHelper.m in Sources */,
 				00212FF623CE23A3002DB6DB /* SDWebImageDownloaderRequestModifier.m in Sources */,
 				00212FDF23CE23A3002DB6DB /* UIImage+ExtendedCacheData.m in Sources */,
@@ -2212,6 +2247,7 @@
 				00212FCD23CE23A2002DB6DB /* SDImageLoader.m in Sources */,
 				00212FD323CE23A3002DB6DB /* UIImage+MultiFormat.m in Sources */,
 				00212FE523CE23A3002DB6DB /* SDImageLoadersManager.m in Sources */,
+				00E97C5B23CF580A007DE061 /* LTAlbumStyleView.m in Sources */,
 				00212F2D23CE1DD6002DB6DB /* AFNetworkReachabilityManager.m in Sources */,
 				0021300123CE23A3002DB6DB /* UIColor+HexString.m in Sources */,
 				00212FF023CE23A3002DB6DB /* SDWebImageDefine.m in Sources */,
@@ -2519,6 +2555,7 @@
 		BD55C48423CC4C0C0002684E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_ENTITLEMENTS = listentraceShare/listentraceShare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -2540,6 +2577,7 @@
 		BD55C48523CC4C0C0002684E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_ENTITLEMENTS = listentraceShare/listentraceShare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
