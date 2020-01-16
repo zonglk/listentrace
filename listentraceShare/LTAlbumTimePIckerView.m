@@ -9,7 +9,7 @@
 #import "LTAlbumTimePIckerView.h"
 
 #define KScreenWidth ([[UIScreen mainScreen] bounds].size.width)
-#define KScreenHeight [[UIScreen mainScreen] bounds].size.height
+#define KScreenHeight ([[UIScreen mainScreen] bounds].size.height)
 
 @implementation LTAlbumTimePIckerView
 

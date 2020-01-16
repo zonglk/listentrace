@@ -10,12 +10,14 @@
 #import <Photos/Photos.h>
 #import <AVFoundation/AVFoundation.h>
 #import "LTAlbumStyleView.h"
-//#import "JPImageresizerView.h"
+#import "JPImageresizerView.h"
 #import "LTShareNetworking.h"
 #import "QFTimePickerView.h"
 #import "QFDatePickerView.h"
 #import "LTAlbumTimePIckerView.h"
 #import "UIImageView+WebCache.h"
+
+#define kWeakSelf(type)  __weak typeof(type) weak##type = type;
 
 #define RGBHex(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
@@ -26,6 +28,12 @@
 [View.layer setMasksToBounds:YES];\
 [View.layer setBorderWidth:(Width)];\
 [View.layer setBorderColor:[Color CGColor]]
+
+#define kIS_IPHONE_X ([UIScreen mainScreen].bounds.size.height > 736.0f) ? YES : NO
+#define kBottomSafeHeight   ((kIS_IPHONE_X)? 34 : 0)
+
+#define KScreenWidth ([[UIScreen mainScreen] bounds].size.width)
+#define KScreenHeight ([[UIScreen mainScreen] bounds].size.height)
 
 @interface LTAlbumTableViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, LTAlbumTimePickerDelegate, UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *albumTableView;
@@ -54,7 +62,7 @@
 @property (nonatomic, weak) LTAlbumStyleView *styleView;
 @property (nonatomic, strong) UIButton *cancleButton;
 @property (nonatomic, strong) UIButton *sureButton;
-//@property (nonatomic, strong) JPImageresizerView *imageresizerView;
+@property (nonatomic, strong) JPImageresizerView *imageresizerView;
 @property (nonatomic, strong) UIView *styleCoverView;
 @property (nonatomic, strong) LTAlbumTimePIckerView *timePicker;
 @property (nonatomic, copy) NSString *listeningTimeString;
@@ -385,86 +393,70 @@
     });
 }
 
-//- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-//    [picker dismissViewControllerAnimated:YES completion:nil];
-//}
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
 
-//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-//    [picker dismissViewControllerAnimated:YES completion:nil];
-//    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-//    JPImageresizerConfigure *configure = [JPImageresizerConfigure defaultConfigureWithResizeImage:image make:^(JPImageresizerConfigure *configure) {
-//        configure
-//        .jp_resizeImage(image)
-//        .jp_maskAlpha(0.6)
-//        .jp_strokeColor(RGBHex(0xCCCCCC))
-//        .jp_frameType(JPClassicFrameType)
-//        .jp_bgColor([UIColor blackColor])
-//        .jp_isClockwiseRotation(YES)
-//        .jp_animationCurve(JPAnimationCurveEaseOut);
-//    }];
-//
-//    JPImageresizerView *imageresizerView = [JPImageresizerView imageresizerViewWithConfigure:configure imageresizerIsCanRecovery:^(BOOL isCanRecovery) {
-//
-//    } imageresizerIsPrepareToScale:^(BOOL isPrepareToScale) {
-//        if (isPrepareToScale) {
-//            self.sureButton.hidden = YES;
-//            self.cancleButton.hidden = YES;
-//            self.isEditImage = YES;
-//        }
-//        else {
-//            self.sureButton.hidden = NO;
-//            self.cancleButton.hidden = NO;
-//            self.isEditImage = NO;
-//        }
-//        [self handleUserEnable];
-//    }];
-//    [imageresizerView setResizeWHScale:(1.0 / 1.0) isToBeArbitrarily:YES animated:YES];
-//    [[UIApplication sharedApplication].keyWindow addSubview:imageresizerView];
-//    self.imageresizerView = imageresizerView;
-//    if (@available(iOS 11.0, *)) {
-//
-//    }
-//    else {
-//        self.automaticallyAdjustsScrollViewInsets = NO;
-//    }
-//    [self addImageAction];
-//}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    JPImageresizerConfigure *configure = [JPImageresizerConfigure defaultConfigureWithResizeImage:image make:^(JPImageresizerConfigure *configure) {
+        configure
+        .jp_resizeImage(image)
+        .jp_maskAlpha(0.6)
+        .jp_strokeColor(RGBHex(0xCCCCCC))
+        .jp_frameType(JPClassicFrameType)
+        .jp_bgColor([UIColor blackColor])
+        .jp_isClockwiseRotation(YES)
+        .jp_animationCurve(JPAnimationCurveEaseOut);
+    }];
+
+    JPImageresizerView *imageresizerView = [JPImageresizerView imageresizerViewWithConfigure:configure imageresizerIsCanRecovery:^(BOOL isCanRecovery) {
+
+    } imageresizerIsPrepareToScale:^(BOOL isPrepareToScale) {
+        if (isPrepareToScale) {
+            self.sureButton.hidden = YES;
+            self.cancleButton.hidden = YES;
+            self.isEditImage = YES;
+        }
+        else {
+            self.sureButton.hidden = NO;
+            self.cancleButton.hidden = NO;
+            self.isEditImage = NO;
+        }
+    }];
+    [imageresizerView setResizeWHScale:(1.0 / 1.0) isToBeArbitrarily:YES animated:YES];
+    [[UIApplication sharedApplication].keyWindow addSubview:imageresizerView];
+    self.imageresizerView = imageresizerView;
+    if (@available(iOS 11.0, *)) {
+
+    }
+    else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    [self addImageAction];
+}
 
 - (void)addImageAction {
-//    UIView *line = [[UIView alloc] init];
-//    line.backgroundColor = [UIColor grayColor];
-//    line.hidden = YES;
-//    [self.imageresizerView addSubview:line];
-//    [line mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(self.imageresizerView.mas_left);
-//        make.right.mas_equalTo(self.imageresizerView.mas_right);
-//        make.bottom.mas_equalTo(self.imageresizerView.mas_bottom).offset(-kBottomSafeHeight - 60);
-//        make.height.mas_equalTo(1);
-//    }];
-//
-//    UIButton *cancleButton = [[UIButton alloc] init];
-//    [cancleButton setTitleColor:RGBHex(0xFB1414) forState:UIControlStateNormal];
-//    [cancleButton setTitle:@"取消" forState:UIControlStateNormal];
-//    [cancleButton.titleLabel setFont:[UIFont systemFontOfSize:16]];
-//    [self.imageresizerView addSubview:cancleButton];
-//    [cancleButton addTarget:self action:@selector(cancleButtonClick) forControlEvents:UIControlEventTouchUpInside];
-//    [cancleButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(self.imageresizerView.mas_left).offset(25);
-//        make.top.mas_equalTo(line.mas_bottom).offset(16);
-//    }];
-//    self.cancleButton = cancleButton;
-//
-//    UIButton *sureButton = [[UIButton alloc] init];
-//    [sureButton setTitleColor:RGBHex(0x5079D9) forState:UIControlStateNormal];
-//    [sureButton setTitle:@"确定" forState:UIControlStateNormal];
-//    [sureButton.titleLabel setFont:[UIFont systemFontOfSize:16]];
-//    [self.imageresizerView addSubview:sureButton];
-//    [sureButton addTarget:self action:@selector(sureButtonClick) forControlEvents:UIControlEventTouchUpInside];
-//    [sureButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.right.mas_equalTo(self.imageresizerView.mas_right).offset(-25);
-//        make.top.mas_equalTo(line.mas_bottom).offset(16);
-//    }];
-//    self.sureButton = sureButton;
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, KScreenHeight - kBottomSafeHeight - 60, KScreenWidth, 1)];
+    line.backgroundColor = [UIColor grayColor];
+    [self.imageresizerView addSubview:line];
+
+    UIButton *cancleButton = [[UIButton alloc] initWithFrame:CGRectMake(25, KScreenHeight - kBottomSafeHeight - 40, 40, 20)];
+    [cancleButton setTitleColor:RGBHex(0xFB1414) forState:UIControlStateNormal];
+    [cancleButton setTitle:@"取消" forState:UIControlStateNormal];
+    [cancleButton.titleLabel setFont:[UIFont systemFontOfSize:16]];
+    [self.imageresizerView addSubview:cancleButton];
+    [cancleButton addTarget:self action:@selector(cancleButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    self.cancleButton = cancleButton;
+
+    UIButton *sureButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 30 - 40, KScreenHeight - kBottomSafeHeight - 40, 40, 20)];
+    [sureButton setTitleColor:RGBHex(0x5079D9) forState:UIControlStateNormal];
+    [sureButton setTitle:@"确定" forState:UIControlStateNormal];
+    [sureButton.titleLabel setFont:[UIFont systemFontOfSize:16]];
+    [self.imageresizerView addSubview:sureButton];
+    [sureButton addTarget:self action:@selector(sureButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    self.sureButton = sureButton;
 }
 
 #pragma mark 红心喜欢按钮
@@ -496,33 +488,38 @@
 #pragma mark 取消图片选择
 
 - (void)cancleButtonClick {
-//    [self.imageresizerView removeFromSuperview];
+    [self.imageresizerView removeFromSuperview];
 }
 
 #pragma mark 上传选择的图片
 - (void)sureButtonClick {
-//    self.isChange = YES;
-//    [self.imageresizerView removeFromSuperview];
-//    kWeakSelf(self);
-//    [self.imageresizerView originImageresizerWithComplete:^(UIImage *resizeImage) {
-//        NSData *imageData = UIImageJPEGRepresentation(resizeImage, 0.2f);
-//        NSMutableDictionary *Exparams = [[NSMutableDictionary alloc]init];
-//        [Exparams addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:imageData,@"file", nil]];
-//        [LTNetworking uploadImageWithUrl:@"/img/upload" WithParam:[NSDictionary dictionary] withExParam:Exparams withMethod:POST success:^(id  _Nonnull result) {
-//            if ([result[@"code"] intValue] == 200) {
-//                [weakself.albumButton setImage:resizeImage forState:UIControlStateNormal];
-//                self.imageId = result[@"data"];
-//                self.tipsImageLabel.hidden = YES;
-//            }
-//            else {
-//                [MBProgressHUD showErrorMessage:result[@"msg"]];
-//            }
-//        } uploadFileProgress:^(NSProgress * _Nonnull uploadProgress) {
-//
-//        } failure:^(NSError * _Nonnull erro) {
-//            [MBProgressHUD showInfoMessage:@"网络连接失败，请稍后重试"];
-//        }];
-//    }];
+    [self.imageresizerView removeFromSuperview];
+    kWeakSelf(self);
+    [self.imageresizerView originImageresizerWithComplete:^(UIImage *resizeImage) {
+        NSData *imageData = UIImageJPEGRepresentation(resizeImage, 0.2f);
+        NSMutableDictionary *Exparams = [[NSMutableDictionary alloc]init];
+        [Exparams addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:imageData,@"file", nil]];
+        [LTShareNetworking uploadImageWithUrl:@"/img/upload" WithParam:[NSDictionary dictionary] withExParam:Exparams withMethod:POST success:^(id  _Nonnull result) {
+            if ([result[@"code"] intValue] == 200) {
+                [weakself.albumButton setImage:resizeImage forState:UIControlStateNormal];
+                self.imageId = result[@"data"];
+                self.tipsImageLabel.hidden = YES;
+            }
+            else {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:result[@"msg"] preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *action = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:nil];
+                [alert addAction:action];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+        } uploadFileProgress:^(NSProgress * _Nonnull uploadProgress) {
+
+        } failure:^(NSError * _Nonnull erro) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"网络连接失败，请稍后重试"] preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:action];
+            [self presentViewController:alert animated:YES completion:nil];
+        }];
+    }];
 }
 
 #pragma mark  链接传图
@@ -537,12 +534,18 @@
             self.tipsImageLabel.hidden = YES;
         }
         else {
-//            [MBProgressHUD showErrorMessage:result[@"msg"]];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:result[@"msg"] preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:action];
+            [self presentViewController:alert animated:YES completion:nil];
         }
     } uploadFileProgress:^(NSProgress * _Nonnull uploadProgress) {
 
     } failure:^(NSError * _Nonnull erro) {
-//        [MBProgressHUD showInfoMessage:@"网络连接失败，请稍后重试"];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"网络连接失败，请稍后重试"] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:action];
+        [self presentViewController:alert animated:YES completion:nil];
     }];
 }
 
