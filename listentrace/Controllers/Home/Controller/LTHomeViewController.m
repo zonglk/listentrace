@@ -114,8 +114,14 @@
                 [[NSUserDefaults standardUserDefaults] setObject:recordID.recordName forKey:@"icloudName"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 
-                NSUserDefaults *shareUserDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.listentrace"];
-                [shareUserDefaults setValue:recordID.recordName forKey:@"shareIcloudName"];
+                //获取到共享数据的文件地址
+                NSURL *containerURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.com.listentrace"];
+                NSURL *birthdayContainerURL = [containerURL URLByAppendingPathComponent:@"Library/Caches/userId.json"];
+                //将需要存储的数据写入到该文件中
+                NSString *jsonString = recordID.recordName;
+                //写入数据
+                NSError *err = nil;
+                [jsonString writeToURL:birthdayContainerURL atomically:YES encoding:NSUTF8StringEncoding error:&err];
                 
                 if (!self.isHasUserId) {
                     [self requestData];

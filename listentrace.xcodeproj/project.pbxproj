@@ -2487,7 +2487,7 @@
 				CODE_SIGN_ENTITLEMENTS = listentrace/listentrace.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = QS8N6LMV2J;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "listentrace/Supporting Files/PrefixHeader.pch";
@@ -2515,7 +2515,7 @@
 				CODE_SIGN_ENTITLEMENTS = listentrace/listentrace.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = QS8N6LMV2J;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "listentrace/Supporting Files/PrefixHeader.pch";
@@ -2619,6 +2619,7 @@
 				CODE_SIGN_ENTITLEMENTS = listentraceShare/listentraceShare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = QS8N6LMV2J;
 				INFOPLIST_FILE = listentraceShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
@@ -2627,6 +2628,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rock.listentrace.listentraceShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2641,6 +2643,7 @@
 				CODE_SIGN_ENTITLEMENTS = listentraceShare/listentraceShare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = QS8N6LMV2J;
 				INFOPLIST_FILE = listentraceShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
@@ -2649,6 +2652,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rock.listentrace.listentraceShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
