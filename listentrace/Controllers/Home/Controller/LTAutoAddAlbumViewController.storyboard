@@ -107,9 +107,12 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WPO-hY-ila">
                                                     <rect key="frame" x="15" y="199" width="384" height="50"/>
                                                     <subviews>
-                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ATz-sW-8Yk">
-                                                            <rect key="frame" x="10" y="8" width="364" height="33"/>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ATz-sW-8Yk">
+                                                            <rect key="frame" x="10" y="8" width="364" height="50"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="50" id="Dwv-Ag-Bhv"/>
+                                                            </constraints>
                                                             <inset key="scrollIndicatorInsets" minX="10" minY="30" maxX="10" maxY="0.0"/>
                                                             <color key="textColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -187,7 +190,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4BL-dU-sA2">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="240"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="257"/>
                                                     <connections>
                                                         <action selector="button1Click:" destination="uBo-kZ-tg5" eventType="touchUpInside" id="63y-7r-dx3"/>
                                                     </connections>
@@ -246,6 +249,7 @@
                         <outlet property="linkUrl" destination="lLa-xQ-pvN" id="TKz-N3-Yp6"/>
                         <outlet property="linkView" destination="EP3-x5-RuO" id="Ddb-kv-ROb"/>
                         <outlet property="linkViewWidth" destination="CJ1-c9-jdW" id="9md-MV-Wi6"/>
+                        <outlet property="textViewHeight" destination="Dwv-Ag-Bhv" id="OHK-jN-tP0"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f6m-BA-r5V" userLabel="First Responder" sceneMemberID="firstResponder"/>

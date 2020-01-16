@@ -382,18 +382,8 @@
 #pragma mark 添加专辑
 
 - (void)addAlbum {
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"LTIsClickAdd"]) {
-        UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTHelpViewController" bundle:nil];
-        LTHelpTableViewController *helpVC = [story instantiateViewControllerWithIdentifier:@"LTHelpViewController"];
-        [self.navigationController pushViewController:helpVC animated:YES];
-        
-        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"LTIsClickAdd"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
-    else {
-        [self addCoverView];
-        [self getPastedBoardString];
-    }
+    [self addCoverView];
+    [self getPastedBoardString];
 }
 
 #pragma mark 手动添加
@@ -410,14 +400,34 @@
 #pragma mark 自动
 
 - (void)autoButtonClick {
-    self.coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.0];
-    self.coverView.hidden = YES;
-    self.addView.alpha = 0;
-    
-    UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTAutoAddAlbumViewController" bundle:nil];
-    LTAutoAddAlbumTableViewController *autoVC = [story instantiateViewControllerWithIdentifier:@"LTAutoAddAlbumViewController"];
-    [self.navigationController pushViewController:autoVC animated:YES];
-    self.isCancle = YES;
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"LTIsClickAdd"]) {
+        self.coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.0];
+        self.coverView.hidden = YES;
+        self.addView.alpha = 0;
+        UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTAutoAddAlbumViewController" bundle:nil];
+        LTAutoAddAlbumTableViewController *autoVC = [story instantiateViewControllerWithIdentifier:@"LTAutoAddAlbumViewController"];
+        [self.navigationController pushViewController:autoVC animated:YES];
+        self.isCancle = YES;
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTHelpViewController" bundle:nil];
+            LTHelpTableViewController *helpVC = [story instantiateViewControllerWithIdentifier:@"LTHelpViewController"];
+            [self.navigationController pushViewController:helpVC animated:YES];
+            
+            [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"LTIsClickAdd"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        });
+    }
+    else {
+        self.coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.0];
+        self.coverView.hidden = YES;
+        self.addView.alpha = 0;
+        
+        UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTAutoAddAlbumViewController" bundle:nil];
+        LTAutoAddAlbumTableViewController *autoVC = [story instantiateViewControllerWithIdentifier:@"LTAutoAddAlbumViewController"];
+        [self.navigationController pushViewController:autoVC animated:YES];
+        self.isCancle = YES;
+    }
 }
 
 #pragma mark 获取剪贴板的内容
@@ -432,8 +442,20 @@
     }
     
     self.pasteBoardString = [[UIPasteboard generalPasteboard] string];
+    NSString *string = [[NSUserDefaults standardUserDefaults] objectForKey:@"LinkUrlString"];
+    if ([self.pasteBoardString isEqualToString:string]) {
+        return;
+    }
+    
     if ([self.pasteBoardString containsString:@"open.spotify.com"] || [self.pasteBoardString containsString:@"music.apple.com"] || [self.pasteBoardString containsString:@"music.163.com"] || [self.pasteBoardString containsString:@"y.qq.com"] || [self.pasteBoardString containsString:@"bandcamp.com"]) {
         [self addCoverView];
+        [UIView animateWithDuration:0.4 animations:^{
+            self.linkLable.alpha = 1;
+            self.rectangleImageView.alpha = 1;
+            self.trangleImageView.alpha = 1;
+            self.titleLable.alpha = 1;
+        }];
+        
         if ([self.pasteBoardString containsString:@"open.spotify.com"]) {
             self.linkLable.text = @"open.spotify.com";
             [self updateConstraints:212];
@@ -460,6 +482,7 @@
             [self updateConstraints:194];
         }
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"LinkUrl"];
+        [[NSUserDefaults standardUserDefaults] setValue:self.pasteBoardString forKey:@"LinkUrlString"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     else {
@@ -489,10 +512,10 @@
     [UIView animateWithDuration:0.4 animations:^{
         self.coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
         self.addView.alpha = 1;
-        self.linkLable.alpha = 1;
-        self.rectangleImageView.alpha = 1;
-        self.trangleImageView.alpha = 1;
-        self.titleLable.alpha = 1;
+        self.linkLable.alpha = 0;
+        self.rectangleImageView.alpha = 0;
+        self.trangleImageView.alpha = 0;
+        self.titleLable.alpha = 0;
     }];
 }
 

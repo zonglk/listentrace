@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UITextView *autoTextView;
 @property (weak, nonatomic) IBOutlet UIView *linkView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *linkViewWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewHeight;
+
 @property (weak, nonatomic) IBOutlet UILabel *linkUrl;
 @property (strong, nonatomic) UIButton *coverButton;
 @property (weak, nonatomic) IBOutlet UIView *autoLinkVIew;
@@ -28,6 +30,9 @@
 - (IBAction)button2Click:(id)sender;
 - (IBAction)linkButtonClick:(id)sender;
 
+@property (assign, nonatomic) BOOL isLinkVC;
+@property (assign, nonatomic) BOOL isCancle;
+
 @end
 
 @implementation LTAutoAddAlbumTableViewController
@@ -37,6 +42,25 @@
     
     [self creatAllViews];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(autoButtonClick) name:@"AutoButtonNoti" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getPastedBoardString) name:@"LTDidBecomeActiveHandlePasteBoard" object:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    self.isLinkVC = YES;
+    NSString *pasteBoardString = [[UIPasteboard generalPasteboard] string];
+    NSString *string = [[NSUserDefaults standardUserDefaults] objectForKey:@"LinkUrlString"];
+    if ([pasteBoardString isEqualToString:string] && ![[NSUserDefaults standardUserDefaults] boolForKey:@"LinkUrl"]) {
+        return;
+    }
+    self.linkUrl.text = pasteBoardString;
+    [self linkButtonClick:nil];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    self.isLinkVC = NO;
 }
 
 - (void)creatAllViews {
@@ -44,30 +68,58 @@
     ViewBorderRadius(self.autoView, 5, 1, RGBHex(0xE5EAFA));
     self.autoTextView.delegate = self;
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"LinkUrl"]) {
-        self.linkUrl.text = [[UIPasteboard generalPasteboard] string];
-        CGFloat titleWidth = [self.linkUrl.text boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]} context:nil].size.width;
-        CGFloat width = KScreenWidth - 40 > titleWidth + 40 ? titleWidth + 40: KScreenWidth - 40;
-        self.linkViewWidth.constant = width > 110 ? width : 110;
-        self.linkLabelWidth.constant = self.linkViewWidth.constant - 20;
-        self.linkView.hidden = NO;
-        
-        self.autoLinkVIew.layer.cornerRadius = 5.0f;
-        self.autoLinkVIew.layer.masksToBounds = YES;
-        self.autoLinkVIew.layer.shadowColor = [UIColor colorWithHexString:@"0x6D6BED"].CGColor;
-        self.autoLinkVIew.layer.shadowOffset = CGSizeZero; //设置偏移量为0,四周都有阴影
-        self.autoLinkVIew.layer.shadowRadius = 10.0f;//阴影半径，默认3
-        self.autoLinkVIew.layer.shadowOpacity = .5f;//阴影透明度，默认0
-        self.autoLinkVIew.layer.masksToBounds = NO;
-        self.autoLinkVIew.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, self.linkViewWidth.constant, 65) cornerRadius:self.autoLinkVIew.layer.cornerRadius].CGPath;
-        self.button1.hidden = NO;
-        self.button2.hidden = NO;
-    }
-    else {
+    self.linkView.hidden = YES;
+    self.button1.hidden = YES;
+    self.button2.hidden = YES;
+}
+
+- (void)getPastedBoardString {
+    if (!self.isLinkVC || self.isCancle || self.autoTextView.text.length) {
         self.linkView.hidden = YES;
         self.button1.hidden = YES;
         self.button2.hidden = YES;
+        return;
     }
+    
+    self.linkUrl.text = [[UIPasteboard generalPasteboard] string];
+    
+    NSString *string = [[NSUserDefaults standardUserDefaults] objectForKey:@"LinkUrlString"];
+    if ([self.linkUrl.text isEqualToString:string]) {
+        return;
+    }
+    
+    if ([self.linkUrl.text containsString:@"open.spotify.com"] || [self.linkUrl.text containsString:@"music.apple.com"] || [self.linkUrl.text containsString:@"music.163.com"] || [self.linkUrl.text containsString:@"y.qq.com"] || [self.linkUrl.text containsString:@"bandcamp.com"]) {
+        [self addCoverView];
+        
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"LinkUrl"];
+        [[NSUserDefaults standardUserDefaults] setValue:self.linkUrl.text forKey:@"LinkUrlString"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    else {
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"LinkUrl"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+}
+
+- (void)addCoverView {
+    self.linkUrl.text = [[UIPasteboard generalPasteboard] string];
+    CGFloat titleWidth = [self.linkUrl.text boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]} context:nil].size.width;
+    CGFloat width = KScreenWidth - 40 > titleWidth + 40 ? titleWidth + 40: KScreenWidth - 40;
+    self.linkViewWidth.constant = width > 110 ? width : 110;
+    self.linkLabelWidth.constant = self.linkViewWidth.constant - 20;
+    self.linkView.hidden = NO;
+
+    self.autoLinkVIew.layer.cornerRadius = 5.0f;
+    self.autoLinkVIew.layer.masksToBounds = YES;
+    self.autoLinkVIew.layer.shadowColor = [UIColor colorWithHexString:@"0x6D6BED"].CGColor;
+    self.autoLinkVIew.layer.shadowOffset = CGSizeZero; //设置偏移量为0,四周都有阴影
+    self.autoLinkVIew.layer.shadowRadius = 10.0f;//阴影半径，默认3
+    self.autoLinkVIew.layer.shadowOpacity = .5f;//阴影透明度，默认0
+    self.autoLinkVIew.layer.masksToBounds = NO;
+    self.autoLinkVIew.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, self.linkViewWidth.constant, 65) cornerRadius:self.autoLinkVIew.layer.cornerRadius].CGPath;
+    self.button1.hidden = NO;
+    self.button2.hidden = NO;
 }
 
 - (void)coverButtonClick {
@@ -77,12 +129,14 @@
     self.linkView.hidden = YES;
 }
 
+#pragma mark 解析
+
 - (void)autoButtonClick {
     if (!self.autoTextView.text.length) {
         return;
     }
     UIView *coverView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
-    coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0];
+    coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
     [[UIApplication sharedApplication].delegate.window addSubview:coverView];
     
     UIImageView *tipImageView = [[UIImageView alloc] init];
@@ -115,21 +169,19 @@
 
 -(void)textViewDidChange:(UITextView *)textView{
     float textViewHeight =  [textView sizeThatFits:CGSizeMake(textView.frame.size.width, MAXFLOAT)].height;
-    if (textViewHeight == 100) {
-        self.autoViewHeight.constant  = 100 + 17;
-        self.autoTextView.scrollEnabled = YES;
+    if (textViewHeight > 100) {
+        self.autoViewHeight.constant = 100 + 17;
+        self.textViewHeight.constant = 100;
+        return;
     }
     else if (textViewHeight > 0) {
         self.autoViewHeight.constant = textViewHeight + 17;
-        self.autoTextView.scrollEnabled = NO;
+        self.textViewHeight.constant = textViewHeight;
     }
     else {
+        self.textViewHeight.constant = 50;
         self.autoViewHeight.constant = 55;
-        self.autoTextView.scrollEnabled = NO;
     }
-    CGRect frame = textView.frame;
-    frame.size.height = textViewHeight+100;
-    textView.frame = frame;
     
     if (textView.text.length == 0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"LinkUrlButton" object:nil userInfo:@{@"status" : @"0"}];
@@ -152,8 +204,9 @@
        [[NSNotificationCenter defaultCenter] postNotificationName:@"LinkUrlButton" object:nil userInfo:@{@"status" : @"1"}];
        [self coverButtonClick];
     [self textViewDidChange:self.autoTextView];
+    self.button1.hidden = YES;
+    self.button2.hidden = YES;
 }
-
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
