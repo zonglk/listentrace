@@ -118,7 +118,7 @@
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"解析失败" message:[NSString stringWithFormat:@"请检查专辑链接后，再重新尝试"] preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
             [alert addAction:action];
-            [self.navigationController presentViewController:alert animated:YES completion:nil];
+            [self presentViewController:alert animated:YES completion:nil];
         }
     } failure:^(NSError * _Nonnull erro) {
         
@@ -185,23 +185,38 @@
 
     NSString *albumString = self.result[@"data"][@"album_img"];
     if (!albumString.length && (!self.imageId.length && !self.albumId.length)) {
-//        [MBProgressHUD showInfoMessage:@"请上传专辑封面图"];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"请上传专辑封面图"] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:action];
+        [self presentViewController:alert animated:YES completion:nil];
         return;
     }
     if (!self.albumNameTextField.text.length) {
-//        [MBProgressHUD showInfoMessage:@"请填写专辑名"];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"请填写专辑名"] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:action];
+        [self presentViewController:alert animated:YES completion:nil];
         return;
     }
     if (!self.musicianTextField.text.length) {
-//        [MBProgressHUD showInfoMessage:@"请填写专辑音乐人"];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"请填写专辑音乐人"] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:action];
+        [self presentViewController:alert animated:YES completion:nil];
         return;
     }
     if (!self.styleTextField.text.length) {
-//        [MBProgressHUD showInfoMessage:@"请选择专辑风格"];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"请选择专辑风格"] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:action];
+        [self presentViewController:alert animated:YES completion:nil];
         return;
     }
     if (!self.listeningTimeTextField.text.length) {
-//        [MBProgressHUD showInfoMessage:@"请选择聆听时间"];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"请选择聆听时间"] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:action];
+        [self presentViewController:alert animated:YES completion:nil];
         return;
     }
 
@@ -260,13 +275,19 @@
             }];
             [alert addAction:action];
             [alert addAction:sureAction];
-            [self.navigationController presentViewController:alert animated:YES completion:nil];
+            [self presentViewController:alert animated:YES completion:nil];
         }
         else {
-//            [MBProgressHUD showInfoMessage:result[@"msg"]];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:result[@"msg"] preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:action];
+            [self presentViewController:alert animated:YES completion:nil];
         }
     } failure:^(NSError * _Nonnull erro) {
-//            [MBProgressHUD showInfoMessage:@"网络连接失败，请稍后重试"];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"网络连接失败，请稍后重试"] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:action];
+        [self presentViewController:alert animated:YES completion:nil];
     } showHUD:self.view];
 }
 
@@ -284,7 +305,10 @@
     UIAlertAction *albumAction = [UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
         if (status == PHAuthorizationStatusRestricted || status == PHAuthorizationStatusDenied) {
-//            [MBProgressHUD showErrorMessage:@"请打开相册访问权限"];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"请打开相册访问权限"] preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:action];
+            [self presentViewController:alert animated:YES completion:nil];
         }
         else if (status == PHAuthorizationStatusNotDetermined) {
             [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
@@ -292,7 +316,10 @@
                     [self showAlbum];
                 }
                 else {
-//                    [MBProgressHUD showErrorMessage:@"请先打开相册访问权限，否则您无法使用上传专辑图片功能"];
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"请先打开相册访问权限，否则您无法使用上传专辑图片功能"] preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *action = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:nil];
+                    [alert addAction:action];
+                    [self presentViewController:alert animated:YES completion:nil];
                 }
             }];
         }
@@ -304,7 +331,10 @@
     UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
         if (status == AVAuthorizationStatusRestricted || status == AVAuthorizationStatusDenied) {
-//            [MBProgressHUD showErrorMessage:@"请打开相机访问权限"];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"请打开相机访问权限"] preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:action];
+            [self presentViewController:alert animated:YES completion:nil];
         }
         else if (status == AVAuthorizationStatusNotDetermined) {
             [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
@@ -312,7 +342,10 @@
                     [self showCamera];
                 }
                 else {
-//                    [MBProgressHUD showErrorMessage:@"请先打开相册访问权限，否则您无法使用上传专辑图片功能"];
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"请先打开相册访问权限，否则您无法使用上传专辑图片功能"] preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *action = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:nil];
+                    [alert addAction:action];
+                    [self presentViewController:alert animated:YES completion:nil];
                 }
             }];
         }
@@ -327,7 +360,7 @@
     [actionSheet addAction:albumAction];
     [actionSheet addAction:cameraAction];
     [actionSheet addAction:cancleAction];
-    [self.navigationController presentViewController:actionSheet animated:YES completion:nil];
+    [self presentViewController:actionSheet animated:YES completion:nil];
 }
 
 #pragma mark  相册
@@ -516,12 +549,11 @@
 #pragma mark  时长
 
 - (IBAction)albumTimeButtonClick:(id)sender {
-//    [self handleKeyBoard];
-//    QFTimePickerView *pickerView = [[QFTimePickerView alloc] initDatePackerWithStartHour:@"0" endHour:@"24" period:1 timeString:self.timeTextField.text response:^(NSString *str) {
-//        self.timeTextField.text = str;
-//        self.isChange = YES;
-//    }];
-//    [pickerView show];
+    [self handleKeyBoard];
+    QFTimePickerView *pickerView = [[QFTimePickerView alloc] initDatePackerWithStartHour:@"0" endHour:@"24" period:1 timeString:self.timeTextField.text response:^(NSString *str) {
+        self.timeTextField.text = str;
+    }];
+    [pickerView show];
 }
 
 #pragma mark 聆听时间
@@ -548,8 +580,7 @@
         NSDate *tempDate = [formatter dateFromString:DateTime];
         [self.timePicker.timePicker setDate:tempDate animated:NO];
     }
-    [[UIApplication sharedApplication].delegate.window addSubview:self.timePicker];
-    [[UIApplication sharedApplication].delegate.window bringSubviewToFront:self.timePicker];
+    [self.albumTableView addSubview:self.timePicker];
 }
 
 #pragma mark 发布时间
@@ -576,7 +607,7 @@
         NSDate *tempDate = [formatter dateFromString:DateTime];
         [self.timePicker.timePicker setDate:tempDate animated:NO];
     }
-    [[UIApplication sharedApplication].delegate.window addSubview:self.timePicker];
+    [self.tableView addSubview:self.timePicker];
 }
 
 #pragma mark 聆听、发行时间代理
@@ -621,14 +652,14 @@
 #pragma mark 发布数量
 
 - (IBAction)releaseCount:(id)sender {
-//    [self handleKeyBoard];
-//    QFDatePickerView *datePickerView = [[QFDatePickerView alloc] initYearPickerWithView:self.view countString:self.releasedCountTextField.text response:^(NSString *str) {
-//        if ([str intValue] > 100) {
-//            str = @"10 首";
-//        }
-//        self.releasedCountTextField.text = str;
-//    }];
-//    [datePickerView show];
+    [self handleKeyBoard];
+    QFDatePickerView *datePickerView = [[QFDatePickerView alloc] initYearPickerWithView:self.view countString:self.releasedCountTextField.text response:^(NSString *str) {
+        if ([str intValue] > 100) {
+            str = @"10 首";
+        }
+        self.releasedCountTextField.text = str;
+    }];
+    [datePickerView show];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{

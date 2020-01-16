@@ -30,7 +30,7 @@
                         dispatch_async(dispatch_get_main_queue(), ^{
                             UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTAlbumTableViewController" bundle:[NSBundle mainBundle]];
                             LTAlbumTableViewController *albumVC = [story instantiateViewControllerWithIdentifier:@"LTAlbumTableViewController"];
-                            albumVC.modalPresentationStyle = 0;
+                            albumVC.modalPresentationStyle = UIModalPresentationFullScreen;
                             albumVC.urlString = ((NSURL *)item).absoluteString;
                             [self presentViewController:albumVC animated:YES completion:nil];
                         });

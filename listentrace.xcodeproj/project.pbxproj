@@ -242,6 +242,8 @@
 		BD5B8C1523273F10005D18FF /* QFTimerDataSourceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5B8C1123273F10005D18FF /* QFTimerDataSourceModel.m */; };
 		BD5B8C1923273F38005D18FF /* QFTimerPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5B8C1823273F38005D18FF /* QFTimerPicker.m */; };
 		BD5B8C1D23273F53005D18FF /* QFTimerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5B8C1B23273F53005D18FF /* QFTimerUtil.m */; };
+		BD67F08F23D009E5002E6E4A /* QFDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BD67F08E23D009E4002E6E4A /* QFDatePickerView.m */; };
+		BD67F09223D00ABC002E6E4A /* QFTimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BD67F09023D00ABC002E6E4A /* QFTimePickerView.m */; };
 		BD7C78712346E9B20059585E /* home_placeImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD7C786F2346E9B20059585E /* home_placeImage@3x.png */; };
 		BD7C78722346E9B20059585E /* home_placeImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD7C78702346E9B20059585E /* home_placeImage@2x.png */; };
 		BD7C78752346EA870059585E /* album_detail_placeImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD7C78732346EA870059585E /* album_detail_placeImage@2x.png */; };
@@ -701,6 +703,10 @@
 		BD5B8C1B23273F53005D18FF /* QFTimerUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFTimerUtil.m; sourceTree = "<group>"; };
 		BD5B8C1C23273F53005D18FF /* QFTimerUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFTimerUtil.h; sourceTree = "<group>"; };
 		BD67F08C23CF15E2002E6E4A /* listentraceShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = listentraceShare.entitlements; sourceTree = "<group>"; };
+		BD67F08D23D009E4002E6E4A /* QFDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFDatePickerView.h; sourceTree = "<group>"; };
+		BD67F08E23D009E4002E6E4A /* QFDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFDatePickerView.m; sourceTree = "<group>"; };
+		BD67F09023D00ABC002E6E4A /* QFTimePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFTimePickerView.m; sourceTree = "<group>"; };
+		BD67F09123D00ABC002E6E4A /* QFTimePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFTimePickerView.h; sourceTree = "<group>"; };
 		BD7C786F2346E9B20059585E /* home_placeImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_placeImage@3x.png"; sourceTree = "<group>"; };
 		BD7C78702346E9B20059585E /* home_placeImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_placeImage@2x.png"; sourceTree = "<group>"; };
 		BD7C78732346EA870059585E /* album_detail_placeImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "album_detail_placeImage@2x.png"; sourceTree = "<group>"; };
@@ -1613,6 +1619,10 @@
 				00E97C6523CF60E1007DE061 /* LTAlbumTimePIckerView.h */,
 				00E97C6623CF60E1007DE061 /* LTAlbumTimePIckerView.m */,
 				00E97C6423CF60E1007DE061 /* LTAlbumTimePIckerView.xib */,
+				BD67F08D23D009E4002E6E4A /* QFDatePickerView.h */,
+				BD67F08E23D009E4002E6E4A /* QFDatePickerView.m */,
+				BD67F09123D00ABC002E6E4A /* QFTimePickerView.h */,
+				BD67F09023D00ABC002E6E4A /* QFTimePickerView.m */,
 				00212F1723CE1B9F002DB6DB /* LTShareNetworking.h */,
 				00212F1823CE1B9F002DB6DB /* LTShareNetworking.m */,
 				00212F2F23CE23A2002DB6DB /* SDWebImage */,
@@ -2212,6 +2222,7 @@
 				0021300023CE23A3002DB6DB /* NSBezierPath+RoundedCorners.m in Sources */,
 				00212FE723CE23A3002DB6DB /* SDWebImageTransition.m in Sources */,
 				00212FEF23CE23A3002DB6DB /* SDWebImageCacheKeyFilter.m in Sources */,
+				BD67F09223D00ABC002E6E4A /* QFTimePickerView.m in Sources */,
 				00212FE223CE23A3002DB6DB /* SDImageGIFCoder.m in Sources */,
 				00212FD923CE23A3002DB6DB /* SDWebImagePrefetcher.m in Sources */,
 				00212FD523CE23A3002DB6DB /* SDWebImageCompat.m in Sources */,
@@ -2219,6 +2230,7 @@
 				00212FC523CE23A2002DB6DB /* SDImageIOAnimatedCoder.m in Sources */,
 				00212FF723CE23A3002DB6DB /* MKAnnotationView+WebCache.m in Sources */,
 				00212FFB23CE23A3002DB6DB /* SDWeakProxy.m in Sources */,
+				BD67F08F23D009E5002E6E4A /* QFDatePickerView.m in Sources */,
 				00212FF923CE23A3002DB6DB /* SDImageAssetManager.m in Sources */,
 				00212F2923CE1DD6002DB6DB /* AFURLResponseSerialization.m in Sources */,
 				00212FD823CE23A3002DB6DB /* SDWebImageError.m in Sources */,
