@@ -42,7 +42,6 @@
             *stop = hasGetUrl;
         }];
     }];
-    self.view.backgroundColor = [UIColor whiteColor];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(disMisSelf) name:@"DisMisSelf" object:nil];
 }
 
