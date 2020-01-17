@@ -178,9 +178,12 @@
 
 - (void)saveButtonClick {
     [self handleKeyBoard];
-
-    NSUserDefaults *shareUserDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.listentrace"];
-    self.userId = [shareUserDefaults objectForKey:@"shareIcloudName"];
+    
+    NSError *err = nil;
+    NSURL *containerURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.com.listentrace"];
+    containerURL = [containerURL URLByAppendingPathComponent:@"Library/Caches/userId.json"];
+    self.userId = [NSString stringWithContentsOfURL:containerURL encoding: NSUTF8StringEncoding error:&err];
+    
     if (!self.userId.length) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"请先前往《听迹》App登录"] preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
