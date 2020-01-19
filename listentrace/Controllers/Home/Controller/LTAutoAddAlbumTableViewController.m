@@ -19,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIView *linkView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *linkViewWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewHeight;
-
 @property (weak, nonatomic) IBOutlet UILabel *linkUrl;
 @property (strong, nonatomic) UIButton *coverButton;
 @property (weak, nonatomic) IBOutlet UIView *autoLinkVIew;

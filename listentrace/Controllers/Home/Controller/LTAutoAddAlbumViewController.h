@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LTAutoAddAlbumViewController : LTRootViewController
 
+@property (assign, nonatomic) BOOL isFromHelpVC;
+
 @end
 
 NS_ASSUME_NONNULL_END

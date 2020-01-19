@@ -13,7 +13,6 @@
 #import "LTNetworking.h"
 #import "LTAlbumModel.h"
 #import "LTHelpTableViewController.h"
-#import "LTHelpTipViewController.h"
 #import "LTAutoAddAlbumTableViewController.h"
 
 @interface LTHomeViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -410,19 +409,13 @@
         self.coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.0];
         self.coverView.hidden = YES;
         self.addView.alpha = 0;
-        UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTAutoAddAlbumViewController" bundle:nil];
-        LTAutoAddAlbumTableViewController *autoVC = [story instantiateViewControllerWithIdentifier:@"LTAutoAddAlbumViewController"];
-        [self.navigationController pushViewController:autoVC animated:YES];
-        self.isCancle = YES;
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTHelpViewController" bundle:nil];
-            LTHelpTableViewController *helpVC = [story instantiateViewControllerWithIdentifier:@"LTHelpViewController"];
-            [self.navigationController pushViewController:helpVC animated:YES];
-            
-            [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"LTIsClickAdd"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-        });
+        UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTHelpViewController" bundle:nil];
+        LTHelpTableViewController *helpVC = [story instantiateViewControllerWithIdentifier:@"LTHelpViewController"];
+        [self.navigationController pushViewController:helpVC animated:YES];
+        
+        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"LTIsClickAdd"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
     else {
         self.coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.0];

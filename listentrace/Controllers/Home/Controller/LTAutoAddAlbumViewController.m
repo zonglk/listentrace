@@ -8,7 +8,8 @@
 
 #import "LTAutoAddAlbumViewController.h"
 #import "LTHelpTableViewController.h"
-#import "LTHelpTipsTableViewController.h"
+#import "LTHelpViewController.h"
+#import "LTHelpTipViewController.h"
 
 @interface LTAutoAddAlbumViewController ()
 
@@ -23,6 +24,43 @@
     // Do any additional setup after loading the view.
     [self creatAllViews];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusChange:) name:@"LinkUrlButton" object:nil];
+    
+    NSMutableArray *vcArr = [[NSMutableArray alloc]initWithArray:self.navigationController.viewControllers];
+    for (UIViewController *vc in vcArr) {
+        if ([vc isKindOfClass:[LTHelpViewController class]]) {
+            [vcArr removeObject:vc];
+            break;
+        }
+    }
+    self.navigationController.viewControllers = vcArr;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if (self.isFromHelpVC) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+                self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+            }
+        });
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    if ([self.navigationController.viewControllers indexOfObject:self] == NSNotFound) {
+        if (self.isFromHelpVC) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+    }
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    }
 }
 
 - (void)creatAllViews {
@@ -71,7 +109,7 @@
     }
     else {
         UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTHelpTipViewController" bundle:nil];
-        LTHelpTableViewController *helpVC = [story instantiateViewControllerWithIdentifier:@"LTHelpTipViewController"];
+        LTHelpTipViewController *helpVC = [story instantiateViewControllerWithIdentifier:@"LTHelpTipViewController"];
         [self.navigationController pushViewController:helpVC animated:YES];
     }
 }
