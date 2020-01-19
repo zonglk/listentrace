@@ -72,6 +72,8 @@
 @property (nonatomic, assign) BOOL isSave; // 专辑已存在时候的保存
 @property (nonatomic, assign) BOOL isEditImage; // 编辑图片时按钮不可用
 @property (copy, nonatomic) NSString *userId;
+@property (strong, nonatomic) UIView *coverView;
+@property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
 
 - (IBAction)albumButtonClick:(id)sender; // 专辑封面
 - (IBAction)loveButtonClick:(id)sender; // 喜欢
@@ -117,6 +119,27 @@
 }
 
 - (void)requestData {
+    self.coverView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
+    [self.albumTableView addSubview:self.coverView];
+    self.coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(KScreenWidth/2 - 65, KScreenHeight/2 - 50, 130, 90)];
+    [self.coverView addSubview:view];
+    view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
+    view.layer.cornerRadius = 6;
+    view.clipsToBounds = YES;
+
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(35, 5, 60, 60)];
+    [view addSubview:self.activityIndicator];
+    self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+    [self.activityIndicator startAnimating];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 57, 130, 30)];
+    [view addSubview:label];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:14];
+    label.textColor = [UIColor whiteColor];
+    label.text = @"正在解析...";
+    
     [LTShareNetworking requestUrl:@"/album/resolve" WithParam:@{@"url" : self.urlString} withMethod:GET success:^(id  _Nonnull result) {
         NSDictionary *dic = result[@"data"];
         if ([result[@"code"] intValue] == 200 && [dic class] != [NSNull class]) {
@@ -141,6 +164,7 @@
                 [self postLinkImage];
                 [self.albumButton setImage:nil forState:UIControlStateNormal];
             }
+            [self.coverView removeFromSuperview];
         }];
     }
 
