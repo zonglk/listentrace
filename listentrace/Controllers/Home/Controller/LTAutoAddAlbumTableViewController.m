@@ -53,8 +53,11 @@
     if ([pasteBoardString isEqualToString:string] && ![[NSUserDefaults standardUserDefaults] boolForKey:@"LinkUrl"]) {
         return;
     }
-    self.linkUrl.text = pasteBoardString;
-    [self linkButtonClick:nil];
+    
+    if ([pasteBoardString containsString:@"open.spotify.com"] || [pasteBoardString containsString:@"music.apple.com"] || [pasteBoardString containsString:@"music.163.com"] || [pasteBoardString containsString:@"y.qq.com"] || [pasteBoardString containsString:@"bandcamp.com"]) {
+        self.linkUrl.text = pasteBoardString;
+        [self linkButtonClick:nil];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
