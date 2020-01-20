@@ -82,8 +82,6 @@
 - (IBAction)listeningTime:(id)sender; // 聆听时间
 - (IBAction)releaseTime:(id)sender; // 发布时间
 - (IBAction)releaseCount:(id)sender; // 发布数量
-- (IBAction)cancleButtonClick:(id)sender;
-- (IBAction)saveButtonClick:(id)sender;
 
 @end
 
@@ -112,6 +110,29 @@
     ViewBorderRadius(self.view2, 5, 1, RGBHex(0xE5EAFA));
     ViewBorderRadius(self.view3, 5, 1, RGBHex(0xE5EAFA));
     ViewBorderRadius(self.view4, 5, 1, RGBHex(0xE5EAFA));
+    
+    UINavigationBar *navBar = [UINavigationBar appearance];
+    navBar.translucent = NO;
+    [navBar setBackgroundImage:[UIImage imageNamed:@"back_nav"] forBarMetrics:UIBarMetricsDefault];
+    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : RGBHex(0x545C77), NSFontAttributeName : [UIFont systemFontOfSize:18.0]}];
+    // 导航栏下分割线
+    [navBar setShadowImage:[UIImage imageNamed:@"navLine"]];
+    
+    UIButton *rightNavButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    [rightNavButton setTitle:@"保存" forState:UIControlStateNormal];
+    [rightNavButton.titleLabel setFont:[UIFont systemFontOfSize:16]];
+    [rightNavButton setTitleColor:RGBHex(0x007AFF) forState:UIControlStateNormal];
+    [rightNavButton addTarget:self action:@selector(saveClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightNavButton];
+    self.navigationItem.rightBarButtonItem = rightButtonItem;
+    
+    UIButton *leftNavButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
+    [leftNavButton setBackgroundImage:[UIImage imageNamed:@"share_close"] forState:UIControlStateNormal];
+    [leftNavButton.titleLabel setFont:[UIFont systemFontOfSize:16]];
+    [leftNavButton setTitleColor:RGBHex(0x6D6BED) forState:UIControlStateNormal];
+    [leftNavButton addTarget:self action:@selector(cancleClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithCustomView:leftNavButton];
+    self.navigationItem.leftBarButtonItem = leftButton;
 }
 
 - (void)styleChangeNoti:(NSNotification *)noti {
@@ -303,6 +324,8 @@
 
     [LTShareNetworking requestUrl:url WithParam:parameter withMethod:POST success:^(id  _Nonnull result) {
         if ([result[@"code"] intValue] == 200) {
+            UIImpactFeedbackGenerator *feedBackGenertor = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium];
+            [feedBackGenertor impactOccurred];
             self.isSave = NO;
             UIImageView *tipImageView = [[UIImageView alloc] initWithFrame:CGRectMake(KScreenWidth/2 - 44, KScreenWidth/2 + 65, 88, 88)];
             [tipImageView setImage:[UIImage imageNamed:@"addAlbum_sucess"]];
@@ -741,11 +764,11 @@
     return _timePicker;
 }
 
-- (IBAction)cancleButtonClick:(id)sender {
+- (void)cancleClick {
     [self disMisSelf];
 }
 
-- (IBAction)saveButtonClick:(id)sender {
+- (void)saveClick {
     [self saveButtonClick];
 }
 

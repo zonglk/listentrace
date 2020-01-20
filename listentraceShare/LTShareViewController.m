@@ -18,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor whiteColor];
     //获取分享链接
     __block BOOL hasGetUrl = NO;
     [self.extensionContext.inputItems enumerateObjectsUsingBlock:^(NSExtensionItem *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -30,9 +31,10 @@
                         dispatch_async(dispatch_get_main_queue(), ^{
                             UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTAlbumTableViewController" bundle:[NSBundle mainBundle]];
                             LTAlbumTableViewController *albumVC = [story instantiateViewControllerWithIdentifier:@"LTAlbumTableViewController"];
-                            albumVC.modalPresentationStyle = UIModalPresentationFullScreen;
                             albumVC.urlString = ((NSURL *)item).absoluteString;
-                            [self presentViewController:albumVC animated:YES completion:nil];
+                            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:albumVC];
+                            nav.modalPresentationStyle = UIModalPresentationFullScreen;
+                            [self presentViewController:nav animated:YES completion:nil];
                         });
                     }
                 }];
@@ -47,10 +49,6 @@
 
 - (void)disMisSelf {
     [self.extensionContext completeRequestReturningItems:nil completionHandler:nil];
-}
-
-- (void)didSelectPost {
-    [self.extensionContext completeRequestReturningItems:@[] completionHandler:nil];
 }
 
 /*
