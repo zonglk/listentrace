@@ -42,6 +42,7 @@
     [self creatAllViews];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(autoButtonClick) name:@"AutoButtonNoti" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getPastedBoardString) name:@"LTDidBecomeActiveHandlePasteBoard" object:nil];
+    self.autoTextView.delegate = self;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -191,6 +192,14 @@
     else {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"LinkUrlButton" object:nil userInfo:@{@"status" : @"1"}];
     }
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@"\n"]){
+        [self.autoTextView resignFirstResponder];
+        return NO;
+    }
+    return YES;
 }
 
 - (IBAction)button1Click:(id)sender {

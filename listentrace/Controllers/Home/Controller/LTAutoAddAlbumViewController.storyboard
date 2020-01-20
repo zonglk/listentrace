@@ -49,11 +49,11 @@
                         <sections>
                             <tableViewSection id="1Mf-7F-wVV">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="560" id="Z7a-Tn-ZQN">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="560"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="510" id="Z7a-Tn-ZQN">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="510"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Z7a-Tn-ZQN" id="DsS-l2-d4d">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="560"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="510"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支持专辑链接解析的音乐流媒体平台有： " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VgU-6y-EcJ">
@@ -116,8 +116,7 @@
                                                             <inset key="scrollIndicatorInsets" minX="10" minY="30" maxX="10" maxY="0.0"/>
                                                             <color key="textColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="alphabet" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                                                            <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" keyboardType="URL" returnKeyType="done"/>
                                                         </textView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -184,7 +183,7 @@
                                                     </constraints>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMi-lj-hOX">
-                                                    <rect key="frame" x="0.0" y="339" width="414" height="221"/>
+                                                    <rect key="frame" x="0.0" y="339" width="414" height="171"/>
                                                     <connections>
                                                         <action selector="button2Click:" destination="uBo-kZ-tg5" eventType="touchUpInside" id="JNh-iO-glB"/>
                                                     </connections>

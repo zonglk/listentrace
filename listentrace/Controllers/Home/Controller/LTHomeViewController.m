@@ -673,8 +673,9 @@
             make.centerY.mas_equalTo(autoView);
         }];
         autoLabel.textColor = [UIColor colorWithHexString:@"0x007AFF"];
-        autoLabel.font = [UIFont systemFontOfSize:15];
-        autoLabel.text = @"链接导入";
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"链接导入"];
+        [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFangSC-Medium" size:15.f] range:NSMakeRange(0, 4)];
+        autoLabel.attributedText = str;
         
         UIButton *autoButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 55)];
         [autoView addSubview:autoButton];
@@ -686,7 +687,7 @@
         UIImageView *manuelImageView = [[UIImageView alloc] init];
         [mamuelView addSubview:manuelImageView];
         [manuelImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.addView).offset(23);
+            make.left.mas_equalTo(self.addView).offset(24);
             make.centerY.mas_equalTo(mamuelView);
         }];
         [manuelImageView setImage:[UIImage imageNamed:@"home_manuelButton"]];
@@ -698,8 +699,10 @@
             make.centerY.mas_equalTo(mamuelView);
         }];
         manuelLabel.textColor = [UIColor colorWithHexString:@"0x007AFF"];
-        manuelLabel.font = [UIFont systemFontOfSize:15];
-        manuelLabel.text = @"手动导入";
+        manuelLabel.font = [UIFont systemFontOfSize:15 weight:0.5];
+        NSMutableAttributedString *str1 = [[NSMutableAttributedString alloc] initWithString:@"手动导入"];
+        [str1 addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFangSC-Medium" size:15.f] range:NSMakeRange(0, 4)];
+        manuelLabel.attributedText = str1;
         
         UIButton *manuelButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 55)];
         [mamuelView addSubview:manuelButton];

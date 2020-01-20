@@ -169,7 +169,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void )styleChangeNoti:(NSNotification *)noti {
+- (void)styleChangeNoti:(NSNotification *)noti {
     self.styleTextField.text = [NSString stringWithFormat:@"%@",noti.userInfo[@"style"]];
     self.isChange = YES;
     [self.styleCoverView removeAllSubviews];

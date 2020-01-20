@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -10,7 +10,7 @@
         <!--专辑信息-->
         <scene sceneID="AG7-Z1-Juk">
             <objects>
-                <tableViewController storyboardIdentifier="LTAlbumTableViewController" title="专辑信息" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yVZ-Bj-Hec" customClass="LTAlbumTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="LTAlbumTableViewController" title="专辑信息" modalPresentationStyle="overFullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" interfaceStyle="light" id="yVZ-Bj-Hec" customClass="LTAlbumTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="mwT-9g-i7I">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -29,9 +29,9 @@
                                         <action selector="saveButtonClick:" destination="yVZ-Bj-Hec" eventType="touchUpInside" id="Nsa-AY-sHA"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vHi-pT-uG8">
-                                    <rect key="frame" x="12" y="9" width="30" height="30"/>
-                                    <state key="normal" title="X">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vHi-pT-uG8">
+                                    <rect key="frame" x="12" y="3" width="43" height="42"/>
+                                    <state key="normal" image="share_close.png">
                                         <color key="titleColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
@@ -572,6 +572,8 @@
                             <outlet property="delegate" destination="yVZ-Bj-Hec" id="Aw5-t8-Usv"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="albumButton" destination="ZLo-c3-UVi" id="8Ey-hM-fd9"/>
                         <outlet property="albumImageView" destination="pGQ-HD-aAP" id="Lzk-z4-yba"/>
@@ -608,5 +610,6 @@
         <image name="album_grayHeart.png" width="38.666667938232422" height="35.333332061767578"/>
         <image name="album_redHeart.png" width="38.666667938232422" height="35.333332061767578"/>
         <image name="camera.png" width="360" height="360"/>
+        <image name="share_close.png" width="28.666666030883789" height="28"/>
     </resources>
 </document>

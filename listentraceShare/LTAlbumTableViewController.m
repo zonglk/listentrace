@@ -104,6 +104,7 @@
         [self requestData];
     }
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(styleChangeNoti:) name:@"AlbumStyleChangeNoti" object:nil];
+    self.tipsImageLabel.hidden = YES;
 }
 
 - (void)creatAllViews {
@@ -122,23 +123,23 @@
     self.coverView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
     [self.albumTableView addSubview:self.coverView];
     self.coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0];
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(KScreenWidth/2 - 65, KScreenHeight/2 - 50, 130, 90)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(KScreenWidth/2 - 44, KScreenHeight/2 - 44, 88, 88)];
     [self.coverView addSubview:view];
     view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
     view.layer.cornerRadius = 6;
     view.clipsToBounds = YES;
 
-    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(35, 5, 60, 60)];
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(14, 0, 60, 60)];
     [view addSubview:self.activityIndicator];
-    self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+    self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
     [self.activityIndicator startAnimating];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 57, 130, 30)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 52, 90, 30)];
     [view addSubview:label];
     label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont systemFontOfSize:14];
+    label.font = [UIFont systemFontOfSize:13];
     label.textColor = [UIColor whiteColor];
-    label.text = @"正在解析...";
+    label.text = @"解析中...";
     
     [LTShareNetworking requestUrl:@"/album/resolve" WithParam:@{@"url" : self.urlString} withMethod:GET success:^(id  _Nonnull result) {
         NSDictionary *dic = result[@"data"];
@@ -150,9 +151,10 @@
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
             [alert addAction:action];
             [self presentViewController:alert animated:YES completion:nil];
+            [self.coverView removeFromSuperview];
         }
     } failure:^(NSError * _Nonnull erro) {
-        
+        [self.coverView removeFromSuperview];
     } showHUD:self.view];
 }
 
@@ -166,6 +168,9 @@
             }
             [self.coverView removeFromSuperview];
         }];
+    }
+    else {
+        [self.coverView removeFromSuperview];
     }
 
     NSString *albumNameString = result[@"data"][@"album_name"];
@@ -299,7 +304,15 @@
     [LTShareNetworking requestUrl:url WithParam:parameter withMethod:POST success:^(id  _Nonnull result) {
         if ([result[@"code"] intValue] == 200) {
             self.isSave = NO;
-            [self disMisSelf];
+            UIImageView *tipImageView = [[UIImageView alloc] initWithFrame:CGRectMake(KScreenWidth/2 - 44, KScreenWidth/2 + 65, 88, 88)];
+            [tipImageView setImage:[UIImage imageNamed:@"addAlbum_sucess"]];
+            [self.albumTableView addSubview:tipImageView];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"AddAlbumSucess" object:nil];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [tipImageView removeFromSuperview];
+                [self disMisSelf];
+            });
         }
         else if ([result[@"code"] intValue] == 1002) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"已添加过该专辑，是否继续保存。"] preferredStyle:UIAlertControllerStyleAlert];
