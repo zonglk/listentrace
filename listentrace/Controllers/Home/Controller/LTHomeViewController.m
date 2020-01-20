@@ -387,6 +387,8 @@
 #pragma mark 添加专辑
 
 - (void)addAlbum {
+    UIImpactFeedbackGenerator *feedBackGenertor = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium];
+    [feedBackGenertor impactOccurred];
     [self addCoverView];
     [self getPastedBoardString];
 }

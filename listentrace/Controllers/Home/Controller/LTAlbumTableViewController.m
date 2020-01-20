@@ -429,6 +429,9 @@
     
     [LTNetworking requestUrl:url WithParam:parameter withMethod:POST success:^(id  _Nonnull result) {
         if ([result[@"code"] intValue] == 200) {
+            UIImpactFeedbackGenerator *feedBackGenertor = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium];
+            [feedBackGenertor impactOccurred];
+            
             self.isSave = NO;
             UIImageView *tipImageView = [[UIImageView alloc] init];
             [tipImageView setImage:[UIImage imageNamed:self.albumId.length ? @"editAlbum_sucess" : @"addAlbum_sucess"]];
