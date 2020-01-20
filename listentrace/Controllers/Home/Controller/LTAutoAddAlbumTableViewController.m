@@ -56,6 +56,13 @@
     }
     
     if ([pasteBoardString containsString:@"open.spotify.com"] || [pasteBoardString containsString:@"music.apple.com"] || [pasteBoardString containsString:@"music.163.com"] || [pasteBoardString containsString:@"y.qq.com"] || [pasteBoardString containsString:@"bandcamp.com"]) {
+        if ([pasteBoardString containsString:@"(@网易云音乐)"]) {
+            NSArray *array = [pasteBoardString componentsSeparatedByString:@"》"];
+            pasteBoardString = array.lastObject;
+            
+            NSArray *resultArray = [pasteBoardString componentsSeparatedByString:@"("];
+            pasteBoardString = resultArray.firstObject;
+        }
         self.linkUrl.text = pasteBoardString;
         [self linkButtonClick:nil];
     }
@@ -106,7 +113,15 @@
 }
 
 - (void)addCoverView {
-    self.linkUrl.text = [[UIPasteboard generalPasteboard] string];
+    NSString *string =[[UIPasteboard generalPasteboard] string];
+    if ([string containsString:@"(@网易云音乐)"]) {
+        NSArray *array = [string componentsSeparatedByString:@"》"];
+        string = array.lastObject;
+        
+        NSArray *resultArray = [string componentsSeparatedByString:@"("];
+        string = resultArray.firstObject;
+    }
+    self.linkUrl.text = string;
     CGFloat titleWidth = [self.linkUrl.text boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]} context:nil].size.width;
     CGFloat width = KScreenWidth - 40 > titleWidth + 40 ? titleWidth + 40: KScreenWidth - 40;
     self.linkViewWidth.constant = width > 110 ? width : 110;
