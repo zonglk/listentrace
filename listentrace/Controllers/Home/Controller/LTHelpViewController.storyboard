@@ -70,13 +70,13 @@
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="复制链接：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uh3-4q-yy6">
                                                     <rect key="frame" x="15" y="57.5" width="71.5" height="17"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                     <color key="textColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share Sheet:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fuV-1K-01Z">
-                                                    <rect key="frame" x="15" y="126" width="83" height="17"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <rect key="frame" x="15" y="126" width="85" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                     <color key="textColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -113,26 +113,23 @@
                                                     </constraints>
                                                 </imageView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="help_image2.png" translatesAutoresizingMaskIntoConstraints="NO" id="QIG-7R-RGt">
-                                                    <rect key="frame" x="15" y="429.5" width="384" height="145"/>
+                                                    <rect key="frame" x="15" y="437" width="384" height="145"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="145" id="m0L-mN-aiA"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7A-Ih-Vhd">
-                                                    <rect key="frame" x="15" y="364.5" width="384" height="55"/>
-                                                    <attributedString key="attributedText">
-                                                        <fragment content="分享 App 选择列表，请左滑至最右，从「更多」入口找到听迹。点击页面右上角的编辑并打开听迹的开关，再点击左侧的 + 按钮，拖动位置到最前面，并点击完成进行保存。">
-                                                            <attributes>
-                                                                <color key="NSColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <font key="NSFont" size="14" name=".PingFangSC-Regular"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7A-Ih-Vhd">
+                                                    <rect key="frame" x="15" y="364.5" width="384" height="62.5"/>
+                                                    <string key="text">1. 请左滑至最右，从「更多」入口找到听迹 
+2. 点击页面右上角的编辑，并打开听迹的开关
+3. 点击左侧的 + 按钮，拖动位置到最前面 
+4. 点击完成对编辑结果进行保存</string>
+                                                    <fontDescription key="fontDescription" name=".PingFangSC-Regular" family=".PingFang SC" pointSize="14"/>
+                                                    <color key="textColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjd-4e-Bj4">
-                                                    <rect key="frame" x="15" y="584.5" width="384" height="35.5"/>
+                                                    <rect key="frame" x="15" y="592" width="384" height="35.5"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="操作完成之后，则可以选择 Share Sheet 页的听迹图标直接分享，进行专辑信息解析。">
                                                             <attributes>
@@ -145,7 +142,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R2C-Te-9wZ">
-                                                    <rect key="frame" x="152" y="811" width="110" height="46"/>
+                                                    <rect key="frame" x="152" y="818.5" width="110" height="46"/>
                                                     <color key="backgroundColor" red="0.42745098039215684" green="0.41960784313725491" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="46" id="KZZ-HE-7jC"/>
@@ -159,7 +156,7 @@
                                                     </connections>
                                                 </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="help_image3.png" translatesAutoresizingMaskIntoConstraints="NO" id="ef7-YY-14i">
-                                                    <rect key="frame" x="15" y="630" width="384" height="160"/>
+                                                    <rect key="frame" x="15" y="637.5" width="384" height="160"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="160" id="L8k-uz-j6X"/>
                                                     </constraints>
@@ -218,8 +215,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="help_image1.png" width="345" height="162.5"/>
-        <image name="help_image2.png" width="345" height="144.5"/>
-        <image name="help_image3.png" width="345" height="162.5"/>
+        <image name="help_image1.png" width="345" height="165"/>
+        <image name="help_image2.png" width="345" height="148"/>
+        <image name="help_image3.png" width="345" height="165"/>
     </resources>
 </document>
