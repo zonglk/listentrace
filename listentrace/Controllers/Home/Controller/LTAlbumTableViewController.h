@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *albumId;
 @property (strong, nonatomic) NSDictionary *result;
+@property (assign, nonatomic) BOOL isNeedTailoring;
 
 @end
 

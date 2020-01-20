@@ -169,6 +169,12 @@
         if ([result[@"code"] intValue] == 200 && [dic class] != [NSNull class]) {
             UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTAlbumTableViewController" bundle:[NSBundle mainBundle]];
             LTAlbumTableViewController *albumVC = [story instantiateViewControllerWithIdentifier:@"LTAlbumTableViewController"];
+            if ([self.autoTextView.text containsString:@"music.apple.com"]) {
+                albumVC.isNeedTailoring = YES;
+            }
+            else {
+                albumVC.isNeedTailoring = NO;
+            }
             albumVC.result = result;
             [self.navigationController pushViewController:albumVC animated:YES];
         }

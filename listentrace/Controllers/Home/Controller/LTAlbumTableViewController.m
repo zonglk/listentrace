@@ -110,6 +110,7 @@
     }
     
     if (self.result) {
+        self.tipsImageLabel.hidden = YES;
         [self handleDate:self.result];
     }
 }
@@ -230,8 +231,12 @@
     if (albumString != nil && [albumString class] != [NSNull class]) {
         [self.albumImageView sd_setImageWithURL:[NSURL URLWithString:albumString] placeholderImage:[UIImage imageNamed:@"album_detail_placeImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             if (!error) {
+                [self.albumImageView setImage:[self cropSquareImage:self.albumImageView.image]];
                 [self postLinkImage];
                 [self.albumButton setImageWithURL:nil forState:UIControlStateNormal placeholder:nil];
+            }
+            else {
+                self.tipsImageLabel.hidden = NO;
             }
         }];
     }
@@ -290,6 +295,23 @@
     if (designerString != nil && [designerString class] != [NSNull class]) {
         self.coverTextField.text = result[@"data"][@"cover_designer"];
     }
+}
+
+#pragma mark 裁剪图片
+
+- (UIImage *)cropSquareImage:(UIImage *)image {
+    CGImageRef sourceImageRef = [image CGImage];//将UIImage转换成CGImageRef
+    CGFloat _imageWidth = image.size.width * image.scale;
+    CGFloat _imageHeight = image.size.height * image.scale;
+    CGFloat _width = _imageWidth > _imageHeight ? _imageHeight * 0.64 : _imageWidth * 0.64;
+    CGFloat _offsetX = (_imageWidth - _width) / 2;
+    CGFloat _offsetY = (_imageHeight - _width) / 2;
+    
+    CGRect rect = CGRectMake(_offsetX, _offsetY, _width, _width);
+    CGImageRef newImageRef = CGImageCreateWithImageInRect(sourceImageRef, rect);//按照给定的矩形区域进行剪裁
+    UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
+    
+    return newImage;
 }
 
 #pragma mark 保存专辑信息
