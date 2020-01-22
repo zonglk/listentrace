@@ -26,12 +26,12 @@
 		<dict>
 			<key>NSExtensionActivationRule</key>
 			<dict>
-				<key>NSExtensionActivationSupportsWebPageWithMaxCount</key>
-				<string>1</string>
-				<key>NSExtensionActivationSupportsWebURLWithMaxCount</key>
-				<string>1</string>
 				<key>NSExtensionActivationSupportsText</key>
 				<true/>
+				<key>NSExtensionActivationSupportsWebPageWithMaxCount</key>
+				<integer>1</integer>
+				<key>NSExtensionActivationSupportsWebURLWithMaxCount</key>
+				<integer>1</integer>
 			</dict>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>

@@ -75,6 +75,13 @@
 @property (copy, nonatomic) NSString *userId;
 @property (strong, nonatomic) UIView *coverView;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UILabel *label1;
+@property (weak, nonatomic) IBOutlet UILabel *label2;
+@property (weak, nonatomic) IBOutlet UILabel *label3;
+@property (weak, nonatomic) IBOutlet UILabel *label4;
+@property (weak, nonatomic) IBOutlet UILabel *label5;
+@property (weak, nonatomic) IBOutlet UILabel *label6;
+@property (weak, nonatomic) IBOutlet UILabel *label7;
 
 - (IBAction)albumButtonClick:(id)sender; // 专辑封面
 - (IBAction)loveButtonClick:(id)sender; // 喜欢
@@ -116,6 +123,17 @@
     ViewBorderRadius(self.view3, 5, 1, RGBHex(0xE5EAFA));
     ViewBorderRadius(self.view4, 5, 1, RGBHex(0xE5EAFA));
     
+    self.styleTextField.text = @"必填";
+    self.styleTextField.textColor = RGBHex(0xE5EAFA);
+    
+    self.label1.textColor = RGBHex(0x545C77);
+    self.label2.textColor = RGBHex(0x545C77);
+    self.label3.textColor = RGBHex(0x545C77);
+    self.label4.textColor = RGBHex(0x545C77);
+    self.label5.textColor = RGBHex(0x545C77);
+    self.label6.textColor = RGBHex(0x545C77);
+    self.label7.textColor = RGBHex(0x545C77);
+    
     UINavigationBar *navBar = [UINavigationBar appearance];
     navBar.translucent = NO;
     [navBar setBackgroundImage:[UIImage imageNamed:@"back_nav"] forBarMetrics:UIBarMetricsDefault];
@@ -140,8 +158,26 @@
     self.navigationItem.leftBarButtonItem = leftButton;
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    if (textField == self.styleTextField) {
+        if ([self.styleTextField.text isEqualToString:@"必填"]) {
+            self.styleTextField.textColor  = RGBHex(0x545C77);
+            self.styleTextField.text = nil;
+        }
+    }
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    if (!self.styleTextField.text.length) {
+        self.styleTextField.textColor  = RGBHex(0xE5EAFA);
+        self.styleTextField.text = @"必填";
+    }
+    return YES;
+}
+
 - (void)styleChangeNoti:(NSNotification *)noti {
     self.styleTextField.text = [NSString stringWithFormat:@"%@",noti.userInfo[@"style"]];
+    self.styleTextField.textColor  = RGBHex(0x545C77);
     [self.styleCoverView removeFromSuperview];
 }
 

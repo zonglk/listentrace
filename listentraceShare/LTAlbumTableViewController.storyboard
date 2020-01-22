@@ -553,6 +553,13 @@
                         <outlet property="albumImageView" destination="pGQ-HD-aAP" id="Lzk-z4-yba"/>
                         <outlet property="albumNameTextField" destination="MYa-hq-4lz" id="rs2-56-58n"/>
                         <outlet property="albumTableView" destination="mwT-9g-i7I" id="FJX-Mr-Ni1"/>
+                        <outlet property="label1" destination="7hI-3j-3bg" id="wAF-Bi-HUr"/>
+                        <outlet property="label2" destination="dcQ-hc-k2J" id="nWx-r6-Iin"/>
+                        <outlet property="label3" destination="HkI-75-Sto" id="uR3-K5-cMF"/>
+                        <outlet property="label4" destination="N0x-A2-tDO" id="kea-jm-9L8"/>
+                        <outlet property="label5" destination="I0S-CN-Lrs" id="t0I-Rc-J4h"/>
+                        <outlet property="label6" destination="jXN-lx-eVL" id="Osw-BO-8re"/>
+                        <outlet property="label7" destination="LhK-eF-r4l" id="CYl-h2-Onf"/>
                         <outlet property="listeningTimeButton" destination="PQY-4f-Otb" id="9N1-bJ-DWU"/>
                         <outlet property="listeningTimeTextField" destination="Tyg-Pb-24H" id="RYq-kq-dKc"/>
                         <outlet property="loveButton" destination="SRg-xX-0Oc" id="lAc-SB-KRj"/>

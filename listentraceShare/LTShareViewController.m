@@ -23,7 +23,6 @@
     __block BOOL hasGetUrl = NO;
     [self.extensionContext.inputItems enumerateObjectsUsingBlock:^(NSExtensionItem *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj.attachments enumerateObjectsUsingBlock:^(NSItemProvider *  _Nonnull itemProvider, NSUInteger idx, BOOL * _Nonnull stop) {
-            
             if ([itemProvider hasItemConformingToTypeIdentifier:@"public.url"]) {
                 [itemProvider loadItemForTypeIdentifier:@"public.url" options:nil completionHandler:^(id<NSSecureCoding>  _Nullable item, NSError * _Null_unspecified error) {
 
@@ -32,6 +31,23 @@
                             UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTAlbumTableViewController" bundle:[NSBundle mainBundle]];
                             LTAlbumTableViewController *albumVC = [story instantiateViewControllerWithIdentifier:@"LTAlbumTableViewController"];
                             albumVC.urlString = ((NSURL *)item).absoluteString;
+                            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:albumVC];
+                            nav.modalPresentationStyle = UIModalPresentationFullScreen;
+                            [self.navigationController presentViewController:nav animated:YES completion:nil];
+                        });
+                    }
+                }];
+                hasGetUrl = YES;
+                *stop = YES;
+            }
+            else if ([itemProvider hasItemConformingToTypeIdentifier:@"public.plain-text"]) {
+                [itemProvider loadItemForTypeIdentifier:@"public.plain-text" options:nil completionHandler:^(id<NSSecureCoding>  _Nullable item, NSError * _Null_unspecified error) {
+
+                    if ([(NSObject *)item isKindOfClass:[NSString class]])  {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTAlbumTableViewController" bundle:[NSBundle mainBundle]];
+                            LTAlbumTableViewController *albumVC = [story instantiateViewControllerWithIdentifier:@"LTAlbumTableViewController"];
+                            albumVC.urlString = (NSString *)item;
                             UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:albumVC];
                             nav.modalPresentationStyle = UIModalPresentationFullScreen;
                             [self presentViewController:nav animated:YES completion:nil];
