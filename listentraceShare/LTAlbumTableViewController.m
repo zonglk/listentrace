@@ -16,6 +16,7 @@
 #import "QFDatePickerView.h"
 #import "LTAlbumTimePIckerView.h"
 #import "UIImageView+WebCache.h"
+#import <SoundAnalysis/SoundAnalysis.h>
 
 #define kWeakSelf(type)  __weak typeof(type) weak##type = type;
 
@@ -324,8 +325,7 @@
 
     [LTShareNetworking requestUrl:url WithParam:parameter withMethod:POST success:^(id  _Nonnull result) {
         if ([result[@"code"] intValue] == 200) {
-            UIImpactFeedbackGenerator *feedBackGenertor = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium];
-            [feedBackGenertor impactOccurred];
+            AudioServicesPlaySystemSound(1519);
             self.isSave = NO;
             UIImageView *tipImageView = [[UIImageView alloc] initWithFrame:CGRectMake(KScreenWidth/2 - 44, KScreenWidth/2 + 65, 88, 88)];
             [tipImageView setImage:[UIImage imageNamed:@"addAlbum_sucess"]];

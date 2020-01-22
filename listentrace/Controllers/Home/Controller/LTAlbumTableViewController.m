@@ -18,6 +18,7 @@
 #import "QFDatePickerView.h"
 #import "LTAlbumTimePIckerView.h"
 #import "LTAddAlbumDetailModel.h"
+#import <SoundAnalysis/SoundAnalysis.h>
 
 @interface LTAlbumTableViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, LTAlbumTableViewCellDelegate, UIPickerViewDelegate, LTAlbumTimePickerDelegate, UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *albumTableView;
@@ -453,8 +454,7 @@
     
     [LTNetworking requestUrl:url WithParam:parameter withMethod:POST success:^(id  _Nonnull result) {
         if ([result[@"code"] intValue] == 200) {
-            UIImpactFeedbackGenerator *feedBackGenertor = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium];
-            [feedBackGenertor impactOccurred];
+            AudioServicesPlaySystemSound(1519);
             
             self.isSave = NO;
             UIImageView *tipImageView = [[UIImageView alloc] init];

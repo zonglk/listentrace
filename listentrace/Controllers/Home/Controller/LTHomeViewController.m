@@ -14,6 +14,7 @@
 #import "LTAlbumModel.h"
 #import "LTHelpTableViewController.h"
 #import "LTAutoAddAlbumTableViewController.h"
+#import <SoundAnalysis/SoundAnalysis.h>
 
 @interface LTHomeViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -387,8 +388,7 @@
 #pragma mark 添加专辑
 
 - (void)addAlbum {
-    UIImpactFeedbackGenerator *feedBackGenertor = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium];
-    [feedBackGenertor impactOccurred];
+    AudioServicesPlaySystemSound(1519);
     [self addCoverView];
     [self getPastedBoardString];
 }

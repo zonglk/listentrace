@@ -78,7 +78,7 @@
         make.left.mas_equalTo(self.view.mas_left).offset(15);
         make.right.mas_equalTo(self.view.mas_right).offset(-15);
         make.left.height.mas_equalTo(50);
-        make.bottom.mas_equalTo(self.view.mas_bottom).offset(-15);
+        make.bottom.mas_equalTo(self.view.mas_bottom).offset(-kBottomSafeHeight -15);
     }];
     ViewBorderRadius(self.autoButton, 5, 0, [UIColor whiteColor]);
     [self.autoButton setTitle:@"解析" forState:UIControlStateNormal];
