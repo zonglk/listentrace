@@ -100,6 +100,10 @@
     self.listeningTimeTextField.text = self.listeningTimeString;
 
     if (self.urlString) {
+        if ([self.urlString containsString:@"TIDAL"] && [self.urlString containsString:@"https"]) {
+            NSArray *array = [self.urlString componentsSeparatedByString:@"https"];
+            self.urlString = [NSString stringWithFormat:@"https%@",array.lastObject];
+        }
         [self requestData];
     }
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(styleChangeNoti:) name:@"AlbumStyleChangeNoti" object:nil];
