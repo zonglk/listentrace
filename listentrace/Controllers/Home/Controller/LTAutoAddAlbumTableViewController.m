@@ -182,16 +182,34 @@
     [LTNetworking requestUrl:@"/album/resolve" WithParam:@{@"url" : self.autoTextView.text} withMethod:GET success:^(id  _Nonnull result) {
         NSDictionary *dic = result[@"data"];
         if ([result[@"code"] intValue] == 200 && [dic class] != [NSNull class]) {
-            UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTAlbumTableViewController" bundle:[NSBundle mainBundle]];
-            LTAlbumTableViewController *albumVC = [story instantiateViewControllerWithIdentifier:@"LTAlbumTableViewController"];
-            if ([self.autoTextView.text containsString:@"music.apple.com"]) {
-                albumVC.isNeedTailoring = YES;
+            NSString *albumString = result[@"data"][@"album_img"];
+            UIImageView *imageView = [[UIImageView alloc] init];
+            if (albumString != nil && [albumString class] != [NSNull class]) {
+                [imageView sd_setImageWithURL:[NSURL URLWithString:albumString] placeholderImage:[UIImage imageNamed:@"album_detail_placeImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                    if (!error) {
+                        NSString *path_document = NSHomeDirectory();
+                        NSString *imagePath = [path_document stringByAppendingString:@"/Documents/headerPic.png"];
+                        [UIImagePNGRepresentation(imageView.image) writeToFile:imagePath atomically:YES];
+                        
+                        UIStoryboard *story = [UIStoryboard storyboardWithName:@"LTAlbumTableViewController" bundle:[NSBundle mainBundle]];
+                        LTAlbumTableViewController *albumVC = [story instantiateViewControllerWithIdentifier:@"LTAlbumTableViewController"];
+                        if ([self.autoTextView.text containsString:@"music.apple.com"]) {
+                            albumVC.isNeedTailoring = YES;
+                        }
+                        else {
+                            albumVC.isNeedTailoring = NO;
+                        }
+                        albumVC.result = result;
+                        [self.navigationController pushViewController:albumVC animated:YES];
+                    }
+                    else {
+                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"解析失败" message:[NSString stringWithFormat:@"请检查专辑链接后，再重新尝试"] preferredStyle:UIAlertControllerStyleAlert];
+                        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+                        [alert addAction:action];
+                        [self.navigationController presentViewController:alert animated:YES completion:nil];
+                    }
+                }];
             }
-            else {
-                albumVC.isNeedTailoring = NO;
-            }
-            albumVC.result = result;
-            [self.navigationController pushViewController:albumVC animated:YES];
         }
         else {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"解析失败" message:[NSString stringWithFormat:@"请检查专辑链接后，再重新尝试"] preferredStyle:UIAlertControllerStyleAlert];

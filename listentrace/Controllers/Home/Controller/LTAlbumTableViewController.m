@@ -228,20 +228,32 @@
         [self.albumTableView reloadData];
     }
     
-    NSString *albumString = result[@"data"][@"album_img"];
-    if (albumString != nil && [albumString class] != [NSNull class]) {
-        [self.albumImageView sd_setImageWithURL:[NSURL URLWithString:albumString] placeholderImage:[UIImage imageNamed:@"album_detail_placeImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            if (!error) {
-                if (self.isNeedTailoring) {
-                    [self.albumImageView setImage:[self cropSquareImage:self.albumImageView.image]];
+    if (!self.result) {
+        NSString *albumString = result[@"data"][@"album_img"];
+        if (albumString != nil && [albumString class] != [NSNull class]) {
+            [self.albumImageView sd_setImageWithURL:[NSURL URLWithString:albumString] placeholderImage:[UIImage imageNamed:@"album_detail_placeImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                if (!error) {
+                    if (self.isNeedTailoring) {
+                        [self.albumImageView setImage:[self cropSquareImage:self.albumImageView.image]];
+                    }
+                    [self postLinkImage];
+                    [self.albumButton setImageWithURL:nil forState:UIControlStateNormal placeholder:nil];
                 }
-                [self postLinkImage];
-                [self.albumButton setImageWithURL:nil forState:UIControlStateNormal placeholder:nil];
-            }
-            else {
-                self.tipsImageLabel.hidden = NO;
-            }
-        }];
+                else {
+                    self.tipsImageLabel.hidden = NO;
+                }
+            }];
+        }
+    }
+    else {
+        NSString *path_document = NSHomeDirectory();
+        UIImage *getimage2 = [UIImage imageWithContentsOfFile:[path_document  stringByAppendingString:@"/Documents/headerPic.png"]];
+        self.albumImageView.image = getimage2;
+        if (self.isNeedTailoring) {
+            [self.albumImageView setImage:[self cropSquareImage:getimage2]];
+        }
+        [self postLinkImage];
+        [self.albumButton setImageWithURL:nil forState:UIControlStateNormal placeholder:nil];
     }
     
     NSString *loveString = result[@"data"][@"favorite"];

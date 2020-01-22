@@ -185,14 +185,17 @@
     if (albumString != nil && [albumString class] != [NSNull class]) {
         [self.albumImageView sd_setImageWithURL:[NSURL URLWithString:albumString] placeholderImage:[UIImage imageNamed:@"album_detail_placeImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             if (!error) {
+                if ([self.urlString containsString:@"music.apple.com"]) {
+                    [self.albumImageView setImage:[self cropSquareImage:self.albumImageView.image]];
+                }
                 [self postLinkImage];
                 [self.albumButton setImage:nil forState:UIControlStateNormal];
             }
-//            [self.coverView removeFromSuperview];
+            [self.coverView removeFromSuperview];
         }];
     }
     else {
-//        [self.coverView removeFromSuperview];
+        [self.coverView removeFromSuperview];
     }
 
     NSString *albumNameString = result[@"data"][@"album_name"];
@@ -360,6 +363,23 @@
         [alert addAction:action];
         [self presentViewController:alert animated:YES completion:nil];
     } showHUD:self.view];
+}
+
+#pragma mark 裁剪图片
+
+- (UIImage *)cropSquareImage:(UIImage *)image {
+    CGImageRef sourceImageRef = [image CGImage];//将UIImage转换成CGImageRef
+    CGFloat _imageWidth = image.size.width * image.scale;
+    CGFloat _imageHeight = image.size.height * image.scale;
+    CGFloat _width = _imageWidth > _imageHeight ? _imageHeight * 0.64 : _imageWidth * 0.64;
+    CGFloat _offsetX = (_imageWidth - _width) / 2;
+    CGFloat _offsetY = (_imageHeight - _width) / 2;
+    
+    CGRect rect = CGRectMake(_offsetX, _offsetY, _width, _width);
+    CGImageRef newImageRef = CGImageCreateWithImageInRect(sourceImageRef, rect);//按照给定的矩形区域进行剪裁
+    UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
+    
+    return newImage;
 }
 
 #pragma mark  添加/修改专辑照片
