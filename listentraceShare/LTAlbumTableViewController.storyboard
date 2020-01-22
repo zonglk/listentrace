@@ -10,7 +10,6 @@
         <!--Navigation Controller-->
         <scene sceneID="93Z-nG-uvq">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zmI-DS-oeH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController toolbarHidden="NO" id="NP6-Gr-Gc1" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="POt-8m-aW7">
@@ -25,6 +24,7 @@
                         <segue destination="yVZ-Bj-Hec" kind="relationship" relationship="rootViewController" id="w9k-Cs-RXx"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zmI-DS-oeH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-607" y="-580"/>
         </scene>
@@ -35,7 +35,9 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="mwT-9g-i7I">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.97254901960784312" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="10000" maxY="0.0"/>
+                        <color key="sectionIndexBackgroundColor" red="0.97254901960784312" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection id="E7C-1M-El9">
                                 <cells>
@@ -544,15 +546,7 @@
                         </connections>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" title="添加专辑" id="sdW-KX-6vW">
-                        <barButtonItem key="leftBarButtonItem" title="fdsf sdfsd" image=" fsd" style="plain" id="Ha3-OL-577">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="M0s-mU-vBy">
-                                <rect key="frame" x="16" y="7" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="添加专辑" id="sdW-KX-6vW"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="albumButton" destination="ZLo-c3-UVi" id="8Ey-hM-fd9"/>
@@ -585,7 +579,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name=" fsd" width="16" height="16"/>
         <image name="album_albumImage.png" width="280.66665649414062" height="280"/>
         <image name="album_down_arrow.png" width="27.333333969116211" height="16"/>
         <image name="album_grayHeart.png" width="38.666667938232422" height="35.333332061767578"/>

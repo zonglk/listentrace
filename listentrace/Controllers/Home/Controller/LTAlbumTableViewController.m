@@ -231,7 +231,9 @@
     if (albumString != nil && [albumString class] != [NSNull class]) {
         [self.albumImageView sd_setImageWithURL:[NSURL URLWithString:albumString] placeholderImage:[UIImage imageNamed:@"album_detail_placeImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             if (!error) {
-                [self.albumImageView setImage:[self cropSquareImage:self.albumImageView.image]];
+                if (self.isNeedTailoring) {
+                    [self.albumImageView setImage:[self cropSquareImage:self.albumImageView.image]];
+                }
                 [self postLinkImage];
                 [self.albumButton setImageWithURL:nil forState:UIControlStateNormal placeholder:nil];
             }

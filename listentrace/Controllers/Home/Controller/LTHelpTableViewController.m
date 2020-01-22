@@ -11,6 +11,8 @@
 
 @interface LTHelpTableViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *text1;
+@property (weak, nonatomic) IBOutlet UILabel *text2;
 @property (weak, nonatomic) IBOutlet UIButton *knowButton;
 @property (strong, nonatomic) UIView *coverView;
 - (IBAction)knowButtonClick:(id)sender;
@@ -27,6 +29,13 @@
     self.coverView = [[UIView alloc] initWithFrame:CGRectMake(0, 30, 80, 30)];
     [[UIApplication sharedApplication].delegate.window addSubview:self.coverView];
     self.coverView.backgroundColor = [UIColor whiteColor];
+    NSMutableAttributedString *str1 = [[NSMutableAttributedString alloc] initWithString:@"复制链接："];
+    [str1 addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFangSC-Regular" size:15.f] range:NSMakeRange(0, 4)];
+    self.text1.attributedText = str1;
+    
+    NSMutableAttributedString *str2 = [[NSMutableAttributedString alloc] initWithString:@"Share Sheet:"];
+    [str2 addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFangSC-Regular" size:15.f] range:NSMakeRange(0, 4)];
+    self.text2.attributedText = str2;
 }
 
 - (void)viewDidAppear:(BOOL)animated {

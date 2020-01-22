@@ -9,6 +9,8 @@
 #import "LTHelpTipsTableViewController.h"
 
 @interface LTHelpTipsTableViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *text1;
+@property (weak, nonatomic) IBOutlet UILabel *text2;
 
 @end
 
@@ -17,14 +19,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
-//    backItem.title = @"";
-//    [backItem setImage:[UIImage imageNamed:@"nav_back"]];
-//    [backItem setTintColor:[UIColor colorWithHexString:@"0xF8F9FA"]];
+    NSMutableAttributedString *str1 = [[NSMutableAttributedString alloc] initWithString:@"复制链接："];
+    [str1 addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFangSC-Regular" size:15.f] range:NSMakeRange(0, 4)];
+    self.text1.attributedText = str1;
     
-//    //主要是以下两个图片设置"//    self.navigationController.navigationBar.backIndicatorImage = [UIImage imageNamed:@"nav_back"];
-//    self.navigationController.navigationBar.backIndicatorTransitionMaskImage = [UIImage imageNamed:@"nav_back"];
-//    self.navigationItem.leftBarButtonItem = backItem;
+    NSMutableAttributedString *str2 = [[NSMutableAttributedString alloc] initWithString:@"Share Sheet:"];
+    [str2 addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFangSC-Regular" size:15.f] range:NSMakeRange(0, 4)];
+    self.text2.attributedText = str2;
 }
 
 @end

@@ -126,7 +126,7 @@
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightNavButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
     
-    UIButton *leftNavButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
+    UIButton *leftNavButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 14, 14)];
     [leftNavButton setBackgroundImage:[UIImage imageNamed:@"share_close"] forState:UIControlStateNormal];
     [leftNavButton.titleLabel setFont:[UIFont systemFontOfSize:16]];
     [leftNavButton setTitleColor:RGBHex(0x6D6BED) forState:UIControlStateNormal];
@@ -144,7 +144,7 @@
     self.coverView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
     [self.albumTableView addSubview:self.coverView];
     self.coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0];
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(KScreenWidth/2 - 44, KScreenHeight/2 - 44, 88, 88)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(KScreenWidth/2 - 44, KScreenHeight/2 - 64 - 44 , 88, 88)];
     [self.coverView addSubview:view];
     view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
     view.layer.cornerRadius = 6;
@@ -155,7 +155,7 @@
     self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
     [self.activityIndicator startAnimating];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 52, 90, 30)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 52, 88, 30)];
     [view addSubview:label];
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:13];
@@ -187,11 +187,11 @@
                 [self postLinkImage];
                 [self.albumButton setImage:nil forState:UIControlStateNormal];
             }
-            [self.coverView removeFromSuperview];
+//            [self.coverView removeFromSuperview];
         }];
     }
     else {
-        [self.coverView removeFromSuperview];
+//        [self.coverView removeFromSuperview];
     }
 
     NSString *albumNameString = result[@"data"][@"album_name"];

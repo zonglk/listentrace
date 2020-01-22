@@ -48,40 +48,33 @@
                         <sections>
                             <tableViewSection id="GFK-7m-jAh">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="900" id="U6c-xP-nqF">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="900"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="887" id="U6c-xP-nqF">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="887"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="U6c-xP-nqF" id="g7r-UN-I7K">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="900"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="887"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQN-Xi-n6J">
-                                                    <rect key="frame" x="15" y="12" width="384" height="35.5"/>
-                                                    <attributedString key="attributedText">
-                                                        <fragment content="在音乐平台选择「专辑」进行分享，注意是专辑不是单曲，点击分享后会出现路径选择。">
-                                                            <attributes>
-                                                                <color key="NSColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" size="14" name=".PingFangSC-Regular"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="charWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在音乐平台选择「专辑」进行分享，注意是专辑不是单曲，点击分享后会出现路径选择。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQN-Xi-n6J">
+                                                    <rect key="frame" x="15" y="12" width="384" height="31.5"/>
+                                                    <fontDescription key="fontDescription" name=".PingFangSC-Regular" family=".PingFang SC" pointSize="14"/>
+                                                    <color key="textColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="复制链接：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uh3-4q-yy6">
-                                                    <rect key="frame" x="15" y="57.5" width="71.5" height="17"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                    <rect key="frame" x="15" y="53.5" width="70" height="16"/>
+                                                    <fontDescription key="fontDescription" name=".PingFangSC-Regular" family=".PingFang SC" pointSize="14"/>
                                                     <color key="textColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share Sheet:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fuV-1K-01Z">
-                                                    <rect key="frame" x="15" y="126" width="85" height="17"/>
+                                                    <rect key="frame" x="15" y="121" width="85" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                     <color key="textColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UwD-kl-5TU">
-                                                    <rect key="frame" x="15" y="80.5" width="384" height="35.5"/>
+                                                    <rect key="frame" x="15" y="75.5" width="384" height="35.5"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="国内音乐平台基本上只能点击复制链接，然后粘贴到输入框进行复制。">
                                                             <attributes>
@@ -94,7 +87,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0G-ca-Kl1">
-                                                    <rect key="frame" x="15" y="149" width="384" height="35.5"/>
+                                                    <rect key="frame" x="15" y="144" width="384" height="35.5"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="国外音乐平台如 Spotify 既可以复制链接，也可使用 Share Sheet 进行分享。">
                                                             <attributes>
@@ -107,19 +100,19 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="help_image1.png" translatesAutoresizingMaskIntoConstraints="NO" id="yj2-CV-4yO">
-                                                    <rect key="frame" x="15" y="194.5" width="384" height="160"/>
+                                                    <rect key="frame" x="15" y="189.5" width="384" height="160"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="160" id="Qbh-Tl-QkK"/>
                                                     </constraints>
                                                 </imageView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="help_image2.png" translatesAutoresizingMaskIntoConstraints="NO" id="QIG-7R-RGt">
-                                                    <rect key="frame" x="15" y="437" width="384" height="145"/>
+                                                    <rect key="frame" x="15" y="432" width="384" height="145"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="145" id="m0L-mN-aiA"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7A-Ih-Vhd">
-                                                    <rect key="frame" x="15" y="364.5" width="384" height="62.5"/>
+                                                    <rect key="frame" x="15" y="359.5" width="384" height="62.5"/>
                                                     <string key="text">1. 请左滑至最右，从「更多」入口找到听迹 
 2. 点击页面右上角的编辑，并打开听迹的开关
 3. 点击左侧的 + 按钮，拖动位置到最前面 
@@ -129,7 +122,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjd-4e-Bj4">
-                                                    <rect key="frame" x="15" y="592" width="384" height="35.5"/>
+                                                    <rect key="frame" x="15" y="587" width="384" height="35.5"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="操作完成之后，则可以选择 Share Sheet 页的听迹图标直接分享，进行专辑信息解析。">
                                                             <attributes>
@@ -142,7 +135,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R2C-Te-9wZ">
-                                                    <rect key="frame" x="152" y="818.5" width="110" height="46"/>
+                                                    <rect key="frame" x="152" y="814.5" width="110" height="46"/>
                                                     <color key="backgroundColor" red="0.42745098039215684" green="0.41960784313725491" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="46" id="KZZ-HE-7jC"/>
@@ -156,7 +149,7 @@
                                                     </connections>
                                                 </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="help_image3.png" translatesAutoresizingMaskIntoConstraints="NO" id="ef7-YY-14i">
-                                                    <rect key="frame" x="15" y="637.5" width="384" height="160"/>
+                                                    <rect key="frame" x="15" y="632.5" width="384" height="160"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="160" id="L8k-uz-j6X"/>
                                                     </constraints>
@@ -173,7 +166,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="L0G-ca-Kl1" secondAttribute="trailing" constant="15" id="H5q-wS-tdr"/>
                                                 <constraint firstItem="rjd-4e-Bj4" firstAttribute="top" secondItem="QIG-7R-RGt" secondAttribute="bottom" constant="10" id="H6M-eU-USA"/>
                                                 <constraint firstItem="yj2-CV-4yO" firstAttribute="leading" secondItem="g7r-UN-I7K" secondAttribute="leading" constant="15" id="JK8-Tj-3fv"/>
-                                                <constraint firstItem="R2C-Te-9wZ" firstAttribute="top" secondItem="ef7-YY-14i" secondAttribute="bottom" constant="21" id="OYD-90-v9O"/>
+                                                <constraint firstItem="R2C-Te-9wZ" firstAttribute="top" secondItem="ef7-YY-14i" secondAttribute="bottom" constant="22" id="OYD-90-v9O"/>
                                                 <constraint firstItem="fuV-1K-01Z" firstAttribute="leading" secondItem="UwD-kl-5TU" secondAttribute="leading" id="RPM-U4-4BW"/>
                                                 <constraint firstItem="Uh3-4q-yy6" firstAttribute="leading" secondItem="LQN-Xi-n6J" secondAttribute="leading" id="SxA-HW-uaM"/>
                                                 <constraint firstAttribute="trailing" secondItem="s7A-Ih-Vhd" secondAttribute="trailing" constant="15" id="X52-tF-GM3"/>
@@ -207,6 +200,8 @@
                     </tableView>
                     <connections>
                         <outlet property="knowButton" destination="R2C-Te-9wZ" id="Caz-x2-oyi"/>
+                        <outlet property="text1" destination="Uh3-4q-yy6" id="2hR-93-bbQ"/>
+                        <outlet property="text2" destination="fuV-1K-01Z" id="9yS-cH-MKj"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bgz-PI-9nU" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -154,16 +154,31 @@
         return;
     }
     UIView *coverView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
-    coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
+    coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0];
     [[UIApplication sharedApplication].delegate.window addSubview:coverView];
     
-    UIImageView *tipImageView = [[UIImageView alloc] init];
-    [tipImageView setImage:[UIImage imageNamed:@"auto_link_handing"]];
-    [[UIApplication sharedApplication].delegate.window addSubview:tipImageView];
-    [tipImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    UIView *view = [[UIView alloc] init];
+    [coverView addSubview:view];
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view.mas_centerX);
-        [make.centerY.mas_equalTo(self.view.mas_centerY) setOffset:(-30)];
+        make.centerY.mas_equalTo(self.view.mas_centerY);
+        make.size.mas_equalTo(CGSizeMake(88, 88));
     }];
+    view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
+    view.layer.cornerRadius = 6;
+    view.clipsToBounds = YES;
+
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(14, 0, 60, 60)];
+    [view addSubview:activityIndicator];
+    activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
+    [activityIndicator startAnimating];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 52, 88, 30)];
+    [view addSubview:label];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:13];
+    label.textColor = [UIColor whiteColor];
+    label.text = @"解析中...";
     [LTNetworking requestUrl:@"/album/resolve" WithParam:@{@"url" : self.autoTextView.text} withMethod:GET success:^(id  _Nonnull result) {
         NSDictionary *dic = result[@"data"];
         if ([result[@"code"] intValue] == 200 && [dic class] != [NSNull class]) {
@@ -185,9 +200,10 @@
             [self.navigationController presentViewController:alert animated:YES completion:nil];
         }
         [coverView removeFromSuperview];
-        [tipImageView removeFromSuperview];
+        [view removeFromSuperview];
     } failure:^(NSError * _Nonnull erro) {
-        
+        [coverView removeFromSuperview];
+        [view removeFromSuperview];
     } showHUD:self.view];
 }
 
