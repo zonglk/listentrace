@@ -124,7 +124,7 @@
     ViewBorderRadius(self.view4, 5, 1, RGBHex(0xE5EAFA));
     
     self.styleTextField.text = @"必填";
-    self.styleTextField.textColor = RGBHex(0xE5EAFA);
+    self.styleTextField.textColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.6];
     
     self.label1.textColor = RGBHex(0x545C77);
     self.label2.textColor = RGBHex(0x545C77);
@@ -156,6 +156,10 @@
     [leftNavButton addTarget:self action:@selector(cancleClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithCustomView:leftNavButton];
     self.navigationItem.leftBarButtonItem = leftButton;
+    
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 40)];
+    [self.navigationController.navigationBar addSubview:button];
+    [button addTarget:self action:@selector(closeButtonClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
@@ -169,7 +173,7 @@
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
     if (!self.styleTextField.text.length) {
-        self.styleTextField.textColor  = RGBHex(0xE5EAFA);
+        self.styleTextField.textColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.7];
         self.styleTextField.text = @"必填";
     }
     return YES;
@@ -310,7 +314,7 @@
         [self presentViewController:alert animated:YES completion:nil];
         return;
     }
-    if (!self.styleTextField.text.length) {
+    if (!self.styleTextField.text.length || [self.styleTextField.text isEqualToString:@"必填"]) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"请选择专辑风格"] preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:nil];
         [alert addAction:action];
@@ -822,6 +826,10 @@
         [_timePicker.timePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
     }
     return _timePicker;
+}
+
+- (void)closeButtonClick {
+    [self disMisSelf];
 }
 
 - (void)cancleClick {

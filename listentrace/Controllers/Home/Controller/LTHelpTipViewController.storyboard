@@ -44,7 +44,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="eg4-CZ-Tfr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.97254901960784312" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
                             <tableViewSection id="DBI-tV-c8W">
                                 <cells>
@@ -61,7 +61,7 @@
                                                     <color key="textColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="复制链接：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bY7-WL-QA2">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="复制链接：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bY7-WL-QA2">
                                                     <rect key="frame" x="15" y="55.5" width="71.5" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -92,38 +92,54 @@
                                                     </constraints>
                                                 </imageView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="help_image2.png" translatesAutoresizingMaskIntoConstraints="NO" id="S3T-xh-ee3">
-                                                    <rect key="frame" x="15" y="435.5" width="384" height="144"/>
+                                                    <rect key="frame" x="15" y="442.5" width="384" height="144"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="144" id="W0x-e4-Vof"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T49-Ob-QfY">
-                                                    <rect key="frame" x="15" y="358.5" width="384" height="67"/>
-                                                    <string key="text">1. 请左滑至最右，从「更多」入口找到听迹 
-2. 点击页面右上角的编辑，并打开听迹的开关 
-3. 点击左侧的 + 按钮，拖动位置到最前面 
-4. 点击完成对编辑结果进行保存</string>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. 请左滑至最右，从「更多」入口找到听迹 " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T49-Ob-QfY">
+                                                    <rect key="frame" x="15" y="358.5" width="384" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                     <color key="textColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2. 点击页面右上角的编辑，并打开听迹的开关" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kYM-uE-ldv">
+                                                    <rect key="frame" x="15" y="377.5" width="384" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                    <color key="textColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3. 点击左侧的 + 按钮，拖动位置到最前面" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gd1-Md-DC3">
+                                                    <rect key="frame" x="15" y="396.5" width="384" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                    <color key="textColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="操作完成之后，则可以选择 Share Sheet 页的听迹图标直接分享，进行专辑信息解析。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7i-X6-O4n">
-                                                    <rect key="frame" x="15" y="589.5" width="384" height="33.5"/>
+                                                    <rect key="frame" x="15" y="596.5" width="384" height="33.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                     <color key="textColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="help_image3.png" translatesAutoresizingMaskIntoConstraints="NO" id="Axn-Ln-tYw">
-                                                    <rect key="frame" x="15" y="633" width="384" height="160"/>
+                                                    <rect key="frame" x="15" y="640" width="384" height="160"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="160" id="E6c-FG-w1U"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4. 点击完成对编辑结果进行保存" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WbN-s7-b8i">
+                                                    <rect key="frame" x="15" y="415.5" width="384" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                    <color key="textColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="kYM-uE-ldv" firstAttribute="leading" secondItem="hvK-ZW-GUy" secondAttribute="leading" constant="15" id="0Dk-ew-uuY"/>
                                                 <constraint firstItem="S3T-xh-ee3" firstAttribute="leading" secondItem="hvK-ZW-GUy" secondAttribute="leading" constant="15" id="1Hq-QW-aeY"/>
                                                 <constraint firstItem="bY7-WL-QA2" firstAttribute="leading" secondItem="eu7-sD-H0O" secondAttribute="leading" id="1yh-jY-KYh"/>
                                                 <constraint firstAttribute="trailing" secondItem="Axn-Ln-tYw" secondAttribute="trailing" constant="15" id="3ML-qX-6im"/>
+                                                <constraint firstItem="kYM-uE-ldv" firstAttribute="top" secondItem="T49-Ob-QfY" secondAttribute="bottom" constant="2" id="3vu-n7-F1J"/>
                                                 <constraint firstItem="bY7-WL-QA2" firstAttribute="top" secondItem="eu7-sD-H0O" secondAttribute="bottom" constant="10" id="4e0-dH-BHo"/>
                                                 <constraint firstItem="5EO-en-KiC" firstAttribute="top" secondItem="bY7-WL-QA2" secondAttribute="bottom" constant="6" id="5dB-Uj-6eX"/>
                                                 <constraint firstAttribute="trailing" secondItem="5EO-en-KiC" secondAttribute="trailing" constant="15" id="6qY-wb-3Tu"/>
@@ -132,20 +148,27 @@
                                                 <constraint firstAttribute="trailing" secondItem="T49-Ob-QfY" secondAttribute="trailing" constant="15" id="BkL-SC-ZYR"/>
                                                 <constraint firstItem="eu7-sD-H0O" firstAttribute="leading" secondItem="hvK-ZW-GUy" secondAttribute="leading" constant="15" id="Deo-Ut-kMV"/>
                                                 <constraint firstItem="eu7-sD-H0O" firstAttribute="top" secondItem="hvK-ZW-GUy" secondAttribute="top" constant="12" id="F5z-Sq-VCD"/>
+                                                <constraint firstItem="WbN-s7-b8i" firstAttribute="leading" secondItem="hvK-ZW-GUy" secondAttribute="leading" constant="15" id="GFO-36-lkT"/>
                                                 <constraint firstItem="Axn-Ln-tYw" firstAttribute="leading" secondItem="hvK-ZW-GUy" secondAttribute="leading" constant="15" id="Gwc-1c-eFG"/>
                                                 <constraint firstAttribute="trailing" secondItem="seX-3p-oFn" secondAttribute="trailing" constant="15" id="IoU-b7-pGr"/>
                                                 <constraint firstItem="seX-3p-oFn" firstAttribute="top" secondItem="C67-P3-z8l" secondAttribute="bottom" constant="10" id="JNQ-Kk-e3b"/>
                                                 <constraint firstItem="Axn-Ln-tYw" firstAttribute="top" secondItem="C7i-X6-O4n" secondAttribute="bottom" constant="10" id="OFl-mx-Kot"/>
                                                 <constraint firstAttribute="trailing" secondItem="C67-P3-z8l" secondAttribute="trailing" constant="15" id="OLd-wA-yRS"/>
+                                                <constraint firstItem="S3T-xh-ee3" firstAttribute="top" secondItem="WbN-s7-b8i" secondAttribute="bottom" constant="10" id="Tja-tH-8Tx"/>
+                                                <constraint firstAttribute="trailing" secondItem="WbN-s7-b8i" secondAttribute="trailing" constant="15" id="UYL-Bh-HeW"/>
                                                 <constraint firstItem="seX-3p-oFn" firstAttribute="leading" secondItem="hvK-ZW-GUy" secondAttribute="leading" constant="15" id="VLk-2O-d1b"/>
                                                 <constraint firstItem="C7i-X6-O4n" firstAttribute="leading" secondItem="hvK-ZW-GUy" secondAttribute="leading" constant="15" id="XJL-El-hFR"/>
                                                 <constraint firstItem="C67-P3-z8l" firstAttribute="top" secondItem="Qqy-du-dei" secondAttribute="bottom" constant="6" id="XJq-3N-VzF"/>
-                                                <constraint firstItem="S3T-xh-ee3" firstAttribute="top" secondItem="T49-Ob-QfY" secondAttribute="bottom" constant="10" id="YOy-OJ-f2i"/>
+                                                <constraint firstAttribute="trailing" secondItem="kYM-uE-ldv" secondAttribute="trailing" constant="15" id="Ybo-22-piN"/>
+                                                <constraint firstItem="WbN-s7-b8i" firstAttribute="top" secondItem="gd1-Md-DC3" secondAttribute="bottom" constant="2" id="ZVh-dr-Eym"/>
+                                                <constraint firstItem="gd1-Md-DC3" firstAttribute="leading" secondItem="hvK-ZW-GUy" secondAttribute="leading" constant="15" id="a7r-YY-aPN"/>
                                                 <constraint firstItem="T49-Ob-QfY" firstAttribute="top" secondItem="seX-3p-oFn" secondAttribute="bottom" constant="10" id="e4H-UU-wH1"/>
                                                 <constraint firstItem="T49-Ob-QfY" firstAttribute="leading" secondItem="hvK-ZW-GUy" secondAttribute="leading" constant="15" id="iPz-Py-HKS"/>
                                                 <constraint firstAttribute="trailing" secondItem="S3T-xh-ee3" secondAttribute="trailing" constant="15" id="is5-Q0-1Ec"/>
                                                 <constraint firstItem="Qqy-du-dei" firstAttribute="leading" secondItem="5EO-en-KiC" secondAttribute="leading" id="m6C-fQ-DKF"/>
                                                 <constraint firstItem="Qqy-du-dei" firstAttribute="top" secondItem="5EO-en-KiC" secondAttribute="bottom" constant="10" id="mgF-EY-IQb"/>
+                                                <constraint firstItem="gd1-Md-DC3" firstAttribute="top" secondItem="kYM-uE-ldv" secondAttribute="bottom" constant="2" id="nHg-vy-zcA"/>
+                                                <constraint firstAttribute="trailing" secondItem="gd1-Md-DC3" secondAttribute="trailing" constant="15" id="q7r-cO-EZM"/>
                                                 <constraint firstAttribute="trailing" secondItem="C7i-X6-O4n" secondAttribute="trailing" constant="15" id="xF1-rs-IY5"/>
                                                 <constraint firstItem="5EO-en-KiC" firstAttribute="leading" secondItem="bY7-WL-QA2" secondAttribute="leading" id="xfA-kF-Xu1"/>
                                                 <constraint firstAttribute="trailing" secondItem="eu7-sD-H0O" secondAttribute="trailing" constant="15" id="xox-It-R61"/>

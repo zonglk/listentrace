@@ -33,7 +33,7 @@
                             albumVC.urlString = ((NSURL *)item).absoluteString;
                             UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:albumVC];
                             nav.modalPresentationStyle = UIModalPresentationFullScreen;
-                            [self.navigationController presentViewController:nav animated:YES completion:nil];
+                            [self presentViewController:nav animated:YES completion:nil];
                         });
                     }
                 }];

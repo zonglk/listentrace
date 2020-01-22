@@ -448,7 +448,7 @@
         return;
     }
     
-    if ([self.pasteBoardString containsString:@"open.spotify.com"] || [self.pasteBoardString containsString:@"music.apple.com"] || [self.pasteBoardString containsString:@"music.163.com"] || [self.pasteBoardString containsString:@"y.qq.com"] || [self.pasteBoardString containsString:@"bandcamp.com"]) {
+    if ([self.pasteBoardString containsString:@"open.spotify.com"] || [self.pasteBoardString containsString:@"music.apple.com"] || [self.pasteBoardString containsString:@"music.163.com"] || [self.pasteBoardString containsString:@"tidal.com"]) {
         [self addCoverView];
         [UIView animateWithDuration:0.4 animations:^{
             self.linkLable.alpha = 1;
@@ -469,18 +469,14 @@
             self.linkLable.text = @"music.163.com";
             [self updateConstraints:196];
         }
-        else if ([self.pasteBoardString containsString:@"y.qq.com"]) {
-            self.linkLable.text = @"y.qq.com";
+        else if ([self.pasteBoardString containsString:@"tidal.com"]) {
+            self.linkLable.text = @"tidal.com";
             [self.trangleImageView mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.width.mas_equalTo(160);
             }];
             [self.linkLable mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.centerX.mas_equalTo(self.addView).mas_offset(-10);
             }];
-        }
-        else if ([self.pasteBoardString containsString:@"bandcamp.com"]) {
-            self.linkLable.text = @"bandcamp.com";
-            [self updateConstraints:194];
         }
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"LinkUrl"];
         [[NSUserDefaults standardUserDefaults] setValue:self.pasteBoardString forKey:@"LinkUrlString"];
@@ -676,7 +672,7 @@
         }];
         autoLabel.textColor = [UIColor colorWithHexString:@"0x007AFF"];
         NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"链接导入"];
-        [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFangSC-Medium" size:15.f] range:NSMakeRange(0, 4)];
+        [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFangSC-Regular" size:15.f] range:NSMakeRange(0, 4)];
         autoLabel.attributedText = str;
         
         UIButton *autoButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 55)];
@@ -703,7 +699,7 @@
         manuelLabel.textColor = [UIColor colorWithHexString:@"0x007AFF"];
         manuelLabel.font = [UIFont systemFontOfSize:15 weight:0.5];
         NSMutableAttributedString *str1 = [[NSMutableAttributedString alloc] initWithString:@"手动导入"];
-        [str1 addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFangSC-Medium" size:15.f] range:NSMakeRange(0, 4)];
+        [str1 addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFangSC-Regular" size:15.f] range:NSMakeRange(0, 4)];
         manuelLabel.attributedText = str1;
         
         UIButton *manuelButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 55)];

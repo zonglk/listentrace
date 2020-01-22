@@ -62,50 +62,38 @@
                                                     <color key="textColor" red="0.32941176470588235" green="0.36078431372549019" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNS-7m-uEy">
-                                                    <rect key="frame" x="15" y="43" width="60" height="17"/>
-                                                    <attributedString key="attributedText">
-                                                        <fragment content="- Spotify ">
-                                                            <attributes>
-                                                                <color key="NSColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" metaFont="system" size="14"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- Tidal" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNS-7m-uEy">
+                                                    <rect key="frame" x="15" y="48" width="42" height="17"/>
+                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                                    <color key="textColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- 网易云音乐" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l7w-Iq-ZRM">
-                                                    <rect key="frame" x="15" y="87" width="82" height="17"/>
+                                                    <rect key="frame" x="15" y="102" width="82" height="17"/>
                                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                                     <color key="textColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- QQ 音乐" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYe-e1-r6s">
-                                                    <rect key="frame" x="15" y="65" width="64" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- Spotify" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYe-e1-r6s">
+                                                    <rect key="frame" x="15" y="75" width="56.5" height="17"/>
                                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                                     <color key="textColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- Bandcamp" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6LS-QL-JAH">
-                                                    <rect key="frame" x="15" y="109" width="79.5" height="17"/>
-                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
-                                                    <color key="textColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- Apple Music" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QdU-sG-YLE">
-                                                    <rect key="frame" x="15" y="131" width="90" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- Apple Music" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6LS-QL-JAH">
+                                                    <rect key="frame" x="15" y="129" width="90" height="17"/>
                                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                                     <color key="textColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请粘贴专辑链接：" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGa-S5-hQQ">
-                                                    <rect key="frame" x="15" y="172" width="114.5" height="17"/>
+                                                    <rect key="frame" x="15" y="176" width="114.5" height="17"/>
                                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                                     <color key="textColor" red="0.3294117647" green="0.36078431370000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WPO-hY-ila">
-                                                    <rect key="frame" x="15" y="199" width="384" height="50"/>
+                                                    <rect key="frame" x="15" y="203" width="384" height="50"/>
                                                     <subviews>
                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ATz-sW-8Yk">
                                                             <rect key="frame" x="10" y="8" width="364" height="50"/>
@@ -128,7 +116,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EP3-x5-RuO">
-                                                    <rect key="frame" x="0.0" y="249" width="414" height="200"/>
+                                                    <rect key="frame" x="0.0" y="253" width="414" height="200"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mFe-6R-vhK">
                                                             <rect key="frame" x="107" y="22" width="200" height="65"/>
@@ -183,13 +171,13 @@
                                                     </constraints>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMi-lj-hOX">
-                                                    <rect key="frame" x="0.0" y="339" width="414" height="171"/>
+                                                    <rect key="frame" x="0.0" y="343" width="414" height="167"/>
                                                     <connections>
                                                         <action selector="button2Click:" destination="uBo-kZ-tg5" eventType="touchUpInside" id="JNh-iO-glB"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4BL-dU-sA2">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="257"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="261"/>
                                                     <connections>
                                                         <action selector="button1Click:" destination="uBo-kZ-tg5" eventType="touchUpInside" id="63y-7r-dx3"/>
                                                     </connections>
@@ -198,11 +186,10 @@
                                             <constraints>
                                                 <constraint firstItem="6LS-QL-JAH" firstAttribute="leading" secondItem="TNS-7m-uEy" secondAttribute="leading" id="0aX-Ld-VXQ"/>
                                                 <constraint firstAttribute="bottom" secondItem="cMi-lj-hOX" secondAttribute="bottom" id="5ao-YY-tth"/>
-                                                <constraint firstItem="dYe-e1-r6s" firstAttribute="top" secondItem="TNS-7m-uEy" secondAttribute="bottom" constant="5" id="630-l3-hfk"/>
+                                                <constraint firstItem="dYe-e1-r6s" firstAttribute="top" secondItem="TNS-7m-uEy" secondAttribute="bottom" constant="10" id="630-l3-hfk"/>
                                                 <constraint firstAttribute="trailing" secondItem="cMi-lj-hOX" secondAttribute="trailing" id="6K7-ul-f4Q"/>
                                                 <constraint firstItem="dYe-e1-r6s" firstAttribute="leading" secondItem="TNS-7m-uEy" secondAttribute="leading" id="81l-ji-Yjt"/>
                                                 <constraint firstItem="cMi-lj-hOX" firstAttribute="leading" secondItem="DsS-l2-d4d" secondAttribute="leading" id="AZ2-s0-dC2"/>
-                                                <constraint firstItem="DGa-S5-hQQ" firstAttribute="top" secondItem="QdU-sG-YLE" secondAttribute="bottom" constant="24" id="CF7-Of-tji"/>
                                                 <constraint firstItem="WPO-hY-ila" firstAttribute="leading" secondItem="DsS-l2-d4d" secondAttribute="leading" constant="15" id="Ec5-Ss-0td"/>
                                                 <constraint firstItem="VgU-6y-EcJ" firstAttribute="top" secondItem="DsS-l2-d4d" secondAttribute="top" constant="16" id="IUX-L3-7rS"/>
                                                 <constraint firstItem="EP3-x5-RuO" firstAttribute="leading" secondItem="DsS-l2-d4d" secondAttribute="leading" id="LRt-1C-069"/>
@@ -210,20 +197,19 @@
                                                 <constraint firstItem="EP3-x5-RuO" firstAttribute="top" secondItem="WPO-hY-ila" secondAttribute="bottom" id="N0W-bv-E6x"/>
                                                 <constraint firstItem="4BL-dU-sA2" firstAttribute="top" secondItem="DsS-l2-d4d" secondAttribute="top" id="XH5-g5-UPn"/>
                                                 <constraint firstItem="TNS-7m-uEy" firstAttribute="leading" secondItem="VgU-6y-EcJ" secondAttribute="leading" id="YM1-OX-bbS"/>
-                                                <constraint firstItem="QdU-sG-YLE" firstAttribute="top" secondItem="6LS-QL-JAH" secondAttribute="bottom" constant="5" id="Ydc-Nr-mBf"/>
                                                 <constraint firstItem="4BL-dU-sA2" firstAttribute="bottom" secondItem="ATz-sW-8Yk" secondAttribute="bottom" id="bSE-5a-kPz"/>
-                                                <constraint firstItem="6LS-QL-JAH" firstAttribute="top" secondItem="l7w-Iq-ZRM" secondAttribute="bottom" constant="5" id="cKp-a3-Fdg"/>
-                                                <constraint firstItem="TNS-7m-uEy" firstAttribute="top" secondItem="VgU-6y-EcJ" secondAttribute="bottom" constant="10" id="cKz-gY-i4l"/>
+                                                <constraint firstItem="6LS-QL-JAH" firstAttribute="top" secondItem="l7w-Iq-ZRM" secondAttribute="bottom" constant="10" id="cKp-a3-Fdg"/>
+                                                <constraint firstItem="TNS-7m-uEy" firstAttribute="top" secondItem="VgU-6y-EcJ" secondAttribute="bottom" constant="15" id="cKz-gY-i4l"/>
                                                 <constraint firstItem="4BL-dU-sA2" firstAttribute="leading" secondItem="DsS-l2-d4d" secondAttribute="leading" id="chQ-4l-ZAY"/>
+                                                <constraint firstItem="DGa-S5-hQQ" firstAttribute="top" secondItem="6LS-QL-JAH" secondAttribute="bottom" constant="30" id="gZo-bZ-RKi"/>
                                                 <constraint firstAttribute="trailing" secondItem="4BL-dU-sA2" secondAttribute="trailing" id="lWQ-oi-BKO"/>
                                                 <constraint firstItem="cMi-lj-hOX" firstAttribute="top" secondItem="WPO-hY-ila" secondAttribute="bottom" constant="90" id="nTU-F2-wF3"/>
                                                 <constraint firstAttribute="trailing" secondItem="WPO-hY-ila" secondAttribute="trailing" constant="15" id="nwl-ju-ZzP"/>
-                                                <constraint firstItem="l7w-Iq-ZRM" firstAttribute="top" secondItem="dYe-e1-r6s" secondAttribute="bottom" constant="5" id="rgu-JS-2Bf"/>
+                                                <constraint firstItem="l7w-Iq-ZRM" firstAttribute="top" secondItem="dYe-e1-r6s" secondAttribute="bottom" constant="10" id="rgu-JS-2Bf"/>
                                                 <constraint firstItem="VgU-6y-EcJ" firstAttribute="leading" secondItem="DsS-l2-d4d" secondAttribute="leading" constant="15" id="uMC-43-g90"/>
                                                 <constraint firstAttribute="trailing" secondItem="EP3-x5-RuO" secondAttribute="trailing" id="y6e-Jn-R2V"/>
                                                 <constraint firstItem="WPO-hY-ila" firstAttribute="top" secondItem="DGa-S5-hQQ" secondAttribute="bottom" constant="10" id="yRT-lG-qlk"/>
                                                 <constraint firstItem="DGa-S5-hQQ" firstAttribute="leading" secondItem="TNS-7m-uEy" secondAttribute="leading" id="zhg-wB-lS4"/>
-                                                <constraint firstItem="QdU-sG-YLE" firstAttribute="leading" secondItem="TNS-7m-uEy" secondAttribute="leading" id="zpj-hg-bLM"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.97254901960784312" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

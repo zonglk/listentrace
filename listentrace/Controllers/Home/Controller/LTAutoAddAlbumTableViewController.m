@@ -55,7 +55,7 @@
         return;
     }
     
-    if ([pasteBoardString containsString:@"open.spotify.com"] || [pasteBoardString containsString:@"music.apple.com"] || [pasteBoardString containsString:@"music.163.com"] || [pasteBoardString containsString:@"y.qq.com"] || [pasteBoardString containsString:@"bandcamp.com"]) {
+    if ([pasteBoardString containsString:@"open.spotify.com"] || [pasteBoardString containsString:@"music.apple.com"] || [pasteBoardString containsString:@"music.163.com"] || [pasteBoardString containsString:@"tidal.com"]) {
         if ([pasteBoardString containsString:@"(@网易云音乐)"]) {
             NSArray *array = [pasteBoardString componentsSeparatedByString:@"》"];
             pasteBoardString = array.lastObject;
@@ -98,7 +98,7 @@
         return;
     }
     
-    if ([self.linkUrl.text containsString:@"open.spotify.com"] || [self.linkUrl.text containsString:@"music.apple.com"] || [self.linkUrl.text containsString:@"music.163.com"] || [self.linkUrl.text containsString:@"y.qq.com"] || [self.linkUrl.text containsString:@"bandcamp.com"]) {
+    if ([self.linkUrl.text containsString:@"open.spotify.com"] || [self.linkUrl.text containsString:@"music.apple.com"] || [self.linkUrl.text containsString:@"music.163.com"] || [self.linkUrl.text containsString:@"tidal.com"]) {
         [self addCoverView];
         
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"LinkUrl"];
