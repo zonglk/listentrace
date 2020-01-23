@@ -50,6 +50,23 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"LTDidBecomeActive" object:nil];
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"LTDidBecomeActiveHandlePasteBoard" object:nil];
+    
+    NSError *err = nil;
+    NSURL *containerURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.com.listentrace"];
+    containerURL = [containerURL URLByAppendingPathComponent:@"Library/Caches/addSucess.json"];
+    NSString *statusString = [NSString stringWithContentsOfURL:containerURL encoding: NSUTF8StringEncoding error:&err];
+    if ([statusString isEqualToString:@"YES"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"AddAlbumSucess" object:nil];
+        
+        //获取到共享数据的文件地址
+        NSURL *containerURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.com.listentrace"];
+        NSURL *birthdayContainerURL = [containerURL URLByAppendingPathComponent:@"Library/Caches/addSucess.json"];
+        //将需要存储的数据写入到该文件中
+        NSString *jsonString = @"NO";
+        //写入数据
+        NSError *err = nil;
+        [jsonString writeToURL:birthdayContainerURL atomically:YES encoding:NSUTF8StringEncoding error:&err];
+    }
 }
 
 

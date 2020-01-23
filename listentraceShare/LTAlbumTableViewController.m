@@ -399,6 +399,15 @@
 
     [LTShareNetworking requestUrl:url WithParam:parameter withMethod:POST success:^(id  _Nonnull result) {
         if ([result[@"code"] intValue] == 200) {
+            //获取到共享数据的文件地址
+            NSURL *containerURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.com.listentrace"];
+            NSURL *birthdayContainerURL = [containerURL URLByAppendingPathComponent:@"Library/Caches/addSucess.json"];
+            //将需要存储的数据写入到该文件中
+            NSString *jsonString = @"YES";
+            //写入数据
+            NSError *err = nil;
+            [jsonString writeToURL:birthdayContainerURL atomically:YES encoding:NSUTF8StringEncoding error:&err];
+            
             AudioServicesPlaySystemSound(1519);
             self.isSave = NO;
             UIImageView *tipImageView = [[UIImageView alloc] initWithFrame:CGRectMake(KScreenWidth/2 - 44, KScreenWidth/2 + 65, 88, 88)];

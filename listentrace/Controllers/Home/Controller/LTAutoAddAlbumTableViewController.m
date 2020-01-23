@@ -201,12 +201,16 @@
                         }
                         albumVC.result = result;
                         [self.navigationController pushViewController:albumVC animated:YES];
+                        [coverView removeFromSuperview];
+                        [view removeFromSuperview];
                     }
                     else {
                         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"解析失败" message:[NSString stringWithFormat:@"请检查专辑链接后，再重新尝试"] preferredStyle:UIAlertControllerStyleAlert];
                         UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
                         [alert addAction:action];
                         [self.navigationController presentViewController:alert animated:YES completion:nil];
+                        [coverView removeFromSuperview];
+                        [view removeFromSuperview];
                     }
                 }];
             }
@@ -216,9 +220,9 @@
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
             [alert addAction:action];
             [self.navigationController presentViewController:alert animated:YES completion:nil];
+            [coverView removeFromSuperview];
+            [view removeFromSuperview];
         }
-        [coverView removeFromSuperview];
-        [view removeFromSuperview];
     } failure:^(NSError * _Nonnull erro) {
         [coverView removeFromSuperview];
         [view removeFromSuperview];
