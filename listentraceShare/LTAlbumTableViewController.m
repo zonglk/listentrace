@@ -125,6 +125,10 @@
     
     self.styleTextField.text = @"必填";
     self.styleTextField.textColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.6];
+    self.albumNameTextField.text = @"必填";
+    self.albumNameTextField.textColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.6];
+    self.musicianTextField.text = @"必填";
+    self.musicianTextField.textColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.6];
     
     self.label1.textColor = RGBHex(0x545C77);
     self.label2.textColor = RGBHex(0x545C77);
@@ -169,12 +173,32 @@
             self.styleTextField.text = nil;
         }
     }
+    else if (textField == self.musicianTextField) {
+        if ([self.musicianTextField.text isEqualToString:@"必填"]) {
+            self.musicianTextField.textColor  = RGBHex(0x545C77);
+            self.musicianTextField.text = nil;
+        }
+    }
+    else if (textField == self.albumNameTextField) {
+        if ([self.albumNameTextField.text isEqualToString:@"必填"]) {
+            self.albumNameTextField.textColor  = RGBHex(0x545C77);
+            self.albumNameTextField.text = nil;
+        }
+    }
 }
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
     if (!self.styleTextField.text.length) {
         self.styleTextField.textColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.7];
         self.styleTextField.text = @"必填";
+    }
+    else if (!self.musicianTextField.text.length) {
+        self.musicianTextField.textColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.7];
+        self.musicianTextField.text = @"必填";
+    }
+    else if (!self.albumNameTextField.text.length) {
+        self.albumNameTextField.textColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.7];
+        self.albumNameTextField.text = @"必填";
     }
     return YES;
 }
