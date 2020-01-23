@@ -184,6 +184,11 @@
                             <outlet property="delegate" destination="dtB-oU-53L" id="IoE-0P-kWa"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="image1" destination="seX-3p-oFn" id="Jnm-RE-kg4"/>
+                        <outlet property="image2" destination="S3T-xh-ee3" id="3oH-Jy-4C7"/>
+                        <outlet property="image3" destination="Axn-Ln-tYw" id="GK7-HE-fXD"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wSp-xl-M80" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

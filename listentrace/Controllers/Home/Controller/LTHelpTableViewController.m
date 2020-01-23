@@ -14,6 +14,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *knowButton;
 @property (strong, nonatomic) UIView *coverView;
 - (IBAction)knowButtonClick:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *image1;
+@property (weak, nonatomic) IBOutlet UIImageView *image2;
+@property (weak, nonatomic) IBOutlet UIImageView *image3;
 
 @end
 
@@ -27,6 +30,12 @@
     self.coverView = [[UIView alloc] initWithFrame:CGRectMake(0, 30, 80, 30)];
     [[UIApplication sharedApplication].delegate.window addSubview:self.coverView];
     self.coverView.backgroundColor = [UIColor whiteColor];
+    
+    if (kDevice_iphone4 || kDevice_iphone5) {
+        self.image1.contentMode = UIViewContentModeScaleAspectFit;
+        self.image2.contentMode = UIViewContentModeScaleAspectFit;
+        self.image3.contentMode = UIViewContentModeScaleAspectFit;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
