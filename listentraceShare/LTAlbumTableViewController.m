@@ -268,14 +268,17 @@
 
     NSString *albumNameString = result[@"data"][@"album_name"];
     if (albumNameString != nil && [albumNameString class] != [NSNull class]) {
+        self.albumNameTextField.textColor = RGBHex(0x545C77);
         self.albumNameTextField.text = result[@"data"][@"album_name"];
     }
     NSString *musicianTextString = result[@"data"][@"album_musician"];
     if (musicianTextString != nil && [musicianTextString class] != [NSNull class]) {
+        self.musicianTextField.textColor = RGBHex(0x545C77);
         self.musicianTextField.text = result[@"data"][@"album_musician"];
     }
     NSString *styleTextString = result[@"data"][@"album_style"];
     if (styleTextString != nil && [styleTextString class] != [NSNull class]) {
+        self.styleTextField.textColor = RGBHex(0x545C77);
         self.styleTextField.text = result[@"data"][@"album_style"];
     }
     NSString *durationString = result[@"data"][@"album_duration"];
