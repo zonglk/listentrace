@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *image1;
 @property (weak, nonatomic) IBOutlet UIImageView *image2;
 @property (weak, nonatomic) IBOutlet UIImageView *image3;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *height;
 
 @end
 
@@ -25,6 +26,9 @@
         self.image1.contentMode = UIViewContentModeScaleAspectFit;
         self.image2.contentMode = UIViewContentModeScaleAspectFit;
         self.image3.contentMode = UIViewContentModeScaleAspectFit;
+    }
+    else if (kDevice_iphoneXR) {
+        self.height.constant = 170;
     }
 }
 

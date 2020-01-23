@@ -736,7 +736,10 @@
         [_coverView addSubview:self.linkLable];
         [self.linkLable mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(self.addView);
-            if (kIS_IPHONE_X || kIS_iPhonePlus) {
+            if (kDevice_iphoneXR) {
+                make.bottom.mas_equalTo(self.rectangleImageView.mas_top).mas_offset(-14);
+            }
+            else if (kIS_IPHONE_X || kIS_iPhonePlus) {
                 make.bottom.mas_equalTo(self.rectangleImageView.mas_top).mas_offset(-10);
             }
             else {

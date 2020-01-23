@@ -202,6 +202,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="height" destination="Qbh-Tl-QkK" id="IVp-ic-5Iv"/>
                         <outlet property="image1" destination="yj2-CV-4yO" id="dyi-7i-r2h"/>
                         <outlet property="image2" destination="QIG-7R-RGt" id="NcQ-Ve-0gv"/>
                         <outlet property="image3" destination="ef7-YY-14i" id="bTZ-8v-NQC"/>
