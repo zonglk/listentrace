@@ -736,7 +736,12 @@
         [_coverView addSubview:self.linkLable];
         [self.linkLable mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(self.addView);
-            make.bottom.mas_equalTo(self.rectangleImageView.mas_top).mas_offset(-14);
+            if (kIS_IPHONE_X || kIS_iPhonePlus) {
+                make.bottom.mas_equalTo(self.rectangleImageView.mas_top).mas_offset(-10);
+            }
+            else {
+                make.bottom.mas_equalTo(self.rectangleImageView.mas_top).mas_offset(-14);
+            }
         }];
         self.linkLable.textColor = [UIColor whiteColor];
         self.linkLable.font = [UIFont systemFontOfSize:14];

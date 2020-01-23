@@ -119,7 +119,7 @@
                                                     <rect key="frame" x="0.0" y="253" width="414" height="200"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mFe-6R-vhK">
-                                                            <rect key="frame" x="107" y="22" width="200" height="65"/>
+                                                            <rect key="frame" x="107" y="21" width="200" height="65"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TsK-I6-Y4m">
                                                                     <rect key="frame" x="0.0" y="0.0" width="200" height="65"/>
@@ -159,7 +159,7 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstItem="mFe-6R-vhK" firstAttribute="top" secondItem="CxV-xH-yKG" secondAttribute="bottom" id="1Ls-cP-NcU"/>
+                                                        <constraint firstItem="mFe-6R-vhK" firstAttribute="top" secondItem="CxV-xH-yKG" secondAttribute="bottom" constant="-1" id="1Ls-cP-NcU"/>
                                                         <constraint firstItem="lLa-xQ-pvN" firstAttribute="top" secondItem="EP3-x5-RuO" secondAttribute="top" constant="45" id="FHb-2p-UjH"/>
                                                         <constraint firstItem="lLa-xQ-pvN" firstAttribute="centerX" secondItem="EP3-x5-RuO" secondAttribute="centerX" id="GOt-7c-rB8"/>
                                                         <constraint firstAttribute="height" constant="200" id="TLs-R4-TEk"/>
